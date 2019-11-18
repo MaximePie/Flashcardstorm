@@ -99928,7 +99928,7 @@ function AddKnowledge() {
   }))));
 
   function updateForm(e) {
-    setForm(_objectSpread({}, form, _defineProperty({}, e.target.name, e.target.value))); // TODO - Create new SnackbarComponent
+    setForm(_objectSpread({}, form, _defineProperty({}, e.target.name, e.target.value))); // TODO #6 - Create new SnackbarComponent
     // TODO #1 - THIS IS A NEW TODO 
   }
 
@@ -100045,4 +100045,4 @@ module.exports = __webpack_require__(/*! /home/maxime/Documents/FlashcardStorm/r
 
 /***/ })
 
-/******/ });
+/******/ });;

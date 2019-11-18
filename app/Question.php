@@ -18,5 +18,5 @@ class Question extends Model
 
     // TODO - Create scopeTodoQuestions scope which will return every questions the user has not already answered (Today > next_question_at)
 
-    // TODO - Create currentScore() method which will the
+    // TODO #5 - Create currentScore() method which will the
 }

@@ -37,7 +37,7 @@ export default function Home() {
 
       // TODO - Fetch a new question and remove current question
 
-      // TODO - Display the score sent by the Backoffice
+      // TODO #13 - Display the score sent by the Backoffice
     }
   }
 

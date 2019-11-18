@@ -104,7 +104,7 @@ class QuestionController extends Controller
     {
         $question = QUESTION::query()->find($request->id);
         if ($request->is_correct) {
-           // TODO - Régler next_question_at sur current_delay + 1
+           // TODO #2 - Régler next_question_at sur current_delay + 1
         }
 
         return response()->json([
