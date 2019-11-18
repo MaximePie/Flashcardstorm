@@ -17,7 +17,7 @@ export default function Home() {
                   Bonjour et bienvenue sur FlashcardStorm
                   <div className="questions">
                     {questions.length && (
-                      <p>{questions[0].wording}</p>
+                      <p>{questions[0].wording}</p> // TODO - Create Question Card Component
                     )}
                   </div>
                   <input type="text" onChange={e => setAnswer(e.target.value)}/>
@@ -31,9 +31,9 @@ export default function Home() {
   function submitAnswer() {
     if (answer === questions[0].answer) {
       alert("success")
-      // Send success (question)
+      // TODO - Send success info
 
-      // Récupérer une question
+      // TODO - Fetch a new question and remove current question
     }
   }
 
