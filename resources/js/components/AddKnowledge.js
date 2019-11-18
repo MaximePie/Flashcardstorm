@@ -70,7 +70,7 @@ export default function AddKnowledge() {
       [e.target.name]: e.target.value
     });
 
-    // TODO - Create a new SnackbarComponent
+    // TODO - Create new SnackbarComponent
   }
 
   function submitValues(event) {

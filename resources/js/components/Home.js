@@ -33,7 +33,7 @@ export default function Home() {
       alert("success")
       // TODO - Send success info
 
-      // TODO - Fetch new question and remove current question
+      // TODO - Fetch a new question and remove current question
     }
   }
 
