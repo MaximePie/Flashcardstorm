@@ -1,3 +1,4 @@
 _version=3.1.0
 repo=MaximePie/Flashcardstorm
 github.token=62faa710ba11e21418ee980e7209d19874426494
+inject-issue=true
