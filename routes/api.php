@@ -13,9 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', static function (Request $request) {
     return $request->user();
 });
 
 Route::get('question', 'QuestionController@index');
 Route::post('question', 'QuestionController@store');
+Route::post('submit_answer', 'QuestionController@submit');

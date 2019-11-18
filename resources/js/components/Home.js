@@ -28,12 +28,16 @@ export default function Home() {
       </div>
   );
 
+  // TODO - Create import from Excel feature, the program can take a csv file with 2 columns : Question,Answer 
+
   function submitAnswer() {
     if (answer === questions[0].answer) {
       alert("success")
       // TODO - Send success info
 
       // TODO - Fetch a new question and remove current question
+
+      // TODO - Display the score sent by the Backoffice
     }
   }
 

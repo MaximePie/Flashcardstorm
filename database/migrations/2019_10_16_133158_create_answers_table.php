@@ -11,9 +11,9 @@ class CreateAnswersTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('answers', function (Blueprint $table) {
+        Schema::create('answers', static function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('wording');
             $table->timestamps();
@@ -25,7 +25,7 @@ class CreateAnswersTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('answers');
     }

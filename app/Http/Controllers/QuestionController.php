@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use App\Answer;
 use App\Question;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function index()
+    public function index(): Response
     {
         $questions = Question::query()->inRandomOrder()->get();
-        $questions->each(function(Question $question) {
+        $questions->each(static function(Question $question) {
             $question['answer'] = $question->answer()->first()->wording;
         });
         return response()->json($questions);
@@ -25,7 +26,7 @@ class QuestionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function create()
     {
@@ -97,5 +98,17 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         //
+    }
+
+    public function submitAnswer(Request $request)
+    {
+        $question = QUESTION::query()->find($request->id);
+        if ($request->is_correct) {
+           // TODO - Régler next_question_at sur current_delay + 1
+        }
+
+        return response()->json([
+            'Success' => 'Bien noté !',
+        ]);
     }
 }
