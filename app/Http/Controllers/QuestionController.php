@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Answer;
 use App\Question;
+use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -12,9 +14,9 @@ class QuestionController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return JsonResponse
      */
-    public function index(): Response
+    public function index(): JsonResponse
     {
         $questions = Question::query()->inRandomOrder()->get();
         $questions->each(static function(Question $question) {
@@ -69,8 +71,8 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
+     * @param  \App\Question $question
+     * @return void
      */
     public function edit(Question $question)
     {
@@ -80,9 +82,9 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Question $question
+     * @return void
      */
     public function update(Request $request, Question $question)
     {
@@ -92,25 +94,35 @@ class QuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
+     * @param  \App\Question $question
+     * @return void
      */
     public function destroy(Question $question)
     {
         //
     }
 
-    public function submitAnswer(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @throws \Exception
+     */
+    public function submitAnswer(Request $request): JsonResponse
     {
         $question = QUESTION::query()->find($request->id);
-        if ($request->attributes->is_valid) {
-           // TODO #2 - Régler next_question_at sur current_delay + 1
+        if ($request->is_valid) {
+
+            $question->current_delay ++;
+            $question->last_answered_at = Carbon::now();
+            $question->next_question_at = Carbon::now()->addDays($question->current_delay);
+            $question->save();
+            // TODO #14 Ajouter le score à l'utilisateur
         }
 
-        // TODO #14 Ajouter le score à l'utilisateur
 
         return response()->json([
             'Success' => 'Bien noté !',
+            'Question' => $question,
         ]);
     }
 }

@@ -14,13 +14,13 @@ class AddColumnsToQuestions extends Migration
     public function up(): void
     {
         Schema::table('questions', static function (Blueprint $table) {
-            $table->integer('current_delay');
-            $table->integer('score');
+            $table->integer('current_delay')->default(0);
+            $table->integer('score')->default(10);
             $table->integer('full_score')->nullable();
-            $table->integer('number_of_successful_answer');
-            $table->integer('number_of_unsuccessful_answer');
+            $table->integer('number_of_successful_answer')->default(0);
+            $table->integer('number_of_unsuccessful_answer')->default(0);
             $table->date('last_answered_at')->nullable();
-            $table->date('next_question_at')->nullable();
+            $table->date('next_question_at')->nullable()->default(now());
         });
     }
 

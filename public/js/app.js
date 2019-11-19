@@ -33149,7 +33149,7 @@ var defaultTheme = Object(_createMuiTheme__WEBPACK_IMPORTED_MODULE_0__["default"
 /*!************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/styles/index.js ***!
   \************************************************************/
-/*! exports provided: createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider, hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, easing, duration, formatMs, isString, isNumber */
+/*! exports provided: hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, easing, duration, formatMs, isString, isNumber, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36793,7 +36793,7 @@ var flexbox = Object(_compose__WEBPACK_IMPORTED_MODULE_1__["default"])(flexBasis
 /*!*******************************************************!*\
   !*** ./node_modules/@material-ui/system/esm/index.js ***!
   \*******************************************************/
-/*! exports provided: borders, breakpoints, compose, css, display, flexbox, palette, positions, shadows, sizing, spacing, style, typography, border, borderTop, borderRight, borderBottom, borderLeft, borderColor, borderRadius, flexBasis, flexDirection, flexWrap, justifyContent, alignItems, alignContent, order, flex, flexGrow, flexShrink, alignSelf, justifyItems, justifySelf, color, bgcolor, position, zIndex, top, right, bottom, left, width, maxWidth, minWidth, height, maxHeight, minHeight, sizeWidth, sizeHeight, fontFamily, fontSize, fontStyle, fontWeight, letterSpacing, lineHeight, textAlign */
+/*! exports provided: borders, border, borderTop, borderRight, borderBottom, borderLeft, borderColor, borderRadius, breakpoints, compose, css, display, flexbox, flexBasis, flexDirection, flexWrap, justifyContent, alignItems, alignContent, order, flex, flexGrow, flexShrink, alignSelf, justifyItems, justifySelf, palette, color, bgcolor, positions, position, zIndex, top, right, bottom, left, shadows, sizing, width, maxWidth, minWidth, height, maxHeight, minHeight, sizeWidth, sizeHeight, spacing, style, typography, fontFamily, fontSize, fontStyle, fontWeight, letterSpacing, lineHeight, textAlign */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -91708,7 +91708,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99928,8 +99928,7 @@ function AddKnowledge() {
   }))));
 
   function updateForm(e) {
-    setForm(_objectSpread({}, form, _defineProperty({}, e.target.name, e.target.value))); // TODO #6 - Create new SnackbarComponent
-    // TODO #1 - THIS IS A NEW TODO 
+    setForm(_objectSpread({}, form, _defineProperty({}, e.target.name, e.target.value))); // TODO #11 - Create a new SnackbarComponent
   }
 
   function submitValues(event) {
@@ -99971,7 +99970,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Home() {
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState([{}]),
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState([{
+    wording: undefined
+  }]),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       questions = _React$useState2[0],
       updateQuestions = _React$useState2[1];
@@ -99982,33 +99983,41 @@ function Home() {
       setAnswer = _React$useState4[1];
 
   react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
-    updateQuestionsBag();
+    updateQuestionsBag(); // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
   }, []);
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-8"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card"
-  }, "Bonjour et bienvenue sur FlashcardStorm", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "questions"
-  }, questions.length && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, questions[0].wording) // TODO - Create Question Card Component
-  ), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    onChange: function onChange(e) {
-      return setAnswer(e.target.value);
-    }
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "btn btn-primary",
-    onClick: submitAnswer
-  }, "SUBMIT"));
+  return (// TODO Afficher tous les composants sur la même page Home.js pour le moment puisqu'on n'a que très peu de contenu
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "row justify-content-center"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-md-8"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "card"
+    }, "Bonjour et bienvenue sur FlashcardStorm", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "questions"
+    }, questions.length && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, questions[0].wording) // TODO - Create Question Card Component
+    ), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      type: "text",
+      onChange: function onChange(e) {
+        return setAnswer(e.target.value);
+      }
+    })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "btn btn-primary",
+      onClick: submitAnswer
+    }, "SUBMIT"))
+  ); // TODO - Create import from Excel feature, the program can take a csv file with 2 columns : Question,Answer 
 
   function submitAnswer() {
     if (answer === questions[0].answer) {
-      alert("success"); // TODO - Send success info
-      // TODO - Fetch a new question and remove current question
+      // TODO #20 - Send answer info
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/question/submit_answer', {
+        id: questions[0].id,
+        is_valid: true
+      }).then(function (response) {
+        console.log(response.data.question);
+      }); // TODO - Fetch a new question and remove current question
+      // TODO #13 - Display the score sent by the Backoffice
     }
   }
 
@@ -100045,4 +100054,4 @@ module.exports = __webpack_require__(/*! /home/maxime/Documents/FlashcardStorm/r
 
 /***/ })
 
-/******/ });;
+/******/ });
