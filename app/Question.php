@@ -14,9 +14,8 @@ class Question extends Model
         return $this->belongsTo(Answer::class);
     }
 
-    // TODO - Create fullScore() method which will return a sum of every question scores
+    // TODO - Create fullScore method which will return a sum of every question scores
 
-    // TODO - Create scopeTodoQuestions scope which will return every questions the user has not already answered (Today > next_question_at)
+    // TODO - Create scopeTodoQuestions  scope which will return every questions the user has not already answered (Today > next_question_at)
 
-    // TODO #5 - Create currentScore() method which will the
 }

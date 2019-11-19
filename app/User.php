@@ -10,6 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    // TODO Créer une migration pour l'utilisateur et lui ajouter une colonne "score"
+
     /**
      * The attributes that are mass assignable.
      *

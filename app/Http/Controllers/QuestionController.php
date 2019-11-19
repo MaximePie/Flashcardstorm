@@ -103,9 +103,11 @@ class QuestionController extends Controller
     public function submitAnswer(Request $request)
     {
         $question = QUESTION::query()->find($request->id);
-        if ($request->is_correct) {
+        if ($request->attributes->is_valid) {
            // TODO #2 - Régler next_question_at sur current_delay + 1
         }
+
+        // TODO Ajouter le score à l'utilisateur
 
         return response()->json([
             'Success' => 'Bien noté !',

@@ -2,14 +2,16 @@ import React from 'react';
 import axios from "axios";
 export default function Home() {
 
-  const [questions, updateQuestions] = React.useState([{}]);
+  const [questions, updateQuestions] = React.useState([{wording: undefined}]);
   const [answer, setAnswer] = React.useState("");
 
   React.useEffect(() => {
     updateQuestionsBag()
-  }, [])
+    // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
+  }, []);
 
   return (
+    // TODO Afficher tous les composants sur la même page Home.js pour le moment puisqu'on n'a que très peu de contenu
       <div className="container">
           <div className="row justify-content-center">
               <div className="col-md-8">
@@ -33,7 +35,7 @@ export default function Home() {
   function submitAnswer() {
     if (answer === questions[0].answer) {
       alert("success")
-      // TODO - Send success info
+      // TODO - Send answer info
 
       // TODO - Fetch a new question and remove current question
 
