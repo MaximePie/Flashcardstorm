@@ -34,8 +34,13 @@ export default function Home() {
 
   function submitAnswer() {
     if (answer === questions[0].answer) {
-      alert("success")
       // TODO #20 - Send answer info
+      axios.post('/api/question/submit_answer', {
+        id: questions[0].id,
+        is_valid: true,
+      }).then(response => {
+        console.log(response.data.question);
+      })
 
       // TODO - Fetch a new question and remove current question
 
