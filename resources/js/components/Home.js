@@ -35,7 +35,7 @@ export default function Home() {
   function submitAnswer() {
     if (answer === questions[0].answer) {
       alert("success")
-      // TODO - Send answer info
+      // TODO #20 - Send answer info
 
       // TODO - Fetch a new question and remove current question
 

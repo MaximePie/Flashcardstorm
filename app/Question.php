@@ -16,6 +16,6 @@ class Question extends Model
 
     // TODO - Create fullScore method which will return a sum of every question scores
 
-    // TODO - Create scopeTodoQuestions  scope which will return every questions the user has not already answered (Today > next_question_at)
+    // TODO #16 - Create scopeTodoQuestions  scope which will return every questions the user has not already answered (Today > next_question_at)
 
 }

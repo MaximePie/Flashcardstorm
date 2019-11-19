@@ -107,7 +107,7 @@ class QuestionController extends Controller
            // TODO #2 - Régler next_question_at sur current_delay + 1
         }
 
-        // TODO Ajouter le score à l'utilisateur
+        // TODO #14 Ajouter le score à l'utilisateur
 
         return response()->json([
             'Success' => 'Bien noté !',
