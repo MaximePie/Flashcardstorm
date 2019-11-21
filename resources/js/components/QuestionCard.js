@@ -11,7 +11,7 @@ export default function QuestionCard(props) {
       {question.wording || 'Il n\'y a pas encore de question disponible... Cliquez sur "Add knowledge" pour en ajouter !'}
       </p>
       <input type="text" onChange={e => setAnswer(e.target.value)}/>
-      <Button onClick={props.onSubmit(answer)} text="Envoyer"/>
+      <Button onClick={() => props.onSubmit(answer)} text="Envoyer"/>
     </div>
   );
 }

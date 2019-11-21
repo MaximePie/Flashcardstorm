@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from "axios";
-import {Button, Icon, IconButton, Snackbar, SnackbarContent} from '@material-ui/core';
+import {Button} from '@material-ui/core';
+import Snackbar from "./Snackbar";
+
 export default function AddKnowledge() {
 
   const [form, setForm] = React.useState({
@@ -8,7 +10,7 @@ export default function AddKnowledge() {
     answer: ''
   });
 
-  const [open, setOpen] = React.useState(false);
+  const [is_open, setOpen] = React.useState(false);
 
   return (
     <div className="container">
@@ -36,30 +38,7 @@ export default function AddKnowledge() {
             Open success snackbar
           </Button>
           </form>
-
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          open={open}
-          autoHideDuration={6000}
-          onClose={() => setOpen(false)}
-        >
-          <SnackbarContent
-          aria-describedby="client-snackbar"
-          message={
-            <span id="client-snackbar">
-              Succès !
-            </span>
-          }
-          action={[
-            <IconButton key="close" aria-label="close" color="inherit" onClick={() => setOpen(false)}>
-              X
-            </IconButton>,
-          ]}
-        />
-        </Snackbar>
+        <Snackbar is_open={is_open} on_close={() => setOpen(false)}/>
       </div>
     </div>
   );

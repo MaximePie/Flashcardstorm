@@ -44140,7 +44140,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".Home {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}", ""]);
+exports.push([module.i, ".Home {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n\n.Home__title {\n  text-align: center;\n  margin: 0 4%;\n}", ""]);
 
 // exports
 
@@ -99917,6 +99917,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+/* harmony import */ var _Snackbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Snackbar */ "./resources/js/components/Snackbar.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -99934,6 +99935,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function AddKnowledge() {
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState({
     question: '',
@@ -99945,7 +99947,7 @@ function AddKnowledge() {
 
   var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false),
       _React$useState4 = _slicedToArray(_React$useState3, 2),
-      open = _React$useState4[0],
+      is_open = _React$useState4[0],
       setOpen = _React$useState4[1];
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -99965,30 +99967,12 @@ function AddKnowledge() {
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Button"], {
     variant: "outlined",
     onClick: submitValues
-  }, "Open success snackbar")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Snackbar"], {
-    anchorOrigin: {
-      vertical: 'bottom',
-      horizontal: 'left'
-    },
-    open: open,
-    autoHideDuration: 6000,
-    onClose: function onClose() {
+  }, "Open success snackbar")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Snackbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    is_open: is_open,
+    on_close: function on_close() {
       return setOpen(false);
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["SnackbarContent"], {
-    "aria-describedby": "client-snackbar",
-    message: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      id: "client-snackbar"
-    }, "Succ\xE8s !"),
-    action: [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["IconButton"], {
-      key: "close",
-      "aria-label": "close",
-      color: "inherit",
-      onClick: function onClick() {
-        return setOpen(false);
-      }
-    }, "X")]
-  }))));
+  })));
 
   function updateForm(e) {
     setForm(_objectSpread({}, form, _defineProperty({}, e.target.name, e.target.value))); // TODO #11 - Create a new SnackbarComponent
@@ -100045,6 +100029,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _QuestionCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./QuestionCard */ "./resources/js/components/QuestionCard.js");
+/* harmony import */ var _Snackbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Snackbar */ "./resources/js/components/Snackbar.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -100056,45 +100041,52 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function Home() {
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       questions = _React$useState2[0],
       updateQuestions = _React$useState2[1];
 
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      is_open = _React$useState4[0],
+      setOpen = _React$useState4[1];
+
   react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
     updateQuestionsBag(); // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
   }, []);
-  return (// TODO Afficher tous les composants sur la même page Home.js pour le moment puisqu'on n'a que très peu de contenu
-    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return (// TODO Afficher tous les composants sur la même page Home.js pour le moment puisqu'on n'a que très peu de contenu*
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jumbotron Home__title"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Bienvenue sur FlashcardStorm"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Make learning great again !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "container Home"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "row"
-    }, "Bonjour et bienvenue sur FlashcardStorm"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row"
     }, questions && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
       question: questions[0],
       onSubmit: submitAnswer
-    }))))
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Snackbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      is_open: is_open,
+      on_close: function on_close() {
+        return setOpen(false);
+      }
+    })))
   ); // TODO - Create import from Excel feature, the program can take a csv file with 2 columns : Question,Answer 
 
   function submitAnswer(answer) {
-    console.log(answer);
-
-    if (answer === questions[0].answer) {
-      // TODO #20 - Send answer info
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/question/submit_answer', {
-        id: questions[0].id,
-        is_valid: true
-      }).then(function (response) {
-        console.log(response.data.Question);
-      }); // TODO - Fetch a new question and remove current question
-      // TODO #13 - Display the score sent by the Backoffice
-    }
+    // TODO #20 - Send answer info
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/question/submit_answer', {
+      id: questions[0].id,
+      is_valid: answer === questions[0].answer
+    }).then(function (response) {
+      setOpen(true);
+    }); // TODO - Fetch a new question and remove current question
+    // TODO #13 - Display the score sent by the Backoffice
   }
 
   function updateQuestionsBag() {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/question').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('api/question').then(function (response) {
       updateQuestions(response.data);
     });
   }
@@ -100143,8 +100135,50 @@ function QuestionCard(props) {
       return setAnswer(e.target.value);
     }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    onClick: props.onSubmit(answer),
+    onClick: function onClick() {
+      return props.onSubmit(answer);
+    },
     text: "Envoyer"
+  }));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Snackbar.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Snackbar.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddKnowledge; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+
+
+function AddKnowledge(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Snackbar"], {
+    anchorOrigin: {
+      vertical: 'bottom',
+      horizontal: 'left'
+    },
+    open: props.is_open,
+    autoHideDuration: 3000,
+    onClose: props.onClose
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["SnackbarContent"], {
+    "aria-describedby": "client-snackbar",
+    message: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      id: "client-snackbar"
+    }, "Succ\xE8s !"),
+    action: [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["IconButton"], {
+      key: "close",
+      "aria-label": "close",
+      color: "inherit",
+      onClick: props.onClose
+    }, "X")]
   }));
 }
 
