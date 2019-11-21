@@ -1,0 +1,18 @@
+.QuestionCard {
+    padding: 16px;
+    margin: 16px;
+    width: 500px;
+    min-height: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+
+    &__question {
+        text-align: center;
+
+        &--is-empty {
+            color: grey;
+        }
+    }
+}

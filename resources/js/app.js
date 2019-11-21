@@ -4,6 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const $ = require('jquery');
 require ('popper.js');
 require('bootstrap');
+require ("../sass/QuestionCard.scss");
+require ("../sass/Home.scss");
+require ("../sass/Button.scss");
 
 
 import React from "react";
