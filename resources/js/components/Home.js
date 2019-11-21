@@ -49,7 +49,7 @@ export default function Home() {
   }
 
   function updateQuestionsBag() {
-    axios.get('/api/question').then(response => {
+    axios.get('/question').then(response => {
       updateQuestions(response.data)
     })
   }
