@@ -23,7 +23,7 @@ export default function Home() {
       </div>
       <div className="container Home">
         <div className="row">
-          {questions && (
+          {questions[0] && (
             <QuestionCard question={questions[0]} onSubmit={submitAnswer}/>
           )}
         </div>

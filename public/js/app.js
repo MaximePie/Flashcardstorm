@@ -100108,7 +100108,7 @@ function Home() {
       className: "container Home"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row"
-    }, questions && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }, questions[0] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
       question: questions[0],
       onSubmit: submitAnswer
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Snackbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -100175,8 +100175,8 @@ function QuestionCard(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "QuestionCard card"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "QuestionCard__question " + (!question.wording && "QuestionCard__question--is-empty")
-  }, question.wording || 'Il n\'y a pas encore de question disponible... Cliquez sur "Add knowledge" pour en ajouter !'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "QuestionCard__question " + (!question && "QuestionCard__question--is-empty")
+  }, question || 'Il n\'y a pas encore de question disponible... Cliquez sur "Add knowledge" pour en ajouter !'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     label: "R\xE9ponse",
     onChange: function onChange(e) {
       return setAnswer(e.target.value);
