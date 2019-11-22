@@ -7,6 +7,7 @@ require('bootstrap');
 require ("../sass/QuestionCard.scss");
 require ("../sass/Home.scss");
 require ("../sass/Button.scss");
+require ("../sass/Navbar.scss");
 
 
 import React from "react";
@@ -19,24 +20,13 @@ import {
 
 import Home from "./components/Home"
 import AddKnowledge from "./components/AddKnowledge"
+import Navbar from "./components/navbar";
 
 export default function App() {
   return (
     <BrowserRouter>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/home">Home</Link>
-            </li>
-            <li>
-              <Link to="/add">Add Knowledge</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
+        <Navbar/>
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
