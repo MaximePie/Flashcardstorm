@@ -5,8 +5,8 @@ export default function AddKnowledge(props) {
   return (
       <Snackbar
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
+          vertical: 'top',
+          horizontal: 'center',
         }}
         open={props.is_open}
         autoHideDuration={3000}
@@ -20,7 +20,7 @@ export default function AddKnowledge(props) {
             </span>
           }
           action={[
-            <IconButton key="close" aria-label="close" color="inherit" onClick={props.onClose}>
+            <IconButton key="close" aria-label="close" color="inherit" onClick={props.on_close}>
               X
             </IconButton>,
           ]}

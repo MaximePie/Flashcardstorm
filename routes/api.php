@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', static function (Request $request) {
 });
 
 Route::get('question', 'QuestionController@randomQuestion');
+Route::get('question/delete/{question}', 'QuestionController@destroy');
 Route::get('questions_list', 'QuestionController@index');
 Route::post('question', 'QuestionController@store');
 Route::post('question/submit_answer', 'QuestionController@submitAnswer');

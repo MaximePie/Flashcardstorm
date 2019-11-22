@@ -1,8 +1,23 @@
 .QuestionsList {
+    &__question {
+        display: flex;
+        justify-content: space-between;
+    }
+
     &__question-wording {
         margin: 0 4px;
     }
+
     &__question-answer {
         margin: 0 4px;
+    }
+
+    &__delete-button {
+        background-color: #c13c2b !important;
+        padding: 4px;
+    }
+
+    &__delete-icon {
+        color: white;
     }
 }

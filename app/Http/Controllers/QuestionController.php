@@ -18,7 +18,7 @@ class QuestionController extends Controller
      */
     public function index(): JsonResponse
     {
-        $questions = Question::query()->inRandomOrder()->get();
+        $questions = Question::all();
         $questions->each(static function(Question $question) {
             $question['answer'] = $question->answer()->first()->wording;
         });
@@ -32,7 +32,7 @@ class QuestionController extends Controller
      */
     public function randomQuestion(): JsonResponse
     {
-        $questions = Question::all();
+        $questions = Question::query()->inRandomOrder()->get();
         $questions->each(static function(Question $question) {
             $question['answer'] = $question->answer()->first()->wording;
         });
@@ -109,11 +109,17 @@ class QuestionController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Question $question
-     * @return void
+     * @return JsonResponse
+     * @throws \Exception
      */
     public function destroy(Question $question)
     {
-        //
+        $question = Question::destroy($question->id);
+        $questions = Question::query()->inRandomOrder()->get();
+        $questions->each(static function(Question $question) {
+            $question['answer'] = $question->answer()->first()->wording;
+        });
+        return response()->json($questions);
     }
 
     /**
