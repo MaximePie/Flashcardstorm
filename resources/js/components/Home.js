@@ -23,8 +23,8 @@ export default function Home() {
       </div>
       <div className="container Home">
         <div className="row">
-          {questions[0] && (
-            <QuestionCard question={questions[0]} onSubmit={submitAnswer}/>
+          {questions && (
+            <QuestionCard question={questions[0] || undefined} onSubmit={submitAnswer}/>
           )}
         </div>
         <Snackbar is_open={is_open} on_close={() => setOpen(false)}/>

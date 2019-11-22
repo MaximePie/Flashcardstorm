@@ -99991,7 +99991,7 @@ function AddKnowledge() {
       setOpen = _React$useState4[1];
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container Addknowledge"
+    className: "Addknowledge"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "jumbotron Addknowledge__title"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Ajouter une question")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -100108,8 +100108,8 @@ function Home() {
       className: "container Home"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row"
-    }, questions[0] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      question: questions[0],
+    }, questions && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      question: questions[0] || undefined,
       onSubmit: submitAnswer
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Snackbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
       is_open: is_open,

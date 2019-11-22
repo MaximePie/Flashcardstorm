@@ -14,7 +14,7 @@ export default function AddKnowledge() {
   const [is_open, setOpen] = React.useState(false);
 
   return (
-    <div className="container Addknowledge">
+    <div className="Addknowledge">
       <div className="jumbotron Addknowledge__title">
         <h1>Ajouter une question</h1>
       </div>
