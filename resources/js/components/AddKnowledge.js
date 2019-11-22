@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from "axios";
-import {Button} from '@material-ui/core';
+import Button from "./Button";
 import Snackbar from "./Snackbar";
+import TextField from "@material-ui/core/TextField";
 
 export default function AddKnowledge() {
 
@@ -13,31 +14,26 @@ export default function AddKnowledge() {
   const [is_open, setOpen] = React.useState(false);
 
   return (
-    <div className="container">
+    <div className="container Addknowledge">
+      <div className="jumbotron Addknowledge__title">
+        <h1>Ajouter une question</h1>
+      </div>
       <div className="row justify-content-center">
-        <form onSubmit={submitValues}>
-          <label>
-            Question
-            <input
-              value={form.question}
-              name="question"
-              onChange={updateForm}
-            />
-          </label>
-          <br />
-          <label>
-            Answer
-            <input
-              value={form.answer}
-              name="answer"
-              onChange={updateForm}
-            />
-          </label>
-          <br />
-          <Button variant="outlined" onClick={submitValues}>
-            Open success snackbar
-          </Button>
-          </form>
+        <form onSubmit={submitValues} className="Addknowledge__form card">
+          <TextField
+            value={form.question}
+            name="question"
+            onChange={updateForm}
+            label="Question"
+          />
+          <TextField
+            value={form.answer}
+            name="answer"
+            onChange={updateForm}
+            label="Réponse"
+          />
+          <Button  text="Enregistrer la question" onClick={submitValues}/>
+        </form>
         <Snackbar is_open={is_open} on_close={() => setOpen(false)}/>
       </div>
     </div>
