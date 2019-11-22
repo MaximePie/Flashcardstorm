@@ -26,6 +26,20 @@ class QuestionController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return JsonResponse
+     */
+    public function randomQuestion(): JsonResponse
+    {
+        $questions = Question::all();
+        $questions->each(static function(Question $question) {
+            $question['answer'] = $question->answer()->first()->wording;
+        });
+        return response()->json($questions);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return void

@@ -44204,6 +44204,25 @@ exports.push([module.i, ".QuestionCard {\n  padding: 16px;\n  margin: 16px;\n  w
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/sass/QuestionsList.scss":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./resources/sass/QuestionsList.scss ***!
+  \******************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/bootstrap/dist/css/bootstrap.min.css":
 /*!*******************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/bootstrap/dist/css/bootstrap.min.css ***!
@@ -99900,6 +99919,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Home */ "./resources/js/components/Home.js");
 /* harmony import */ var _components_AddKnowledge__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/AddKnowledge */ "./resources/js/components/AddKnowledge.js");
 /* harmony import */ var _components_navbar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/navbar */ "./resources/js/components/navbar.js");
+/* harmony import */ var _components_QuestionsList__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/QuestionsList */ "./resources/js/components/QuestionsList.js");
+
+
 
 
 
@@ -99919,6 +99941,7 @@ __webpack_require__(/*! ../sass/Navbar.scss */ "./resources/sass/Navbar.scss");
 
 __webpack_require__(/*! ../sass/Addknowledge.scss */ "./resources/sass/Addknowledge.scss");
 
+__webpack_require__(/*! ../sass/QuestionsList.scss */ "./resources/sass/QuestionsList.scss");
 
 
 
@@ -99930,8 +99953,8 @@ function App() {
   }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_Home__WEBPACK_IMPORTED_MODULE_4__["default"], null)), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
     path: "/add"
   }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_AddKnowledge__WEBPACK_IMPORTED_MODULE_5__["default"], null)), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
-    path: "/train"
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_Home__WEBPACK_IMPORTED_MODULE_4__["default"], null)))));
+    path: "/questions"
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_components_QuestionsList__WEBPACK_IMPORTED_MODULE_7__["default"], null)))));
 }
 
 if (document.getElementById('app')) {
@@ -100174,9 +100197,9 @@ function QuestionCard(props) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "QuestionCard card"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "QuestionCard__question " + (!question && "QuestionCard__question--is-empty")
-  }, question && question.wording || 'Il n\'y a pas encore de question disponible... Cliquez sur "Add knowledge" pour en ajouter !'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, question && question.wording || 'Il n\'y a pas encore de question disponible... Cliquez sur "Ajouter des questions" pour en ajouter !'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     label: "R\xE9ponse",
     onChange: function onChange(e) {
       return setAnswer(e.target.value);
@@ -100187,6 +100210,67 @@ function QuestionCard(props) {
     },
     text: "Envoyer"
   }));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/QuestionsList.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/QuestionsList.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return QuestionsList; });
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+function QuestionsList() {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(undefined),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      questions = _React$useState2[0],
+      updateQuestions = _React$useState2[1];
+
+  react__WEBPACK_IMPORTED_MODULE_1___default.a.useEffect(function () {
+    updateQuestionsBag(); // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
+  }, []);
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "QuestionsList"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "jumbotron QuestionsList__title"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Liste des questions")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
+    className: "container list-group list-group-flush"
+  }, questions && questions.map(function (question) {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+      className: "list-group-item"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+      className: "QuestionsList__question-wording"
+    }, question.wording), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "QuestionsList__question-answer"
+    }, question.answer));
+  })));
+
+  function updateQuestionsBag() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('api/questions_list').then(function (response) {
+      updateQuestions(response.data);
+    });
+  }
 }
 
 /***/ }),
@@ -100266,15 +100350,15 @@ function Navbar() {
     className: "Navbar__item"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/home"
-  }, "Home")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+  }, "Accueil")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
     className: "Navbar__item"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/add"
-  }, "Add Knowledge")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+  }, "Ajouter des questions")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
     className: "Navbar__item"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-    to: "/users"
-  }, "Users"))))));
+    to: "/questions"
+  }, "Questions"))))));
 }
 
 /***/ }),
@@ -100408,6 +100492,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../node_modules/css-loader!../../node_modules/postcss-loader/src??ref--7-2!../../node_modules/sass-loader/dist/cjs.js??ref--7-3!./QuestionCard.scss */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/sass/QuestionCard.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/sass/QuestionsList.scss":
+/*!*******************************************!*\
+  !*** ./resources/sass/QuestionsList.scss ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader!../../node_modules/postcss-loader/src??ref--7-2!../../node_modules/sass-loader/dist/cjs.js??ref--7-3!./QuestionsList.scss */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/sass/QuestionsList.scss");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 

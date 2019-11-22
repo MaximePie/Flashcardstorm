@@ -13,13 +13,13 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="Navbar__item">
-              <Link to="/home">Home</Link>
+              <Link to="/home">Accueil</Link>
             </li>
             <li className="Navbar__item">
-              <Link to="/add">Add Knowledge</Link>
+              <Link to="/add">Ajouter des questions</Link>
             </li>
             <li className="Navbar__item">
-              <Link to="/users">Users</Link>
+              <Link to="/questions">Questions</Link>
             </li>
           </ul>
         </div>

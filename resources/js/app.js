@@ -1,5 +1,11 @@
 import ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import {
+  Switch,
+  Route,
+  BrowserRouter,
+} from "react-router-dom";
 
 const $ = require('jquery');
 require ('popper.js');
@@ -9,19 +15,13 @@ require ("../sass/Home.scss");
 require ("../sass/Button.scss");
 require ("../sass/Navbar.scss");
 require ("../sass/Addknowledge.scss");
+require ("../sass/QuestionsList.scss");
 
-
-import React from "react";
-import {
-  Switch,
-  Route,
-  Link,
-  BrowserRouter,
-} from "react-router-dom";
 
 import Home from "./components/Home"
 import AddKnowledge from "./components/AddKnowledge"
 import Navbar from "./components/navbar";
+import QuestionsList from "./components/QuestionsList";
 
 export default function App() {
   return (
@@ -38,8 +38,8 @@ export default function App() {
           <Route path="/add">
             <AddKnowledge />
           </Route>
-          <Route path="/train">
-            <Home />
+          <Route path="/questions">
+            <QuestionsList />
           </Route>
         </Switch>
       </div>
