@@ -100176,7 +100176,7 @@ function QuestionCard(props) {
     className: "QuestionCard card"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "QuestionCard__question " + (!question && "QuestionCard__question--is-empty")
-  }, question || 'Il n\'y a pas encore de question disponible... Cliquez sur "Add knowledge" pour en ajouter !'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, question && question.wording || 'Il n\'y a pas encore de question disponible... Cliquez sur "Add knowledge" pour en ajouter !'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     label: "R\xE9ponse",
     onChange: function onChange(e) {
       return setAnswer(e.target.value);
