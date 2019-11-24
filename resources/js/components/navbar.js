@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
 import {Link} from "react-router-dom";
+import Avatar from "@material-ui/core/Avatar";
 
 
 export default function Navbar() {
@@ -8,8 +9,8 @@ export default function Navbar() {
   return (
     <div className="Navbar">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">FlashcardStorm</a>
-
+        <Avatar className="Navbar__logo" alt="GIPSI Logo" src="/images/logo.png" />
+        <a className="navbar-brand" href="/home">FlashcardStorm</a>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="Navbar__item">

@@ -25,7 +25,7 @@ export default function QuestionsList() {
       <ul className="container list-group list-group-flush">
         {questions && questions.map(function(question){
           return (
-            <li key={`question${question.id}`} className="QuestionsList__question list-group-item">
+            <li key={`question${question.idost}`} className="QuestionsList__question list-group-item">
               <span>
                 <h3 className="QuestionsList__question-wording">{question.wording}</h3>
                 <span className="QuestionsList__question-answer">{question.answer}</span>

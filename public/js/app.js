@@ -46649,7 +46649,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".Navbar__item {\n  margin: 0 8px;\n}", ""]);
+exports.push([module.i, ".Navbar__logo {\n  margin: 0 8px;\n}\n.Navbar__item {\n  margin: 0 8px;\n}", ""]);
 
 // exports
 
@@ -103014,7 +103014,7 @@ function QuestionsList() {
     className: "container list-group list-group-flush"
   }, questions && questions.map(function (question) {
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
-      key: "question".concat(question.id),
+      key: "question".concat(question.idost),
       className: "QuestionsList__question list-group-item"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
       className: "QuestionsList__question-wording"
@@ -103108,6 +103108,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js");
+
 
 
 
@@ -103116,9 +103118,13 @@ function Navbar() {
     className: "Navbar"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("nav", {
     className: "navbar navbar-expand-lg navbar-light bg-light"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "Navbar__logo",
+    alt: "GIPSI Logo",
+    src: "/images/logo.png"
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
     className: "navbar-brand",
-    href: "#"
+    href: "/home"
   }, "FlashcardStorm"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "collapse navbar-collapse",
     id: "navbarSupportedContent"
