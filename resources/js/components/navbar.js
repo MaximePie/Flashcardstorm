@@ -7,7 +7,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 
 
-export default function Navbar() {
+export default function Navbar(props) {
 
   return (
     <div className="Navbar">
@@ -27,6 +27,32 @@ export default function Navbar() {
         <a className="navbar-brand" href="/home">FlashcardStorm</a>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <List className="navbar-nav mr-auto">
+            <ListItem button component="a" href="/register" className="Navbar__item">
+              <ListItemIcon>
+                <i className="fas fa-edit"/>
+              </ListItemIcon>
+              <ListItemText>
+                S'enregistrer
+              </ListItemText>
+            </ListItem>
+            <ListItem button component="a" href="/login" className="Navbar__item">
+              <ListItemIcon>
+                <i className="fas fa-edit"/>
+              </ListItemIcon>
+              <ListItemText>
+                Se connecter
+              </ListItemText>
+            </ListItem>
+            {props.is_connected && (
+              <ListItem button component="a" href="/api/logout" className="Navbar__item">
+                <ListItemIcon>
+                  <i className="fas fa-edit"/>
+                </ListItemIcon>
+                <ListItemText>
+                  Se déconnecter
+                </ListItemText>
+              </ListItem>
+            )}
             <ListItem button component="a" href="/home" className="Navbar__item">
               <ListItemIcon>
                 <i className="fas fa-edit"/>
