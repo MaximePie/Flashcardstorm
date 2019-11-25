@@ -24,7 +24,6 @@ Route::middleware('auth:api')->get('/user', static function (Request $request) {
 */
 
 Route::post('register', 'RegisterController@create');
-Route::get('logout', 'LoginController@logout');
 
 Route::get('question', 'QuestionController@randomQuestion');
 Route::get('question/delete/{question}', 'QuestionController@destroy');

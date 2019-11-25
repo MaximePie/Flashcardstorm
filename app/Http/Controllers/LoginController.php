@@ -46,7 +46,7 @@ class LoginController extends Controller
     protected function logout(): string
     {
         Auth::logout();
-        Cookie::queue(Cookie::forget('auth'));
-        return redirect('/home');
+        $cookie = Cookie::queue(Cookie::forget('bearer'));
+        return redirect('/home')->withCookie($cookie);
     }
 }

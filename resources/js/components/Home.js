@@ -7,7 +7,7 @@ export default function Home() {
 
   const [questions, updateQuestions] = React.useState(undefined);
 
-  const [is_open, setOpen] = React.useState(false);
+  const [snackbar, setSnackbar] = React.useState(undefined);
 
   React.useEffect(() => {
     updateQuestionsBag()
@@ -27,7 +27,7 @@ export default function Home() {
             <QuestionCard question={questions[0] || undefined} onSubmit={submitAnswer}/>
           )}
         </div>
-        <Snackbar is_open={is_open} on_close={() => setOpen(false)}/>
+        <Snackbar is_open={snackbar && snackbar.is_open} on_close={() => setSnackbar({...snackbar, is_open: false})}/>
       </div>
     </>
   );
@@ -40,7 +40,10 @@ export default function Home() {
       id: questions[0].id,
       is_valid: answer === questions[0].answer,
     }).then(response => {
-      setOpen(true)
+      setSnackbar({
+        is_open: true,
+        text: response.text
+      });
     })
     // TODO - Fetch a new question and remove current question
 

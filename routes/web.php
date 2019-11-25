@@ -14,5 +14,5 @@ Route::view('/{path?}', 'welcome');
 Route::group(['middleware' => ['web']], function () {
     Route::auth();
     Route::post('login', 'LoginController@login');
-    Route::get('me', 'UserController@showLoggedIn');
+    Route::get('logout', 'LoginController@logout');
 });

@@ -102882,7 +102882,7 @@ __webpack_require__(/*! ../sass/QuestionsList.scss */ "./resources/sass/Question
 
 
 function App() {
-  var is_connected = js_cookie__WEBPACK_IMPORTED_MODULE_4___default.a.get('Bearer') !== null;
+  var is_connected = js_cookie__WEBPACK_IMPORTED_MODULE_4___default.a.get('Bearer') !== null && js_cookie__WEBPACK_IMPORTED_MODULE_4___default.a.get('Bearer') !== undefined;
   return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
     className: "App"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_navbar__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -103045,6 +103045,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _QuestionCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./QuestionCard */ "./resources/js/components/QuestionCard.js");
 /* harmony import */ var _Snackbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Snackbar */ "./resources/js/components/Snackbar.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -103063,10 +103069,10 @@ function Home() {
       questions = _React$useState2[0],
       updateQuestions = _React$useState2[1];
 
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false),
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
       _React$useState4 = _slicedToArray(_React$useState3, 2),
-      is_open = _React$useState4[0],
-      setOpen = _React$useState4[1];
+      snackbar = _React$useState4[0],
+      setSnackbar = _React$useState4[1];
 
   react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
     updateQuestionsBag(); // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
@@ -103082,9 +103088,11 @@ function Home() {
       question: questions[0] || undefined,
       onSubmit: submitAnswer
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Snackbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      is_open: is_open,
+      is_open: snackbar && snackbar.is_open,
       on_close: function on_close() {
-        return setOpen(false);
+        return setSnackbar(_objectSpread({}, snackbar, {
+          is_open: false
+        }));
       }
     })))
   ); // TODO - Create import from Excel feature, the program can take a csv file with 2 columns : Question,Answer 
@@ -103095,7 +103103,10 @@ function Home() {
       id: questions[0].id,
       is_valid: answer === questions[0].answer
     }).then(function (response) {
-      setOpen(true);
+      setSnackbar({
+        is_open: true,
+        text: response.text
+      });
     }); // TODO - Fetch a new question and remove current question
     // TODO #13 - Display the score sent by the Backoffice
   }
@@ -103195,8 +103206,6 @@ function Login(props) {
   function submitValues(event) {
     event.preventDefault();
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/login', form).then(function (response) {
-      console.log(response);
-
       if (response.data.status && response.data.status !== 200) {
         setOpen(true);
       } else {
@@ -103563,6 +103572,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/ListItem */ "./node_modules/@material-ui/core/esm/ListItem/index.js");
 /* harmony import */ var _material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/ListItemText */ "./node_modules/@material-ui/core/esm/ListItemText/index.js");
 /* harmony import */ var _material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/ListItemIcon */ "./node_modules/@material-ui/core/esm/ListItemIcon/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_8__);
+
+
 
 
 
@@ -103647,7 +103662,7 @@ function Navbar(props) {
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Se connecter")), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
     button: true,
     component: "a",
-    href: "/api/logout",
+    onClick: logout,
     className: "Navbar__item"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_6__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
     className: "fas fa-sign-out-alt"
@@ -103657,6 +103672,13 @@ function Navbar(props) {
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
     className: "Navbar__item-profile-icon fas fa-user-circle"
   })))));
+
+  function logout() {
+    axios__WEBPACK_IMPORTED_MODULE_7___default.a.get('/logout').then(function (response) {
+      js_cookie__WEBPACK_IMPORTED_MODULE_8___default.a.remove('Bearer');
+      document.location = "/home";
+    });
+  }
 }
 
 /***/ }),

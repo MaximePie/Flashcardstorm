@@ -5,6 +5,8 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 
 export default function Navbar(props) {
@@ -82,7 +84,7 @@ export default function Navbar(props) {
                 </ListItemText>
               </ListItem>
               {props.is_connected && (
-                <ListItem button component="a" href="/api/logout" className="Navbar__item">
+                <ListItem button component="a" onClick={logout} className="Navbar__item">
                   <ListItemIcon>
                     <i className="fas fa-sign-out-alt"/>
                   </ListItemIcon>
@@ -102,4 +104,11 @@ export default function Navbar(props) {
       </nav>
     </div>
   )
+
+  function logout() {
+    axios.get('/logout').then(response => {
+      Cookies.remove('Bearer');
+      document.location = "/home";
+    })
+  }
 }

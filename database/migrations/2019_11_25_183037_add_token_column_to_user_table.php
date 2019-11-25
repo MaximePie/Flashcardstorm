@@ -29,7 +29,7 @@ class AddTokenColumnToUserTable extends Migration
     public function down()
     {
         Schema::table('user', function (Blueprint $table) {
-            //
+            $table->dropColumn('api_token');
         });
     }
 }

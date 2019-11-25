@@ -46,7 +46,6 @@ export default function Login(props) {
   function submitValues(event) {
     event.preventDefault();
     axios.post('/login', form).then(response => {
-      console.log(response);
       if(response.data.status && response.data.status !== 200) {
         setOpen(true);
       }

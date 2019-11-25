@@ -29,7 +29,7 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 
 export default function App() {
-  const is_connected = Cookies.get('Bearer') !== null;
+  const is_connected = Cookies.get('Bearer') !== null && Cookies.get('Bearer') !== undefined;
   return (
     <BrowserRouter>
       <div className="App">
