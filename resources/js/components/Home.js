@@ -27,7 +27,14 @@ export default function Home() {
             <QuestionCard question={questions[0] || undefined} onSubmit={submitAnswer}/>
           )}
         </div>
-        <Snackbar is_open={snackbar && snackbar.is_open} on_close={() => setSnackbar({...snackbar, is_open: false})}/>
+        {snackbar && (
+          <Snackbar
+            variant={snackbar.variant}
+            is_open={snackbar.is_open}
+            on_close={() => setSnackbar({...snackbar, is_open: false})}
+            text={snackbar.text}
+          />
+        )}
       </div>
     </>
   );
@@ -42,8 +49,10 @@ export default function Home() {
     }).then(response => {
       setSnackbar({
         is_open: true,
-        text: response.text
+        text: response.data.text,
+        variant: response.data.status === 200 ? 'success' : 'failure',
       });
+      updateQuestionsBag();
     })
     // TODO - Fetch a new question and remove current question
 
@@ -52,6 +61,7 @@ export default function Home() {
 
   function updateQuestionsBag() {
     axios.get('api/question').then(response => {
+
       updateQuestions(response.data)
     })
   }

@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
@@ -115,7 +116,7 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         $question = Question::destroy($question->id);
-        $questions = Question::query()->inRandomOrder()->get();
+        $questions = Question::query()->get();
         $questions->each(static function(Question $question) {
             $question['answer'] = $question->answer()->first()->wording;
         });
@@ -141,8 +142,8 @@ class QuestionController extends Controller
 
 
         return response()->json([
-            'Success' => 'Bien noté !',
-            'Question' => $question,
+            'text' => $request->is_valid ? 'Bien joué !' : 'Oups, ce n\'est pas ça, réessayons !',
+            'status' => $request->is_valid ? 200 : 500
         ]);
     }
 }

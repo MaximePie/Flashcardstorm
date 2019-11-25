@@ -4,6 +4,11 @@ import {IconButton, Snackbar as MaterialSnackbar, SnackbarContent} from '@materi
 export default function Snackbar(props) {
 
   let text = props.text || "Succès !";
+  let variant = "success";
+
+  if (props.variant) {
+    variant = props.variant;
+  }
 
   return (
       <MaterialSnackbar
@@ -17,6 +22,9 @@ export default function Snackbar(props) {
       >
         <SnackbarContent
           aria-describedby="client-snackbar"
+          classes={{
+            root: "Snackbar-" + variant
+          }}
           message={
             <span id="client-snackbar">
               {text}

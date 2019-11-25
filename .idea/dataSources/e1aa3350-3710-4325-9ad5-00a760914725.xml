@@ -940,20 +940,20 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="237" parent="230" name="created_at">
+    <column id="237" parent="230" name="wording">
       <Position>2</Position>
-      <DataType>timestamp|0s</DataType>
+      <DataType>varchar(191)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="238" parent="230" name="updated_at">
+    <column id="238" parent="230" name="created_at">
       <Position>3</Position>
       <DataType>timestamp|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="239" parent="230" name="wording">
+    <column id="239" parent="230" name="updated_at">
       <Position>4</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>timestamp|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="240" parent="230" name="PRIMARY">
@@ -1013,7 +1013,7 @@
     </column>
     <column id="249" parent="232" name="migration">
       <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1030,13 +1030,13 @@
     </key>
     <column id="252" parent="233" name="email">
       <Position>1</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="253" parent="233" name="token">
       <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1056,107 +1056,182 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="234" name="created_at">
+    <column id="257" parent="234" name="wording">
       <Position>2</Position>
-      <DataType>timestamp|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="258" parent="234" name="updated_at">
-      <Position>3</Position>
-      <DataType>timestamp|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="259" parent="234" name="wording">
-      <Position>4</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="234" name="details">
-      <Position>5</Position>
+    <column id="258" parent="234" name="details">
+      <Position>3</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="261" parent="234" name="answer_id">
-      <Position>6</Position>
+    <column id="259" parent="234" name="answer_id">
+      <Position>4</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="262" parent="234" name="questions_answer_id_foreign">
+    <column id="260" parent="234" name="created_at">
+      <Position>5</Position>
+      <DataType>timestamp|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="261" parent="234" name="updated_at">
+      <Position>6</Position>
+      <DataType>timestamp|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="262" parent="234" name="current_delay">
+      <Position>7</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="263" parent="234" name="score">
+      <Position>8</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="264" parent="234" name="full_score">
+      <Position>9</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="265" parent="234" name="number_of_successful_answer">
+      <Position>10</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="266" parent="234" name="number_of_unsuccessful_answer">
+      <Position>11</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="267" parent="234" name="last_answered_at">
+      <Position>12</Position>
+      <DataType>date|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="268" parent="234" name="next_question_at">
+      <Position>13</Position>
+      <DataType>date|0s</DataType>
+      <DefaultExpression>&apos;2019-11-25&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="269" parent="234" name="user_id">
+      <Position>14</Position>
+      <DataType>bigint(20) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="270" parent="234" name="questions_answer_id_foreign">
       <ColNames>answer_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="263" parent="234" name="PRIMARY">
+    <index id="271" parent="234" name="questions_user_id_foreign">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="272" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="264" parent="234" name="questions_answer_id_foreign">
+    <foreign-key id="273" parent="234" name="questions_answer_id_foreign">
       <ColNames>answer_id</ColNames>
       <RefSchemaName>homestead</RefSchemaName>
       <RefTableName>answers</RefTableName>
       <RefColNames>id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="265" parent="235" name="id">
+    <foreign-key id="274" parent="234" name="questions_user_id_foreign">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>homestead</RefSchemaName>
+      <RefTableName>users</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="275" parent="235" name="id">
       <Position>1</Position>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="266" parent="235" name="name">
+    <column id="276" parent="235" name="name">
       <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="267" parent="235" name="email">
+    <column id="277" parent="235" name="email">
       <Position>3</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="235" name="email_verified_at">
+    <column id="278" parent="235" name="email_verified_at">
       <Position>4</Position>
       <DataType>timestamp|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="235" name="password">
+    <column id="279" parent="235" name="password">
       <Position>5</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="235" name="remember_token">
+    <column id="280" parent="235" name="api_token">
       <Position>6</Position>
+      <DataType>varchar(80)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="281" parent="235" name="remember_token">
+      <Position>7</Position>
       <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="235" name="created_at">
-      <Position>7</Position>
-      <DataType>timestamp|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="272" parent="235" name="updated_at">
+    <column id="282" parent="235" name="created_at">
       <Position>8</Position>
       <DataType>timestamp|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="273" parent="235" name="users_email_unique">
+    <column id="283" parent="235" name="updated_at">
+      <Position>9</Position>
+      <DataType>timestamp|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="284" parent="235" name="users_email_unique">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="274" parent="235" name="PRIMARY">
+    <index id="285" parent="235" name="users_api_token_unique">
+      <ColNames>api_token</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="286" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="275" parent="235" name="users_email_unique">
+    <key id="287" parent="235" name="users_email_unique">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>users_email_unique</UnderlyingIndexName>
+    </key>
+    <key id="288" parent="235" name="users_api_token_unique">
+      <ColNames>api_token</ColNames>
+      <UnderlyingIndexName>users_api_token_unique</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>

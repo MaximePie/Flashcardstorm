@@ -46694,6 +46694,25 @@ exports.push([module.i, ".QuestionsList__question {\n  display: -webkit-box;\n  
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/sass/Snackbar.scss":
+/*!*************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./resources/sass/Snackbar.scss ***!
+  \*************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".Snackbar-success {\n  background-color: #38c172 !important;\n}\n.Snackbar-failure {\n  background-color: #969441 !important;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/bootstrap/dist/css/bootstrap.min.css":
 /*!*******************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/bootstrap/dist/css/bootstrap.min.css ***!
@@ -102874,6 +102893,8 @@ __webpack_require__(/*! ../sass/Addknowledge.scss */ "./resources/sass/Addknowle
 
 __webpack_require__(/*! ../sass/QuestionsList.scss */ "./resources/sass/QuestionsList.scss");
 
+__webpack_require__(/*! ../sass/Snackbar.scss */ "./resources/sass/Snackbar.scss");
+
 
 
 
@@ -103087,13 +103108,15 @@ function Home() {
     }, questions && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
       question: questions[0] || undefined,
       onSubmit: submitAnswer
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Snackbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      is_open: snackbar && snackbar.is_open,
+    })), snackbar && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Snackbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      variant: snackbar.variant,
+      is_open: snackbar.is_open,
       on_close: function on_close() {
         return setSnackbar(_objectSpread({}, snackbar, {
           is_open: false
         }));
-      }
+      },
+      text: snackbar.text
     })))
   ); // TODO - Create import from Excel feature, the program can take a csv file with 2 columns : Question,Answer 
 
@@ -103105,8 +103128,10 @@ function Home() {
     }).then(function (response) {
       setSnackbar({
         is_open: true,
-        text: response.text
+        text: response.data.text,
+        variant: response.data.status === 200 ? 'success' : 'failure'
       });
+      updateQuestionsBag();
     }); // TODO - Fetch a new question and remove current question
     // TODO #13 - Display the score sent by the Backoffice
   }
@@ -103306,6 +103331,9 @@ function QuestionCard(props) {
       answer = _React$useState2[0],
       setAnswer = _React$useState2[1];
 
+  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
+    setAnswer('');
+  }, [props.question]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "QuestionCard card"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
@@ -103314,7 +103342,8 @@ function QuestionCard(props) {
     label: "R\xE9ponse",
     onChange: function onChange(e) {
       return setAnswer(e.target.value);
-    }
+    },
+    value: answer
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
     onClick: function onClick() {
       return props.onSubmit(answer);
@@ -103529,6 +103558,12 @@ __webpack_require__.r(__webpack_exports__);
 
 function Snackbar(props) {
   var text = props.text || "Succès !";
+  var variant = "success";
+
+  if (props.variant) {
+    variant = props.variant;
+  }
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Snackbar"], {
     anchorOrigin: {
       vertical: 'top',
@@ -103539,6 +103574,9 @@ function Snackbar(props) {
     onClose: props.onClose
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["SnackbarContent"], {
     "aria-describedby": "client-snackbar",
+    classes: {
+      root: "Snackbar-" + variant
+    },
     message: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       id: "client-snackbar"
     }, text),
@@ -103842,6 +103880,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../node_modules/css-loader!../../node_modules/postcss-loader/src??ref--7-2!../../node_modules/sass-loader/dist/cjs.js??ref--7-3!./QuestionsList.scss */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/sass/QuestionsList.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/sass/Snackbar.scss":
+/*!**************************************!*\
+  !*** ./resources/sass/Snackbar.scss ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader!../../node_modules/postcss-loader/src??ref--7-2!../../node_modules/sass-loader/dist/cjs.js??ref--7-3!./Snackbar.scss */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/sass/Snackbar.scss");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 

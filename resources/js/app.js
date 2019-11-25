@@ -18,6 +18,7 @@ require ("../sass/Button.scss");
 require ("../sass/Navbar.scss");
 require ("../sass/Addknowledge.scss");
 require ("../sass/QuestionsList.scss");
+require ("../sass/Snackbar.scss");
 
 
 import Home from "./components/Home"
