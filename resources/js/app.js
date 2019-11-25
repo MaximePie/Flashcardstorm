@@ -28,11 +28,10 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 
 export default function App() {
-  console.log(Cookies.get());
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar is_connected={Cookies.get('auth') === true}/>
+        <Navbar is_connected={Cookies.get('auth') === 'true'}/>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>

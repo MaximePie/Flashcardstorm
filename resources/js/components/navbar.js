@@ -29,7 +29,7 @@ export default function Navbar(props) {
           <List className="navbar-nav mr-auto">
             <ListItem button component="a" href="/register" className="Navbar__item">
               <ListItemIcon>
-                <i className="fas fa-edit"/>
+                <i className="fas fa-user-plus"/>
               </ListItemIcon>
               <ListItemText>
                 S'enregistrer
@@ -37,7 +37,7 @@ export default function Navbar(props) {
             </ListItem>
             <ListItem button component="a" href="/login" className="Navbar__item">
               <ListItemIcon>
-                <i className="fas fa-edit"/>
+                <i className="fas fa-sign-in-alt"/>
               </ListItemIcon>
               <ListItemText>
                 Se connecter
@@ -46,7 +46,7 @@ export default function Navbar(props) {
             {props.is_connected && (
               <ListItem button component="a" href="/api/logout" className="Navbar__item">
                 <ListItemIcon>
-                  <i className="fas fa-edit"/>
+                  <i className="fas fa-sign-out-alt"/>
                 </ListItemIcon>
                 <ListItemText>
                   Se déconnecter

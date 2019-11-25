@@ -1,9 +1,12 @@
 import React from 'react';
-import {IconButton, Snackbar, SnackbarContent} from '@material-ui/core';
-export default function AddKnowledge(props) {
+import {IconButton, Snackbar as MaterialSnackbar, SnackbarContent} from '@material-ui/core';
+
+export default function Snackbar(props) {
+
+  let text = props.text || "Succès !";
 
   return (
-      <Snackbar
+      <MaterialSnackbar
         anchorOrigin={{
           vertical: 'top',
           horizontal: 'center',
@@ -16,7 +19,7 @@ export default function AddKnowledge(props) {
           aria-describedby="client-snackbar"
           message={
             <span id="client-snackbar">
-              Succès !
+              {text}
             </span>
           }
           action={[
@@ -25,6 +28,6 @@ export default function AddKnowledge(props) {
             </IconButton>,
           ]}
         />
-      </Snackbar>
+      </MaterialSnackbar>
     )
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import Button from "./Button";
+import Snackbar from "./Snackbar";
 
 export default function Register() {
 
@@ -10,6 +11,8 @@ export default function Register() {
     email: '',
     password: ''
   });
+
+  const [is_open, setOpen] = React.useState(false);
 
   return (
     <div className="container">
@@ -34,6 +37,7 @@ export default function Register() {
         />
         <Button  text="S'enregistrer" onClick={submitValues}/>
       </form>
+      <Snackbar is_open={is_open} on_close={() => setOpen(false)}/>
     </div>
   );
 
@@ -48,7 +52,7 @@ export default function Register() {
   function submitValues(event) {
     event.preventDefault();
     axios.post('/api/register', form).then(response => {
-      alert("Le compte a bien été créé")
+      setOpen(true);
     })
   }
 }

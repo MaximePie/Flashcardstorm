@@ -102880,11 +102880,10 @@ __webpack_require__(/*! ../sass/QuestionsList.scss */ "./resources/sass/Question
 
 
 function App() {
-  console.log(js_cookie__WEBPACK_IMPORTED_MODULE_4___default.a.get());
   return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
     className: "App"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_navbar__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    is_connected: js_cookie__WEBPACK_IMPORTED_MODULE_4___default.a.get('auth') === true
+    is_connected: js_cookie__WEBPACK_IMPORTED_MODULE_4___default.a.get('auth') === 'true'
   }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/register"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Register__WEBPACK_IMPORTED_MODULE_10__["default"], null)), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
@@ -103121,6 +103120,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Button */ "./resources/js/components/Button.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Snackbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Snackbar */ "./resources/js/components/Snackbar.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -103139,6 +103141,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 function Login(props) {
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState({
     email: '',
@@ -103147,6 +103151,11 @@ function Login(props) {
       _React$useState2 = _slicedToArray(_React$useState, 2),
       form = _React$useState2[0],
       setForm = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      is_open = _React$useState4[0],
+      setOpen = _React$useState4[1];
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container"
@@ -103166,7 +103175,13 @@ function Login(props) {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     text: "S'enregistrer",
     onClick: submitValues
-  })));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Snackbar__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    text: "Informations incorrectes",
+    is_open: is_open,
+    on_close: function on_close() {
+      return setOpen(false);
+    }
+  }));
 
   function updateForm(e) {
     setForm(_objectSpread({}, form, _defineProperty({}, e.target.name, e.target.value)));
@@ -103177,7 +103192,10 @@ function Login(props) {
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/login', form).then(function (response) {
       console.log(response);
 
-      if (response.status === 200) {
+      if (response.data.status && response.data.status !== 200) {
+        setOpen(true);
+      } else {
+        js_cookie__WEBPACK_IMPORTED_MODULE_4___default.a.set('auth', 'true');
         document.location = "/home";
       }
     });
@@ -103346,6 +103364,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Button */ "./resources/js/components/Button.js");
+/* harmony import */ var _Snackbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Snackbar */ "./resources/js/components/Snackbar.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -103364,6 +103383,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function Register() {
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState({
     name: '',
@@ -103373,6 +103393,11 @@ function Register() {
       _React$useState2 = _slicedToArray(_React$useState, 2),
       form = _React$useState2[0],
       setForm = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      is_open = _React$useState4[0],
+      setOpen = _React$useState4[1];
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container"
@@ -103397,7 +103422,12 @@ function Register() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     text: "S'enregistrer",
     onClick: submitValues
-  })));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Snackbar__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    is_open: is_open,
+    on_close: function on_close() {
+      return setOpen(false);
+    }
+  }));
 
   function updateForm(e) {
     setForm(_objectSpread({}, form, _defineProperty({}, e.target.name, e.target.value)));
@@ -103406,7 +103436,7 @@ function Register() {
   function submitValues(event) {
     event.preventDefault();
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/register', form).then(function (response) {
-      alert("Le compte a bien été créé");
+      setOpen(true);
     });
   }
 }
@@ -103422,13 +103452,14 @@ function Register() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddKnowledge; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Snackbar; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
 
 
-function AddKnowledge(props) {
+function Snackbar(props) {
+  var text = props.text || "Succès !";
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Snackbar"], {
     anchorOrigin: {
       vertical: 'top',
@@ -103441,7 +103472,7 @@ function AddKnowledge(props) {
     "aria-describedby": "client-snackbar",
     message: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       id: "client-snackbar"
-    }, "Succ\xE8s !"),
+    }, text),
     action: [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["IconButton"], {
       key: "close",
       "aria-label": "close",
@@ -103510,21 +103541,21 @@ function Navbar(props) {
     href: "/register",
     className: "Navbar__item"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_6__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "fas fa-edit"
+    className: "fas fa-user-plus"
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "S'enregistrer")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
     button: true,
     component: "a",
     href: "/login",
     className: "Navbar__item"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_6__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "fas fa-edit"
+    className: "fas fa-sign-in-alt"
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Se connecter")), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
     button: true,
     component: "a",
     href: "/api/logout",
     className: "Navbar__item"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_6__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "fas fa-edit"
+    className: "fas fa-sign-out-alt"
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Se d\xE9connecter")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
     button: true,
     component: "a",
