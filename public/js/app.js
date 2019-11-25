@@ -46649,7 +46649,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".Navbar__logo {\n  margin: 0 8px;\n}\n.Navbar__item {\n  margin: 0 8px;\n}", ""]);
+exports.push([module.i, ".Navbar__logo {\n  margin: 0 8px;\n}\n.Navbar__item {\n  margin: 0 8px;\n  font-size: 1.3em;\n}\n.Navbar__toggler {\n  outline: none;\n  border: none;\n}", ""]);
 
 // exports
 
@@ -103118,11 +103118,19 @@ function Navbar() {
     className: "Navbar"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("nav", {
     className: "navbar navbar-expand-lg navbar-light bg-light"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    className: "Navbar__toggler navbar-toggler",
+    type: "button",
+    "data-toggle": "collapse",
+    "data-target": "#navbarSupportedContent",
+    "aria-controls": "navbarSupportedContent",
+    "aria-expanded": "false",
+    "aria-label": "Toggle navigation"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_3__["default"], {
     className: "Navbar__logo",
     alt: "GIPSI Logo",
     src: "/images/logo.png"
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
     className: "navbar-brand",
     href: "/home"
   }, "FlashcardStorm"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
