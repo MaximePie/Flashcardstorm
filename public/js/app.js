@@ -46630,7 +46630,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".Home {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n\n.Home__title {\n  text-align: center;\n  margin: 0 4%;\n}", ""]);
+exports.push([module.i, ".Home {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n\n.Home__title {\n  text-align: center;\n  margin: 0 4%;\n}\n\n@media screen and (max-width: 600px) {\n  .Home__title {\n    margin: initial;\n  }\n\n  h1 {\n    font-size: 1.5em;\n  }\n\n  h3 {\n    font-size: 1.25em;\n  }\n}", ""]);
 
 // exports
 
@@ -46668,7 +46668,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".QuestionCard {\n  padding: 16px;\n  margin: 16px;\n  width: 500px;\n  min-height: 600px;\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.QuestionCard__question {\n  text-align: center;\n}\n.QuestionCard__question--is-empty {\n  color: grey;\n}", ""]);
+exports.push([module.i, ".QuestionCard {\n  padding: 16px;\n  margin: 16px;\n  width: 500px;\n  min-height: 600px;\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.QuestionCard__question {\n  text-align: center;\n}\n.QuestionCard__question--is-empty {\n  color: grey;\n}\n@media screen and (max-width: 600px) {\n  .QuestionCard {\n    width: initial;\n  }\n}", ""]);
 
 // exports
 
@@ -46687,7 +46687,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".QuestionsList__question {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  padding: 4px;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
+exports.push([module.i, ".QuestionsList__question {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
 
 // exports
 
@@ -102695,7 +102695,9 @@ __webpack_require__(/*! ../sass/QuestionsList.scss */ "./resources/sass/Question
 
 
 function App() {
-  return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_navbar__WEBPACK_IMPORTED_MODULE_7__["default"], null), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+  return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+    className: "App"
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_navbar__WEBPACK_IMPORTED_MODULE_7__["default"], null), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     path: "/home"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Home__WEBPACK_IMPORTED_MODULE_5__["default"], null)), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     path: "/add"
@@ -103107,8 +103109,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js");
+/* harmony import */ var _material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Avatar */ "./node_modules/@material-ui/core/esm/Avatar/index.js");
+/* harmony import */ var _material_ui_core_List__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/List */ "./node_modules/@material-ui/core/esm/List/index.js");
+/* harmony import */ var _material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/ListItem */ "./node_modules/@material-ui/core/esm/ListItem/index.js");
+/* harmony import */ var _material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/ListItemText */ "./node_modules/@material-ui/core/esm/ListItemText/index.js");
+/* harmony import */ var _material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/ListItemIcon */ "./node_modules/@material-ui/core/esm/ListItemIcon/index.js");
+
+
+
 
 
 
@@ -103126,7 +103134,7 @@ function Navbar() {
     "aria-controls": "navbarSupportedContent",
     "aria-expanded": "false",
     "aria-label": "Toggle navigation"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "Navbar__logo",
     alt: "GIPSI Logo",
     src: "/images/logo.png"
@@ -103136,21 +103144,30 @@ function Navbar() {
   }, "FlashcardStorm"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "collapse navbar-collapse",
     id: "navbarSupportedContent"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_List__WEBPACK_IMPORTED_MODULE_3__["default"], {
     className: "navbar-nav mr-auto"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    button: true,
+    component: "a",
+    href: "/home",
     className: "Navbar__item"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-    to: "/home"
-  }, "Accueil")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_6__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "fas fa-edit"
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Entra\xEEnement")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    button: true,
+    component: "a",
+    href: "/questions",
     className: "Navbar__item"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-    to: "/add"
-  }, "Ajouter des questions")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_6__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "fas fa-list"
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Questions")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    button: true,
+    component: "a",
+    href: "/add",
     className: "Navbar__item"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-    to: "/questions"
-  }, "Questions"))))));
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_6__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "fas fa-folder-plus"
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Ajouter des questions"))))));
 }
 
 /***/ }),
@@ -103342,7 +103359,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nError: ENOENT: no such file or directory, open '/home/maxime/Documents/FlashcardStorm/resources/sass/app.scss'\n    at runLoaders (/home/maxime/Documents/FlashcardStorm/node_modules/webpack/lib/NormalModule.js:316:20)\n    at /home/maxime/Documents/FlashcardStorm/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /home/maxime/Documents/FlashcardStorm/node_modules/loader-runner/lib/LoaderRunner.js:203:19\n    at process.nextTick (/home/maxime/Documents/FlashcardStorm/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:85:15)\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 

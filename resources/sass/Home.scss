@@ -7,3 +7,16 @@
     text-align: center;
     margin: 0 4%;
 }
+
+@media screen and (max-width: 600px) {
+    .Home__title {
+        margin:  initial;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.25em;
+    }
+}

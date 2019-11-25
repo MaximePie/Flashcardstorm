@@ -1,7 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
-import {Link} from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
 
 
 export default function Navbar() {
@@ -23,17 +26,32 @@ export default function Navbar() {
         </button>
         <a className="navbar-brand" href="/home">FlashcardStorm</a>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            <li className="Navbar__item">
-              <Link to="/home">Accueil</Link>
-            </li>
-            <li className="Navbar__item">
-              <Link to="/add">Ajouter des questions</Link>
-            </li>
-            <li className="Navbar__item">
-              <Link to="/questions">Questions</Link>
-            </li>
-          </ul>
+          <List className="navbar-nav mr-auto">
+            <ListItem button component="a" href="/home" className="Navbar__item">
+              <ListItemIcon>
+                <i className="fas fa-edit"/>
+              </ListItemIcon>
+              <ListItemText>
+                Entraînement
+              </ListItemText>
+            </ListItem>
+            <ListItem button component="a" href="/questions" className="Navbar__item">
+              <ListItemIcon>
+                <i className="fas fa-list"/>
+              </ListItemIcon>
+              <ListItemText>
+                Questions
+              </ListItemText>
+            </ListItem>
+            <ListItem button component="a" href="/add" className="Navbar__item">
+              <ListItemIcon>
+                <i className="fas fa-folder-plus"/>
+              </ListItemIcon>
+              <ListItemText>
+                Ajouter des questions
+              </ListItemText>
+            </ListItem>
+          </List>
         </div>
       </nav>
     </div>
