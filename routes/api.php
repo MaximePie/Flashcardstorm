@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', static function (Request $request) {
-    return $request->user();
+    Route::get('/me', 'UserController@showLoggedIn');
 });
 
 Route::post('register', 'RegisterController@create');
