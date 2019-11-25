@@ -35,57 +35,63 @@ export default function Navbar(props) {
         </button>
         <a className="navbar-brand" href="/home">FlashcardStorm</a>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <List className="navbar-nav mr-auto">
-            <ListItem button component="a" href="/register" className="Navbar__item">
-              <ListItemIcon>
-                <i className="fas fa-user-plus"/>
-              </ListItemIcon>
-              <ListItemText>
-                S'enregistrer
-              </ListItemText>
-            </ListItem>
-            <ListItem button component="a" href="/login" className="Navbar__item">
-              <ListItemIcon>
-                <i className="fas fa-sign-in-alt"/>
-              </ListItemIcon>
-              <ListItemText>
-                Se connecter
-              </ListItemText>
-            </ListItem>
-            {props.is_connected && (
-              <ListItem button component="a" href="/api/logout" className="Navbar__item">
+          <List className="navbar-nav mr-auto Navbar__list">
+            <span className="Navbar__side-container">
+              <ListItem button component="a" href="/home" className="Navbar__item">
                 <ListItemIcon>
-                  <i className="fas fa-sign-out-alt"/>
+                  <i className="fas fa-edit"/>
                 </ListItemIcon>
                 <ListItemText>
-                  Se déconnecter
+                  Entraînement
                 </ListItemText>
               </ListItem>
-            )}
-            <ListItem button component="a" href="/home" className="Navbar__item">
-              <ListItemIcon>
-                <i className="fas fa-edit"/>
-              </ListItemIcon>
-              <ListItemText>
-                Entraînement
-              </ListItemText>
-            </ListItem>
-            <ListItem button component="a" href="/questions" className="Navbar__item">
-              <ListItemIcon>
-                <i className="fas fa-list"/>
-              </ListItemIcon>
-              <ListItemText>
-                Questions
-              </ListItemText>
-            </ListItem>
-            <ListItem button component="a" href="/add" className="Navbar__item">
-              <ListItemIcon>
-                <i className="fas fa-folder-plus"/>
-              </ListItemIcon>
-              <ListItemText>
-                Ajouter des questions
-              </ListItemText>
-            </ListItem>
+              <ListItem button component="a" href="/questions" className="Navbar__item">
+                <ListItemIcon>
+                  <i className="fas fa-list"/>
+                </ListItemIcon>
+                <ListItemText>
+                  Questions
+                </ListItemText>
+              </ListItem>
+              <ListItem button component="a" href="/add" className="Navbar__item">
+                <ListItemIcon>
+                  <i className="fas fa-folder-plus"/>
+                </ListItemIcon>
+                <ListItemText>
+                  Ajouter des questions
+                </ListItemText>
+              </ListItem>
+            </span>
+          </List>
+          <List>
+            <span className="Navbar__side-container">
+              <ListItem button component="a" href="/register" className="Navbar__item">
+                <ListItemIcon>
+                  <i className="fas fa-user-plus"/>
+                </ListItemIcon>
+                <ListItemText>
+                  S'enregistrer
+                </ListItemText>
+              </ListItem>
+              <ListItem button component="a" href="/login" className="Navbar__item">
+                <ListItemIcon>
+                  <i className="fas fa-sign-in-alt"/>
+                </ListItemIcon>
+                <ListItemText>
+                  Se connecter
+                </ListItemText>
+              </ListItem>
+              {props.is_connected && (
+                <ListItem button component="a" href="/api/logout" className="Navbar__item">
+                  <ListItemIcon>
+                    <i className="fas fa-sign-out-alt"/>
+                  </ListItemIcon>
+                  <ListItemText>
+                    Se déconnecter
+                  </ListItemText>
+                </ListItem>
+              )}
+            </span>
           </List>
           {props.is_connected && (
             <a href="/profile" className="Navbar__item-profile-icon-link">
