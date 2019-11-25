@@ -26,12 +26,14 @@ import Navbar from "./components/navbar";
 import QuestionsList from "./components/QuestionsList";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import Profile from "./components/Profile";
 
 export default function App() {
+  const is_connected = Cookies.get('Bearer') !== null;
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar is_connected={Cookies.get('auth') === 'true'}/>
+        <Navbar is_connected={is_connected}/>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
@@ -53,6 +55,11 @@ export default function App() {
           <Route path="/questions">
             <QuestionsList />
           </Route>
+          {is_connected && (
+            <Route path="/profile">
+              <Profile />
+            </Route>
+          )}
         </Switch>
       </div>
     </BrowserRouter>

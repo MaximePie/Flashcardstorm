@@ -9,8 +9,25 @@
         font-size: 1.3em;
     }
 
-    &__toggler {
+    &__item-profile-icon:before {
+        font-size: 3em;
+    }
+
+    &___item-profile-icon-link {
+        margin-right: 8%;
+    }
+
+    &__toggler, &__toggler-wide {
         outline: none;
         border: none;
+        background: transparent;
+    }
+
+
+}
+
+@media screen and (max-width: 992px) {
+    .Navbar__toggler-wide {
+        display: none;
     }
 }

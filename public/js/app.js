@@ -46649,7 +46649,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".Navbar__logo {\n  margin: 0 8px;\n}\n.Navbar__item {\n  margin: 0 8px;\n  font-size: 1.3em;\n}\n.Navbar__toggler {\n  outline: none;\n  border: none;\n}", ""]);
+exports.push([module.i, ".Navbar__logo {\n  margin: 0 8px;\n}\n.Navbar__item {\n  margin: 0 8px;\n  font-size: 1.3em;\n}\n.Navbar__item-profile-icon:before {\n  font-size: 3em;\n}\n.Navbar___item-profile-icon-link {\n  margin-right: 8%;\n}\n.Navbar__toggler, .Navbar__toggler-wide {\n  outline: none;\n  border: none;\n  background: transparent;\n}\n\n@media screen and (max-width: 992px) {\n  .Navbar__toggler-wide {\n    display: none;\n  }\n}", ""]);
 
 // exports
 
@@ -102848,6 +102848,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_QuestionsList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/QuestionsList */ "./resources/js/components/QuestionsList.js");
 /* harmony import */ var _components_Register__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.js");
 /* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.js");
+/* harmony import */ var _components_Profile__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Profile */ "./resources/js/components/Profile.js");
 
 
 
@@ -102879,11 +102880,13 @@ __webpack_require__(/*! ../sass/QuestionsList.scss */ "./resources/sass/Question
 
 
 
+
 function App() {
+  var is_connected = js_cookie__WEBPACK_IMPORTED_MODULE_4___default.a.get('Bearer') !== null;
   return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
     className: "App"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_navbar__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    is_connected: js_cookie__WEBPACK_IMPORTED_MODULE_4___default.a.get('auth') === 'true'
+    is_connected: is_connected
   }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/register"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Register__WEBPACK_IMPORTED_MODULE_10__["default"], null)), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
@@ -102896,7 +102899,9 @@ function App() {
     path: "/add"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_AddKnowledge__WEBPACK_IMPORTED_MODULE_7__["default"], null)), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/questions"
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_QuestionsList__WEBPACK_IMPORTED_MODULE_9__["default"], null)))));
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_QuestionsList__WEBPACK_IMPORTED_MODULE_9__["default"], null)), is_connected && react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+    path: "/profile"
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Profile__WEBPACK_IMPORTED_MODULE_12__["default"], null)))));
 }
 
 if (document.getElementById('app')) {
@@ -103189,15 +103194,70 @@ function Login(props) {
 
   function submitValues(event) {
     event.preventDefault();
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/login', form).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/login', form).then(function (response) {
       console.log(response);
 
       if (response.data.status && response.data.status !== 200) {
         setOpen(true);
       } else {
-        js_cookie__WEBPACK_IMPORTED_MODULE_4___default.a.set('auth', 'true');
+        js_cookie__WEBPACK_IMPORTED_MODULE_4___default.a.set('Bearer', response.data.bearer);
         document.location = "/home";
       }
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Profile.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/Profile.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Profile; });
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_3__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+function Profile() {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(undefined),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      user = _React$useState2[0],
+      setUser = _React$useState2[1];
+
+  react__WEBPACK_IMPORTED_MODULE_1___default.a.useEffect(function () {
+    fetchUserInfo();
+  }, []);
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "QuestionsList"
+  }, user && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "jumbotron"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", null, "Bienvenue, ", user.name)));
+
+  function fetchUserInfo() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('api/me?api_token=' + js_cookie__WEBPACK_IMPORTED_MODULE_3___default.a.get('Bearer')).then(function (response) {
+      console.log(response);
+      setUser(response.data);
     });
   }
 }
@@ -103527,6 +103587,16 @@ function Navbar(props) {
     className: "Navbar__logo",
     alt: "GIPSI Logo",
     src: "/images/logo.png"
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    className: "Navbar__toggler-wide",
+    type: "button",
+    "aria-controls": "navbarSupportedContent",
+    "aria-expanded": "false",
+    "aria-label": "Toggle navigation"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_Avatar__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "Navbar__logo",
+    alt: "GIPSI Logo",
+    src: "/images/logo.png"
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
     className: "navbar-brand",
     href: "/home"
@@ -103577,7 +103647,12 @@ function Navbar(props) {
     className: "Navbar__item"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_6__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
     className: "fas fa-folder-plus"
-  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Ajouter des questions"))))));
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Ajouter des questions"))), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+    href: "/profile",
+    className: "Navbar__item-profile-icon-link"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "Navbar__item-profile-icon fas fa-user-circle"
+  })))));
 }
 
 /***/ }),

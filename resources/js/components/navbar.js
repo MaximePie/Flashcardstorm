@@ -24,6 +24,15 @@ export default function Navbar(props) {
         >
           <Avatar className="Navbar__logo" alt="GIPSI Logo" src="/images/logo.png" />
         </button>
+        <button
+          className="Navbar__toggler-wide"
+          type="button"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <Avatar className="Navbar__logo" alt="GIPSI Logo" src="/images/logo.png" />
+        </button>
         <a className="navbar-brand" href="/home">FlashcardStorm</a>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <List className="navbar-nav mr-auto">
@@ -78,6 +87,11 @@ export default function Navbar(props) {
               </ListItemText>
             </ListItem>
           </List>
+          {props.is_connected && (
+            <a href="/profile" className="Navbar__item-profile-icon-link">
+              <i className="Navbar__item-profile-icon fas fa-user-circle"/>
+            </a>
+          )}
         </div>
       </nav>
     </div>

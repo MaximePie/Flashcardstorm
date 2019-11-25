@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +14,16 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::middleware('auth:api')->get('/me', static function (Request $request) {
+    return Auth::user();
+});
+/*
 Route::middleware('auth:api')->get('/user', static function (Request $request) {
     Route::get('/me', 'UserController@showLoggedIn');
 });
+*/
 
 Route::post('register', 'RegisterController@create');
-Route::post('login', 'LoginController@login');
 Route::get('logout', 'LoginController@logout');
 
 Route::get('question', 'QuestionController@randomQuestion');

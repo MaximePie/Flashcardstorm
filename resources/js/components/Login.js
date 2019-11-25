@@ -45,13 +45,13 @@ export default function Login(props) {
 
   function submitValues(event) {
     event.preventDefault();
-    axios.post('/api/login', form).then(response => {
+    axios.post('/login', form).then(response => {
       console.log(response);
       if(response.data.status && response.data.status !== 200) {
         setOpen(true);
       }
       else {
-        Cookies.set('auth', 'true');
+        Cookies.set('Bearer', response.data.bearer);
         document.location = "/home";
       }
     })

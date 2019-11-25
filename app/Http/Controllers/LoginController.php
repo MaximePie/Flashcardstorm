@@ -29,13 +29,12 @@ class LoginController extends Controller
         }
 
         if (Hash::check($request['password'], $user->password)) {
-            Auth::login($user->first());
-            /*
-            $cookie = Cookie::make('auth', true, 36000);
-            Cookie::queue($cookie);
-            return response()->make()->withCookie($cookie);
-            */
-            $response = response()->json(['message' => 'Success', 'status' => 200]);
+            Auth::login($user);
+            $response = response()->json([
+                'message' => 'Success',
+                'status' => 200,
+                'bearer' => $user->api_token,
+            ]);
         }
 
         return $response;
