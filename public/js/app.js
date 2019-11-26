@@ -104133,13 +104133,7 @@ function Home(props) {
   return (// TODO Afficher tous les composants sur la même page Home.js pour le moment puisqu'on n'a que très peu de contenu*
     react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "jumbotron Home__title"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Mode temp\xEAte !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "R\xE9pondez \xE0 un maximum de question toutes cat\xE9gories confondues sans limite de temps ni d'essai"), props.is_connected && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      control: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        checked: switchStatus,
-        onChange: switchQuestionsScope
-      }),
-      label: "Mes questions seulement"
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Mode temp\xEAte !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "R\xE9pondez \xE0 un maximum de question toutes cat\xE9gories confondues sans limite de temps ni d'essai")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "container Home"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row"
@@ -104196,7 +104190,7 @@ function Home(props) {
 
   function updateQuestionsBag() {
     var url = switchStatus ? 'question/for_user' : 'question/all';
-    _server__WEBPACK_IMPORTED_MODULE_4__["default"].get(url).then(function (response) {
+    _server__WEBPACK_IMPORTED_MODULE_4__["default"].get('question/for_user').then(function (response) {
       updateQuestion(response.data.question || undefined);
     });
   }

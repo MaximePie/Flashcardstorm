@@ -24,12 +24,6 @@ export default function Home(props) {
       <div className="jumbotron Home__title">
         <h1>Mode tempête !</h1>
         <p>Répondez à un maximum de question toutes catégories confondues sans limite de temps ni d'essai</p>
-        {props.is_connected && (
-          <FormControlLabel
-            control={<Switch checked={switchStatus} onChange={switchQuestionsScope} />}
-            label="Mes questions seulement"
-          />
-        )}
       </div>
       <div className="container Home">
         <div className="row">
@@ -83,7 +77,7 @@ export default function Home(props) {
   function updateQuestionsBag() {
 
     const url = switchStatus ? 'question/for_user' : 'question/all';
-    server.get(url).then(response => {
+    server.get('question/for_user').then(response => {
       updateQuestion(response.data.question || undefined)
     })
   }
