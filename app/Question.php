@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @property integer $id
@@ -42,6 +43,7 @@ class Question extends Model
     {
         return $this->belongsTo(Answer::class);
     }
+
     public function scoreByUser($user)
     {
         $score = 0;
@@ -50,5 +52,21 @@ class Question extends Model
             return $question_user->full_score;
         }
         return $score;
+    }
+
+    public static function delayedForUser($user)
+    {
+        $questions_user = Question_user::query()
+            ->where('user_id', $user->id)
+            ->whereDate('next_question_at', '<=', now());
+        $questions = self::query()->joinSub(
+            $questions_user->select('question_id'),
+            'questions_user',
+            'questions_user.question_id',
+            '=',
+            'questions.id'
+            );
+
+        return $questions;
     }
 }

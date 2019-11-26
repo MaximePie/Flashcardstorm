@@ -46642,7 +46642,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".Home {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n\n.Home__title {\n  text-align: center;\n  margin: 0 4%;\n}\n\n@media screen and (max-width: 600px) {\n  .Home__title {\n    margin: initial;\n  }\n\n  h1 {\n    font-size: 1.5em;\n  }\n\n  h3 {\n    font-size: 1.25em;\n  }\n}", ""]);
+exports.push([module.i, ".Home {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n\n.Home__title {\n  text-align: center;\n}\n\n@media screen and (max-width: 600px) {\n  .Home__title {\n    margin: initial;\n  }\n\n  h1 {\n    font-size: 1.5em;\n  }\n\n  h3 {\n    font-size: 1.25em;\n  }\n}", ""]);
 
 // exports
 
@@ -103820,6 +103820,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.js");
 /* harmony import */ var _components_Profile__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Profile */ "./resources/js/components/Profile.js");
 /* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./server */ "./resources/js/server.js");
+/* harmony import */ var _components_SoftTraining__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/SoftTraining */ "./resources/js/components/SoftTraining.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -103863,6 +103864,7 @@ __webpack_require__(/*! ../sass/Snackbar.scss */ "./resources/sass/Snackbar.scss
 
 
 
+
 function App() {
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_3___default.a.useState(undefined),
       _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -103894,6 +103896,10 @@ function App() {
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Register__WEBPACK_IMPORTED_MODULE_10__["default"], null)), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/login"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Login__WEBPACK_IMPORTED_MODULE_11__["default"], null)), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+    path: "/soft_training"
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_SoftTraining__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    updateUserScore: updateUser
+  })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/logout"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Home__WEBPACK_IMPORTED_MODULE_6__["default"], {
     updateUserScore: updateUser
@@ -103947,11 +103953,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddKnowledge; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Button */ "./resources/js/components/Button.js");
-/* harmony import */ var _Snackbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Snackbar */ "./resources/js/components/Snackbar.js");
-/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
+/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Button */ "./resources/js/components/Button.js");
+/* harmony import */ var _Snackbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Snackbar */ "./resources/js/components/Snackbar.js");
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
+/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../server */ "./resources/js/server.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -103994,21 +103999,20 @@ function AddKnowledge() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: submitValues,
     className: "Addknowledge__form card"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
     value: form.question,
     name: "question",
     onChange: updateForm,
     label: "Question"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_3__["default"], {
     value: form.answer,
     name: "answer",
     onChange: updateForm,
-    label: "R\xE9ponse",
-    type: "password"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    label: "R\xE9ponse"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
     text: "Enregistrer la question",
     onClick: submitValues
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Snackbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Snackbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     is_open: is_open,
     on_close: function on_close() {
       return setOpen(false);
@@ -104021,7 +104025,7 @@ function AddKnowledge() {
 
   function submitValues(event) {
     event.preventDefault();
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/question', form).then(function (response) {
+    _server__WEBPACK_IMPORTED_MODULE_4__["default"].post('question', form).then(function (response) {
       setForm({
         question: '',
         answer: ''
@@ -104100,8 +104104,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function Home(props) {
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
       _React$useState2 = _slicedToArray(_React$useState, 2),
-      questions = _React$useState2[0],
-      updateQuestions = _React$useState2[1];
+      question = _React$useState2[0],
+      updateQuestion = _React$useState2[1];
 
   var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
       _React$useState4 = _slicedToArray(_React$useState3, 2),
@@ -104114,12 +104118,12 @@ function Home(props) {
   return (// TODO Afficher tous les composants sur la même page Home.js pour le moment puisqu'on n'a que très peu de contenu*
     react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "jumbotron Home__title"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Bienvenue sur FlashcardStorm"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Make learning great again !")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Mode temp\xEAte !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "R\xE9pondez \xE0 un maximum de question toutes cat\xE9gories confondues sans limite de temps ni d'essai")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "container Home"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row"
-    }, questions && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      question: questions[0] || undefined,
+    }, question && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      question: question || undefined,
       onSubmit: submitAnswer,
       onSkip: function onSkip() {
         return updateQuestionsBag();
@@ -104140,8 +104144,8 @@ function Home(props) {
   function submitAnswer(answer) {
     event.preventDefault();
     _server__WEBPACK_IMPORTED_MODULE_4__["default"].post('question/submit_answer', {
-      id: questions[0].id,
-      is_valid: answer === questions[0].answer
+      id: question.id,
+      is_valid: answer === question.answer
     }).then(function (response) {
       var snackbar_text = response.data.text;
 
@@ -104166,7 +104170,7 @@ function Home(props) {
 
   function updateQuestionsBag() {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('api/question').then(function (response) {
-      updateQuestions(response.data);
+      updateQuestion(response.data.question || undefined);
     });
   }
 }
@@ -104370,7 +104374,7 @@ function QuestionCard(props) {
     className: "QuestionCard card"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "QuestionCard__question " + (!question && "QuestionCard__question--is-empty")
-  }, question && question.wording || 'Il n\'y a pas encore de question disponible... Cliquez sur "Ajouter des questions" pour en ajouter !'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, props.question.wording || props.message), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     label: "R\xE9ponse",
     onChange: function onChange(e) {
       return setAnswer(e.target.value);
@@ -104378,12 +104382,11 @@ function QuestionCard(props) {
     value: answer
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "QuestionCard__actions"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     type: "button",
-    variant: "btn-secondary",
-    onClick: handleSkip,
-    text: "Passer"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: "Button btn btn-secondary",
+    onClick: handleSkip
+  }, "Passer"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
     onClick: function onClick() {
       return props.onSubmit(answer);
     },
@@ -104646,6 +104649,127 @@ function Snackbar(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/SoftTraining.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/SoftTraining.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SoftTraining; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _QuestionCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./QuestionCard */ "./resources/js/components/QuestionCard.js");
+/* harmony import */ var _Snackbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Snackbar */ "./resources/js/components/Snackbar.js");
+/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../server */ "./resources/js/server.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+function SoftTraining(props) {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      question = _React$useState2[0],
+      updateQuestions = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      questionCardMessage = _React$useState4[0],
+      updateQuestionCardMessage = _React$useState4[1];
+
+  console.log(question);
+
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      snackbar = _React$useState6[0],
+      setSnackbar = _React$useState6[1];
+
+  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
+    updateQuestionsBag(); // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
+  }, []);
+  return (// TODO Afficher tous les composants sur la même page Home.js pour le moment puisqu'on n'a que très peu de contenu*
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jumbotron Home__title"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Mode consolidation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "R\xE9pondez aux questions en fonction du temps pass\xE9 pour consolider vos m\xE9morisations"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Seules les questions auxquelles vous n'avez pas r\xE9pondu depuis assez longtemps appara\xEEtront")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "container Home"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "row"
+    }, question && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      question: question || undefined,
+      onSubmit: submitAnswer,
+      onSkip: function onSkip() {
+        return updateQuestionsBag();
+      },
+      message: questionCardMessage
+    }), !question && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, questionCardMessage)), snackbar && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Snackbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      variant: snackbar.variant,
+      is_open: snackbar.is_open,
+      on_close: function on_close() {
+        return setSnackbar(_objectSpread({}, snackbar, {
+          is_open: false
+        }));
+      },
+      text: snackbar.text,
+      score: snackbar.score
+    })))
+  ); // TODO - Create import from Excel feature, the program can take a csv file with 2 columns : Question,Answer
+
+  function submitAnswer(answer) {
+    event.preventDefault();
+    _server__WEBPACK_IMPORTED_MODULE_4__["default"].post('question/submit_answer', {
+      id: question.id,
+      is_valid: answer === question.answer
+    }).then(function (response) {
+      var snackbar_text = response.data.text;
+
+      if (response.data.status !== 200) {
+        snackbar_text += " Réponses correctes : " + response.data.correct_answer;
+      }
+
+      setSnackbar({
+        is_open: true,
+        text: snackbar_text,
+        variant: response.data.status === 200 ? 'success' : 'failure',
+        score: response.data.status === 200 ? response.data.earned_points : undefined
+      });
+
+      if (response.data.status === 200) {
+        props.updateUserScore();
+      }
+
+      updateQuestionsBag();
+    });
+  }
+
+  function updateQuestionsBag() {
+    _server__WEBPACK_IMPORTED_MODULE_4__["default"].get('question/soft').then(function (response) {
+      updateQuestions(response.data.question || undefined);
+      updateQuestionCardMessage(response.data.message);
+    });
+  }
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/navbar.js":
 /*!*******************************************!*\
   !*** ./resources/js/components/navbar.js ***!
@@ -104725,8 +104849,15 @@ function Navbar(props) {
     href: "/home",
     className: "Navbar__item"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_6__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "fas fa-edit"
-  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Entra\xEEnement")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    className: "fas fa-cloud-meatball"
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Mode temp\xEAte")), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    button: true,
+    component: "a",
+    href: "/soft_training",
+    className: "Navbar__item"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_6__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "fas fa-calendar-alt"
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Mode entra\xEEnement planifi\xE9")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
     button: true,
     component: "a",
     href: "/questions",
@@ -104859,24 +104990,27 @@ function () {
   }, {
     key: "get",
     value: function get(url) {
-      var bearer;
+      var params,
+          bearer,
+          _args2 = arguments;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function get$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              params = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : null;
               bearer = js_cookie__WEBPACK_IMPORTED_MODULE_2___default.a.get('Bearer');
 
               if (!bearer) {
-                _context2.next = 5;
+                _context2.next = 6;
                 break;
               }
 
-              return _context2.abrupt("return", axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/authenticated/' + url + '?api_token=' + bearer));
-
-            case 5:
-              return _context2.abrupt("return", axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/' + url));
+              return _context2.abrupt("return", axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/authenticated/' + url + '?api_token=' + bearer + '&' + params));
 
             case 6:
+              return _context2.abrupt("return", axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/' + url + '?' + params));
+
+            case 7:
             case "end":
               return _context2.stop();
           }

@@ -34,15 +34,29 @@ class QuestionController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param string $mode
      * @return JsonResponse
      */
-    public function randomQuestion(): JsonResponse
+    public function randomQuestion(string $mode = null): JsonResponse
     {
-        $questions = Question::query()->inRandomOrder()->get();
+        $message = null;
+        $user = Auth::user();
+        if ($mode === 'soft' && $user) {
+            $questions = Question::delayedForUser($user)->get();
+            if ($questions->isEmpty()) {
+                $next_question = Question_user::query()->orderBy('next_question_at', 'asc')->first();
+                $message = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $next_question->next_question_at;
+            }
+        }
+        else {
+            $questions = Question::query()->inRandomOrder()->get();
+            $message = "Il n'y a pas de question disponible, vous pouvez en créer en cliquant sur Ajouter des Questions";
+        }
         $questions->each(static function(Question $question) {
             $question['answer'] = $question->answer()->first()->wording;
         });
-        return response()->json($questions);
+
+        return response()->json(['question' => $questions->first(), 'message' => $message]);
     }
 
     /**
@@ -73,6 +87,12 @@ class QuestionController extends Controller
             'wording' => $request->question,
             'answer_id' => $answer->id
         ]);
+        $question->save();
+
+        $user = Auth::user();
+        if ($user) {
+            Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
+        }
 
         return response()->json($question);
     }
@@ -149,7 +169,6 @@ class QuestionController extends Controller
             $question_user->save();
             $earned_points = $question_user->save_success($user);
         }
-
 
         return response()->json([
             'text' => $request->is_valid ? 'Bien joué !' : 'Oups, ce n\'est pas ça, réessayons !',

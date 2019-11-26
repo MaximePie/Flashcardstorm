@@ -41,12 +41,22 @@ export default function Navbar(props) {
             <span className="Navbar__side-container">
               <ListItem button component="a" href="/home" className="Navbar__item">
                 <ListItemIcon>
-                  <i className="fas fa-edit"/>
+                  <i className="fas fa-cloud-meatball"/>
                 </ListItemIcon>
                 <ListItemText>
-                  Entraînement
+                  Mode tempête
                 </ListItemText>
               </ListItem>
+              {props.is_connected && (
+                <ListItem button component="a" href="/soft_training" className="Navbar__item">
+                  <ListItemIcon>
+                    <i className="fas fa-calendar-alt"/>
+                  </ListItemIcon>
+                  <ListItemText>
+                    Mode entraînement planifié
+                  </ListItemText>
+                </ListItem>
+              )}
               <ListItem button component="a" href="/questions" className="Navbar__item">
                 <ListItemIcon>
                   <i className="fas fa-list"/>

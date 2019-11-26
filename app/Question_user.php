@@ -13,6 +13,12 @@ class Question_user extends Model
      */
     protected $fillable = ['user_id', 'question_id', 'current_delay', 'score', 'full_score', 'number_of_successful_answer', 'number_of_unsuccessful_answer', 'last_answered_at', 'next_question_at'];
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->full_score = 10;
+    }
+
     /**
      * @param $question_id
      * @param $user_id

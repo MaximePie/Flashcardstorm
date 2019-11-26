@@ -20,13 +20,13 @@ class server {
     }
   }
 
-  static async get(url) {
+  static async get(url, params = null) {
     let bearer =  Cookies.get('Bearer');
     if (bearer) {
-      return axios.get('/api/authenticated/' + url + '?api_token='+ bearer)
+      return axios.get('/api/authenticated/' + url + '?api_token=' + bearer + '&' + params)
     }
     else {
-      return axios.get('/api/' + url);
+      return axios.get('/api/' + url + '?' + params);
     }
   }
 }

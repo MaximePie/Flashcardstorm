@@ -21,9 +21,10 @@ Route::middleware('auth:api')->get('/me', static function (Request $request) {
 Route::middleware('auth:api')->get('/authenticated/me/score/', 'UserController@score');
 Route::middleware('auth:api')->get('/authenticated/questions_list/', 'QuestionController@index');
 Route::middleware('auth:api')->get('/authenticated/question/delete/{question}', 'QuestionController@destroy');
+Route::middleware('auth:api')->get('/authenticated/question/{mode}', 'QuestionController@randomQuestion');
 
 Route::middleware('auth:api')->post('/authenticated/question/submit_answer', 'QuestionController@submitAnswer');
-
+Route::middleware('auth:api')->post('/authenticated/question', 'QuestionController@store');
 
 Route::post('register', 'RegisterController@create');
 

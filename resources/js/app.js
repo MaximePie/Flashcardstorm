@@ -29,6 +29,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import server from "./server";
+import SoftTraining from "./components/SoftTraining";
 
 export default function App() {
 
@@ -58,6 +59,9 @@ export default function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/soft_training">
+            <SoftTraining updateUserScore={updateUser}/>
           </Route>
           <Route path="/logout">
             <Home updateUserScore={updateUser}/>

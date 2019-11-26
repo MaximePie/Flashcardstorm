@@ -13,11 +13,11 @@ export default function QuestionCard(props) {
   return (
     <form onSubmit={() => props.onSubmit(answer)} className="QuestionCard card">
       <h3 className={"QuestionCard__question " + (!question && "QuestionCard__question--is-empty")}>
-      {(question && question.wording) || 'Il n\'y a pas encore de question disponible... Cliquez sur "Ajouter des questions" pour en ajouter !'}
+        {props.question.wording || props.message}
       </h3>
       <TextField label="Réponse" onChange={e => setAnswer(e.target.value)} value={answer}/>
       <div className="QuestionCard__actions">
-        <Button type="button" variant="btn-secondary" onClick={handleSkip} text="Passer"/>
+        <a type="button" className="Button btn btn-secondary" onClick={handleSkip}>Passer</a>
         <Button onClick={() => props.onSubmit(answer)} text="Envoyer"/>
       </div>
     </form>

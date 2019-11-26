@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from "axios";
 import Button from "./Button";
 import Snackbar from "./Snackbar";
 import TextField from "@material-ui/core/TextField";
+import server from "../server";
 
 export default function AddKnowledge() {
 
@@ -31,7 +31,6 @@ export default function AddKnowledge() {
             name="answer"
             onChange={updateForm}
             label="Réponse"
-            type="password"
           />
           <Button text="Enregistrer la question" onClick={submitValues}/>
         </form>
@@ -51,7 +50,7 @@ export default function AddKnowledge() {
 
   function submitValues(event) {
     event.preventDefault();
-    axios.post('/api/question', form).then(response => {
+    server.post('question', form).then(response => {
       setForm({question: '', answer: ''});
       setOpen(true)
     })

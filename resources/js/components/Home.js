@@ -5,7 +5,7 @@ import Snackbar from "./Snackbar";
 import server from '../server'
 
 export default function Home(props) {
-  const [questions, updateQuestions] = React.useState(undefined);
+  const [question, updateQuestion] = React.useState(undefined);
 
   const [snackbar, setSnackbar] = React.useState(undefined);
 
@@ -18,13 +18,13 @@ export default function Home(props) {
     // TODO Afficher tous les composants sur la même page Home.js pour le moment puisqu'on n'a que très peu de contenu*
     <>
       <div className="jumbotron Home__title">
-        <h1>Bienvenue sur FlashcardStorm</h1>
-        <p>Make learning great again !</p>
+        <h1>Mode tempête !</h1>
+        <p>Répondez à un maximum de question toutes catégories confondues sans limite de temps ni d'essai</p>
       </div>
       <div className="container Home">
         <div className="row">
-          {questions && (
-            <QuestionCard question={questions[0] || undefined} onSubmit={submitAnswer} onSkip={() => updateQuestionsBag()}/>
+          {question && (
+            <QuestionCard question={question || undefined} onSubmit={submitAnswer} onSkip={() => updateQuestionsBag()}/>
           )}
         </div>
         {snackbar && (
@@ -46,7 +46,7 @@ export default function Home(props) {
     event.preventDefault();
     server.post(
       'question/submit_answer',
-      {id: questions[0].id, is_valid: answer === questions[0].answer}
+      {id: question.id, is_valid: answer === question.answer}
       ).then(response => {
         let snackbar_text = response.data.text;
         if (response.data.status !== 200) {
@@ -67,7 +67,7 @@ export default function Home(props) {
 
   function updateQuestionsBag() {
     axios.get('api/question').then(response => {
-      updateQuestions(response.data)
+      updateQuestion(response.data.question || undefined)
     })
   }
 }
