@@ -104122,15 +104122,10 @@ function Home(props) {
       snackbar = _React$useState4[0],
       setSnackbar = _React$useState4[1];
 
-  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState("Mes questions seulement"),
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(true),
       _React$useState6 = _slicedToArray(_React$useState5, 2),
-      switchText = _React$useState6[0],
-      setSwitchText = _React$useState6[1];
-
-  var _React$useState7 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(true),
-      _React$useState8 = _slicedToArray(_React$useState7, 2),
-      switchStatus = _React$useState8[0],
-      setSwitchStatus = _React$useState8[1];
+      switchStatus = _React$useState6[0],
+      setSwitchStatus = _React$useState6[1];
 
   react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
     updateQuestionsBag(); // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
@@ -104143,7 +104138,7 @@ function Home(props) {
         checked: switchStatus,
         onChange: switchQuestionsScope
       }),
-      label: switchText
+      label: "Mes questions seulement"
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "container Home"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -104196,7 +104191,7 @@ function Home(props) {
 
   function switchQuestionsScope() {
     setSwitchStatus(!switchStatus);
-    setSwitchText(switchStatus ? "Mes questions seulement" : "Toutes les questions");
+    updateQuestionsBag();
   }
 
   function updateQuestionsBag() {

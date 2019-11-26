@@ -43,14 +43,18 @@ class QuestionController extends Controller
         $user = Auth::user();
 
         if ($mode === 'soft' && $user) {
-            $questions = Question::forUser($user)->inRandomOrder()->get();
+            $questions = Question::forUser($user, true)->inRandomOrder()->get();
             if ($questions->isEmpty()) {
                 $next_question = Question_user::query()->orderBy('next_question_at', 'asc')->first();
-                $message = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $next_question->next_question_at;
+                if ($next_question) {
+                    $message = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $next_question->next_question_at;
+                }
+                else {
+                    $message = "Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit";
+                }
             }
         }
         else {
-
             if ($user && $mode === 'for_user') {
                 $questions = Question::forUser($user)->inRandomOrder()->get();
             }

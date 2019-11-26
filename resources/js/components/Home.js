@@ -11,7 +11,6 @@ export default function Home(props) {
 
   const [snackbar, setSnackbar] = React.useState(undefined);
 
-  const [switchText, setSwitchText] = React.useState("Mes questions seulement");
   const [switchStatus, setSwitchStatus] = React.useState(true);
 
   React.useEffect(() => {
@@ -28,7 +27,7 @@ export default function Home(props) {
         {props.is_connected && (
           <FormControlLabel
             control={<Switch checked={switchStatus} onChange={switchQuestionsScope} />}
-            label={switchText}
+            label="Mes questions seulement"
           />
         )}
       </div>
@@ -78,7 +77,7 @@ export default function Home(props) {
 
   function switchQuestionsScope() {
     setSwitchStatus(!switchStatus);
-    setSwitchText(switchStatus ? "Mes questions seulement" : "Toutes les questions")
+    updateQuestionsBag()
   }
 
   function updateQuestionsBag() {

@@ -1266,26 +1266,33 @@
       <DataType>timestamp|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="295" parent="236" name="users_email_unique">
+    <column id="295" parent="236" name="score">
+      <Position>10</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="296" parent="236" name="users_email_unique">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="296" parent="236" name="users_api_token_unique">
+    <index id="297" parent="236" name="users_api_token_unique">
       <ColNames>api_token</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="297" parent="236" name="PRIMARY">
+    <key id="298" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="298" parent="236" name="users_email_unique">
+    <key id="299" parent="236" name="users_email_unique">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>users_email_unique</UnderlyingIndexName>
     </key>
-    <key id="299" parent="236" name="users_api_token_unique">
+    <key id="300" parent="236" name="users_api_token_unique">
       <ColNames>api_token</ColNames>
       <UnderlyingIndexName>users_api_token_unique</UnderlyingIndexName>
     </key>
