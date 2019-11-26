@@ -8,11 +8,12 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import axios from "axios";
 import Cookies from "js-cookie";
 
+import CountTo from 'react-count-to';
 
 export default function Navbar(props) {
+  console.log(props)
   return (
     <div className="Navbar">
-
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <button
           className="Navbar__toggler navbar-toggler"
@@ -99,7 +100,17 @@ export default function Navbar(props) {
               <a href="/profile" className="Navbar__item-profile-icon-link">
                 <i className="Navbar__item-profile-icon fas fa-user-circle"/>
               </a>
-              <span className="Navbar__item-profile-score">{props.user && props.user.score}</span>
+              {props.user && (
+                <span className="Navbar__item-profile-score">
+                  <CountTo
+                    from={props.user.initial_score}
+                    to={props.user.current_score}
+                    speed={1000}
+                    className={"Navbar__counter " + props.countClassName}
+                    onComplete={props.onCountComplete}
+                  />
+                </span>
+              )}
             </div>
           )}
         </div>

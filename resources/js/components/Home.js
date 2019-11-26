@@ -52,7 +52,9 @@ export default function Home(props) {
         text: response.data.text,
         variant: response.data.status === 200 ? 'success' : 'failure',
       });
-      props.updateUserScore();
+      if(response.data.status === 200) {
+        props.updateUserScore();
+      }
       updateQuestionsBag();
     });
     // TODO #13 - Display the score sent by the Backoffice

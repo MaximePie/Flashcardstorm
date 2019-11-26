@@ -144,7 +144,7 @@ class QuestionController extends Controller
         return response()->json([
             'text' => $request->is_valid ? 'Bien joué !' : 'Oups, ce n\'est pas ça, réessayons !',
             'status' => $request->is_valid ? 200 : 500,
-            'earned_points' => $earned_points,
+            'earned_points' => $earned_points + 10,
         ]);
     }
 }

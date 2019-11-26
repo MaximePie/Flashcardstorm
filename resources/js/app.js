@@ -33,7 +33,8 @@ import server from "./server";
 export default function App() {
 
   const [user, setUser] = React.useState(undefined);
-  console.log(user);
+  const [countClassName, setCountClassName] = React.useState('');
+  const is_connected = Cookies.get('Bearer') !== null && Cookies.get('Bearer') !== undefined;
 
   React.useEffect(() => {
     if (is_connected) {
@@ -41,13 +42,13 @@ export default function App() {
     }
   }, [is_connected]);
 
-  const is_connected = Cookies.get('Bearer') !== null && Cookies.get('Bearer') !== undefined;
   return (
     <BrowserRouter>
       <div className="App">
         <Navbar
           is_connected={is_connected}
           user={user}
+          countClassName={countClassName} onCountComplete={() => setCountClassName('')}
         />
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
@@ -82,7 +83,13 @@ export default function App() {
 
   function updateUser() {
     server.get('me/score').then(response => {
-      setUser({score: response.data.score})
+      if (!user) {
+        setUser({initial_score: response.data.score, current_score: response.data.score});
+      }
+      else {
+        setCountClassName('Navbar__counter-rising');
+        setUser({initial_score: user.current_score, current_score: response.data.score})
+      }
     });
   }
 }
