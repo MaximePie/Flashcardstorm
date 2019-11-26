@@ -54,6 +54,20 @@ class Question extends Model
         return $score;
     }
 
+
+    public function isSetForUser($user)
+    {
+        $question_user = Question_user::findFromTuple($this->id, $user->id);
+        return $question_user && $question_user->exists();
+    }
+
+    public function attatchToUser($user)
+    {
+        $question_user = Question_user::create(['question_id' => $this->id, 'user_id' => $user->id]);
+        $question_user->save();
+        return $question_user;
+    }
+
     public static function forUser($user, $with_delay = false)
     {
         $questions_user = Question_user::query()

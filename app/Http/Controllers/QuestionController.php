@@ -6,6 +6,7 @@ use App\Answer;
 use App\Question;
 use App\Question_user;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -26,9 +27,35 @@ class QuestionController extends Controller
             $question['answer'] = $question->answer()->first()->wording;
             if ($user) {
                 $question['score'] = $question->scoreByUser($user);
+                $question['is_set_for_user'] = $question->isSetForUser($user);
             }
         });
         return response()->json($questions);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param $question_id
+     * @return JsonResponse
+     */
+    public function toggleQuestionForUser($question_id): JsonResponse
+    {
+        $user = Auth::user();
+        if (!$user) {
+            throw new \RuntimeException('User does now exist');
+        }
+        $question = Question::query()->where('id', $question_id)->first();
+        if ($question && $question->exists() && !$question->isSetForUser($user)) {
+            $question->attatchToUser($user);
+        }
+        else {
+            $question_user = Question_user::findFromTuple($question->id, $user->id);
+            if ($question_user && $question_user->exists()) {
+                $question_user->forceDelete();
+            }
+        }
+        return response()->json(['is_set_for_user' => $question->isSetForUser($user)]);
     }
 
     /**

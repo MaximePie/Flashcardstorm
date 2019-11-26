@@ -46699,7 +46699,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".QuestionsList__title {\n  text-align: center;\n}\n.QuestionsList__question {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
+exports.push([module.i, ".QuestionsList__title {\n  text-align: center;\n}\n.QuestionsList__question {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton {\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton--set {\n  background-color: #00c107 !important;\n}\n.QuestionsList__toggleButton--unset {\n  background-color: #c13c2b !important;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
 
 // exports
 
@@ -104448,6 +104448,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js");
 /* harmony import */ var _Snackbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Snackbar */ "./resources/js/components/Snackbar.js");
 /* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../server */ "./resources/js/server.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -104480,9 +104488,9 @@ function QuestionsList(props) {
     className: "QuestionsList"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "jumbotron QuestionsList__title"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Liste des questions")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Liste des questions"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Une question est automatiquement int\xE9gr\xE9e \xE0 votre collection quand vous cr\xE9ez une question ou quand vous y r\xE9pondez depuis le mode Temp\xEAte")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
     className: "container list-group list-group-flush"
-  }, questions && questions.length && questions.map(function (question) {
+  }, questions && questions.length && questions.map(function (question, key) {
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
       key: "question".concat(question.id),
       className: "QuestionsList__question list-group-item"
@@ -104492,11 +104500,20 @@ function QuestionsList(props) {
       className: "QuestionsList__question-answer"
     }, question.answer), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "QuestionsList__question-score"
-    }, "Prochain gain : +", question.score)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, "Prochain gain : +", question.score)), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      "aria-label": "delete",
+      color: "primary",
+      className: "QuestionsList__delete-button QuestionsList__toggleButton" + (question.is_set_for_user ? "--set" : "--unset"),
+      onClick: function onClick() {
+        return toggleQuestionForUser(question.id, key);
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+      className: "far fa-check-circle QuestionsList__delete-icon"
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
       "aria-label": "delete",
       color: "primary",
       className: "QuestionsList__delete-button",
-      onClick: function onClick(id) {
+      onClick: function onClick() {
         return deleteQuestion(question.id);
       }
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
@@ -104512,6 +104529,15 @@ function QuestionsList(props) {
   function deleteQuestion(id) {
     _server__WEBPACK_IMPORTED_MODULE_5__["default"].get('question/delete/' + id).then(function (response) {
       updateQuestions(response.data);
+      setOpen(true);
+    });
+  }
+
+  function toggleQuestionForUser(id, key) {
+    _server__WEBPACK_IMPORTED_MODULE_5__["default"].get('question/toggle/' + id).then(function (response) {
+      var questionsBag = questions;
+      questionsBag[key].is_set_for_user = response.data.is_set_for_user;
+      updateQuestions(_toConsumableArray(questionsBag));
       setOpen(true);
     });
   }

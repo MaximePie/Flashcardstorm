@@ -17,14 +17,15 @@ export default function QuestionsList(props) {
     // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
   }, []);
 
-
   return (
     <div className="QuestionsList">
       <div className="jumbotron QuestionsList__title">
         <h1>Liste des questions</h1>
+        <p>Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection</p>
+        <p>Une question est automatiquement intégrée à votre collection quand vous créez une question ou quand vous y répondez depuis le mode Tempête</p>
       </div>
       <ul className="container list-group list-group-flush">
-        {questions && questions.length && questions.map(function(question){
+        {questions && questions.length && questions.map(function(question, key){
           return (
             <li key={`question${question.id}`} className="QuestionsList__question list-group-item">
               <span>
@@ -34,11 +35,21 @@ export default function QuestionsList(props) {
                   <div className="QuestionsList__question-score">Prochain gain : +{question.score}</div>
                 )}
               </span>
+              {props.is_connected && (
+                <IconButton
+                  aria-label="delete"
+                  color="primary"
+                  className={"QuestionsList__delete-button QuestionsList__toggleButton" + (question.is_set_for_user ? "--set" : "--unset")}
+                  onClick={() => toggleQuestionForUser(question.id, key)}
+                >
+                  <i className="far fa-check-circle QuestionsList__delete-icon"/>
+                </IconButton>
+              )}
               <IconButton
                 aria-label="delete"
                 color="primary"
                 className="QuestionsList__delete-button"
-                onClick={(id) => deleteQuestion(question.id)}
+                onClick={() => deleteQuestion(question.id)}
               >
                 <i className="far fa-trash-alt QuestionsList__delete-icon"/>
               </IconButton>
@@ -53,6 +64,15 @@ export default function QuestionsList(props) {
   function deleteQuestion(id) {
     server.get('question/delete/' + id).then(response => {
       updateQuestions(response.data);
+      setOpen(true)
+    });
+  }
+
+  function toggleQuestionForUser(id, key) {
+    server.get('question/toggle/' + id).then(response => {
+      let questionsBag = questions;
+      questionsBag[key].is_set_for_user = response.data.is_set_for_user;
+      updateQuestions([...questionsBag]);
       setOpen(true)
     });
   }
