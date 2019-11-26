@@ -16,8 +16,17 @@ export default function QuestionCard(props) {
       {(question && question.wording) || 'Il n\'y a pas encore de question disponible... Cliquez sur "Ajouter des questions" pour en ajouter !'}
       </h3>
       <TextField label="Réponse" onChange={e => setAnswer(e.target.value)} value={answer}/>
-      <Button onClick={() => props.onSubmit(answer)} text="Envoyer"/>
+      <div className="QuestionCard__actions">
+        <Button type="button" variant="btn-secondary" onClick={handleSkip} text="Passer"/>
+        <Button onClick={() => props.onSubmit(answer)} text="Envoyer"/>
+      </div>
     </form>
   );
+
+  function handleSkip(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    props.onSkip();
+  }
 }
 

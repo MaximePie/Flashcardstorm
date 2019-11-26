@@ -46623,7 +46623,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".Button {\n  min-width: 100px;\n}", ""]);
+exports.push([module.i, ".Button {\n  min-width: 100px;\n  margin: 0 8px;\n}", ""]);
 
 // exports
 
@@ -104047,8 +104047,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function Button(props) {
+  var variant = "btn-primary";
+
+  if (props.variant) {
+    variant = props.variant;
+  }
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "Button btn btn-primary",
+    className: "Button btn " + variant,
     onClick: props.onClick
   }, props.text);
 }
@@ -104114,7 +104120,10 @@ function Home(props) {
       className: "row"
     }, questions && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
       question: questions[0] || undefined,
-      onSubmit: submitAnswer
+      onSubmit: submitAnswer,
+      onSkip: function onSkip() {
+        return updateQuestionsBag();
+      }
     })), snackbar && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Snackbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
       variant: snackbar.variant,
       is_open: snackbar.is_open,
@@ -104152,7 +104161,7 @@ function Home(props) {
       }
 
       updateQuestionsBag();
-    }); // TODO #13 - Display the score sent by the Backoffice
+    });
   }
 
   function updateQuestionsBag() {
@@ -104367,12 +104376,25 @@ function QuestionCard(props) {
       return setAnswer(e.target.value);
     },
     value: answer
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "QuestionCard__actions"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    type: "button",
+    variant: "btn-secondary",
+    onClick: handleSkip,
+    text: "Passer"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
     onClick: function onClick() {
       return props.onSubmit(answer);
     },
     text: "Envoyer"
-  }));
+  })));
+
+  function handleSkip(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    props.onSkip();
+  }
 }
 
 /***/ }),

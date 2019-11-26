@@ -33,7 +33,7 @@ export default function AddKnowledge() {
             label="Réponse"
             type="password"
           />
-          <Button  text="Enregistrer la question" onClick={submitValues}/>
+          <Button text="Enregistrer la question" onClick={submitValues}/>
         </form>
         <Snackbar is_open={is_open} on_close={() => setOpen(false)}/>
       </div>

@@ -24,7 +24,7 @@ export default function Home(props) {
       <div className="container Home">
         <div className="row">
           {questions && (
-            <QuestionCard question={questions[0] || undefined} onSubmit={submitAnswer}/>
+            <QuestionCard question={questions[0] || undefined} onSubmit={submitAnswer} onSkip={() => updateQuestionsBag()}/>
           )}
         </div>
         {snackbar && (
@@ -63,7 +63,6 @@ export default function Home(props) {
         }
         updateQuestionsBag();
     });
-    // TODO #13 - Display the score sent by the Backoffice
   }
 
   function updateQuestionsBag() {
