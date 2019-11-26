@@ -28,13 +28,27 @@ import QuestionsList from "./components/QuestionsList";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+import server from "./server";
 
 export default function App() {
+
+  const [user, setUser] = React.useState(undefined);
+  console.log(user);
+
+  React.useEffect(() => {
+    if (is_connected) {
+      updateUser()
+    }
+  }, [is_connected]);
+
   const is_connected = Cookies.get('Bearer') !== null && Cookies.get('Bearer') !== undefined;
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar is_connected={is_connected}/>
+        <Navbar
+          is_connected={is_connected}
+          user={user}
+        />
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
@@ -45,10 +59,10 @@ export default function App() {
             <Login />
           </Route>
           <Route path="/logout">
-            <Home />
+            <Home updateUserScore={updateUser}/>
           </Route>
           <Route path="/home">
-            <Home />
+            <Home updateUserScore={updateUser}/>
           </Route>
           <Route path="/add">
             <AddKnowledge />
@@ -65,6 +79,12 @@ export default function App() {
       </div>
     </BrowserRouter>
   );
+
+  function updateUser() {
+    server.get('me/score').then(response => {
+      setUser({score: response.data.score})
+    });
+  }
 }
 
 if (document.getElementById('app')) {

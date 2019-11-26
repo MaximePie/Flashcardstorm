@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Answer;
 use App\Question;
+use App\Question_user;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -131,19 +132,19 @@ class QuestionController extends Controller
     public function submitAnswer(Request $request): JsonResponse
     {
         $question = QUESTION::query()->find($request->id);
-        if ($request->is_valid) {
-
-            $question->current_delay ++;
-            $question->last_answered_at = Carbon::now();
-            $question->next_question_at = Carbon::now()->addDays($question->current_delay);
-            $question->save();
-            // TODO #14 Ajouter le score à l'utilisateur
+        $user = Auth::user();
+        $earned_points = 0;
+        if ($request->is_valid && $user) {
+            $question_user = QUESTION_USER::query()->firstOrCreate(['user_id' => $user->id, 'question_id' => $question->id]);
+            $question_user->save();
+            $earned_points = $question_user->save_success($user);
         }
 
 
         return response()->json([
             'text' => $request->is_valid ? 'Bien joué !' : 'Oups, ce n\'est pas ça, réessayons !',
-            'status' => $request->is_valid ? 200 : 500
+            'status' => $request->is_valid ? 200 : 500,
+            'earned_points' => $earned_points,
         ]);
     }
 }

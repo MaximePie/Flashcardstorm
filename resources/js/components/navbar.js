@@ -10,7 +10,6 @@ import Cookies from "js-cookie";
 
 
 export default function Navbar(props) {
-
   return (
     <div className="Navbar">
 
@@ -96,9 +95,12 @@ export default function Navbar(props) {
             </span>
           </List>
           {props.is_connected && (
-            <a href="/profile" className="Navbar__item-profile-icon-link">
-              <i className="Navbar__item-profile-icon fas fa-user-circle"/>
-            </a>
+            <div className="Navbar__item-profile">
+              <a href="/profile" className="Navbar__item-profile-icon-link">
+                <i className="Navbar__item-profile-icon fas fa-user-circle"/>
+              </a>
+              <span className="Navbar__item-profile-score">{props.user && props.user.score}</span>
+            </div>
           )}
         </div>
       </nav>

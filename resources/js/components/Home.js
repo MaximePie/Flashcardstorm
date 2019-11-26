@@ -2,9 +2,9 @@ import React from 'react';
 import axios from "axios";
 import QuestionCard from "./QuestionCard";
 import Snackbar from "./Snackbar";
+import server from '../server'
 
-export default function Home() {
-
+export default function Home(props) {
   const [questions, updateQuestions] = React.useState(undefined);
 
   const [snackbar, setSnackbar] = React.useState(undefined);
@@ -43,25 +43,23 @@ export default function Home() {
 
   function submitAnswer(answer) {
     // TODO #20 - Send answer info
-    axios.post('/api/question/submit_answer', {
-      id: questions[0].id,
-      is_valid: answer === questions[0].answer,
-    }).then(response => {
+    server.post(
+      '/question/submit_answer',
+      {id: questions[0].id, is_valid: answer === questions[0].answer}
+      ).then(response => {
       setSnackbar({
         is_open: true,
         text: response.data.text,
         variant: response.data.status === 200 ? 'success' : 'failure',
       });
+      props.updateUserScore();
       updateQuestionsBag();
-    })
-    // TODO - Fetch a new question and remove current question
-
+    });
     // TODO #13 - Display the score sent by the Backoffice
   }
 
   function updateQuestionsBag() {
     axios.get('api/question').then(response => {
-
       updateQuestions(response.data)
     })
   }

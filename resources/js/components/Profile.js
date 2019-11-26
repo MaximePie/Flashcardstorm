@@ -25,7 +25,6 @@ export default function Profile() {
 
   function fetchUserInfo() {
     axios.get('api/me?api_token='+ Cookies.get('Bearer')).then(response => {
-      console.log(response);
       setUser(response.data)
     })
   }

@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller
 {
@@ -25,12 +23,24 @@ class UserController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @return Response
+     * @return JsonResponse
      */
-    protected function showLoggedIn(): Response
+    protected function showLoggedIn(): JsonResponse
     {
         $user = Auth::user();
-        return response("AH");
-        // return response()->json(["user" => $user, "message" => "ahbah"]);
+        return response()->json(["user" => $user]);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @return JsonResponse
+     */
+    protected function score(): JsonResponse
+    {
+        $user = Auth::user();
+        if ($user) {
+            return response()->json(['score' => $user->score]);
+        }
     }
 }
