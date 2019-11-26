@@ -1,4 +1,8 @@
 .QuestionsList {
+    &__title {
+        text-align: center;
+    }
+
     &__question {
         display: flex;
         justify-content: space-between;

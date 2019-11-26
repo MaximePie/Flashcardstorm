@@ -10,7 +10,7 @@ class server {
         Accept: 'application/json',
       };
 
-      return axios.post('/api' + url + '/authenticated',
+      return axios.post('/api/authenticated/' + url,
         data, {
           headers: headers
         })
@@ -23,10 +23,10 @@ class server {
   static async get(url) {
     let bearer =  Cookies.get('Bearer');
     if (bearer) {
-      return axios.get('api/' + url + '?api_token='+ bearer)
+      return axios.get('/api/authenticated/' + url + '?api_token='+ bearer)
     }
     else {
-      return axios.get('/api' + url);
+      return axios.get('/api/' + url);
     }
   }
 }

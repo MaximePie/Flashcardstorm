@@ -69,7 +69,7 @@ export default function App() {
             <AddKnowledge />
           </Route>
           <Route path="/questions">
-            <QuestionsList />
+            <QuestionsList is_connected={is_connected}/>
           </Route>
           {is_connected && (
             <Route path="/profile">

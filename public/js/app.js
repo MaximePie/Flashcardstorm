@@ -46699,7 +46699,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".QuestionsList__question {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
+exports.push([module.i, ".QuestionsList__title {\n  text-align: center;\n}\n.QuestionsList__question {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
 
 // exports
 
@@ -103905,7 +103905,9 @@ function App() {
     path: "/add"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_AddKnowledge__WEBPACK_IMPORTED_MODULE_7__["default"], null)), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/questions"
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_QuestionsList__WEBPACK_IMPORTED_MODULE_9__["default"], null)), is_connected && react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_QuestionsList__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    is_connected: is_connected
+  })), is_connected && react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/profile"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Profile__WEBPACK_IMPORTED_MODULE_12__["default"], null)))));
 
@@ -104127,7 +104129,7 @@ function Home(props) {
 
   function submitAnswer(answer) {
     // TODO #20 - Send answer info
-    _server__WEBPACK_IMPORTED_MODULE_4__["default"].post('/question/submit_answer', {
+    _server__WEBPACK_IMPORTED_MODULE_4__["default"].post('question/submit_answer', {
       id: questions[0].id,
       is_valid: answer === questions[0].answer
     }).then(function (response) {
@@ -104387,6 +104389,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js");
 /* harmony import */ var _Snackbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Snackbar */ "./resources/js/components/Snackbar.js");
+/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../server */ "./resources/js/server.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -104400,7 +104403,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function QuestionsList() {
+
+function QuestionsList(props) {
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(undefined),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       questions = _React$useState2[0],
@@ -104420,15 +104424,17 @@ function QuestionsList() {
     className: "jumbotron QuestionsList__title"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Liste des questions")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
     className: "container list-group list-group-flush"
-  }, questions && questions.map(function (question) {
+  }, questions && questions.length && questions.map(function (question) {
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
-      key: "question".concat(question.idost),
+      key: "question".concat(question.id),
       className: "QuestionsList__question list-group-item"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
       className: "QuestionsList__question-wording"
-    }, question.wording), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    }, question.wording), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "QuestionsList__question-answer"
-    }, question.answer)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, question.answer), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "QuestionsList__question-score"
+    }, "Prochain gain : +", question.score)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
       "aria-label": "delete",
       color: "primary",
       className: "QuestionsList__delete-button",
@@ -104446,14 +104452,14 @@ function QuestionsList() {
   }));
 
   function deleteQuestion(id) {
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('api/question/delete/' + id).then(function (response) {
+    _server__WEBPACK_IMPORTED_MODULE_5__["default"].get('question/delete/' + id).then(function (response) {
       updateQuestions(response.data);
       setOpen(true);
     });
   }
 
   function updateQuestionsBag() {
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('api/questions_list').then(function (response) {
+    _server__WEBPACK_IMPORTED_MODULE_5__["default"].get('questions_list').then(function (response) {
       updateQuestions(response.data);
     });
   }
@@ -104807,7 +104813,7 @@ function () {
                 Authorization: 'Bearer ' + bearer,
                 Accept: 'application/json'
               };
-              return _context.abrupt("return", axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api' + url + '/authenticated', data, {
+              return _context.abrupt("return", axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/authenticated/' + url, data, {
                 headers: headers
               }));
 
@@ -104836,10 +104842,10 @@ function () {
                 break;
               }
 
-              return _context2.abrupt("return", axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('api/' + url + '?api_token=' + bearer));
+              return _context2.abrupt("return", axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/authenticated/' + url + '?api_token=' + bearer));
 
             case 5:
-              return _context2.abrupt("return", axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api' + url));
+              return _context2.abrupt("return", axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/' + url));
 
             case 6:
             case "end":

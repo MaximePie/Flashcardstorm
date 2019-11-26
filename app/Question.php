@@ -42,4 +42,13 @@ class Question extends Model
     {
         return $this->belongsTo(Answer::class);
     }
+    public function scoreByUser($user)
+    {
+        $score = 0;
+        $question_user = Question_user::findFromTuple($this->id, $user->id)->first();
+        if ($question_user) {
+            return $question_user->full_score;
+        }
+        return $score;
+    }
 }

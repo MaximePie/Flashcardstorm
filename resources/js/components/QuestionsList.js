@@ -3,10 +3,11 @@ import React from "react";
 import axios from "axios";
 import IconButton from "@material-ui/core/IconButton";
 import Snackbar from "./Snackbar";
+import server from "../server";
 
 
 
-export default function QuestionsList() {
+export default function QuestionsList(props) {
 
   const [questions, updateQuestions] = React.useState(undefined);
   const [is_open, setOpen] = React.useState(false);
@@ -23,12 +24,15 @@ export default function QuestionsList() {
         <h1>Liste des questions</h1>
       </div>
       <ul className="container list-group list-group-flush">
-        {questions && questions.map(function(question){
+        {questions && questions.length && questions.map(function(question){
           return (
-            <li key={`question${question.idost}`} className="QuestionsList__question list-group-item">
+            <li key={`question${question.id}`} className="QuestionsList__question list-group-item">
               <span>
                 <h3 className="QuestionsList__question-wording">{question.wording}</h3>
-                <span className="QuestionsList__question-answer">{question.answer}</span>
+                <div className="QuestionsList__question-answer">{question.answer}</div>
+                {props.is_connected && (
+                  <div className="QuestionsList__question-score">Prochain gain : +{question.score}</div>
+                )}
               </span>
               <IconButton
                 aria-label="delete"
@@ -47,14 +51,14 @@ export default function QuestionsList() {
   );
 
   function deleteQuestion(id) {
-    axios.get('api/question/delete/' + id).then(response => {
+    server.get('question/delete/' + id).then(response => {
       updateQuestions(response.data);
       setOpen(true)
     });
   }
 
   function updateQuestionsBag() {
-    axios.get('api/questions_list').then(response => {
+    server.get('questions_list').then(response => {
       updateQuestions(response.data)
     })
   }

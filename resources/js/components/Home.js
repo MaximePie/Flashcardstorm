@@ -45,7 +45,7 @@ export default function Home(props) {
   function submitAnswer(answer) {
     // TODO #20 - Send answer info
     server.post(
-      '/question/submit_answer',
+      'question/submit_answer',
       {id: questions[0].id, is_valid: answer === questions[0].answer}
       ).then(response => {
         let snackbar_text = response.data.text;

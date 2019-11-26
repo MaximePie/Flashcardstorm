@@ -21,8 +21,12 @@ class QuestionController extends Controller
     public function index(): JsonResponse
     {
         $questions = Question::all();
-        $questions->each(static function(Question $question) {
+        $user = Auth::user();
+        $questions->each(static function(Question $question) use ($user){
             $question['answer'] = $question->answer()->first()->wording;
+            if ($user) {
+                $question['score'] = $question->scoreByUser($user);
+            }
         });
         return response()->json($questions);
     }
@@ -116,11 +120,17 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        $question = Question::destroy($question->id);
+        Question::destroy($question->id);
         $questions = Question::query()->get();
-        $questions->each(static function(Question $question) {
+        $user = Auth::user();
+
+        $questions->each(static function(Question $question) use ($user){
             $question['answer'] = $question->answer()->first()->wording;
+            if ($user) {
+                $question['score'] = $question->scoreByUser($user);
+            }
         });
+
         return response()->json($questions);
     }
 
