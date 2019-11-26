@@ -1,9 +1,14 @@
 .Snackbar {
     &-success {
-        background-color: #38c172 !important;
+        background-color: #267c44 !important;
     }
 
     &-failure {
-        background-color: #969441 !important;
+        background-color: #685a20 !important;
+    }
+
+    &__message {
+        display: flex;
+        justify-content: space-between;
     }
 }

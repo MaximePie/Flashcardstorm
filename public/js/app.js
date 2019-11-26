@@ -46718,7 +46718,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".Snackbar-success {\n  background-color: #38c172 !important;\n}\n.Snackbar-failure {\n  background-color: #969441 !important;\n}", ""]);
+exports.push([module.i, ".Snackbar-success {\n  background-color: #267c44 !important;\n}\n.Snackbar-failure {\n  background-color: #685a20 !important;\n}\n.Snackbar__message {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}", ""]);
 
 // exports
 
@@ -104120,7 +104120,8 @@ function Home(props) {
           is_open: false
         }));
       },
-      text: snackbar.text
+      text: snackbar.text,
+      score: snackbar.score
     })))
   ); // TODO - Create import from Excel feature, the program can take a csv file with 2 columns : Question,Answer 
 
@@ -104133,7 +104134,8 @@ function Home(props) {
       setSnackbar({
         is_open: true,
         text: response.data.text,
-        variant: response.data.status === 200 ? 'success' : 'failure'
+        variant: response.data.status === 200 ? 'success' : 'failure',
+        score: response.data.earned_points
       });
 
       if (response.data.status === 200) {
@@ -104577,16 +104579,21 @@ function Snackbar(props) {
       horizontal: 'center'
     },
     open: props.is_open,
-    autoHideDuration: 3000,
+    autoHideDuration: 100,
     onClose: props.onClose
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["SnackbarContent"], {
     "aria-describedby": "client-snackbar",
     classes: {
       root: "Snackbar-" + variant
     },
-    message: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    message: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "Snackbar__message"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       id: "client-snackbar"
-    }, text),
+    }, text), props.score && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "Snackbar__score",
+      id: "client-snackbar"
+    }, "+", props.score)),
     action: [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["IconButton"], {
       key: "close",
       "aria-label": "close",

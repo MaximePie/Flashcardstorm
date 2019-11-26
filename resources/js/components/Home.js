@@ -33,6 +33,7 @@ export default function Home(props) {
             is_open={snackbar.is_open}
             on_close={() => setSnackbar({...snackbar, is_open: false})}
             text={snackbar.text}
+            score={snackbar.score}
           />
         )}
       </div>
@@ -51,8 +52,9 @@ export default function Home(props) {
         is_open: true,
         text: response.data.text,
         variant: response.data.status === 200 ? 'success' : 'failure',
+        score: response.data.earned_points,
       });
-      if(response.data.status === 200) {
+      if (response.data.status === 200) {
         props.updateUserScore();
       }
       updateQuestionsBag();

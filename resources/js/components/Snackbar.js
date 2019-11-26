@@ -17,7 +17,7 @@ export default function Snackbar(props) {
           horizontal: 'center',
         }}
         open={props.is_open}
-        autoHideDuration={3000}
+        autoHideDuration={100}
         onClose={props.onClose}
       >
         <SnackbarContent
@@ -26,9 +26,16 @@ export default function Snackbar(props) {
             root: "Snackbar-" + variant
           }}
           message={
-            <span id="client-snackbar">
-              {text}
-            </span>
+            <div className="Snackbar__message">
+              <span id="client-snackbar">
+                {text}
+              </span>
+              {props.score && (
+                <span className="Snackbar__score" id="client-snackbar">
+                  +{props.score}
+                </span>
+              )}
+            </div>
           }
           action={[
             <IconButton key="close" aria-label="close" color="inherit" onClick={props.on_close}>
