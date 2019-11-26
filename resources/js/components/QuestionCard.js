@@ -11,13 +11,13 @@ export default function QuestionCard(props) {
   }, [props.question]);
 
   return (
-    <div className="QuestionCard card">
+    <form onSubmit={() => props.onSubmit(answer)} className="QuestionCard card">
       <h3 className={"QuestionCard__question " + (!question && "QuestionCard__question--is-empty")}>
       {(question && question.wording) || 'Il n\'y a pas encore de question disponible... Cliquez sur "Ajouter des questions" pour en ajouter !'}
       </h3>
       <TextField label="Réponse" onChange={e => setAnswer(e.target.value)} value={answer}/>
       <Button onClick={() => props.onSubmit(answer)} text="Envoyer"/>
-    </div>
+    </form>
   );
 }
 

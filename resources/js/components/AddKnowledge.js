@@ -31,6 +31,7 @@ export default function AddKnowledge() {
             name="answer"
             onChange={updateForm}
             label="Réponse"
+            type="password"
           />
           <Button  text="Enregistrer la question" onClick={submitValues}/>
         </form>

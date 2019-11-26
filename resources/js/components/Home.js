@@ -43,7 +43,7 @@ export default function Home(props) {
   // TODO - Create import from Excel feature, the program can take a csv file with 2 columns : Question,Answer 
 
   function submitAnswer(answer) {
-    // TODO #20 - Send answer info
+    event.preventDefault();
     server.post(
       'question/submit_answer',
       {id: questions[0].id, is_valid: answer === questions[0].answer}

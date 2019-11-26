@@ -46718,7 +46718,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".Snackbar-success {\n  background-color: #267c44 !important;\n}\n.Snackbar-failure {\n  background-color: #685a20 !important;\n}\n.Snackbar__score {\n  margin: 0 8px;\n}\n.Snackbar__message {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}", ""]);
+exports.push([module.i, ".Snackbar-success {\n  background-color: #267c44 !important;\n}\n.Snackbar-failure {\n  background-color: #685a20 !important;\n}\n.Snackbar-danger {\n  background-color: #852a23 !important;\n}\n.Snackbar__score {\n  margin: 0 8px;\n}\n.Snackbar__message {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}", ""]);
 
 // exports
 
@@ -104003,7 +104003,8 @@ function AddKnowledge() {
     value: form.answer,
     name: "answer",
     onChange: updateForm,
-    label: "R\xE9ponse"
+    label: "R\xE9ponse",
+    type: "password"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
     text: "Enregistrer la question",
     onClick: submitValues
@@ -104128,7 +104129,7 @@ function Home(props) {
   ); // TODO - Create import from Excel feature, the program can take a csv file with 2 columns : Question,Answer 
 
   function submitAnswer(answer) {
-    // TODO #20 - Send answer info
+    event.preventDefault();
     _server__WEBPACK_IMPORTED_MODULE_4__["default"].post('question/submit_answer', {
       id: questions[0].id,
       is_valid: answer === questions[0].answer
@@ -104230,11 +104231,13 @@ function Login(props) {
     value: form.password,
     name: "password",
     onChange: updateForm,
-    label: "Mot de passe"
+    label: "Mot de passe",
+    type: "password"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
     text: "S'enregistrer",
     onClick: submitValues
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Snackbar__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    variant: "danger",
     text: "Informations incorrectes",
     is_open: is_open,
     on_close: function on_close() {
@@ -104351,7 +104354,10 @@ function QuestionCard(props) {
   react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
     setAnswer('');
   }, [props.question]);
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: function onSubmit() {
+      return props.onSubmit(answer);
+    },
     className: "QuestionCard card"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "QuestionCard__question " + (!question && "QuestionCard__question--is-empty")
@@ -104556,6 +104562,7 @@ function Register() {
     event.preventDefault();
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/register', form).then(function (response) {
       setOpen(true);
+      props.history.push('/login');
     });
   }
 }

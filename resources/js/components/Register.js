@@ -53,6 +53,7 @@ export default function Register() {
     event.preventDefault();
     axios.post('/api/register', form).then(response => {
       setOpen(true);
+      props.history.push('/login');
     })
   }
 }

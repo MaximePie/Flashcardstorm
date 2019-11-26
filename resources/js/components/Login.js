@@ -28,10 +28,11 @@ export default function Login(props) {
           name="password"
           onChange={updateForm}
           label="Mot de passe"
+          type="password"
         />
         <Button  text="S'enregistrer" onClick={submitValues}/>
       </form>
-      <Snackbar text="Informations incorrectes" is_open={is_open} on_close={() => setOpen(false)}/>
+      <Snackbar variant="danger" text="Informations incorrectes" is_open={is_open} on_close={() => setOpen(false)}/>
     </div>
   )
 
