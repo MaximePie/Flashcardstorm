@@ -46718,7 +46718,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".Snackbar-success {\n  background-color: #267c44 !important;\n}\n.Snackbar-failure {\n  background-color: #685a20 !important;\n}\n.Snackbar__message {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}", ""]);
+exports.push([module.i, ".Snackbar-success {\n  background-color: #267c44 !important;\n}\n.Snackbar-failure {\n  background-color: #685a20 !important;\n}\n.Snackbar__score {\n  margin: 0 8px;\n}\n.Snackbar__message {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}", ""]);
 
 // exports
 
@@ -104131,11 +104131,17 @@ function Home(props) {
       id: questions[0].id,
       is_valid: answer === questions[0].answer
     }).then(function (response) {
+      var snackbar_text = response.data.text;
+
+      if (response.data.status !== 200) {
+        snackbar_text += " Réponses correctes : " + response.data.correct_answer;
+      }
+
       setSnackbar({
         is_open: true,
-        text: response.data.text,
+        text: snackbar_text,
         variant: response.data.status === 200 ? 'success' : 'failure',
-        score: response.data.earned_points
+        score: response.data.status === 200 ? response.data.earned_points : undefined
       });
 
       if (response.data.status === 200) {

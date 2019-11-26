@@ -48,16 +48,20 @@ export default function Home(props) {
       '/question/submit_answer',
       {id: questions[0].id, is_valid: answer === questions[0].answer}
       ).then(response => {
-      setSnackbar({
-        is_open: true,
-        text: response.data.text,
-        variant: response.data.status === 200 ? 'success' : 'failure',
-        score: response.data.earned_points,
-      });
-      if (response.data.status === 200) {
-        props.updateUserScore();
-      }
-      updateQuestionsBag();
+        let snackbar_text = response.data.text;
+        if (response.data.status !== 200) {
+          snackbar_text += " Réponses correctes : " + response.data.correct_answer
+        }
+        setSnackbar({
+          is_open: true,
+          text: snackbar_text,
+          variant: response.data.status === 200 ? 'success' : 'failure',
+          score: response.data.status === 200 ? response.data.earned_points : undefined,
+        });
+        if (response.data.status === 200) {
+          props.updateUserScore();
+        }
+        updateQuestionsBag();
     });
     // TODO #13 - Display the score sent by the Backoffice
   }
