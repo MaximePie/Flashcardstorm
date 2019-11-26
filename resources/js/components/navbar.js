@@ -94,14 +94,24 @@ export default function Navbar(props) {
                 </ListItemText>
               </ListItem>
               {props.is_connected && (
-                <ListItem button component="a" onClick={logout} className="Navbar__item">
-                  <ListItemIcon>
-                    <i className="fas fa-sign-out-alt"/>
-                  </ListItemIcon>
-                  <ListItemText>
-                    Se déconnecter
-                  </ListItemText>
-                </ListItem>
+                <>
+                  <ListItem button component="a" onClick={logout} className="Navbar__item">
+                    <ListItemIcon>
+                      <i className="fas fa-sign-out-alt"/>
+                    </ListItemIcon>
+                    <ListItemText>
+                      Se déconnecter
+                    </ListItemText>
+                  </ListItem>
+                  <ListItem button component="a" href="/users" className="Navbar__item">
+                    <ListItemIcon>
+                      <i className="fas fa-users"/>
+                    </ListItemIcon>
+                    <ListItemText>
+                      Utilisateurs
+                    </ListItemText>
+                  </ListItem>
+                </>
               )}
             </span>
           </List>

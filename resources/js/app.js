@@ -30,6 +30,7 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 import server from "./server";
 import SoftTraining from "./components/SoftTraining";
+import Users from "./components/Users";
 
 export default function App() {
 
@@ -68,6 +69,9 @@ export default function App() {
           </Route>
           <Route path="/home">
             <Home updateUserScore={updateUser}/>
+          </Route>
+          <Route path="/users">
+            <Users updateUserScore={updateUser}/>
           </Route>
           <Route path="/add">
             <AddKnowledge />

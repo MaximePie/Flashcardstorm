@@ -7,6 +7,12 @@
     text-align: center;
 }
 
+.jumbotron {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 @media screen and (max-width: 600px) {
     .Home__title {
         margin:  initial;

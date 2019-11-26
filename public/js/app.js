@@ -46642,7 +46642,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".Home {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n\n.Home__title {\n  text-align: center;\n}\n\n@media screen and (max-width: 600px) {\n  .Home__title {\n    margin: initial;\n  }\n\n  h1 {\n    font-size: 1.5em;\n  }\n\n  h3 {\n    font-size: 1.25em;\n  }\n}", ""]);
+exports.push([module.i, ".Home {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n\n.Home__title {\n  text-align: center;\n}\n\n.jumbotron {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n\n@media screen and (max-width: 600px) {\n  .Home__title {\n    margin: initial;\n  }\n\n  h1 {\n    font-size: 1.5em;\n  }\n\n  h3 {\n    font-size: 1.25em;\n  }\n}", ""]);
 
 // exports
 
@@ -103821,6 +103821,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Profile__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Profile */ "./resources/js/components/Profile.js");
 /* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./server */ "./resources/js/server.js");
 /* harmony import */ var _components_SoftTraining__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/SoftTraining */ "./resources/js/components/SoftTraining.js");
+/* harmony import */ var _components_Users__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Users */ "./resources/js/components/Users.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -103855,6 +103856,7 @@ __webpack_require__(/*! ../sass/Addknowledge.scss */ "./resources/sass/Addknowle
 __webpack_require__(/*! ../sass/QuestionsList.scss */ "./resources/sass/QuestionsList.scss");
 
 __webpack_require__(/*! ../sass/Snackbar.scss */ "./resources/sass/Snackbar.scss");
+
 
 
 
@@ -103906,6 +103908,10 @@ function App() {
   })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/home"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Home__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    updateUserScore: updateUser
+  })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+    path: "/users"
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Users__WEBPACK_IMPORTED_MODULE_15__["default"], {
     updateUserScore: updateUser
   })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/add"
@@ -104770,6 +104776,62 @@ function SoftTraining(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Users.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/Users.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Users; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../server */ "./resources/js/server.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+function Users() {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      users = _React$useState2[0],
+      setUsers = _React$useState2[1];
+
+  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
+    fetchUsers();
+  }, []);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "jumbotron Users__title"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Liste des utilisateurs"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xE0 venir : Podium "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xE0 venir : Pagination "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xE0 venir : Affichage d'avatars ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container Users"
+  }, users && users.length && users.map(function (user) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: "user".concat(user.id),
+      className: "Users__user list-group-item"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "Users__user-answer"
+    }, user.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "Users__user-answer"
+    }, user.score)));
+  })));
+
+  function fetchUsers() {
+    _server__WEBPACK_IMPORTED_MODULE_1__["default"].get('users').then(function (response) {
+      setUsers(response.data.users || undefined);
+    });
+  }
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/navbar.js":
 /*!*******************************************!*\
   !*** ./resources/js/components/navbar.js ***!
@@ -104887,14 +104949,21 @@ function Navbar(props) {
     className: "Navbar__item"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_6__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
     className: "fas fa-sign-in-alt"
-  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Se connecter")), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Se connecter")), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
     button: true,
     component: "a",
     onClick: logout,
     className: "Navbar__item"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_6__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
     className: "fas fa-sign-out-alt"
-  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Se d\xE9connecter")))), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Se d\xE9connecter")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    button: true,
+    component: "a",
+    href: "/users",
+    className: "Navbar__item"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemIcon__WEBPACK_IMPORTED_MODULE_6__["default"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "fas fa-users"
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_ListItemText__WEBPACK_IMPORTED_MODULE_5__["default"], null, "Utilisateurs"))))), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "Navbar__item-profile"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
     href: "/profile",

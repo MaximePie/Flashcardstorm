@@ -20,6 +20,12 @@ class UserController extends Controller
         });
     }
 
+    protected function index(): JsonResponse
+    {
+        $users = User::query()->orderBy('score', 'desc')->get();
+        return response()->json(['users' => $users]);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
