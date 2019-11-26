@@ -54,18 +54,22 @@ class Question extends Model
         return $score;
     }
 
-    public static function delayedForUser($user)
+    public static function forUser($user, $with_delay = false)
     {
         $questions_user = Question_user::query()
-            ->where('user_id', $user->id)
-            ->whereDate('next_question_at', '<=', now());
+            ->where('user_id', $user->id);
+
+        if ($with_delay) {
+            $questions_user->whereDate('next_question_at', '<=', now());
+        }
+
         $questions = self::query()->joinSub(
             $questions_user->select('question_id'),
             'questions_user',
             'questions_user.question_id',
             '=',
             'questions.id'
-            );
+        );
 
         return $questions;
     }

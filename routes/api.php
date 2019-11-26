@@ -30,6 +30,7 @@ Route::middleware('auth:api')->post('/authenticated/question', 'QuestionControll
 Route::post('register', 'RegisterController@create');
 
 Route::get('question', 'QuestionController@randomQuestion');
+Route::get('question/{mode}', 'QuestionController@randomQuestion');
 Route::get('question/delete/{question}', 'QuestionController@destroy');
 Route::get('questions_list', 'QuestionController@index');
 Route::post('question', 'QuestionController@store');

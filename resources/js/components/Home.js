@@ -3,11 +3,16 @@ import axios from "axios";
 import QuestionCard from "./QuestionCard";
 import Snackbar from "./Snackbar";
 import server from '../server'
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
 
 export default function Home(props) {
   const [question, updateQuestion] = React.useState(undefined);
 
   const [snackbar, setSnackbar] = React.useState(undefined);
+
+  const [switchText, setSwitchText] = React.useState("Mes questions seulement");
+  const [switchStatus, setSwitchStatus] = React.useState(true);
 
   React.useEffect(() => {
     updateQuestionsBag()
@@ -20,6 +25,12 @@ export default function Home(props) {
       <div className="jumbotron Home__title">
         <h1>Mode tempête !</h1>
         <p>Répondez à un maximum de question toutes catégories confondues sans limite de temps ni d'essai</p>
+        {props.is_connected && (
+          <FormControlLabel
+            control={<Switch checked={switchStatus} onChange={switchQuestionsScope} />}
+            label={switchText}
+          />
+        )}
       </div>
       <div className="container Home">
         <div className="row">
@@ -65,8 +76,15 @@ export default function Home(props) {
     });
   }
 
+  function switchQuestionsScope() {
+    setSwitchStatus(!switchStatus);
+    setSwitchText(switchStatus ? "Mes questions seulement" : "Toutes les questions")
+  }
+
   function updateQuestionsBag() {
-    axios.get('api/question').then(response => {
+
+    const url = switchStatus ? 'question/for_user' : 'question/all';
+    server.get(url).then(response => {
       updateQuestion(response.data.question || undefined)
     })
   }

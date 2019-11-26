@@ -41,17 +41,28 @@ class QuestionController extends Controller
     {
         $message = null;
         $user = Auth::user();
+
         if ($mode === 'soft' && $user) {
-            $questions = Question::delayedForUser($user)->get();
+            $questions = Question::forUser($user)->inRandomOrder()->get();
             if ($questions->isEmpty()) {
                 $next_question = Question_user::query()->orderBy('next_question_at', 'asc')->first();
                 $message = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $next_question->next_question_at;
             }
         }
         else {
-            $questions = Question::query()->inRandomOrder()->get();
-            $message = "Il n'y a pas de question disponible, vous pouvez en créer en cliquant sur Ajouter des Questions";
+
+            if ($user && $mode === 'for_user') {
+                $questions = Question::forUser($user)->inRandomOrder()->get();
+            }
+            else {
+                $questions = Question::query()->inRandomOrder()->get();
+            }
+
+            if (!$questions) {
+                $message = "Il n'y a pas de question disponible, vous pouvez en créer en cliquant sur Ajouter des Questions";
+            }
         }
+
         $questions->each(static function(Question $question) {
             $question['answer'] = $question->answer()->first()->wording;
         });

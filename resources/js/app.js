@@ -65,13 +65,13 @@ export default function App() {
             <SoftTraining updateUserScore={updateUser}/>
           </Route>
           <Route path="/logout">
-            <Home updateUserScore={updateUser}/>
+            <Home updateUserScore={updateUser} is_connected={is_connected}/>
           </Route>
           <Route path="/home">
-            <Home updateUserScore={updateUser}/>
+            <Home updateUserScore={updateUser} is_connected={is_connected}/>
           </Route>
           <Route path="/users">
-            <Users updateUserScore={updateUser}/>
+            <Users/>
           </Route>
           <Route path="/add">
             <AddKnowledge />

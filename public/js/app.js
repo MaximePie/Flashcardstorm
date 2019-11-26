@@ -103904,16 +103904,16 @@ function App() {
   })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/logout"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Home__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    updateUserScore: updateUser
+    updateUserScore: updateUser,
+    is_connected: is_connected
   })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/home"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Home__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    updateUserScore: updateUser
+    updateUserScore: updateUser,
+    is_connected: is_connected
   })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/users"
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Users__WEBPACK_IMPORTED_MODULE_15__["default"], {
-    updateUserScore: updateUser
-  })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Users__WEBPACK_IMPORTED_MODULE_15__["default"], null)), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/add"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_AddKnowledge__WEBPACK_IMPORTED_MODULE_7__["default"], null)), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/questions"
@@ -104088,6 +104088,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _QuestionCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./QuestionCard */ "./resources/js/components/QuestionCard.js");
 /* harmony import */ var _Snackbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Snackbar */ "./resources/js/components/Snackbar.js");
 /* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../server */ "./resources/js/server.js");
+/* harmony import */ var _material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/FormControlLabel */ "./node_modules/@material-ui/core/esm/FormControlLabel/index.js");
+/* harmony import */ var _material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Switch */ "./node_modules/@material-ui/core/esm/Switch/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -104107,6 +104109,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 function Home(props) {
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
       _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -104118,13 +104122,29 @@ function Home(props) {
       snackbar = _React$useState4[0],
       setSnackbar = _React$useState4[1];
 
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState("Mes questions seulement"),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      switchText = _React$useState6[0],
+      setSwitchText = _React$useState6[1];
+
+  var _React$useState7 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(true),
+      _React$useState8 = _slicedToArray(_React$useState7, 2),
+      switchStatus = _React$useState8[0],
+      setSwitchStatus = _React$useState8[1];
+
   react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
     updateQuestionsBag(); // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
   }, []);
   return (// TODO Afficher tous les composants sur la même page Home.js pour le moment puisqu'on n'a que très peu de contenu*
     react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "jumbotron Home__title"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Mode temp\xEAte !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "R\xE9pondez \xE0 un maximum de question toutes cat\xE9gories confondues sans limite de temps ni d'essai")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Mode temp\xEAte !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "R\xE9pondez \xE0 un maximum de question toutes cat\xE9gories confondues sans limite de temps ni d'essai"), props.is_connected && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      control: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        checked: switchStatus,
+        onChange: switchQuestionsScope
+      }),
+      label: switchText
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "container Home"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row"
@@ -104174,8 +104194,14 @@ function Home(props) {
     });
   }
 
+  function switchQuestionsScope() {
+    setSwitchStatus(!switchStatus);
+    setSwitchText(switchStatus ? "Mes questions seulement" : "Toutes les questions");
+  }
+
   function updateQuestionsBag() {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('api/question').then(function (response) {
+    var url = switchStatus ? 'question/for_user' : 'question/all';
+    _server__WEBPACK_IMPORTED_MODULE_4__["default"].get(url).then(function (response) {
       updateQuestion(response.data.question || undefined);
     });
   }
