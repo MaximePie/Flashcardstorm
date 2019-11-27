@@ -14,7 +14,18 @@ export default function QuestionCard(props) {
   return (
     <form onSubmit={() => props.onSubmit(answer)} className={"QuestionCard card " + (props.question.is_golden_card && "QuestionCard--golden")}>
       {props.question.is_golden_card && (
-        <Icon className={"QuestionCard--golden__icon"} name="star"/>
+        <Icon
+          className={"QuestionCard--golden__icon"}
+          name="star"
+          badge="gold"
+        />
+      )}
+      {props.question.is_new && (
+        <Icon
+          className={"QuestionCard--new__icon"}
+          name="feather-alt"
+          badge="new"
+        />
       )}
       <h3 className={"QuestionCard__question " + (!question && "QuestionCard__question--is-empty")}>
         {props.question.wording || props.message}

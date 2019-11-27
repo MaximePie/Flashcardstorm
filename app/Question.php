@@ -57,6 +57,10 @@ class Question extends Model
 
     public function isSetForUser($user)
     {
+        if (!$user) {
+            return false;
+        }
+
         $question_user = Question_user::findFromTuple($this->id, $user->id);
         return $question_user && $question_user->exists();
     }

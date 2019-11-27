@@ -99,6 +99,7 @@ class QuestionController extends Controller
 
         if ($question) {
             $question['answer'] = $question->answer()->first()->wording;
+            $question['is_new'] = !$question->isSetForUser($user);
             try {
                 if (random_int(0, config('app.golden_card_ratio')) === 1) {
                     $question['is_golden_card'] = true;

@@ -26102,7 +26102,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".Icon {\n  font-size: 48px;\n  padding: 8px;\n  border-radius: 50%;\n}", ""]);
+exports.push([module.i, ".Icon__container {\n  position: relative;\n  border-radius: 50%;\n  padding: 12px;\n}\n.Icon__container .Icon {\n  font-size: 48px;\n}\n.Icon__container .Icon__badge {\n  position: absolute;\n  bottom: -12px;\n  left: 18px;\n}", ""]);
 
 // exports
 
@@ -26140,7 +26140,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".QuestionCard {\n  padding: 16px;\n  margin: 16px;\n  width: 500px;\n  min-height: 600px;\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  position: relative;\n}\n.QuestionCard__question {\n  text-align: center;\n}\n.QuestionCard__question--is-empty {\n  color: grey;\n}\n.QuestionCard--golden__icon {\n  color: goldenrod;\n  justify-self: start;\n  background: white;\n  border: solid 1px;\n  position: absolute;\n  top: -24px;\n  left: -24px;\n  box-shadow: 0.2rem 0.325rem 0.25rem rgba(0, 0, 0, 0.175) !important;\n}\n@media screen and (max-width: 600px) {\n  .QuestionCard {\n    width: initial;\n  }\n}", ""]);
+exports.push([module.i, ".QuestionCard {\n  padding: 16px;\n  margin: 16px;\n  width: 500px;\n  min-height: 600px;\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  position: relative;\n}\n.QuestionCard__question {\n  text-align: center;\n}\n.QuestionCard__question--is-empty {\n  color: grey;\n}\n.QuestionCard--golden__icon {\n  left: -24px;\n  color: goldenrod;\n}\n.QuestionCard--new__icon {\n  color: mediumspringgreen;\n  left: 36px;\n}\n.QuestionCard .Icon__container {\n  top: -24px;\n  border: solid 1px;\n  position: absolute;\n  box-shadow: 0.2rem 0.325rem 0.25rem rgba(0, 0, 0, 0.175) !important;\n  background: white;\n}\n@media screen and (max-width: 600px) {\n  .QuestionCard {\n    width: initial;\n  }\n}", ""]);
 
 // exports
 
@@ -85029,10 +85029,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function Icon(props) {
-  var className = "Icon far";
+  var containerClassName = "Icon__container " + props.className;
+  var className = "Icon far fas";
   className += " fa-" + props.name + " ";
-  className += props.className;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+  return props.badge ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: containerClassName
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: className
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "Icon__badge badge badge-secondary"
+  }, props.badge)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: className
   });
 }
@@ -85237,7 +85243,12 @@ function QuestionCard(props) {
     className: "QuestionCard card " + (props.question.is_golden_card && "QuestionCard--golden")
   }, props.question.is_golden_card && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_3__["default"], {
     className: "QuestionCard--golden__icon",
-    name: "star"
+    name: "star",
+    badge: "gold"
+  }), props.question.is_new && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "QuestionCard--new__icon",
+    name: "feather-alt",
+    badge: "new"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "QuestionCard__question " + (!question && "QuestionCard__question--is-empty")
   }, props.question.wording || props.message), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -85541,7 +85552,7 @@ function SoftTraining(props) {
         return updateQuestionsBag();
       },
       message: questionCardMessage
-    }), !question && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, questionCardMessage))))
+    }), !question && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit"))))
   ); // TODO - Create import from Excel feature, the program can take a csv file with 2 columns : Question,Answer
 
   function submitAnswer(answer) {

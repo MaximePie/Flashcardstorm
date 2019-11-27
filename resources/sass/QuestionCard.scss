@@ -19,23 +19,22 @@
         }
     }
 
-    &__actions {
-
+    &--golden__icon{
+        left: -24px;
+        color: goldenrod;
     }
 
-    &--golden {
-        &__icon {
-            color: goldenrod;
-            justify-self: start;
-            background: white;
-            border: solid 1px;
+    &--new__icon {
+        color: mediumspringgreen;
+        left: 36px;
+    }
 
-            position: absolute;
-            top: -24px;
-            left: -24px;
-
-            box-shadow: 0.2rem 0.325rem 0.25rem rgba(0,0,0,0.175)!important;
-        }
+    .Icon__container {
+        top: -24px;
+        border: solid 1px;
+        position: absolute;
+        box-shadow: 0.2rem 0.325rem 0.25rem rgba(0,0,0,0.175)!important;
+        background: white;
     }
 
     @media screen and (max-width: 600px) {

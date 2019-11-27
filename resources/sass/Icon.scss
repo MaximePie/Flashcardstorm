@@ -1,5 +1,16 @@
-.Icon {
-    font-size: 48px;
-    padding: 8px;
+
+.Icon__container {
+    position: relative;
     border-radius: 50%;
+    padding: 12px;
+
+    .Icon {
+        font-size: 48px;
+    }
+
+    .Icon__badge {
+        position: absolute;
+        bottom: -12px;
+        left: 18px;
+    }
 }
