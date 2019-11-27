@@ -60,7 +60,7 @@ export default function Home(props) {
           is_open: true,
           text: snackbar_text,
           variant: response.data.status === 200 ? 'success' : 'failure',
-          score: response.data.status === 200 ? response.data.earned_points : undefined,
+          score: response.data.status === 200 && response.data.earned_points > 0 ? response.data.earned_points : undefined,
         });
         if (response.data.status === 200) {
           props.updateUserScore();
