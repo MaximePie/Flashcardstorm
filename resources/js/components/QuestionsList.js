@@ -35,24 +35,26 @@ export default function QuestionsList(props) {
                   <div className="QuestionsList__question-score">Prochain gain : +{question.score}</div>
                 )}
               </span>
-              {props.is_connected && (
+              <div className="QuestionsList__actions">
+                {props.is_connected && (
+                  <IconButton
+                    aria-label="delete"
+                    color="primary"
+                    className={"QuestionsList__delete-button QuestionsList__toggleButton" + (question.is_set_for_user ? "--set" : "--unset")}
+                    onClick={() => toggleQuestionForUser(question.id, key)}
+                  >
+                    <i className="far fa-check-circle QuestionsList__delete-icon"/>
+                  </IconButton>
+                )}
                 <IconButton
                   aria-label="delete"
                   color="primary"
-                  className={"QuestionsList__delete-button QuestionsList__toggleButton" + (question.is_set_for_user ? "--set" : "--unset")}
-                  onClick={() => toggleQuestionForUser(question.id, key)}
+                  className="QuestionsList__delete-button"
+                  onClick={() => deleteQuestion(question.id)}
                 >
-                  <i className="far fa-check-circle QuestionsList__delete-icon"/>
+                  <i className="far fa-trash-alt QuestionsList__delete-icon"/>
                 </IconButton>
-              )}
-              <IconButton
-                aria-label="delete"
-                color="primary"
-                className="QuestionsList__delete-button"
-                onClick={() => deleteQuestion(question.id)}
-              >
-                <i className="far fa-trash-alt QuestionsList__delete-icon"/>
-              </IconButton>
+              </div>
             </li>
           )
         })}

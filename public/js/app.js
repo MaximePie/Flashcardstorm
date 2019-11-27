@@ -46699,7 +46699,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".QuestionsList__title {\n  text-align: center;\n}\n.QuestionsList__question {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton {\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton--set {\n  background-color: #00c107 !important;\n}\n.QuestionsList__toggleButton--unset {\n  background-color: #c13c2b !important;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
+exports.push([module.i, ".QuestionsList__title {\n  text-align: center;\n}\n.QuestionsList__question {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  margin: 0 8px !important;\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton {\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton--set {\n  background-color: #00c107 !important;\n}\n.QuestionsList__toggleButton--unset {\n  background-color: #c13c2b !important;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
 
 // exports
 
@@ -104494,7 +104494,9 @@ function QuestionsList(props) {
       className: "QuestionsList__question-answer"
     }, question.answer), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "QuestionsList__question-score"
-    }, "Prochain gain : +", question.score)), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }, "Prochain gain : +", question.score)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "QuestionsList__actions"
+    }, props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
       "aria-label": "delete",
       color: "primary",
       className: "QuestionsList__delete-button QuestionsList__toggleButton" + (question.is_set_for_user ? "--set" : "--unset"),
@@ -104512,7 +104514,7 @@ function QuestionsList(props) {
       }
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
       className: "far fa-trash-alt QuestionsList__delete-icon"
-    })));
+    }))));
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Snackbar__WEBPACK_IMPORTED_MODULE_4__["default"], {
     is_open: is_open,
     on_close: function on_close() {
