@@ -29,7 +29,7 @@ class Question_user extends Model
         return self::query()->where('question_id', $question_id)->where('user_id', $user_id);
     }
 
-    public function save_success($user, $mode) {
+    public function save_success($user, $mode, $is_golden_card) {
         if ($mode === 'soft') {
             $earned_points = $this->full_score ?: $this->score;
             $this->current_delay ++;
@@ -41,6 +41,7 @@ class Question_user extends Model
         else {
             $earned_points = $this->score;
         }
+        $is_golden_card && $earned_points *= $earned_points;
 
         $user->score += $earned_points;
         $user->save();

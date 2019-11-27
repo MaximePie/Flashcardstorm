@@ -39,7 +39,6 @@ export default function SoftTraining(props) {
             </div>
           )}
         </div>
-        )}
       </div>
     </>
   );
@@ -53,7 +52,8 @@ export default function SoftTraining(props) {
       {
         id: question.id,
         is_valid: answer === question.answer,
-        mode: "soft"
+        mode: "soft",
+        is_golden_card: question.is_golden_card,
       }
     ).then(response => {
       let snackbar_text = response.data.text;

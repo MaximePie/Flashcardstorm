@@ -32,7 +32,11 @@ export default function Home(props) {
       <div className="container Home">
         <div className="row">
           {question && (
-            <QuestionCard question={question || undefined} onSubmit={submitAnswer} onSkip={() => updateQuestionsBag()}/>
+            <QuestionCard
+              question={question || undefined}
+              onSubmit={submitAnswer}
+              onSkip={() => updateQuestionsBag()}
+            />
           )}
         </div>
       </div>
@@ -47,7 +51,8 @@ export default function Home(props) {
       'question/submit_answer', {
         id: question.id,
         is_valid: answer === question.answer,
-        mode: "storm"
+        mode: "storm",
+        is_golden_card: question.is_golden_card,
       }
       ).then(response => {
         let snackbar_text = response.data.text;

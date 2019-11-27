@@ -12,6 +12,7 @@ import {
 const $ = require('jquery');
 require ('popper.js');
 require('bootstrap');
+require ("../sass/Icon.scss");
 require ("../sass/QuestionCard.scss");
 require ("../sass/Home.scss");
 require ("../sass/Button.scss");

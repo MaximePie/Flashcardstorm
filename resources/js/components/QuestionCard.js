@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from "./Button";
 import TextField from "@material-ui/core/TextField";
+import Icon from "./Icon";
 
 export default function QuestionCard(props) {
   const question = props.question;
@@ -11,7 +12,10 @@ export default function QuestionCard(props) {
   }, [props.question]);
 
   return (
-    <form onSubmit={() => props.onSubmit(answer)} className="QuestionCard card">
+    <form onSubmit={() => props.onSubmit(answer)} className={"QuestionCard card " + (props.question.is_golden_card && "QuestionCard--golden")}>
+      {props.question.is_golden_card && (
+        <Icon className={"QuestionCard--golden__icon"} name="star"/>
+      )}
       <h3 className={"QuestionCard__question " + (!question && "QuestionCard__question--is-empty")}>
         {props.question.wording || props.message}
       </h3>

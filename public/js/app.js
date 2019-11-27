@@ -26090,6 +26090,25 @@ exports.push([module.i, ".Home {\n  display: -webkit-box;\n  display: flex;\n  -
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/sass/Icon.scss":
+/*!*********************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./resources/sass/Icon.scss ***!
+  \*********************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".Icon {\n  font-size: 48px;\n  padding: 8px;\n  border-radius: 50%;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/sass/Navbar.scss":
 /*!***********************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./resources/sass/Navbar.scss ***!
@@ -26121,7 +26140,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".QuestionCard {\n  padding: 16px;\n  margin: 16px;\n  width: 500px;\n  min-height: 600px;\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n}\n.QuestionCard__question {\n  text-align: center;\n}\n.QuestionCard__question--is-empty {\n  color: grey;\n}\n@media screen and (max-width: 600px) {\n  .QuestionCard {\n    width: initial;\n  }\n}", ""]);
+exports.push([module.i, ".QuestionCard {\n  padding: 16px;\n  margin: 16px;\n  width: 500px;\n  min-height: 600px;\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  position: relative;\n}\n.QuestionCard__question {\n  text-align: center;\n}\n.QuestionCard__question--is-empty {\n  color: grey;\n}\n.QuestionCard--golden__icon {\n  color: goldenrod;\n  justify-self: start;\n  background: white;\n  border: solid 1px;\n  position: absolute;\n  top: -24px;\n  left: -24px;\n  box-shadow: 0.2rem 0.325rem 0.25rem rgba(0, 0, 0, 0.175) !important;\n}\n@media screen and (max-width: 600px) {\n  .QuestionCard {\n    width: initial;\n  }\n}", ""]);
 
 // exports
 
@@ -84645,6 +84664,8 @@ __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.j
 
 __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 
+__webpack_require__(/*! ../sass/Icon.scss */ "./resources/sass/Icon.scss");
+
 __webpack_require__(/*! ../sass/QuestionCard.scss */ "./resources/sass/QuestionCard.scss");
 
 __webpack_require__(/*! ../sass/Home.scss */ "./resources/sass/Home.scss");
@@ -84954,7 +84975,8 @@ function Home(props) {
     _server__WEBPACK_IMPORTED_MODULE_2__["default"].post('question/submit_answer', {
       id: question.id,
       is_valid: answer === question.answer,
-      mode: "storm"
+      mode: "storm",
+      is_golden_card: question.is_golden_card
     }).then(function (response) {
       var snackbar_text = response.data.text;
 
@@ -84989,6 +85011,30 @@ function Home(props) {
       updateQuestion(response.data.question || undefined);
     });
   }
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Icon.js":
+/*!*****************************************!*\
+  !*** ./resources/js/components/Icon.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Icon; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function Icon(props) {
+  var className = "Icon far";
+  className += " fa-" + props.name + " ";
+  className += props.className;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: className
+  });
 }
 
 /***/ }),
@@ -85160,6 +85206,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Button */ "./resources/js/components/Button.js");
 /* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
+/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Icon */ "./resources/js/components/Icon.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -85167,6 +85214,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -85186,8 +85234,11 @@ function QuestionCard(props) {
     onSubmit: function onSubmit() {
       return props.onSubmit(answer);
     },
-    className: "QuestionCard card"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "QuestionCard card " + (props.question.is_golden_card && "QuestionCard--golden")
+  }, props.question.is_golden_card && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "QuestionCard--golden__icon",
+    name: "star"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "QuestionCard__question " + (!question && "QuestionCard__question--is-empty")
   }, props.question.wording || props.message), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
     label: "R\xE9ponse",
@@ -85490,7 +85541,7 @@ function SoftTraining(props) {
         return updateQuestionsBag();
       },
       message: questionCardMessage
-    }), !question && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, questionCardMessage)), ")}"))
+    }), !question && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, questionCardMessage))))
   ); // TODO - Create import from Excel feature, the program can take a csv file with 2 columns : Question,Answer
 
   function submitAnswer(answer) {
@@ -85498,7 +85549,8 @@ function SoftTraining(props) {
     _server__WEBPACK_IMPORTED_MODULE_3__["default"].post('question/submit_answer', {
       id: question.id,
       is_valid: answer === question.answer,
-      mode: "soft"
+      mode: "soft",
+      is_golden_card: question.is_golden_card
     }).then(function (response) {
       var snackbar_text = response.data.text;
 
@@ -85925,6 +85977,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../node_modules/css-loader!../../node_modules/postcss-loader/src??ref--7-2!../../node_modules/sass-loader/dist/cjs.js??ref--7-3!./Home.scss */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/sass/Home.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/sass/Icon.scss":
+/*!**********************************!*\
+  !*** ./resources/sass/Icon.scss ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader!../../node_modules/postcss-loader/src??ref--7-2!../../node_modules/sass-loader/dist/cjs.js??ref--7-3!./Icon.scss */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/sass/Icon.scss");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 

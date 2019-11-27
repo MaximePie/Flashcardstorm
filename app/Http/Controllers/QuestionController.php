@@ -63,6 +63,7 @@ class QuestionController extends Controller
      *
      * @param string $mode
      * @return JsonResponse
+     * @throws Exception
      */
     public function randomQuestion(string $mode = null): JsonResponse
     {
@@ -70,8 +71,8 @@ class QuestionController extends Controller
         $user = Auth::user();
 
         if ($mode === 'soft' && $user) {
-            $questions = Question::forUser($user, true)->inRandomOrder()->get();
-            if ($questions->isEmpty()) {
+            $question = Question::forUser($user, true)->inRandomOrder()->first();
+            if ($question && $question->exists()) {
                 $next_question = Question_user::query()->orderBy('next_question_at', 'asc')->first();
                 if ($next_question) {
                     $message = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $next_question->next_question_at;
@@ -83,22 +84,35 @@ class QuestionController extends Controller
         }
         else {
             if ($user && $mode === 'for_user') {
-                $questions = Question::forUser($user)->inRandomOrder()->get();
+                $question_builder = Question::forUser($user);
             }
             else {
-                $questions = Question::query()->inRandomOrder()->get();
+                $question_builder = Question::query();
             }
 
-            if (!$questions) {
+            $question = $question_builder->inRandomOrder()->first();
+
+            if (!$question) {
                 $message = "Il n'y a pas de question disponible, vous pouvez en créer en cliquant sur Ajouter des Questions";
             }
         }
 
-        $questions->each(static function(Question $question) {
+        if ($question) {
             $question['answer'] = $question->answer()->first()->wording;
-        });
+            try {
+                if (random_int(0, config('app.golden_card_ratio')) === 1) {
+                    $question['is_golden_card'] = true;
+                }
+                else {
+                    $question['is_golden_card'] = false;
+                }
+            } catch (Exception $e) {
+                throw new Exception('Error generating the random golden card');
+            }
+        }
 
-        return response()->json(['question' => $questions->first(), 'message' => $message]);
+
+        return response()->json(['question' => $question, 'message' => $message]);
     }
 
     /**
@@ -209,7 +223,7 @@ class QuestionController extends Controller
         if ($request->is_valid && $user) {
             $question_user = QUESTION_USER::query()->firstOrCreate(['user_id' => $user->id, 'question_id' => $question->id]);
             $question_user->save();
-            $earned_points = $question_user->save_success($user, $request->mode);
+            $earned_points = $question_user->save_success($user, $request->mode, $request->is_golden_card);
         }
 
         return response()->json([
