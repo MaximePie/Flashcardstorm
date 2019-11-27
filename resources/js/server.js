@@ -16,7 +16,7 @@ class server {
         })
     }
     else {
-      return axios.post('/api' + url, data);
+      return axios.post('/api/' + url, data);
     }
   }
 

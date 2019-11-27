@@ -105088,7 +105088,7 @@ function () {
               }));
 
             case 6:
-              return _context.abrupt("return", axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api' + url, data));
+              return _context.abrupt("return", axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/' + url, data));
 
             case 7:
             case "end":
