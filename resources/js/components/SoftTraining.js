@@ -50,7 +50,11 @@ export default function SoftTraining(props) {
     event.preventDefault();
     server.post(
       'question/submit_answer',
-      {id: question.id, is_valid: answer === question.answer}
+      {
+        id: question.id,
+        is_valid: answer === question.answer,
+        mode: "soft"
+      }
     ).then(response => {
       let snackbar_text = response.data.text;
       if (response.data.status !== 200) {

@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from "axios";
 import QuestionCard from "./QuestionCard";
 import server from '../server'
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -9,23 +8,26 @@ import {useSnackbar} from "notistack";
 export default function Home(props) {
   const [question, updateQuestion] = React.useState(undefined);
 
-  const [snackbar, setSnackbar] = React.useState(undefined);
-
   const [switchStatus, setSwitchStatus] = React.useState(true);
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   React.useEffect(() => {
     updateQuestionsBag()
-    // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
-  }, []);
+  }, [switchStatus]);
 
   return (
-    // TODO Afficher tous les composants sur la même page Home.js pour le moment puisqu'on n'a que très peu de contenu*
     <>
       <div className="jumbotron Home__title">
         <h1>Mode tempête !</h1>
         <p>Répondez à un maximum de question toutes catégories confondues sans limite de temps ni d'essai</p>
+        <p>Attention, en mode tempête les questions ne rapportent que 10 points !</p>
+        <FormControlLabel
+          control={
+            <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>
+          }
+          label="Afficher seulement mes questions"
+        />
       </div>
       <div className="container Home">
         <div className="row">
@@ -42,8 +44,11 @@ export default function Home(props) {
   function submitAnswer(answer) {
     event.preventDefault();
     server.post(
-      'question/submit_answer',
-      {id: question.id, is_valid: answer === question.answer}
+      'question/submit_answer', {
+        id: question.id,
+        is_valid: answer === question.answer,
+        mode: "storm"
+      }
       ).then(response => {
         let snackbar_text = response.data.text;
         if (response.data.status !== 200) {
@@ -78,15 +83,10 @@ export default function Home(props) {
     });
   }
 
-  function switchQuestionsScope() {
-    setSwitchStatus(!switchStatus);
-    updateQuestionsBag()
-  }
-
   function updateQuestionsBag() {
 
-    const url = switchStatus ? 'question/for_user' : 'question/all';
-    server.get('question/for_user').then(response => {
+    const url = switchStatus === true ? 'question/for_user' : 'question/all';
+    server.get(url).then(response => {
       updateQuestion(response.data.question || undefined)
     })
   }

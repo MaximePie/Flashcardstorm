@@ -29,15 +29,21 @@ class Question_user extends Model
         return self::query()->where('question_id', $question_id)->where('user_id', $user_id);
     }
 
-    public function save_success($user) {
-        $earned_points = $this->full_score ?: $this->score;
+    public function save_success($user, $mode) {
+        if ($mode === 'soft') {
+            $earned_points = $this->full_score ?: $this->score;
+            $this->current_delay ++;
+            $this->last_answered_at = Carbon::now();
+            $this->next_question_at = Carbon::now()->addDays($this->current_delay);
+            $this->full_score = $this->score*$this->current_delay;
+            $this->save();
+        }
+        else {
+            $earned_points = $this->score;
+        }
+
         $user->score += $earned_points;
         $user->save();
-        $this->current_delay ++;
-        $this->last_answered_at = Carbon::now();
-        $this->next_question_at = Carbon::now()->addDays($this->current_delay);
-        $this->full_score = $this->score*$this->current_delay;
-        $this->save();
 
         return $earned_points;
     }

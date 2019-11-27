@@ -209,7 +209,7 @@ class QuestionController extends Controller
         if ($request->is_valid && $user) {
             $question_user = QUESTION_USER::query()->firstOrCreate(['user_id' => $user->id, 'question_id' => $question->id]);
             $question_user->save();
-            $earned_points = $question_user->save_success($user);
+            $earned_points = $question_user->save_success($user, $request->mode);
         }
 
         return response()->json([

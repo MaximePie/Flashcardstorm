@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
-import axios from "axios";
 import IconButton from "@material-ui/core/IconButton";
 import server from "../server";
 
