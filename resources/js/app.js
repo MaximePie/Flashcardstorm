@@ -32,6 +32,8 @@ import server from "./server";
 import SoftTraining from "./components/SoftTraining";
 import Users from "./components/Users";
 
+import { SnackbarProvider } from 'notistack';
+
 export default function App() {
 
   const [user, setUser] = React.useState(undefined);
@@ -45,48 +47,50 @@ export default function App() {
   }, [is_connected]);
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Navbar
-          is_connected={is_connected}
-          user={user}
-          countClassName={countClassName} onCountComplete={() => setCountClassName('')}
-        />
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/soft_training">
-            <SoftTraining updateUserScore={updateUser}/>
-          </Route>
-          <Route path="/logout">
-            <Home updateUserScore={updateUser} is_connected={is_connected}/>
-          </Route>
-          <Route path="/home">
-            <Home updateUserScore={updateUser} is_connected={is_connected}/>
-          </Route>
-          <Route path="/users">
-            <Users/>
-          </Route>
-          <Route path="/add">
-            <AddKnowledge />
-          </Route>
-          <Route path="/questions">
-            <QuestionsList is_connected={is_connected}/>
-          </Route>
-          {is_connected && (
-            <Route path="/profile">
-              <Profile />
+    <SnackbarProvider maxSnack={3} >
+      <BrowserRouter>
+        <div className="App">
+          <Navbar
+            is_connected={is_connected}
+            user={user}
+            countClassName={countClassName} onCountComplete={() => setCountClassName('')}
+          />
+          {/* A <Switch> looks through its children <Route>s and
+              renders the first one that matches the current URL. */}
+          <Switch>
+            <Route path="/register">
+              <Register />
             </Route>
-          )}
-        </Switch>
-      </div>
-    </BrowserRouter>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/soft_training">
+              <SoftTraining updateUserScore={updateUser}/>
+            </Route>
+            <Route path="/logout">
+              <Home updateUserScore={updateUser} is_connected={is_connected}/>
+            </Route>
+            <Route path="/home">
+              <Home updateUserScore={updateUser} is_connected={is_connected}/>
+            </Route>
+            <Route path="/users">
+              <Users/>
+            </Route>
+            <Route path="/add">
+              <AddKnowledge />
+            </Route>
+            <Route path="/questions">
+              <QuestionsList is_connected={is_connected}/>
+            </Route>
+            {is_connected && (
+              <Route path="/profile">
+                <Profile />
+              </Route>
+            )}
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </SnackbarProvider>
   );
 
   function updateUser() {

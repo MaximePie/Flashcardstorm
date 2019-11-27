@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import Button from "./Button";
 import Cookies from "js-cookie";
-import Snackbar from "./Snackbar";
+import {useSnackbar} from "notistack";
 
 export default function Login(props) {
 
@@ -12,7 +12,7 @@ export default function Login(props) {
     password: ''
   });
 
-  const [is_open, setOpen] = React.useState(false);
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   return (
     <div className="container">
@@ -32,7 +32,6 @@ export default function Login(props) {
         />
         <Button text="S'enregistrer" onClick={submitValues}/>
       </form>
-      <Snackbar variant="danger" text="Informations incorrectes" is_open={is_open} on_close={() => setOpen(false)}/>
     </div>
   )
 
@@ -48,7 +47,10 @@ export default function Login(props) {
     event.preventDefault();
     axios.post('/login', form).then(response => {
       if(response.data.status && response.data.status !== 200) {
-        setOpen(true);
+        enqueueSnackbar('Informations incorrectes', {variant: "error", anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'center',
+          },})
       }
       else {
         Cookies.set('Bearer', response.data.bearer);

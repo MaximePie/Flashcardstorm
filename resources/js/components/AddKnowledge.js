@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from "./Button";
-import Snackbar from "./Snackbar";
 import TextField from "@material-ui/core/TextField";
 import server from "../server";
+import {useSnackbar} from "notistack";
 
 export default function AddKnowledge() {
 
@@ -11,7 +11,7 @@ export default function AddKnowledge() {
     answer: ''
   });
 
-  const [is_open, setOpen] = React.useState(false);
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   return (
     <div className="Addknowledge">
@@ -34,7 +34,6 @@ export default function AddKnowledge() {
           />
           <Button text="Enregistrer la question" onClick={submitValues}/>
         </form>
-        <Snackbar is_open={is_open} on_close={() => setOpen(false)}/>
       </div>
     </div>
   );
@@ -52,7 +51,17 @@ export default function AddKnowledge() {
     event.preventDefault();
     server.post('question', form).then(response => {
       setForm({question: '', answer: ''});
-      setOpen(true)
+
+      enqueueSnackbar("Success"
+        ,
+        {
+          anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'center',
+          },
+          variant: 'success',
+        }
+      );
     })
   }
 

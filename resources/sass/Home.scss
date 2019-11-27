@@ -3,6 +3,22 @@
     align-items: center;
     flex-direction: column;
 }
+
+
+.MuiSnackbarContent-message {
+    width: 100%;
+}
+
+.Home__snackbar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .Home__snackbar-score {
+
+    }
+}
+
 .Home__title {
     text-align: center;
 }

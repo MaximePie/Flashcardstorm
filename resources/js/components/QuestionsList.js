@@ -2,7 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
 import axios from "axios";
 import IconButton from "@material-ui/core/IconButton";
-import Snackbar from "./Snackbar";
 import server from "../server";
 
 
@@ -59,14 +58,12 @@ export default function QuestionsList(props) {
           )
         })}
       </ul>
-      <Snackbar is_open={is_open} on_close={() => setOpen(false)}/>
     </div>
   );
 
   function deleteQuestion(id) {
     server.get('question/delete/' + id).then(response => {
       updateQuestions(response.data);
-      setOpen(true)
     });
   }
 
@@ -75,7 +72,6 @@ export default function QuestionsList(props) {
       let questionsBag = questions;
       questionsBag[key].is_set_for_user = response.data.is_set_for_user;
       updateQuestions([...questionsBag]);
-      setOpen(true)
     });
   }
 

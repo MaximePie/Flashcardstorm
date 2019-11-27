@@ -1,15 +1,14 @@
 import React from 'react';
 import axios from "axios";
 import QuestionCard from "./QuestionCard";
-import Snackbar from "./Snackbar";
 import server from '../server'
+import {useSnackbar} from "notistack";
 
 export default function SoftTraining(props) {
   const [question, updateQuestions] = React.useState(undefined);
   const [questionCardMessage, updateQuestionCardMessage] = React.useState(undefined);
-  console.log(question)
 
-  const [snackbar, setSnackbar] = React.useState(undefined);
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   React.useEffect(() => {
     updateQuestionsBag()
@@ -40,14 +39,6 @@ export default function SoftTraining(props) {
             </div>
           )}
         </div>
-        {snackbar && (
-          <Snackbar
-            variant={snackbar.variant}
-            is_open={snackbar.is_open}
-            on_close={() => setSnackbar({...snackbar, is_open: false})}
-            text={snackbar.text}
-            score={snackbar.score}
-          />
         )}
       </div>
     </>
@@ -65,12 +56,28 @@ export default function SoftTraining(props) {
       if (response.data.status !== 200) {
         snackbar_text += " Réponses correctes : " + response.data.correct_answer
       }
-      setSnackbar({
-        is_open: true,
-        text: snackbar_text,
-        variant: response.data.status === 200 ? 'success' : 'failure',
-        score: response.data.status === 200 ? response.data.earned_points : undefined,
-      });
+
+      let score = response.data.status === 200 && response.data.earned_points > 0 ? response.data.earned_points : undefined
+
+      enqueueSnackbar(
+        <div className="Home__snackbar">
+          {snackbar_text}
+          {score && (
+            <span className="Home__snackbar-score">
+                +{score}
+              </span>
+          )}
+        </div>
+        ,
+        {
+          anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'center',
+          },
+          variant: response.data.status === 200 ? 'success' : 'warning',
+        }
+      );
+
       if (response.data.status === 200) {
         props.updateUserScore();
       }
