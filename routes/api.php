@@ -30,6 +30,7 @@ Route::middleware('auth:api')->get('/authenticated/changelogs', 'ChangelogContro
 
 Route::middleware('auth:api')->post('/authenticated/question/submit_answer', 'QuestionController@submitAnswer');
 Route::middleware('auth:api')->post('/authenticated/question', 'QuestionController@store');
+Route::middleware('auth:api')->post('/authenticated/question_import', 'QuestionController@import');
 
 Route::post('register', 'RegisterController@create');
 

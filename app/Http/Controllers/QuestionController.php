@@ -152,6 +152,37 @@ class QuestionController extends Controller
         return response()->json($question);
     }
 
+
+    /**
+     * Import a lot of questions ! WOOHOO !
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return JsonResponse
+     */
+    public function import(Request $request)
+    {
+        $user = Auth::user();
+        $added_questions = 0;
+        foreach ($request->questions as $question) {
+            $question = $question[0];
+            $answer = Answer::create([
+                'wording' => explode(';', $question)[1],
+            ]);
+
+            $question = Question::create([
+                'wording' => explode(';',$question)[0],
+                'answer_id' => $answer->id,
+            ]);
+
+            if ($user) {
+                Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
+            }
+            $added_questions ++;
+        }
+
+        return response()->json(['Questions ajoutées ' => $added_questions]);
+    }
+
     /**
      * Display the specified resource.
      *

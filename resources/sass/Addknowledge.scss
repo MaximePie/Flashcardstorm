@@ -23,4 +23,9 @@
         justify-content: center;
         flex-direction: row !important;
     }
+
+    &__import-drop-zone {
+        border: dashed 2px #685a20;
+        cursor: pointer;
+    }
 }

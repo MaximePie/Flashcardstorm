@@ -80,7 +80,7 @@ export default function App() {
               <Users/>
             </Route>
             <Route path="/add">
-              <AddKnowledge />
+              <AddKnowledge is_connected={is_connected}/>
             </Route>
             <Route path="/questions">
               <QuestionsList is_connected={is_connected}/>
