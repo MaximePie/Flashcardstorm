@@ -250,17 +250,24 @@ class QuestionController extends Controller
         $question = QUESTION::query()->find($request->id);
         $user = Auth::user();
         $earned_points = 0;
-        if ($request->is_valid && $user) {
+        if ($user && $question->isValidWith($request->answer)) {
             $question_user = QUESTION_USER::query()->firstOrCreate(['user_id' => $user->id, 'question_id' => $question->id]);
             $question_user->save();
             $earned_points = $question_user->save_success($user, $request->mode, $request->is_golden_card);
+            return response()->json([
+                'text' => 'Bien joué !',
+                'status' => 200,
+                'earned_points' => $earned_points,
+            ]);
+        }
+        else {
+            return response()->json([
+                'text' => 'Oups, ce n\'est pas ça, réessayons !',
+                'status' => 500,
+                'earned_points' => $earned_points,
+                'correct_answer' => $question->answer()->first()->wording,
+            ]);
         }
 
-        return response()->json([
-            'text' => $request->is_valid ? 'Bien joué !' : 'Oups, ce n\'est pas ça, réessayons !',
-            'status' => $request->is_valid ? 200 : 500,
-            'earned_points' => $earned_points,
-            'correct_answer' => $question->answer()->first()->wording,
-        ]);
     }
 }

@@ -21,7 +21,7 @@ export default function Home(props) {
       <div className="jumbotron Home__title">
         <h1>Mode tempête !</h1>
         <p>Répondez à un maximum de question toutes catégories confondues sans limite de temps ni d'essai</p>
-        <p>Attention, en mode tempête les questions ne rapportent que 10 points !</p>
+        <p>Attention, en mode tempête les questions ne rapportent que 10 points chacunes !</p>
         <FormControlLabel
           control={
             <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>
@@ -50,7 +50,7 @@ export default function Home(props) {
     server.post(
       'question/submit_answer', {
         id: question.id,
-        is_valid: answer === question.answer,
+        answer: answer,
         mode: "storm",
         is_golden_card: question.is_golden_card,
       }

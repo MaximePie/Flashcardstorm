@@ -96870,7 +96870,7 @@ function Home(props) {
   }, [switchStatus]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "jumbotron Home__title"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Mode temp\xEAte !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "R\xE9pondez \xE0 un maximum de question toutes cat\xE9gories confondues sans limite de temps ni d'essai"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Attention, en mode temp\xEAte les questions ne rapportent que 10 points !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Mode temp\xEAte !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "R\xE9pondez \xE0 un maximum de question toutes cat\xE9gories confondues sans limite de temps ni d'essai"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Attention, en mode temp\xEAte les questions ne rapportent que 10 points chacunes !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_3__["default"], {
     control: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_4__["default"], {
       checked: switchStatus,
       onChange: function onChange() {
@@ -96894,7 +96894,7 @@ function Home(props) {
     event.preventDefault();
     _server__WEBPACK_IMPORTED_MODULE_2__["default"].post('question/submit_answer', {
       id: question.id,
-      is_valid: answer === question.answer,
+      answer: answer,
       mode: "storm",
       is_golden_card: question.is_golden_card
     }).then(function (response) {

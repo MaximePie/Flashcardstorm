@@ -78,7 +78,7 @@ class Question extends Model
         return $question_user && $question_user->exists();
     }
 
-    public function attatchToUser($user)
+    public function attatchToUser(User $user)
     {
         $question_user = Question_user::create(['question_id' => $this->id, 'user_id' => $user->id]);
         $question_user->save();
@@ -103,5 +103,17 @@ class Question extends Model
         );
 
         return $questions;
+    }
+
+    public function isValidWith(string $submited_answer)
+    {
+        $purged_answer = preg_replace('/\s*/', '', $submited_answer);
+        $purged_answer = strtolower($purged_answer);
+
+        $correct_answer = Answer::find($this->answer_id)->first()->wording;
+        $correct_answer = preg_replace('/\s*/', '', $correct_answer);
+        $correct_answer = strtolower($correct_answer);
+
+        return $correct_answer == $purged_answer;
     }
 }
