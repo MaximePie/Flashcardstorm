@@ -25,6 +25,7 @@ Route::middleware('auth:api')->get('/authenticated/questions_list/', 'QuestionCo
 Route::middleware('auth:api')->get('/authenticated/question/delete/{question}', 'QuestionController@destroy');
 Route::middleware('auth:api')->get('/authenticated/question/{mode}', 'QuestionController@randomQuestion');
 Route::middleware('auth:api')->get('/authenticated/question/toggle/{id}', 'QuestionController@toggleQuestionForUser');
+Route::middleware('auth:api')->get('/authenticated/categories', 'CategoryController@index');
 
 Route::middleware('auth:api')->post('/authenticated/question/submit_answer', 'QuestionController@submitAnswer');
 Route::middleware('auth:api')->post('/authenticated/question', 'QuestionController@store');
@@ -35,5 +36,6 @@ Route::get('question', 'QuestionController@randomQuestion');
 Route::get('question/{mode}', 'QuestionController@randomQuestion');
 Route::get('question/delete/{question}', 'QuestionController@destroy');
 Route::get('questions_list', 'QuestionController@index');
+Route::get('categories', 'CategoryController@index');
 Route::post('question', 'QuestionController@store');
 Route::post('question/submit_answer', 'QuestionController@submitAnswer')->middleware('guest');

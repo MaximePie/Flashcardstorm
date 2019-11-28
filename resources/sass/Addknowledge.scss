@@ -17,4 +17,10 @@
         align-items: center;
         justify-content: space-around;
     }
+
+    &__radiogroup {
+        display: flex;
+        justify-content: center;
+        flex-direction: row !important;
+    }
 }

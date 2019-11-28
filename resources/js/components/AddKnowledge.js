@@ -3,6 +3,9 @@ import Button from "./Button";
 import TextField from "@material-ui/core/TextField";
 import server from "../server";
 import {useSnackbar} from "notistack";
+import Radio from "@material-ui/core/Radio";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import RadioGroup from "@material-ui/core/RadioGroup";
 
 export default function AddKnowledge() {
 
@@ -10,6 +13,13 @@ export default function AddKnowledge() {
     question: '',
     answer: ''
   });
+
+  const [categories, updateCategories] = React.useState(undefined);
+  const [selectedCategory, setSelectedCategory] = React.useState(0);
+
+  React.useEffect(() => {
+    updateCategoriesList()
+  }, []);
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
@@ -20,6 +30,14 @@ export default function AddKnowledge() {
       </div>
       <div className="row justify-content-center">
         <form onSubmit={submitValues} className="Addknowledge__form card">
+          <RadioGroup className="Addknowledge__radiogroup" aria-label="Catégorie" name="category" value={selectedCategory} onChange={handleSelection}>
+            <FormControlLabel value={0} control={<Radio/>} label="Sans catégorie" />
+            {categories && categories.map(function(category) {
+              return (
+                <FormControlLabel key={"category-" + category.id} value={category.id} control={<Radio/>} label={category.name} />
+              )
+            })}
+          </RadioGroup>
           <TextField
             value={form.question}
             name="question"
@@ -38,6 +56,10 @@ export default function AddKnowledge() {
     </div>
   );
 
+  function handleSelection(event) {
+    setSelectedCategory(parseInt(event.target.value, 10))
+  }
+
   function updateForm (e) {
     setForm({
       ...form,
@@ -49,9 +71,8 @@ export default function AddKnowledge() {
 
   function submitValues(event) {
     event.preventDefault();
-    server.post('question', form).then(response => {
+    server.post('question', {question: form.question, answer: form.answer, category: selectedCategory}).then(response => {
       setForm({question: '', answer: ''});
-
       enqueueSnackbar("Success"
         ,
         {
@@ -65,4 +86,9 @@ export default function AddKnowledge() {
     })
   }
 
+  function updateCategoriesList() {
+    server.get('categories').then(response => {
+      updateCategories(response.data.categories)
+    })
+  }
 }

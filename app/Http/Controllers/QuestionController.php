@@ -115,15 +115,6 @@ class QuestionController extends Controller
         return response()->json(['question' => $question, 'message' => $message]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return void
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -141,7 +132,8 @@ class QuestionController extends Controller
 
         $question = Question::create([
             'wording' => $request->question,
-            'answer_id' => $answer->id
+            'answer_id' => $answer->id,
+            'category_id' => $request->category ?: null,
         ]);
         $question->save();
 
