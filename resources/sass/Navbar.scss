@@ -1,5 +1,16 @@
 .Navbar {
 
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__home-link {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
     &__logo {
         margin: 0 8px;
     }
@@ -21,7 +32,10 @@
         outline: none;
         border: none;
         background: transparent;
+        margin: 0 16px;
+        font-size: 36px;
     }
+
     &__item-profile {
         display: flex;
         flex-direction: column;

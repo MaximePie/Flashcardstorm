@@ -24,7 +24,7 @@ require ("../sass/Snackbar.scss");
 
 import Home from "./components/Home"
 import AddKnowledge from "./components/AddKnowledge"
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import QuestionsList from "./components/QuestionsList";
 import Register from "./components/Register";
 import Login from "./components/Login";
