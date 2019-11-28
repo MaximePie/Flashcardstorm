@@ -62,8 +62,13 @@ class Question extends Model
         return $score;
     }
 
+    public function nextQuestionatForUser($user)
+    {
+        return Question_user::findFromTuple($this->id, $user->id)->first()->next_question_at;
+    }
 
-    public function isSetForUser($user)
+
+    public function isSetForUser($user): bool
     {
         if (!$user) {
             return false;

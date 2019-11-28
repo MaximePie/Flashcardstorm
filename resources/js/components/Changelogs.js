@@ -27,7 +27,7 @@ export default function Changelogs() {
           <Paper className="Changelogs__log">
               <h3 className="Changelogs__log-title">{changelog.title}</h3>
               <p className="Changelogs__log-text">{changelog.text}</p>
-              <p className="Changelogs__log-nextstep">{changelog.nextstep}</p>
+              <p className="Changelogs__log-nextstep">Prochaine étape : {changelog.nextstep}</p>
           </Paper>
           )
         })}

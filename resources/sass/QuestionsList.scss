@@ -10,8 +10,9 @@
 
     .Icon__badge {
         position: absolute;
-        bottom: 12px;
+        top: 52px;
         left: 8px;
+        bottom: initial;
     }
 
     &__question-wording {

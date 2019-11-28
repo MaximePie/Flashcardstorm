@@ -47,7 +47,14 @@ export default function QuestionsList(props) {
                 <h3 className="QuestionsList__question-wording">{question.wording}</h3>
                 <div className="QuestionsList__question-answer">{question.answer}</div>
                 {props.is_connected && (
-                  <div className="QuestionsList__question-score">Prochain gain : +{question.score}</div>
+                  <>
+                    {question.score && (
+                      <div className="QuestionsList__question-score">Prochain gain : +{question.score}</div>
+                    )}
+                    {question.next_question_at && (
+                      <div className="QuestionsList__question-next">Prochaine question le {question.next_question_at}</div>
+                    )}
+                  </>
                 )}
               </div>
               <div className="QuestionsList__actions">

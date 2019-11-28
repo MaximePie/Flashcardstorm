@@ -27433,7 +27433,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".QuestionsList__title {\n  text-align: center;\n}\n.QuestionsList__question {\n  display: grid;\n  grid-template-columns: 70px 8fr 128px;\n}\n.QuestionsList .Icon__badge {\n  position: absolute;\n  bottom: 12px;\n  left: 8px;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  margin: 0 8px !important;\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton {\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton--set {\n  background-color: #00c107 !important;\n}\n.QuestionsList__toggleButton--unset {\n  background-color: #c13c2b !important;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
+exports.push([module.i, ".QuestionsList__title {\n  text-align: center;\n}\n.QuestionsList__question {\n  display: grid;\n  grid-template-columns: 70px 8fr 128px;\n}\n.QuestionsList .Icon__badge {\n  position: absolute;\n  top: 52px;\n  left: 8px;\n  bottom: initial;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  margin: 0 8px !important;\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton {\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton--set {\n  background-color: #00c107 !important;\n}\n.QuestionsList__toggleButton--unset {\n  background-color: #c13c2b !important;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
 
 // exports
 
@@ -86280,7 +86280,7 @@ function Changelogs() {
       className: "Changelogs__log-text"
     }, changelog.text), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "Changelogs__log-nextstep"
-    }, changelog.nextstep));
+    }, "Prochaine \xE9tape : ", changelog.nextstep));
   }))));
 
   function updateChangelogs() {
@@ -86962,9 +86962,11 @@ function QuestionsList(props) {
       className: "QuestionsList__question-wording"
     }, question.wording), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "QuestionsList__question-answer"
-    }, question.answer), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }, question.answer), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, question.score && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "QuestionsList__question-score"
-    }, "Prochain gain : +", question.score)), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }, "Prochain gain : +", question.score), question.next_question_at && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "QuestionsList__question-next"
+    }, "Prochaine question le ", question.next_question_at))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "QuestionsList__actions"
     }, props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
       "aria-label": "delete",
