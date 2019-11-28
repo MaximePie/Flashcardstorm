@@ -27326,6 +27326,25 @@ exports.push([module.i, ".Button {\n  min-width: 100px;\n  margin: 0 8px;\n}", "
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/sass/Changelogs.scss":
+/*!***************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./resources/sass/Changelogs.scss ***!
+  \***************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".Changelogs__log {\n  padding: 16px;\n  margin: 16px;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/sass/Home.scss":
 /*!*********************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./resources/sass/Home.scss ***!
@@ -85936,6 +85955,8 @@ __webpack_require__(/*! ../sass/QuestionsList.scss */ "./resources/sass/Question
 
 __webpack_require__(/*! ../sass/Snackbar.scss */ "./resources/sass/Snackbar.scss");
 
+__webpack_require__(/*! ../sass/Changelogs.scss */ "./resources/sass/Changelogs.scss");
+
 
 
 
@@ -86221,6 +86242,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../server */ "./resources/js/server.js");
+/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js");
+/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -86228,6 +86251,8 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -86247,16 +86272,9 @@ function Changelogs() {
   }, !changelogs.length && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Pas de changements pour l'instant, nous allons revenir avec des bonnes nouvelles tr\xE8s bient\xF4t !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "Changelogs__list"
   }, changelogs.map(function (changelog) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__["default"], {
       className: "Changelogs__log"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Paper, {
-      className: classes.root
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Typography, {
-      variant: "h5",
-      component: "h3"
-    }, "This is a sheet of paper."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Typography, {
-      component: "p"
-    }, "Paper can be used to build surface or other elements for your application.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
       className: "Changelogs__log-title"
     }, changelog.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "Changelogs__log-text"
@@ -87408,6 +87426,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../node_modules/css-loader!../../node_modules/postcss-loader/src??ref--7-2!../../node_modules/sass-loader/dist/cjs.js??ref--7-3!./Button.scss */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/sass/Button.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/sass/Changelogs.scss":
+/*!****************************************!*\
+  !*** ./resources/sass/Changelogs.scss ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader!../../node_modules/postcss-loader/src??ref--7-2!../../node_modules/sass-loader/dist/cjs.js??ref--7-3!./Changelogs.scss */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./resources/sass/Changelogs.scss");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 

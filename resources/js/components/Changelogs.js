@@ -1,5 +1,7 @@
 import React from 'react';
 import server from "../server";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 export default function Changelogs() {
 
@@ -22,19 +24,11 @@ export default function Changelogs() {
         <ul className="Changelogs__list">
         {changelogs.map(function (changelog) {
           return (
-          <li className="Changelogs__log">
-            <Paper className={classes.root}>
-              <Typography variant="h5" component="h3">
-                This is a sheet of paper.
-              </Typography>
-              <Typography component="p">
-                Paper can be used to build surface or other elements for your application.
-              </Typography>
-            </Paper>
-            <h3 className="Changelogs__log-title">{changelog.title}</h3>
-            <p className="Changelogs__log-text">{changelog.text}</p>
-            <p className="Changelogs__log-nextstep">{changelog.nextstep}</p>
-          </li>
+          <Paper className="Changelogs__log">
+              <h3 className="Changelogs__log-title">{changelog.title}</h3>
+              <p className="Changelogs__log-text">{changelog.text}</p>
+              <p className="Changelogs__log-nextstep">{changelog.nextstep}</p>
+          </Paper>
           )
         })}
         </ul>
