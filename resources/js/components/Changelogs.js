@@ -25,7 +25,10 @@ export default function Changelogs() {
         {changelogs.map(function (changelog) {
           return (
           <Paper className="Changelogs__log">
-              <h3 className="Changelogs__log-title">{changelog.title}</h3>
+            <div>
+              <h3 className="Changelogs__log-title d-inline-flex mr-3">{changelog.title}</h3>
+              <span className="text-secondary text-muted">{changelog.created_at}</span>
+            </div>
               <p className="Changelogs__log-text">{changelog.text}</p>
               <p className="Changelogs__log-nextstep">Prochaine étape : {changelog.nextstep}</p>
           </Paper>

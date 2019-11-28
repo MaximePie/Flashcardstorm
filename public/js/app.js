@@ -96800,9 +96800,11 @@ function Changelogs() {
   }, changelogs.map(function (changelog) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__["default"], {
       className: "Changelogs__log"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-      className: "Changelogs__log-title"
-    }, changelog.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      className: "Changelogs__log-title d-inline-flex mr-3"
+    }, changelog.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "text-secondary text-muted"
+    }, changelog.created_at)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "Changelogs__log-text"
     }, changelog.text), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "Changelogs__log-nextstep"
