@@ -32,6 +32,7 @@ import Profile from "./components/Profile";
 import server from "./server";
 import SoftTraining from "./components/SoftTraining";
 import Users from "./components/Users";
+import Changelogs from "./components/Changelogs";
 
 import { SnackbarProvider } from 'notistack';
 
@@ -82,6 +83,9 @@ export default function App() {
             </Route>
             <Route path="/questions">
               <QuestionsList is_connected={is_connected}/>
+            </Route>
+            <Route path="/about">
+              <Changelogs/>
             </Route>
             {is_connected && (
               <Route path="/profile">

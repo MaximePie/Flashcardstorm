@@ -26,12 +26,14 @@ Route::middleware('auth:api')->get('/authenticated/question/delete/{question}', 
 Route::middleware('auth:api')->get('/authenticated/question/{mode}', 'QuestionController@randomQuestion');
 Route::middleware('auth:api')->get('/authenticated/question/toggle/{id}', 'QuestionController@toggleQuestionForUser');
 Route::middleware('auth:api')->get('/authenticated/categories', 'CategoryController@index');
+Route::middleware('auth:api')->get('/authenticated/changelogs', 'ChangelogController@index');
 
 Route::middleware('auth:api')->post('/authenticated/question/submit_answer', 'QuestionController@submitAnswer');
 Route::middleware('auth:api')->post('/authenticated/question', 'QuestionController@store');
 
 Route::post('register', 'RegisterController@create');
 
+Route::get('changelogs', 'ChangelogController@index');
 Route::get('question', 'QuestionController@randomQuestion');
 Route::get('question/{mode}', 'QuestionController@randomQuestion');
 Route::get('question/delete/{question}', 'QuestionController@destroy');

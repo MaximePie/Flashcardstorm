@@ -26,7 +26,13 @@ class server {
       return axios.get('/api/authenticated/' + url + '?api_token=' + bearer + '&' + params)
     }
     else {
-      return axios.get('/api/' + url + '?' + params);
+
+      let server_url = '/api/' + url;
+      if (params) {
+        server_url += '?' + params;
+      }
+
+      return axios.get(server_url);
     }
   }
 }

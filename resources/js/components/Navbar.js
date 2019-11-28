@@ -107,6 +107,14 @@ export default function Navbar(props) {
             </ListItem>
           </>
         )}
+        <ListItem button component="a" href="/about" className="Navbar__item">
+          <ListItemIcon>
+            <i className="fas fa-question-circle"/>
+          </ListItemIcon>
+          <ListItemText>
+            à propos
+          </ListItemText>
+        </ListItem>
       </List>
     </div>
   );
