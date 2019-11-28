@@ -1,6 +1,7 @@
 <?php
 
 use App\Answer;
+use App\Category;
 use App\Question;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        $category = CATEGORY::create([
+            'name' => 'Anglais',
+            'color' => "#0000AA",
+            'icon' => 'coffee',
+        ]);
+
+        $category->save();
+
         $answer = Answer::create([
             'wording' => 'Coq',
         ]);
@@ -33,6 +43,18 @@ class DatabaseSeeder extends Seeder
         Question::create([
             'wording' => 'Année de la prise de la Bastille',
             'answer_id' => $answer->id
+        ]);
+
+        $answer = Answer::create([
+            'wording' => 'Nageoire',
+        ]);
+
+        $answer->save();
+
+        Question::create([
+            'wording' => 'Fin - Anglais',
+            'answer_id' => $answer->id,
+            'category_id' => $category->id,
         ]);
     }
 }

@@ -99,14 +99,13 @@ class QuestionController extends Controller
 
         if ($question) {
             $question['answer'] = $question->answer()->first()->wording;
-            $question['is_new'] = !$question->isSetForUser($user);
+            $question['is_new'] = !$question->isSetForUser($user) ?: null;
+            $category = $question->category();
+            if ($category) {
+                $question['category'] = $category->first();
+            }
             try {
-                if (random_int(0, config('app.golden_card_ratio')) === 1) {
-                    $question['is_golden_card'] = true;
-                }
-                else {
-                    $question['is_golden_card'] = false;
-                }
+                $question['is_golden_card'] = random_int(0, config('app.golden_card_ratio')) === 1;
             } catch (Exception $e) {
                 throw new Exception('Error generating the random golden card');
             }

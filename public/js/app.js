@@ -26140,7 +26140,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".QuestionCard {\n  padding: 16px;\n  margin: 16px;\n  width: 500px;\n  min-height: 600px;\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  position: relative;\n}\n.QuestionCard__question {\n  text-align: center;\n}\n.QuestionCard__question--is-empty {\n  color: grey;\n}\n.QuestionCard--golden__icon {\n  left: -24px;\n  color: goldenrod;\n}\n.QuestionCard--new__icon {\n  color: mediumspringgreen;\n  left: 36px;\n}\n.QuestionCard .Icon__container {\n  top: -24px;\n  border: solid 1px;\n  position: absolute;\n  box-shadow: 0.2rem 0.325rem 0.25rem rgba(0, 0, 0, 0.175) !important;\n  background: white;\n}\n@media screen and (max-width: 600px) {\n  .QuestionCard {\n    width: initial;\n  }\n}", ""]);
+exports.push([module.i, ".QuestionCard {\n  padding: 16px;\n  margin: 16px;\n  width: 500px;\n  min-height: 600px;\n  display: -webkit-box;\n  display: flex;\n  justify-content: space-around;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  position: relative;\n}\n.QuestionCard__question {\n  text-align: center;\n}\n.QuestionCard__question--is-empty {\n  color: grey;\n}\n.QuestionCard--golden__icon {\n  left: -24px;\n  color: goldenrod;\n}\n.QuestionCard--new__icon {\n  color: mediumspringgreen;\n  left: 36px;\n}\n.QuestionCard--category__icon {\n  color: mediumspringgreen;\n  right: -24px;\n}\n.QuestionCard .Icon__container {\n  top: -24px;\n  border: solid 1px;\n  position: absolute;\n  box-shadow: 0.2rem 0.325rem 0.25rem rgba(0, 0, 0, 0.175) !important;\n  background: white;\n}\n@media screen and (max-width: 600px) {\n  .QuestionCard {\n    width: initial;\n  }\n}", ""]);
 
 // exports
 
@@ -85032,8 +85032,12 @@ function Icon(props) {
   var containerClassName = "Icon__container " + props.className;
   var className = "Icon far fas";
   className += " fa-" + props.name + " ";
+  var color = props.color && {
+    color: props.color
+  };
   return props.badge ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: containerClassName
+    className: containerClassName,
+    style: color
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: className
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -85249,6 +85253,11 @@ function QuestionCard(props) {
     className: "QuestionCard--new__icon",
     name: "feather-alt",
     badge: "new"
+  }), props.question.category && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    className: "QuestionCard--category__icon",
+    name: props.question.category.icon,
+    badge: props.question.category.name,
+    color: props.question.category.color
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "QuestionCard__question " + (!question && "QuestionCard__question--is-empty")
   }, props.question.wording || props.message), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {

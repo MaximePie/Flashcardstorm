@@ -44,6 +44,14 @@ class Question extends Model
         return $this->belongsTo(Answer::class);
     }
 
+    /**
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function scoreByUser($user)
     {
         $score = 0;

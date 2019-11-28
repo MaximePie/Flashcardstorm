@@ -27,6 +27,14 @@ export default function QuestionCard(props) {
           badge="new"
         />
       )}
+      {props.question.category && (
+        <Icon
+          className={"QuestionCard--category__icon"}
+          name={props.question.category.icon}
+          badge={props.question.category.name}
+          color={props.question.category.color}
+        />
+      )}
       <h3 className={"QuestionCard__question " + (!question && "QuestionCard__question--is-empty")}>
         {props.question.wording || props.message}
       </h3>
