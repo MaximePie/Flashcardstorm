@@ -26102,7 +26102,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".Icon__container {\n  position: relative;\n  border-radius: 50%;\n  padding: 12px;\n}\n.Icon__container .Icon {\n  font-size: 48px;\n}\n.Icon__container .Icon__badge {\n  position: absolute;\n  bottom: -12px;\n  left: 18px;\n}", ""]);
+exports.push([module.i, ".Icon__container {\n  position: relative;\n  border-radius: 50%;\n  padding: 12px;\n}\n.Icon__container .Icon {\n  font-size: 36px;\n}\n.Icon__container .Icon__badge {\n  position: absolute;\n  bottom: -8px;\n  left: 10px;\n}", ""]);
 
 // exports
 
