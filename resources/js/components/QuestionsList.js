@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 import server from "../server";
+import Icon from "./Icon";
 
 
 
@@ -26,13 +27,29 @@ export default function QuestionsList(props) {
         {questions && questions.length && questions.map(function(question, key){
           return (
             <li key={`question${question.id}`} className="QuestionsList__question list-group-item">
-              <span>
+              {question.category && (
+                <Icon
+                  className={"QuestionsList__category-icon"}
+                  name={question.category.icon}
+                  badge={question.category.name}
+                  color={question.category.color}
+                />
+              )}
+              {!question.category && (
+                <Icon
+                  className={"QuestionsList__category-icon"}
+                  name={'question'}
+                  badge={'divers'}
+                  color={'grey'}
+                />
+              )}
+              <div>
                 <h3 className="QuestionsList__question-wording">{question.wording}</h3>
                 <div className="QuestionsList__question-answer">{question.answer}</div>
                 {props.is_connected && (
                   <div className="QuestionsList__question-score">Prochain gain : +{question.score}</div>
                 )}
-              </span>
+              </div>
               <div className="QuestionsList__actions">
                 {props.is_connected && (
                   <IconButton

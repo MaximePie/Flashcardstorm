@@ -4,8 +4,14 @@
     }
 
     &__question {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 70px 8fr 128px;
+    }
+
+    .Icon__badge {
+        position: absolute;
+        bottom: 12px;
+        left: 8px;
     }
 
     &__question-wording {

@@ -27414,7 +27414,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".QuestionsList__title {\n  text-align: center;\n}\n.QuestionsList__question {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  margin: 0 8px !important;\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton {\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton--set {\n  background-color: #00c107 !important;\n}\n.QuestionsList__toggleButton--unset {\n  background-color: #c13c2b !important;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
+exports.push([module.i, ".QuestionsList__title {\n  text-align: center;\n}\n.QuestionsList__question {\n  display: grid;\n  grid-template-columns: 70px 8fr 128px;\n}\n.QuestionsList .Icon__badge {\n  position: absolute;\n  bottom: 12px;\n  left: 8px;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  margin: 0 8px !important;\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton {\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton--set {\n  background-color: #00c107 !important;\n}\n.QuestionsList__toggleButton--unset {\n  background-color: #c13c2b !important;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
 
 // exports
 
@@ -86807,6 +86807,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js");
 /* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../server */ "./resources/js/server.js");
+/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Icon */ "./resources/js/components/Icon.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -86822,6 +86823,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -86851,7 +86853,17 @@ function QuestionsList(props) {
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
       key: "question".concat(question.id),
       className: "QuestionsList__question list-group-item"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+    }, question.category && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      className: "QuestionsList__category-icon",
+      name: question.category.icon,
+      badge: question.category.name,
+      color: question.category.color
+    }), !question.category && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      className: "QuestionsList__category-icon",
+      name: 'question',
+      badge: 'divers',
+      color: 'grey'
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
       className: "QuestionsList__question-wording"
     }, question.wording), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "QuestionsList__question-answer"

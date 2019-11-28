@@ -25,6 +25,10 @@ class QuestionController extends Controller
         $user = Auth::user();
         $questions->each(static function(Question $question) use ($user){
             $question['answer'] = $question->answer()->first()->wording;
+            $category = $question->category();
+            if ($category) {
+                $question['category'] = $category->first();
+            }
             if ($user) {
                 $question['score'] = $question->scoreByUser($user);
                 $question['is_set_for_user'] = $question->isSetForUser($user);
