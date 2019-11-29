@@ -51,7 +51,7 @@ export default function SoftTraining(props) {
       'question/submit_answer',
       {
         id: question.id,
-        is_valid: answer === question.answer,
+        answer: answer,
         mode: "soft",
         is_golden_card: question.is_golden_card,
       }

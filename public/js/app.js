@@ -97708,7 +97708,7 @@ function SoftTraining(props) {
     event.preventDefault();
     _server__WEBPACK_IMPORTED_MODULE_3__["default"].post('question/submit_answer', {
       id: question.id,
-      is_valid: answer === question.answer,
+      answer: answer,
       mode: "soft",
       is_golden_card: question.is_golden_card
     }).then(function (response) {
