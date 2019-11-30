@@ -107,7 +107,7 @@ class Question extends Model
 
     public function isValidWith(string $submited_answer)
     {
-        $correct_answer = Answer::find($this->answer_id)->first()->wording;
+        $correct_answer = $this->answer()->first()->wording;
         if ($submited_answer === $correct_answer) {
             return true;
         }
@@ -115,7 +115,6 @@ class Question extends Model
         $purged_answer = preg_replace('/\s*/', '', $submited_answer);
         $purged_answer = strtolower($purged_answer);
 
-        $correct_answer = Answer::find($this->answer_id)->first()->wording;
         $correct_answer = preg_replace('/\s*/', '', $correct_answer);
         $correct_answer = strtolower($correct_answer);
 
