@@ -22,12 +22,14 @@ export default function Home(props) {
         <h1>Mode tempête !</h1>
         <p>Répondez à un maximum de question toutes catégories confondues sans limite de temps ni d'essai</p>
         <p>Attention, en mode tempête les questions ne rapportent que 10 points chacunes !</p>
-        <FormControlLabel
-          control={
-            <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>
-          }
-          label="Afficher seulement mes questions"
-        />
+        {props.is_connected && (
+          <FormControlLabel
+            control={
+              <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>
+            }
+            label="Afficher seulement mes questions"
+          />
+        )}
       </div>
       <div className="container Home">
         <div className="row">
@@ -89,7 +91,6 @@ export default function Home(props) {
   }
 
   function updateQuestionsBag() {
-
     const url = switchStatus === true ? 'question/for_user' : 'question/all';
     server.get(url).then(response => {
       updateQuestion(response.data.question || undefined)

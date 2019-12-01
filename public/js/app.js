@@ -96872,7 +96872,7 @@ function Home(props) {
   }, [switchStatus]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "jumbotron Home__title"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Mode temp\xEAte !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "R\xE9pondez \xE0 un maximum de question toutes cat\xE9gories confondues sans limite de temps ni d'essai"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Attention, en mode temp\xEAte les questions ne rapportent que 10 points chacunes !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Mode temp\xEAte !"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "R\xE9pondez \xE0 un maximum de question toutes cat\xE9gories confondues sans limite de temps ni d'essai"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Attention, en mode temp\xEAte les questions ne rapportent que 10 points chacunes !"), props.is_connected && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_3__["default"], {
     control: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_4__["default"], {
       checked: switchStatus,
       onChange: function onChange() {
@@ -97431,6 +97431,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js");
 /* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../server */ "./resources/js/server.js");
 /* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Icon */ "./resources/js/components/Icon.js");
+/* harmony import */ var _material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/FormControlLabel */ "./node_modules/@material-ui/core/esm/FormControlLabel/index.js");
+/* harmony import */ var _material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Switch */ "./node_modules/@material-ui/core/esm/Switch/index.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -97452,6 +97454,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 function QuestionsList(props) {
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(undefined),
       _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -97463,14 +97467,27 @@ function QuestionsList(props) {
       is_open = _React$useState4[0],
       setOpen = _React$useState4[1];
 
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(false),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      switchStatus = _React$useState6[0],
+      setSwitchStatus = _React$useState6[1];
+
   react__WEBPACK_IMPORTED_MODULE_1___default.a.useEffect(function () {
-    updateQuestionsBag(); // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
-  }, []);
+    updateQuestionsBag();
+  }, [switchStatus]);
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "QuestionsList"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "jumbotron QuestionsList__title"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Liste des questions"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Une question est automatiquement int\xE9gr\xE9e \xE0 votre collection quand vous cr\xE9ez une question ou quand vous y r\xE9pondez depuis le mode Temp\xEAte")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Liste des questions"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Une question est automatiquement int\xE9gr\xE9e \xE0 votre collection quand vous cr\xE9ez une question ou quand vous y r\xE9pondez depuis le mode Temp\xEAte"), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    control: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      checked: switchStatus,
+      onChange: function onChange() {
+        return setSwitchStatus(!switchStatus);
+      }
+    }),
+    label: "Afficher seulement mes questions"
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
     className: "container list-group list-group-flush"
   }, questions && questions.length && questions.map(function (question, key) {
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
@@ -97532,8 +97549,9 @@ function QuestionsList(props) {
   }
 
   function updateQuestionsBag() {
-    _server__WEBPACK_IMPORTED_MODULE_3__["default"].get('questions_list').then(function (response) {
-      updateQuestions(response.data);
+    var url = switchStatus === true ? 'questions_list/for_user' : 'questions_list/all';
+    _server__WEBPACK_IMPORTED_MODULE_3__["default"].get(url).then(function (response) {
+      updateQuestions(response.data.questions || undefined);
     });
   }
 }
@@ -97650,12 +97668,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SoftTraining; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _QuestionCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./QuestionCard */ "./resources/js/components/QuestionCard.js");
-/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../server */ "./resources/js/server.js");
-/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! notistack */ "./node_modules/notistack/build/index.js");
-/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(notistack__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _QuestionCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QuestionCard */ "./resources/js/components/QuestionCard.js");
+/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../server */ "./resources/js/server.js");
+/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! notistack */ "./node_modules/notistack/build/index.js");
+/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(notistack__WEBPACK_IMPORTED_MODULE_3__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -97663,7 +97679,6 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -97680,7 +97695,7 @@ function SoftTraining(props) {
       questionCardMessage = _React$useState4[0],
       updateQuestionCardMessage = _React$useState4[1];
 
-  var _useSnackbar = Object(notistack__WEBPACK_IMPORTED_MODULE_4__["useSnackbar"])(),
+  var _useSnackbar = Object(notistack__WEBPACK_IMPORTED_MODULE_3__["useSnackbar"])(),
       enqueueSnackbar = _useSnackbar.enqueueSnackbar,
       closeSnackbar = _useSnackbar.closeSnackbar;
 
@@ -97694,7 +97709,7 @@ function SoftTraining(props) {
       className: "container Home"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row"
-    }, question && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }, question && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
       question: question || undefined,
       onSubmit: submitAnswer,
       onSkip: function onSkip() {
@@ -97706,7 +97721,7 @@ function SoftTraining(props) {
 
   function submitAnswer(answer) {
     event.preventDefault();
-    _server__WEBPACK_IMPORTED_MODULE_3__["default"].post('question/submit_answer', {
+    _server__WEBPACK_IMPORTED_MODULE_2__["default"].post('question/submit_answer', {
       id: question.id,
       answer: answer,
       mode: "soft",
@@ -97740,7 +97755,7 @@ function SoftTraining(props) {
   }
 
   function updateQuestionsBag() {
-    _server__WEBPACK_IMPORTED_MODULE_3__["default"].get('question/soft').then(function (response) {
+    _server__WEBPACK_IMPORTED_MODULE_2__["default"].get('question/soft').then(function (response) {
       updateQuestions(response.data.question || undefined);
       updateQuestionCardMessage(response.data.message);
     });

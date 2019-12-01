@@ -3,6 +3,8 @@ import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 import server from "../server";
 import Icon from "./Icon";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
 
 
 
@@ -11,10 +13,11 @@ export default function QuestionsList(props) {
   const [questions, updateQuestions] = React.useState(undefined);
   const [is_open, setOpen] = React.useState(false);
 
+  const [switchStatus, setSwitchStatus] = React.useState(false);
+
   React.useEffect(() => {
     updateQuestionsBag()
-    // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
-  }, []);
+  }, [switchStatus]);
 
   return (
     <div className="QuestionsList">
@@ -22,6 +25,14 @@ export default function QuestionsList(props) {
         <h1>Liste des questions</h1>
         <p>Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection</p>
         <p>Une question est automatiquement intégrée à votre collection quand vous créez une question ou quand vous y répondez depuis le mode Tempête</p>
+        {props.is_connected && (
+          <FormControlLabel
+            control={
+              <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>
+            }
+            label="Afficher seulement mes questions"
+          />
+        )}
       </div>
       <ul className="container list-group list-group-flush">
         {questions && questions.length && questions.map(function(question, key){
@@ -99,8 +110,9 @@ export default function QuestionsList(props) {
   }
 
   function updateQuestionsBag() {
-    server.get('questions_list').then(response => {
-      updateQuestions(response.data)
-    })
+    const url = switchStatus === true ? 'questions_list/for_user' : 'questions_list/all';
+    server.get(url).then(response => {
+      updateQuestions(response.data.questions || undefined)
+    });
   }
 }

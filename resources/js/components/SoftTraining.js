@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from "axios";
 import QuestionCard from "./QuestionCard";
 import server from '../server'
 import {useSnackbar} from "notistack";

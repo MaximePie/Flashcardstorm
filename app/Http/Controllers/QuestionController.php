@@ -24,8 +24,8 @@ class QuestionController extends Controller
     {
         $user = Auth::user();
         $questions = Question::all();
-        if ($user && $visibility === 'me') {
-            $questions = Question::forUser($user);
+        if ($user && $visibility === 'for_user') {
+            $questions = $user->questions()->get();
         }
 
         $questions->each(static function(Question $question) use ($user){
@@ -42,7 +42,7 @@ class QuestionController extends Controller
                 }
             }
         });
-        return response()->json($questions);
+        return response()->json(['questions' => $questions]);
     }
 
     /**
