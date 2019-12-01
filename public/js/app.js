@@ -96381,9 +96381,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./server */ "./resources/js/server.js");
 /* harmony import */ var _components_SoftTraining__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/SoftTraining */ "./resources/js/components/SoftTraining.js");
 /* harmony import */ var _components_Users__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Users */ "./resources/js/components/Users.js");
-/* harmony import */ var _components_Changelogs__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Changelogs */ "./resources/js/components/Changelogs.js");
-/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! notistack */ "./node_modules/notistack/build/index.js");
-/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(notistack__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var _components_pages_Welcome__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/pages/Welcome */ "./resources/js/components/pages/Welcome.js");
+/* harmony import */ var _components_Changelogs__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Changelogs */ "./resources/js/components/Changelogs.js");
+/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! notistack */ "./node_modules/notistack/build/index.js");
+/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(notistack__WEBPACK_IMPORTED_MODULE_18__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -96435,6 +96436,7 @@ __webpack_require__(/*! ../sass/Changelogs.scss */ "./resources/sass/Changelogs.
 
 
 
+
 function App() {
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_3___default.a.useState(undefined),
       _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -96452,7 +96454,7 @@ function App() {
       updateUser();
     }
   }, [is_connected]);
-  return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(notistack__WEBPACK_IMPORTED_MODULE_17__["SnackbarProvider"], {
+  return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(notistack__WEBPACK_IMPORTED_MODULE_18__["SnackbarProvider"], {
     maxSnack: 3
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
     className: "App"
@@ -96464,6 +96466,10 @@ function App() {
       return setCountClassName('');
     }
   }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+    path: "/",
+    strict: true,
+    exact: true
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_pages_Welcome__WEBPACK_IMPORTED_MODULE_16__["default"], null)), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/register"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Register__WEBPACK_IMPORTED_MODULE_10__["default"], null)), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/login"
@@ -96493,7 +96499,7 @@ function App() {
     is_connected: is_connected
   })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/about"
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Changelogs__WEBPACK_IMPORTED_MODULE_16__["default"], null)), is_connected && react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Changelogs__WEBPACK_IMPORTED_MODULE_17__["default"], null)), is_connected && react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/profile"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Profile__WEBPACK_IMPORTED_MODULE_12__["default"], null))))));
 
@@ -97816,6 +97822,27 @@ function Users() {
       setUsers(response.data.users || undefined);
     });
   }
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/Welcome.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/pages/Welcome.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Welcome; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function Welcome() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "jumbotron Welcome__title"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Bienvenue sur FlashcardStorm"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Pour commencer, cliquez sur le menu en haut \xE0 gauche, et s\xE9lectionnez un choix"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, " Pour...", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Consulter les derni\xE8res fonctionnalit\xE9s et les prochaines mises \xE0 jour : A propos"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "R\xE9pondre aux questions d\xE9j\xE0 enregistr\xE9es : Mode Temp\xEAte"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Consulter les questions enregistr\xE9es : Liste des questions"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Ajouter des questions : Ajouter des questions "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Si vous cr\xE9ez un compte et vous connectez, vous pouvez acc\xE9der \xE0 la partie personnalisable incluant un score personnel, vos questions personnelles, et un mode de r\xE9visions planifi\xE9es plus efficace.")));
 }
 
 /***/ }),

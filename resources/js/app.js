@@ -33,6 +33,7 @@ import Profile from "./components/Profile";
 import server from "./server";
 import SoftTraining from "./components/SoftTraining";
 import Users from "./components/Users";
+import Welcome from "./components/pages/Welcome";
 import Changelogs from "./components/Changelogs";
 
 import { SnackbarProvider } from 'notistack';
@@ -61,6 +62,9 @@ export default function App() {
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Switch>
+            <Route path="/" strict={true} exact={true}>
+              <Welcome />
+            </Route>
             <Route path="/register">
               <Register />
             </Route>
