@@ -35,7 +35,7 @@ export default function SoftTraining(props) {
           )}
           {!question && (
             <div>
-              {"Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit"}
+              {questionCardMessage}
             </div>
           )}
         </div>

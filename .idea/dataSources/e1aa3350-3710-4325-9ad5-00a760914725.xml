@@ -1041,7 +1041,7 @@
     </column>
     <column id="256" parent="232" name="nextstep">
       <Position>6</Position>
-      <DataType>varchar(191)|0s</DataType>
+      <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>

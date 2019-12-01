@@ -2,7 +2,8 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -38,4 +39,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    /**
+     * @param bool $with_delay
+     * @return BelongsToMany
+     */
+    public function questions(bool $with_delay = false): BelongsToMany
+    {
+        $query = $this->BelongsToMany(Question::class, 'question_users');
+        if ($with_delay) {
+            $query->whereDate('next_question_at', '<=', now());
+        }
+        return $query;
+    }
+
+    /**
+     * @return Question|null
+     */
+    public function nextQuestion(): ?Question
+    {
+        return $this->questions()->orderBy('next_question_at', 'asc')->first();
+    }
 }

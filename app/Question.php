@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property integer $id
@@ -55,9 +55,9 @@ class Question extends Model
     public function scoreByUser($user)
     {
         $score = 0;
-        $question_user = Question_user::findFromTuple($this->id, $user->id)->first();
+        $question_user = Question_user::findFromTuple($this->id, $user->id);
         if ($question_user) {
-            return $question_user->full_score;
+            return $question_user->first()->full_score;
         }
         return $score;
     }
@@ -74,35 +74,7 @@ class Question extends Model
             return false;
         }
 
-        $question_user = Question_user::findFromTuple($this->id, $user->id);
-        return $question_user && $question_user->exists();
-    }
-
-    public function attatchToUser(User $user)
-    {
-        $question_user = Question_user::create(['question_id' => $this->id, 'user_id' => $user->id]);
-        $question_user->save();
-        return $question_user;
-    }
-
-    public static function forUser($user, $with_delay = false)
-    {
-        $questions_user = Question_user::query()
-            ->where('user_id', $user->id);
-
-        if ($with_delay) {
-            $questions_user->whereDate('next_question_at', '<=', now());
-        }
-
-        $questions = self::query()->joinSub(
-            $questions_user->select('question_id'),
-            'questions_user',
-            'questions_user.question_id',
-            '=',
-            'questions.id'
-        );
-
-        return $questions;
+        return $this->users()->find($user) !== null;
     }
 
     public function isValidWith(string $submited_answer)
@@ -118,6 +90,14 @@ class Question extends Model
         $correct_answer = preg_replace('/\s*/', '', $correct_answer);
         $correct_answer = strtolower($correct_answer);
 
-        return $correct_answer == $purged_answer;
+        return $correct_answer === $purged_answer;
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function users(): BelongsToMany
+    {
+        return $this->BelongsToMany(User::class, 'question_users');
     }
 }

@@ -17,12 +17,17 @@ class QuestionController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param string $visibility
      * @return JsonResponse
      */
-    public function index(): JsonResponse
+    public function index(string $visibility = 'all'): JsonResponse
     {
-        $questions = Question::all();
         $user = Auth::user();
+        $questions = Question::all();
+        if ($user && $visibility === 'me') {
+            $questions = Question::forUser($user);
+        }
+
         $questions->each(static function(Question $question) use ($user){
             $question['answer'] = $question->answer()->first()->wording;
             $category = $question->category();
@@ -54,13 +59,10 @@ class QuestionController extends Controller
         }
         $question = Question::query()->where('id', $question_id)->first();
         if ($question && $question->exists() && !$question->isSetForUser($user)) {
-            $question->attatchToUser($user);
+            $question->users()->attach($user);
         }
         else {
-            $question_user = Question_user::findFromTuple($question->id, $user->id);
-            if ($question_user && $question_user->exists()) {
-                $question_user->forceDelete();
-            }
+            $question->users()->detach($user);
         }
         return response()->json(['is_set_for_user' => $question->isSetForUser($user)]);
     }
@@ -78,8 +80,8 @@ class QuestionController extends Controller
         $user = Auth::user();
 
         if ($mode === 'soft' && $user) {
-            $question = Question::forUser($user, true)->inRandomOrder()->first();
-            if ($question && $question->exists()) {
+            $question = $user->questions(true)->inRandomOrder()->first();
+            if (!$question) {
                 $next_question = Question_user::query()->orderBy('next_question_at', 'asc')->first();
                 if ($next_question) {
                     $message = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $next_question->next_question_at;
@@ -91,7 +93,7 @@ class QuestionController extends Controller
         }
         else {
             if ($user && $mode === 'for_user') {
-                $question_builder = Question::forUser($user);
+                $question_builder = $user->questions();
             }
             else {
                 $question_builder = Question::query();
@@ -119,7 +121,7 @@ class QuestionController extends Controller
         }
 
 
-        return response()->json(['question' => $question, 'message' => $message]);
+        return response()->json(['question' => $question, 'message' => $message, 'next_question' => $next_question ?? null]);
     }
 
 
@@ -250,7 +252,7 @@ class QuestionController extends Controller
         $question = QUESTION::query()->find($request->id);
         $user = Auth::user();
         $earned_points = 0;
-        if ($question->isValidWith($request->answer)) {
+        if ($request->answer && $question->isValidWith($request->answer)) {
 
             if ($user) {
                 $question_user = QUESTION_USER::query()->firstOrCreate(['user_id' => $user->id, 'question_id' => $question->id]);

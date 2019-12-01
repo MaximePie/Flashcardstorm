@@ -83058,7 +83058,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -97701,7 +97701,7 @@ function SoftTraining(props) {
         return updateQuestionsBag();
       },
       message: questionCardMessage
-    }), !question && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit"))))
+    }), !question && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, questionCardMessage))))
   ); // TODO - Create import from Excel feature, the program can take a csv file with 2 columns : Question,Answer
 
   function submitAnswer(answer) {
