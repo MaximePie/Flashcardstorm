@@ -97653,7 +97653,11 @@ function Register() {
     event.preventDefault();
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/register', form).then(function (response) {
       enqueueSnackbar('Connecté', {
-        variant: "success"
+        variant: "success",
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'center'
+        }
       });
       props.history.push('/login');
     });

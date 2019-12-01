@@ -53,7 +53,10 @@ export default function Register() {
   function submitValues(event) {
     event.preventDefault();
     axios.post('/api/register', form).then(response => {
-      enqueueSnackbar('Connecté', {variant: "success"})
+      enqueueSnackbar('Connecté', {variant: "success", anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'center',
+        }});
       props.history.push('/login');
     })
   }
