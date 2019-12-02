@@ -59,7 +59,7 @@ class QuestionController extends Controller
         }
         $question = Question::query()->where('id', $question_id)->first();
         if ($question && $question->exists() && !$question->isSetForUser($user)) {
-            $question->users()->attach($user);
+            Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
         }
         else {
             $question->users()->detach($user);

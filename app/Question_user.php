@@ -17,6 +17,7 @@ class Question_user extends Model
     {
         parent::__construct($attributes);
         $this->full_score = 10;
+        $this->next_question_at = now();
     }
 
     /**
