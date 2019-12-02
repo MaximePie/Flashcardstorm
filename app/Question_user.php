@@ -30,6 +30,14 @@ class Question_user extends Model
         return self::query()->where('question_id', $question_id)->where('user_id', $user_id);
     }
 
+    public function save_failure() {
+        if ($this->current_delay > 1) {
+            $this->current_delay --;
+            $this->next_question_at = Carbon::now()->subDays($this->current_delay);
+            $this->save();
+        }
+    }
+
     public function save_success($user, $mode, $is_golden_card) {
         if ($mode === 'soft') {
             $earned_points = $this->full_score ?: $this->score;

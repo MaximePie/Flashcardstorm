@@ -269,6 +269,11 @@ class QuestionController extends Controller
         else {
             if ($user) {
                 QUESTION_USER::query()->firstOrCreate(['user_id' => $user->id, 'question_id' => $question->id]);
+
+                if ($request->mode === 'soft') {
+                    $question_user = Question_user::findFromTuple($question->id, $user->id);
+                    $question_user->save_failure();
+                }
             }
             return response()->json([
                 'text' => 'Oups, ce n\'est pas ça, réessayons !',
