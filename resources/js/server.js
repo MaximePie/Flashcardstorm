@@ -22,18 +22,22 @@ class server {
 
   static async get(url, params = null) {
     let bearer =  Cookies.get('Bearer');
+    let server_url = '/api/';
+
     if (bearer) {
-      return axios.get('/api/authenticated/' + url + '?api_token=' + bearer + '&' + params)
+      server_url += 'authenticated/' + url + '?api_token=' + bearer;
+      if (params) {
+        server_url += '&' + params;
+      }
     }
     else {
-
-      let server_url = '/api/' + url;
+      server_url += url;
       if (params) {
         server_url += '?' + params;
       }
-
-      return axios.get(server_url);
     }
+
+    return axios.get(server_url);
   }
 }
 

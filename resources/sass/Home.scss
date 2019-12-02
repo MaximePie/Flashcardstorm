@@ -31,6 +31,12 @@
     padding: 2rem 2rem;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+}
+
 @media screen and (max-width: 600px) {
     .Home__title {
         margin:  initial;

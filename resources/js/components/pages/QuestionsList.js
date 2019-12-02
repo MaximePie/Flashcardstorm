@@ -5,6 +5,7 @@ import server from "../../server";
 import Icon from "../Icon";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
+import {Pagination} from "react-laravel-paginex";
 
 
 
@@ -35,7 +36,7 @@ export default function QuestionsList(props) {
         )}
       </div>
       <ul className="container list-group list-group-flush">
-        {questions && questions.length && questions.map(function(question, key){
+        {questions && questions.data && questions.data.length && questions.data.map(function(question, key){
           return (
             <li key={`question${question.id}`} className="QuestionsList__question list-group-item">
               {question.category && (
@@ -94,6 +95,9 @@ export default function QuestionsList(props) {
           )
         })}
       </ul>
+      {questions && questions.data && questions.data.length && (
+        <Pagination changePage={updateQuestionsBag} data={questions}/>
+      )}
     </div>
   );
 
@@ -111,9 +115,15 @@ export default function QuestionsList(props) {
     });
   }
 
-  function updateQuestionsBag() {
+  function updateQuestionsBag(data = null) {
     const url = switchStatus === true ? 'questions_list/for_user' : 'questions_list/all';
-    server.get(url).then(response => {
+    let page = undefined;
+    if(data && data.page) {
+      page = 'page=' + data.page;
+    }
+    console.log(page)
+    console.log(data)
+    server.get(url, page).then(response => {
       updateQuestions(response.data.questions || undefined)
     });
   }
