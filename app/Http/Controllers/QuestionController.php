@@ -48,23 +48,26 @@ class QuestionController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param $question_id
+     * @param Request $request
      * @return JsonResponse
      */
-    public function toggleQuestionForUser($question_id): JsonResponse
+    public function toggleQuestionForUser(Request $request): JsonResponse
     {
         $user = Auth::user();
         if (!$user) {
             throw new \RuntimeException('User does now exist');
         }
-        $question = Question::query()->where('id', $question_id)->first();
-        if ($question && $question->exists() && !$question->isSetForUser($user)) {
-            Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
+
+        foreach($request->questions as $selected_question) {
+            $question = Question::query()->where('id', $selected_question['id'])->first();
+            if ($question && $question->exists() && !$question->isSetForUser($user)) {
+                Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
+            }
+            else {
+                $question->users()->detach($user);
+            }
         }
-        else {
-            $question->users()->detach($user);
-        }
-        return response()->json(['is_set_for_user' => $question->isSetForUser($user)]);
+        return response()->json(['Questions' => $user->questions()->get()]);
     }
 
     /**
@@ -222,24 +225,14 @@ class QuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Question $question
+     * @param Int $questionId
      * @return JsonResponse
-     * @throws \Exception
      */
-    public function destroy(Question $question)
+    public function destroy(Int $questionId)
     {
-        Question::destroy($question->id);
-        $questions = Question::query()->get();
-        $user = Auth::user();
+        Question::destroy($questionId);
 
-        $questions->each(static function(Question $question) use ($user){
-            $question['answer'] = $question->answer()->first()->wording;
-            if ($user) {
-                $question['score'] = $question->scoreByUser($user);
-            }
-        });
-
-        return response()->json($questions);
+        return response()->json('Success');
     }
 
     /**

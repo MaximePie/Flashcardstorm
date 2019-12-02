@@ -25,10 +25,10 @@ Route::middleware('auth:api')->get('/authenticated/questions_list/', 'QuestionCo
 Route::middleware('auth:api')->get('/authenticated/question/delete/{question}', 'QuestionController@destroy');
 Route::middleware('auth:api')->get('/authenticated/question/{mode}', 'QuestionController@randomQuestion');
 Route::middleware('auth:api')->get('/authenticated/questions_list/{visibility}', 'QuestionController@index');
-Route::middleware('auth:api')->get('/authenticated/question/toggle/{id}', 'QuestionController@toggleQuestionForUser');
 Route::middleware('auth:api')->get('/authenticated/categories', 'CategoryController@index');
 Route::middleware('auth:api')->get('/authenticated/changelogs', 'ChangelogController@index');
 
+Route::middleware('auth:api')->post('/authenticated/question/toggle', 'QuestionController@toggleQuestionForUser');
 Route::middleware('auth:api')->post('/authenticated/question/submit_answer', 'QuestionController@submitAnswer');
 Route::middleware('auth:api')->post('/authenticated/question', 'QuestionController@store');
 Route::middleware('auth:api')->post('/authenticated/question_import', 'QuestionController@import');

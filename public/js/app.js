@@ -29529,7 +29529,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".QuestionsList__title {\n  text-align: center;\n}\n.QuestionsList__question {\n  display: grid;\n  grid-template-columns: 70px 8fr 128px;\n}\n.QuestionsList .Icon__badge {\n  position: absolute;\n  top: 52px;\n  left: 8px;\n  bottom: initial;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  margin: 0 8px !important;\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton {\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggleButton--set {\n  background-color: #00c107 !important;\n}\n.QuestionsList__toggleButton--unset {\n  background-color: #c13c2b !important;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
+exports.push([module.i, ".QuestionsList {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.QuestionsList__list {\n  width: 100%;\n}\n.QuestionsList__title {\n  text-align: center;\n}\n.QuestionsList__question {\n  display: grid;\n  grid-template-columns: 70px 8fr 128px;\n}\n.QuestionsList .Icon__badge {\n  position: absolute;\n  top: 52px;\n  left: 8px;\n  bottom: initial;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  margin: 0 8px !important;\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggle-button {\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggle-button--set {\n  background-color: #00c107 !important;\n}\n.QuestionsList__toggle-button--unset {\n  background-color: #c13c2b !important;\n}\n.QuestionsList__actions {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
 
 // exports
 
@@ -83351,7 +83351,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98000,13 +98000,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Switch */ "./node_modules/@material-ui/core/esm/Switch/index.js");
 /* harmony import */ var react_laravel_paginex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-laravel-paginex */ "./node_modules/react-laravel-paginex/dist/index.js");
 /* harmony import */ var react_laravel_paginex__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_laravel_paginex__WEBPACK_IMPORTED_MODULE_7__);
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Button */ "./resources/js/components/Button.js");
+/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! notistack */ "./node_modules/notistack/build/index.js");
+/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(notistack__WEBPACK_IMPORTED_MODULE_9__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -98024,30 +98025,32 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 function QuestionsList(props) {
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(undefined),
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       questions = _React$useState2[0],
       updateQuestions = _React$useState2[1];
 
+  var _useSnackbar = Object(notistack__WEBPACK_IMPORTED_MODULE_9__["useSnackbar"])(),
+      enqueueSnackbar = _useSnackbar.enqueueSnackbar,
+      closeSnackbar = _useSnackbar.closeSnackbar;
+
   var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(false),
       _React$useState4 = _slicedToArray(_React$useState3, 2),
-      is_open = _React$useState4[0],
-      setOpen = _React$useState4[1];
-
-  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(false),
-      _React$useState6 = _slicedToArray(_React$useState5, 2),
-      switchStatus = _React$useState6[0],
-      setSwitchStatus = _React$useState6[1];
+      switchStatus = _React$useState4[0],
+      setSwitchStatus = _React$useState4[1];
 
   react__WEBPACK_IMPORTED_MODULE_1___default.a.useEffect(function () {
     updateQuestionsBag();
   }, [switchStatus]);
+  react__WEBPACK_IMPORTED_MODULE_1___default.a.useEffect(function () {}, [questions && questions.data]);
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "QuestionsList"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "jumbotron QuestionsList__title"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Liste des questions"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Une question est automatiquement int\xE9gr\xE9e \xE0 votre collection quand vous cr\xE9ez une question ou quand vous y r\xE9pondez depuis le mode Temp\xEAte"), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Liste des questions"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Une question est automatiquement int\xE9gr\xE9e \xE0 votre collection quand vous cr\xE9ez une question ou quand vous y r\xE9pondez depuis le mode Temp\xEAte"), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__["default"], {
     control: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_6__["default"], {
       checked: switchStatus,
       onChange: function onChange() {
@@ -98055,7 +98058,12 @@ function QuestionsList(props) {
       }
     }),
     label: "Afficher seulement mes questions"
-  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
+  }), questions && questions.data && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    text: "Enregistrer la s\xE9lection",
+    onClick: saveSelection
+  }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+    className: "QuestionsList__list"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
     className: "container list-group list-group-flush"
   }, questions && questions.data && questions.data.length && questions.data.map(function (question, key) {
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
@@ -98081,16 +98089,15 @@ function QuestionsList(props) {
       className: "QuestionsList__question-next"
     }, "Prochaine question le ", question.next_question_at))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "QuestionsList__actions"
-    }, props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      "aria-label": "delete",
-      color: "primary",
-      className: "QuestionsList__delete-button QuestionsList__toggleButton" + (question.is_set_for_user ? "--set" : "--unset"),
-      onClick: function onClick() {
-        return toggleQuestionForUser(question.id, key);
-      }
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-      className: "far fa-check-circle QuestionsList__delete-icon"
-    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }, props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      type: "checkbox",
+      value: question.id,
+      checked: question.is_set_for_user,
+      onChange: function onChange(event) {
+        return toggleQuestionForUser(event, question.id, key);
+      },
+      className: "QuestionsList__toggle-button"
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
       "aria-label": "delete",
       color: "primary",
       className: "QuestionsList__delete-button",
@@ -98100,23 +98107,40 @@ function QuestionsList(props) {
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
       className: "far fa-trash-alt QuestionsList__delete-icon"
     })))));
-  })), questions && questions.data && questions.data.length && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_laravel_paginex__WEBPACK_IMPORTED_MODULE_7__["Pagination"], {
+  }))), questions && questions.data && questions.data.length && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    text: "Enregistrer la s\xE9lection",
+    onClick: saveSelection
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_laravel_paginex__WEBPACK_IMPORTED_MODULE_7__["Pagination"], {
     changePage: updateQuestionsBag,
     data: questions
-  }));
+  })));
 
   function deleteQuestion(id) {
     _server__WEBPACK_IMPORTED_MODULE_3__["default"].get('question/delete/' + id).then(function (response) {
-      updateQuestions(response.data);
+      updateQuestionsBag();
     });
   }
 
-  function toggleQuestionForUser(id, key) {
-    _server__WEBPACK_IMPORTED_MODULE_3__["default"].get('question/toggle/' + id).then(function (response) {
-      var questionsBag = questions;
-      questionsBag[key].is_set_for_user = response.data.is_set_for_user;
-      updateQuestions(_toConsumableArray(questionsBag));
+  function saveSelection() {
+    _server__WEBPACK_IMPORTED_MODULE_3__["default"].post('question/toggle', {
+      questions: questions.data
+    }).then(function (response) {
+      enqueueSnackbar('Votre sélection a bien été enregistrée !', {
+        variant: "success",
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'center'
+        }
+      });
     });
+  }
+
+  function toggleQuestionForUser(event, id, key) {
+    var questionsData = Object.assign({}, questions.data);
+    questionsData[key].is_set_for_user = event.target.checked;
+    updateQuestions(_objectSpread({}, questions, {
+      questionsData: questionsData
+    }));
   }
 
   function updateQuestionsBag() {
@@ -98128,8 +98152,6 @@ function QuestionsList(props) {
       page = 'page=' + data.page;
     }
 
-    console.log(page);
-    console.log(data);
     _server__WEBPACK_IMPORTED_MODULE_3__["default"].get(url, page).then(function (response) {
       updateQuestions(response.data.questions || undefined);
     });
