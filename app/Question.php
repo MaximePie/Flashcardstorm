@@ -84,11 +84,11 @@ class Question extends Model
             return true;
         }
 
-        $purged_answer = preg_replace('/\s*/', '', $submited_answer);
-        $purged_answer = strtolower($purged_answer);
+        $purged_answer = strtolower($submited_answer);
+        $purged_answer = preg_replace('/(\bla|les|le|une|des|un\b)|\s*/', '', $purged_answer);
 
-        $correct_answer = preg_replace('/\s*/', '', $correct_answer);
         $correct_answer = strtolower($correct_answer);
+        $correct_answer = preg_replace('/(\bla|les|le|une|des|un\b)|\s*/', '', $correct_answer);
 
         return $correct_answer === $purged_answer;
     }
