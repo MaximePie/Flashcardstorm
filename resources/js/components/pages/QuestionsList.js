@@ -1,8 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
 import IconButton from "@material-ui/core/IconButton";
-import server from "../server";
-import Icon from "./Icon";
+import server from "../../server";
+import Icon from "../Icon";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 
@@ -70,23 +70,25 @@ export default function QuestionsList(props) {
               </div>
               <div className="QuestionsList__actions">
                 {props.is_connected && (
-                  <IconButton
-                    aria-label="delete"
-                    color="primary"
-                    className={"QuestionsList__delete-button QuestionsList__toggleButton" + (question.is_set_for_user ? "--set" : "--unset")}
-                    onClick={() => toggleQuestionForUser(question.id, key)}
-                  >
-                    <i className="far fa-check-circle QuestionsList__delete-icon"/>
-                  </IconButton>
+                  <>
+                    <IconButton
+                      aria-label="delete"
+                      color="primary"
+                      className={"QuestionsList__delete-button QuestionsList__toggleButton" + (question.is_set_for_user ? "--set" : "--unset")}
+                      onClick={() => toggleQuestionForUser(question.id, key)}
+                    >
+                      <i className="far fa-check-circle QuestionsList__delete-icon"/>
+                    </IconButton>
+                    <IconButton
+                      aria-label="delete"
+                      color="primary"
+                      className="QuestionsList__delete-button"
+                      onClick={() => deleteQuestion(question.id)}
+                    >
+                      <i className="far fa-trash-alt QuestionsList__delete-icon"/>
+                    </IconButton>
+                  </>
                 )}
-                <IconButton
-                  aria-label="delete"
-                  color="primary"
-                  className="QuestionsList__delete-button"
-                  onClick={() => deleteQuestion(question.id)}
-                >
-                  <i className="far fa-trash-alt QuestionsList__delete-icon"/>
-                </IconButton>
               </div>
             </li>
           )

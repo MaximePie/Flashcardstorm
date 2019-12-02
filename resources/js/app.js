@@ -26,7 +26,7 @@ require ("../sass/Changelogs.scss");
 import Home from "./components/Home"
 import AddKnowledge from "./components/AddKnowledge"
 import Navbar from "./components/Navbar";
-import QuestionsList from "./components/QuestionsList";
+import QuestionsList from "./components/pages/QuestionsList";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";

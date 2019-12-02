@@ -267,6 +267,9 @@ class QuestionController extends Controller
             ]);
         }
         else {
+            if ($user) {
+                QUESTION_USER::query()->firstOrCreate(['user_id' => $user->id, 'question_id' => $question->id]);
+            }
             return response()->json([
                 'text' => 'Oups, ce n\'est pas ça, réessayons !',
                 'status' => 500,

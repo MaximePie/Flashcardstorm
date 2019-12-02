@@ -96374,7 +96374,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Home */ "./resources/js/components/Home.js");
 /* harmony import */ var _components_AddKnowledge__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/AddKnowledge */ "./resources/js/components/AddKnowledge.js");
 /* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Navbar */ "./resources/js/components/Navbar.js");
-/* harmony import */ var _components_QuestionsList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/QuestionsList */ "./resources/js/components/QuestionsList.js");
+/* harmony import */ var _components_pages_QuestionsList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/pages/QuestionsList */ "./resources/js/components/pages/QuestionsList.js");
 /* harmony import */ var _components_Register__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.js");
 /* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.js");
 /* harmony import */ var _components_Profile__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Profile */ "./resources/js/components/Profile.js");
@@ -96495,7 +96495,7 @@ function App() {
     is_connected: is_connected
   })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/questions"
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_QuestionsList__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_pages_QuestionsList__WEBPACK_IMPORTED_MODULE_9__["default"], {
     is_connected: is_connected
   })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/about"
@@ -97420,150 +97420,6 @@ function QuestionCard(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/QuestionsList.js":
-/*!**************************************************!*\
-  !*** ./resources/js/components/QuestionsList.js ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return QuestionsList; });
-/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
-/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js");
-/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../server */ "./resources/js/server.js");
-/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Icon */ "./resources/js/components/Icon.js");
-/* harmony import */ var _material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/FormControlLabel */ "./node_modules/@material-ui/core/esm/FormControlLabel/index.js");
-/* harmony import */ var _material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Switch */ "./node_modules/@material-ui/core/esm/Switch/index.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-
-function QuestionsList(props) {
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(undefined),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      questions = _React$useState2[0],
-      updateQuestions = _React$useState2[1];
-
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(false),
-      _React$useState4 = _slicedToArray(_React$useState3, 2),
-      is_open = _React$useState4[0],
-      setOpen = _React$useState4[1];
-
-  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(false),
-      _React$useState6 = _slicedToArray(_React$useState5, 2),
-      switchStatus = _React$useState6[0],
-      setSwitchStatus = _React$useState6[1];
-
-  react__WEBPACK_IMPORTED_MODULE_1___default.a.useEffect(function () {
-    updateQuestionsBag();
-  }, [switchStatus]);
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "QuestionsList"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "jumbotron QuestionsList__title"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Liste des questions"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Une question est automatiquement int\xE9gr\xE9e \xE0 votre collection quand vous cr\xE9ez une question ou quand vous y r\xE9pondez depuis le mode Temp\xEAte"), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    control: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      checked: switchStatus,
-      onChange: function onChange() {
-        return setSwitchStatus(!switchStatus);
-      }
-    }),
-    label: "Afficher seulement mes questions"
-  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
-    className: "container list-group list-group-flush"
-  }, questions && questions.length && questions.map(function (question, key) {
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
-      key: "question".concat(question.id),
-      className: "QuestionsList__question list-group-item"
-    }, question.category && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      className: "QuestionsList__category-icon",
-      name: question.category.icon,
-      badge: question.category.name,
-      color: question.category.color
-    }), !question.category && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      className: "QuestionsList__category-icon",
-      name: 'question',
-      badge: 'divers',
-      color: 'grey'
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
-      className: "QuestionsList__question-wording"
-    }, question.wording), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "QuestionsList__question-answer"
-    }, question.answer), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, question.score && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "QuestionsList__question-score"
-    }, "Prochain gain : +", question.score), question.next_question_at && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "QuestionsList__question-next"
-    }, "Prochaine question le ", question.next_question_at))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "QuestionsList__actions"
-    }, props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      "aria-label": "delete",
-      color: "primary",
-      className: "QuestionsList__delete-button QuestionsList__toggleButton" + (question.is_set_for_user ? "--set" : "--unset"),
-      onClick: function onClick() {
-        return toggleQuestionForUser(question.id, key);
-      }
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-      className: "far fa-check-circle QuestionsList__delete-icon"
-    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      "aria-label": "delete",
-      color: "primary",
-      className: "QuestionsList__delete-button",
-      onClick: function onClick() {
-        return deleteQuestion(question.id);
-      }
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-      className: "far fa-trash-alt QuestionsList__delete-icon"
-    }))));
-  })));
-
-  function deleteQuestion(id) {
-    _server__WEBPACK_IMPORTED_MODULE_3__["default"].get('question/delete/' + id).then(function (response) {
-      updateQuestions(response.data);
-    });
-  }
-
-  function toggleQuestionForUser(id, key) {
-    _server__WEBPACK_IMPORTED_MODULE_3__["default"].get('question/toggle/' + id).then(function (response) {
-      var questionsBag = questions;
-      questionsBag[key].is_set_for_user = response.data.is_set_for_user;
-      updateQuestions(_toConsumableArray(questionsBag));
-    });
-  }
-
-  function updateQuestionsBag() {
-    var url = switchStatus === true ? 'questions_list/for_user' : 'questions_list/all';
-    _server__WEBPACK_IMPORTED_MODULE_3__["default"].get(url).then(function (response) {
-      updateQuestions(response.data.questions || undefined);
-    });
-  }
-}
-
-/***/ }),
-
 /***/ "./resources/js/components/Register.js":
 /*!*********************************************!*\
   !*** ./resources/js/components/Register.js ***!
@@ -97824,6 +97680,150 @@ function Users() {
   function fetchUsers() {
     _server__WEBPACK_IMPORTED_MODULE_1__["default"].get('users').then(function (response) {
       setUsers(response.data.users || undefined);
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/QuestionsList.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/pages/QuestionsList.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return QuestionsList; });
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/IconButton */ "./node_modules/@material-ui/core/esm/IconButton/index.js");
+/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../server */ "./resources/js/server.js");
+/* harmony import */ var _Icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Icon */ "./resources/js/components/Icon.js");
+/* harmony import */ var _material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/FormControlLabel */ "./node_modules/@material-ui/core/esm/FormControlLabel/index.js");
+/* harmony import */ var _material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Switch */ "./node_modules/@material-ui/core/esm/Switch/index.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+function QuestionsList(props) {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(undefined),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      questions = _React$useState2[0],
+      updateQuestions = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(false),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      is_open = _React$useState4[0],
+      setOpen = _React$useState4[1];
+
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(false),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      switchStatus = _React$useState6[0],
+      setSwitchStatus = _React$useState6[1];
+
+  react__WEBPACK_IMPORTED_MODULE_1___default.a.useEffect(function () {
+    updateQuestionsBag();
+  }, [switchStatus]);
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "QuestionsList"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "jumbotron QuestionsList__title"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Liste des questions"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Une question est automatiquement int\xE9gr\xE9e \xE0 votre collection quand vous cr\xE9ez une question ou quand vous y r\xE9pondez depuis le mode Temp\xEAte"), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    control: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      checked: switchStatus,
+      onChange: function onChange() {
+        return setSwitchStatus(!switchStatus);
+      }
+    }),
+    label: "Afficher seulement mes questions"
+  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
+    className: "container list-group list-group-flush"
+  }, questions && questions.length && questions.map(function (question, key) {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+      key: "question".concat(question.id),
+      className: "QuestionsList__question list-group-item"
+    }, question.category && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      className: "QuestionsList__category-icon",
+      name: question.category.icon,
+      badge: question.category.name,
+      color: question.category.color
+    }), !question.category && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Icon__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      className: "QuestionsList__category-icon",
+      name: 'question',
+      badge: 'divers',
+      color: 'grey'
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+      className: "QuestionsList__question-wording"
+    }, question.wording), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "QuestionsList__question-answer"
+    }, question.answer), props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, question.score && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "QuestionsList__question-score"
+    }, "Prochain gain : +", question.score), question.next_question_at && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "QuestionsList__question-next"
+    }, "Prochaine question le ", question.next_question_at))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "QuestionsList__actions"
+    }, props.is_connected && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      "aria-label": "delete",
+      color: "primary",
+      className: "QuestionsList__delete-button QuestionsList__toggleButton" + (question.is_set_for_user ? "--set" : "--unset"),
+      onClick: function onClick() {
+        return toggleQuestionForUser(question.id, key);
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+      className: "far fa-check-circle QuestionsList__delete-icon"
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_material_ui_core_IconButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      "aria-label": "delete",
+      color: "primary",
+      className: "QuestionsList__delete-button",
+      onClick: function onClick() {
+        return deleteQuestion(question.id);
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+      className: "far fa-trash-alt QuestionsList__delete-icon"
+    })))));
+  })));
+
+  function deleteQuestion(id) {
+    _server__WEBPACK_IMPORTED_MODULE_3__["default"].get('question/delete/' + id).then(function (response) {
+      updateQuestions(response.data);
+    });
+  }
+
+  function toggleQuestionForUser(id, key) {
+    _server__WEBPACK_IMPORTED_MODULE_3__["default"].get('question/toggle/' + id).then(function (response) {
+      var questionsBag = questions;
+      questionsBag[key].is_set_for_user = response.data.is_set_for_user;
+      updateQuestions(_toConsumableArray(questionsBag));
+    });
+  }
+
+  function updateQuestionsBag() {
+    var url = switchStatus === true ? 'questions_list/for_user' : 'questions_list/all';
+    _server__WEBPACK_IMPORTED_MODULE_3__["default"].get(url).then(function (response) {
+      updateQuestions(response.data.questions || undefined);
     });
   }
 }
