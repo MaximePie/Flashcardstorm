@@ -23,9 +23,9 @@ class QuestionController extends Controller
     public function index(string $visibility = 'all'): JsonResponse
     {
         $user = Auth::user();
-        $questions = Question::query()->paginate(5);
+        $questions = Question::query()->paginate(20);
         if ($user && $visibility === 'for_user') {
-            $questions = $user->questions()->paginate(5);
+            $questions = $user->questions()->paginate(20);
         }
 
         $questions->each(static function(Question $question) use ($user){
