@@ -59,7 +59,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         if ($user) {
-            if (!now()->isSameDay($user->last_daily_updated_at)) {
+            if (!now()->isSameDay($user->last_daily_updated_at) || $user->last_daily_updated_at === null) {
                 $user->last_daily_updated_at = now();
                 $user->daily_objective = $user->questions(true)->count();
                 $user->daily_progress = 0;
