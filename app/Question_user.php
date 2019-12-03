@@ -54,6 +54,10 @@ class Question_user extends Model
 
         $user->updateDailyProgress();
 
+        if ($user->questions(true)->count() === $user->daily_objective) {
+            $earned_points += 200;
+        }
+
         $user->score += $earned_points;
         $user->save();
 
