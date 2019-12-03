@@ -2,6 +2,8 @@ import React from 'react';
 import QuestionCard from "../QuestionCard";
 import server from '../../server'
 import {useSnackbar} from "notistack";
+import MobileStepper from "@material-ui/core/MobileStepper";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 export default function SoftTraining(props) {
   const [question, updateQuestions] = React.useState(undefined);
@@ -26,7 +28,8 @@ export default function SoftTraining(props) {
         <p>Seules les questions auxquelles vous n'avez pas répondu depuis assez longtemps apparaîtront</p>
         {userProgress && (
           <div>
-            Progression : {userProgress.daily_progress} / {userProgress.daily_objective}
+            Progression journalière: {userProgress.daily_progress} / {userProgress.daily_objective}
+            <LinearProgress variant="determinate" value={userProgress.daily_progress/userProgress.daily_objective * 100} />
           </div>
         )}
       </div>

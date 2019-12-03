@@ -8348,6 +8348,338 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/core/esm/LinearProgress/LinearProgress.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/LinearProgress/LinearProgress.js ***!
+  \*****************************************************************************/
+/*! exports provided: styles, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _utils_capitalize__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/capitalize */ "./node_modules/@material-ui/core/esm/utils/capitalize.js");
+/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
+/* harmony import */ var _styles_colorManipulator__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../styles/colorManipulator */ "./node_modules/@material-ui/core/esm/styles/colorManipulator.js");
+/* harmony import */ var _styles_useTheme__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../styles/useTheme */ "./node_modules/@material-ui/core/esm/styles/useTheme.js");
+
+
+
+
+
+
+
+
+
+var TRANSITION_DURATION = 4; // seconds
+
+var styles = function styles(theme) {
+  var getColor = function getColor(color) {
+    return theme.palette.type === 'light' ? Object(_styles_colorManipulator__WEBPACK_IMPORTED_MODULE_7__["lighten"])(color, 0.62) : Object(_styles_colorManipulator__WEBPACK_IMPORTED_MODULE_7__["darken"])(color, 0.5);
+  };
+
+  var backgroundPrimary = getColor(theme.palette.primary.main);
+  var backgroundSecondary = getColor(theme.palette.secondary.main);
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      position: 'relative',
+      overflow: 'hidden',
+      height: 4
+    },
+
+    /* Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant-"buffer"`. */
+    colorPrimary: {
+      backgroundColor: backgroundPrimary
+    },
+
+    /* Styles applied to the root and bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
+    colorSecondary: {
+      backgroundColor: backgroundSecondary
+    },
+
+    /* Styles applied to the root element if `variant="determinate"`. */
+    determinate: {},
+
+    /* Styles applied to the root element if `variant="indeterminate"`. */
+    indeterminate: {},
+
+    /* Styles applied to the root element if `variant="buffer"`. */
+    buffer: {
+      backgroundColor: 'transparent'
+    },
+
+    /* Styles applied to the root element if `variant="query"`. */
+    query: {
+      transform: 'rotate(180deg)'
+    },
+
+    /* Styles applied to the additional bar element if `variant="buffer"`. */
+    dashed: {
+      position: 'absolute',
+      marginTop: 0,
+      height: '100%',
+      width: '100%',
+      animation: '$buffer 3s infinite linear'
+    },
+
+    /* Styles applied to the additional bar element if `variant="buffer"` and `color="primary"`. */
+    dashedColorPrimary: {
+      backgroundImage: "radial-gradient(".concat(backgroundPrimary, " 0%, ").concat(backgroundPrimary, " 16%, transparent 42%)"),
+      backgroundSize: '10px 10px',
+      backgroundPosition: '0px -23px'
+    },
+
+    /* Styles applied to the additional bar element if `variant="buffer"` and `color="secondary"`. */
+    dashedColorSecondary: {
+      backgroundImage: "radial-gradient(".concat(backgroundSecondary, " 0%, ").concat(backgroundSecondary, " 16%, transparent 42%)"),
+      backgroundSize: '10px 10px',
+      backgroundPosition: '0px -23px'
+    },
+
+    /* Styles applied to the layered bar1 and bar2 elements. */
+    bar: {
+      width: '100%',
+      position: 'absolute',
+      left: 0,
+      bottom: 0,
+      top: 0,
+      transition: 'transform 0.2s linear',
+      transformOrigin: 'left'
+    },
+
+    /* Styles applied to the bar elements if `color="primary"`; bar2 if `variant` not "buffer". */
+    barColorPrimary: {
+      backgroundColor: theme.palette.primary.main
+    },
+
+    /* Styles applied to the bar elements if `color="secondary"`; bar2 if `variant` not "buffer". */
+    barColorSecondary: {
+      backgroundColor: theme.palette.secondary.main
+    },
+
+    /* Styles applied to the bar1 element if `variant="indeterminate or query"`. */
+    bar1Indeterminate: {
+      width: 'auto',
+      animation: '$indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite'
+    },
+
+    /* Styles applied to the bar1 element if `variant="determinate"`. */
+    bar1Determinate: {
+      transition: "transform .".concat(TRANSITION_DURATION, "s linear")
+    },
+
+    /* Styles applied to the bar1 element if `variant="buffer"`. */
+    bar1Buffer: {
+      zIndex: 1,
+      transition: "transform .".concat(TRANSITION_DURATION, "s linear")
+    },
+
+    /* Styles applied to the bar2 element if `variant="indeterminate or query"`. */
+    bar2Indeterminate: {
+      width: 'auto',
+      animation: '$indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
+      animationDelay: '1.15s'
+    },
+
+    /* Styles applied to the bar2 element if `variant="buffer"`. */
+    bar2Buffer: {
+      transition: "transform .".concat(TRANSITION_DURATION, "s linear")
+    },
+    // Legends:
+    // || represents the viewport
+    // -  represents a light background
+    // x  represents a dark background
+    '@keyframes indeterminate1': {
+      //  |-----|---x-||-----||-----|
+      '0%': {
+        left: '-35%',
+        right: '100%'
+      },
+      //  |-----|-----||-----||xxxx-|
+      '60%': {
+        left: '100%',
+        right: '-90%'
+      },
+      '100%': {
+        left: '100%',
+        right: '-90%'
+      }
+    },
+    '@keyframes indeterminate2': {
+      //  |xxxxx|xxxxx||-----||-----|
+      '0%': {
+        left: '-200%',
+        right: '100%'
+      },
+      //  |-----|-----||-----||-x----|
+      '60%': {
+        left: '107%',
+        right: '-8%'
+      },
+      '100%': {
+        left: '107%',
+        right: '-8%'
+      }
+    },
+    '@keyframes buffer': {
+      '0%': {
+        opacity: 1,
+        backgroundPosition: '0px -23px'
+      },
+      '50%': {
+        opacity: 0,
+        backgroundPosition: '0px -23px'
+      },
+      '100%': {
+        opacity: 1,
+        backgroundPosition: '-200px -23px'
+      }
+    }
+  };
+};
+/**
+ * ## ARIA
+ *
+ * If the progress bar is describing the loading progress of a particular region of a page,
+ * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
+ * attribute to `true` on that region until it has finished loading.
+ */
+
+var LinearProgress = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function LinearProgress(props, ref) {
+  var classes = props.classes,
+      className = props.className,
+      _props$color = props.color,
+      color = _props$color === void 0 ? 'primary' : _props$color,
+      value = props.value,
+      valueBuffer = props.valueBuffer,
+      _props$variant = props.variant,
+      variant = _props$variant === void 0 ? 'indeterminate' : _props$variant,
+      other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__["default"])(props, ["classes", "className", "color", "value", "valueBuffer", "variant"]);
+
+  var theme = Object(_styles_useTheme__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  var rootProps = {};
+  var inlineStyles = {
+    bar1: {},
+    bar2: {}
+  };
+
+  if (variant === 'determinate' || variant === 'buffer') {
+    if (value !== undefined) {
+      rootProps['aria-valuenow'] = Math.round(value);
+      var transform = value - 100;
+
+      if (theme.direction === 'rtl') {
+        transform = -transform;
+      }
+
+      inlineStyles.bar1.transform = "translateX(".concat(transform, "%)");
+    } else if (true) {
+      console.error('Material-UI: you need to provide a value prop ' + 'when using the determinate or buffer variant of LinearProgress .');
+    }
+  }
+
+  if (variant === 'buffer') {
+    if (valueBuffer !== undefined) {
+      var _transform = (valueBuffer || 0) - 100;
+
+      if (theme.direction === 'rtl') {
+        _transform = -_transform;
+      }
+
+      inlineStyles.bar2.transform = "translateX(".concat(_transform, "%)");
+    } else if (true) {
+      console.error('Material-UI: you need to provide a valueBuffer prop ' + 'when using the buffer variant of LinearProgress.');
+    }
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.root, classes["color".concat(Object(_utils_capitalize__WEBPACK_IMPORTED_MODULE_5__["default"])(color))], className, {
+      determinate: classes.determinate,
+      indeterminate: classes.indeterminate,
+      buffer: classes.buffer,
+      query: classes.query
+    }[variant]),
+    role: "progressbar"
+  }, rootProps, {
+    ref: ref
+  }, other), variant === 'buffer' ? react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.dashed, classes["dashedColor".concat(Object(_utils_capitalize__WEBPACK_IMPORTED_MODULE_5__["default"])(color))])
+  }) : null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.bar, classes["barColor".concat(Object(_utils_capitalize__WEBPACK_IMPORTED_MODULE_5__["default"])(color))], (variant === 'indeterminate' || variant === 'query') && classes.bar1Indeterminate, {
+      determinate: classes.bar1Determinate,
+      buffer: classes.bar1Buffer
+    }[variant]),
+    style: inlineStyles.bar1
+  }), variant === 'determinate' ? null : react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_4__["default"])(classes.bar, (variant === 'indeterminate' || variant === 'query') && classes.bar2Indeterminate, variant === 'buffer' ? [classes["color".concat(Object(_utils_capitalize__WEBPACK_IMPORTED_MODULE_5__["default"])(color))], classes.bar2Buffer] : classes["barColor".concat(Object(_utils_capitalize__WEBPACK_IMPORTED_MODULE_5__["default"])(color))]),
+    style: inlineStyles.bar2
+  }));
+});
+ true ? LinearProgress.propTypes = {
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.oneOf(['primary', 'secondary']),
+
+  /**
+   * The value of the progress indicator for the determinate and buffer variants.
+   * Value between 0 and 100.
+   */
+  value: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.number,
+
+  /**
+   * The value for the buffer variant.
+   * Value between 0 and 100.
+   */
+  valueBuffer: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.number,
+
+  /**
+   * The variant to use.
+   * Use indeterminate or query when there is no progress value.
+   */
+  variant: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.oneOf(['determinate', 'indeterminate', 'buffer', 'query'])
+} : undefined;
+/* harmony default export */ __webpack_exports__["default"] = (Object(_styles_withStyles__WEBPACK_IMPORTED_MODULE_6__["default"])(styles, {
+  name: 'MuiLinearProgress'
+})(LinearProgress));
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/LinearProgress/index.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/LinearProgress/index.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LinearProgress__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LinearProgress */ "./node_modules/@material-ui/core/esm/LinearProgress/LinearProgress.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _LinearProgress__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/core/esm/List/List.js":
 /*!*********************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/List/List.js ***!
@@ -9749,6 +10081,200 @@ var MenuList = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MenuList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MenuList */ "./node_modules/@material-ui/core/esm/MenuList/MenuList.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _MenuList__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/MobileStepper/MobileStepper.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/MobileStepper/MobileStepper.js ***!
+  \***************************************************************************/
+/*! exports provided: styles, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "styles", function() { return styles; });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
+/* harmony import */ var _Paper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js");
+/* harmony import */ var _utils_capitalize__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/capitalize */ "./node_modules/@material-ui/core/esm/utils/capitalize.js");
+/* harmony import */ var _LinearProgress__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../LinearProgress */ "./node_modules/@material-ui/core/esm/LinearProgress/index.js");
+
+
+
+
+
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      background: theme.palette.background.default,
+      padding: 8
+    },
+
+    /* Styles applied to the root element if `position="bottom"`. */
+    positionBottom: {
+      position: 'fixed',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      zIndex: theme.zIndex.mobileStepper
+    },
+
+    /* Styles applied to the root element if `position="top"`. */
+    positionTop: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: theme.zIndex.mobileStepper
+    },
+
+    /* Styles applied to the root element if `position="static"`. */
+    positionStatic: {},
+
+    /* Styles applied to the dots container if `variant="dots"`. */
+    dots: {
+      display: 'flex',
+      flexDirection: 'row'
+    },
+
+    /* Styles applied to each dot if `variant="dots"`. */
+    dot: {
+      backgroundColor: theme.palette.action.disabled,
+      borderRadius: '50%',
+      width: 8,
+      height: 8,
+      margin: '0 2px'
+    },
+
+    /* Styles applied to a dot if `variant="dots"` and this is the active step. */
+    dotActive: {
+      backgroundColor: theme.palette.primary.main
+    },
+
+    /* Styles applied to the Linear Progress component if `variant="progress"`. */
+    progress: {
+      width: '50%'
+    }
+  };
+};
+var MobileStepper = react__WEBPACK_IMPORTED_MODULE_3___default.a.forwardRef(function MobileStepper(props, ref) {
+  var _props$activeStep = props.activeStep,
+      activeStep = _props$activeStep === void 0 ? 0 : _props$activeStep,
+      backButton = props.backButton,
+      classes = props.classes,
+      className = props.className,
+      LinearProgressProps = props.LinearProgressProps,
+      nextButton = props.nextButton,
+      _props$position = props.position,
+      position = _props$position === void 0 ? 'bottom' : _props$position,
+      steps = props.steps,
+      _props$variant = props.variant,
+      variant = _props$variant === void 0 ? 'dots' : _props$variant,
+      other = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_2__["default"])(props, ["activeStep", "backButton", "classes", "className", "LinearProgressProps", "nextButton", "position", "steps", "variant"]);
+
+  return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_Paper__WEBPACK_IMPORTED_MODULE_7__["default"], Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    square: true,
+    elevation: 0,
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_5__["default"])(classes.root, classes["position".concat(Object(_utils_capitalize__WEBPACK_IMPORTED_MODULE_8__["default"])(position))], className),
+    ref: ref
+  }, other), backButton, variant === 'text' && react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_3___default.a.Fragment, null, activeStep + 1, " / ", steps), variant === 'dots' && react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+    className: classes.dots
+  }, Object(_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(new Array(steps)).map(function (_, index) {
+    return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+      key: index,
+      className: Object(clsx__WEBPACK_IMPORTED_MODULE_5__["default"])(classes.dot, index === activeStep && classes.dotActive)
+    });
+  })), variant === 'progress' && react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_LinearProgress__WEBPACK_IMPORTED_MODULE_9__["default"], Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    className: classes.progress,
+    variant: "determinate",
+    value: Math.ceil(activeStep / (steps - 1) * 100)
+  }, LinearProgressProps)), nextButton);
+});
+ true ? MobileStepper.propTypes = {
+  /**
+   * Set the active step (zero based index).
+   * Defines which dot is highlighted when the variant is 'dots'.
+   */
+  activeStep: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.number,
+
+  /**
+   * A back button element. For instance, it can be a `Button` or an `IconButton`.
+   */
+  backButton: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.node,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.object.isRequired,
+
+  /**
+   * @ignore
+   */
+  className: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.string,
+
+  /**
+   * Props applied to the `LinearProgress` element.
+   */
+  LinearProgressProps: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.object,
+
+  /**
+   * A next button element. For instance, it can be a `Button` or an `IconButton`.
+   */
+  nextButton: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.node,
+
+  /**
+   * Set the positioning type.
+   */
+  position: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.oneOf(['bottom', 'top', 'static']),
+
+  /**
+   * The total steps.
+   */
+  steps: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.number.isRequired,
+
+  /**
+   * The variant to use.
+   */
+  variant: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.oneOf(['text', 'dots', 'progress'])
+} : undefined;
+/* harmony default export */ __webpack_exports__["default"] = (Object(_styles_withStyles__WEBPACK_IMPORTED_MODULE_6__["default"])(styles, {
+  name: 'MuiMobileStepper'
+})(MobileStepper));
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/esm/MobileStepper/index.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/MobileStepper/index.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MobileStepper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MobileStepper */ "./node_modules/@material-ui/core/esm/MobileStepper/MobileStepper.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _MobileStepper__WEBPACK_IMPORTED_MODULE_0__["default"]; });
 
 
 
@@ -98068,6 +98594,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../server */ "./resources/js/server.js");
 /* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! notistack */ "./node_modules/notistack/build/index.js");
 /* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(notistack__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _material_ui_core_MobileStepper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/MobileStepper */ "./node_modules/@material-ui/core/esm/MobileStepper/index.js");
+/* harmony import */ var _material_ui_core_LinearProgress__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/LinearProgress */ "./node_modules/@material-ui/core/esm/LinearProgress/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -98075,6 +98603,8 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -98108,7 +98638,10 @@ function SoftTraining(props) {
   return (// TODO Afficher tous les composants sur la même page Home.js pour le moment puisqu'on n'a que très peu de contenu*
     react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "jumbotron Home__title"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Mode consolidation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "R\xE9pondez aux questions en fonction du temps pass\xE9 pour consolider vos m\xE9morisations"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Seules les questions auxquelles vous n'avez pas r\xE9pondu depuis assez longtemps appara\xEEtront"), userProgress && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Progression : ", userProgress.daily_progress, " / ", userProgress.daily_objective)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Mode consolidation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "R\xE9pondez aux questions en fonction du temps pass\xE9 pour consolider vos m\xE9morisations"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Seules les questions auxquelles vous n'avez pas r\xE9pondu depuis assez longtemps appara\xEEtront"), userProgress && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Progression journali\xE8re: ", userProgress.daily_progress, " / ", userProgress.daily_objective, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_LinearProgress__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      variant: "determinate",
+      value: userProgress.daily_progress / userProgress.daily_objective * 100
+    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "container Home"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row"
