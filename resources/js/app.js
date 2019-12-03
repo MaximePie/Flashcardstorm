@@ -24,14 +24,14 @@ require ("../sass/Changelogs.scss");
 
 
 import Home from "./components/Home"
-import AddKnowledge from "./components/AddKnowledge"
+import AddKnowledge from "./components/pages/AddKnowledge"
 import Navbar from "./components/Navbar";
 import QuestionsList from "./components/pages/QuestionsList";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import server from "./server";
-import SoftTraining from "./components/SoftTraining";
+import SoftTraining from "./components/pages/SoftTraining";
 import Users from "./components/Users";
 import Welcome from "./components/pages/Welcome";
 import Changelogs from "./components/Changelogs";

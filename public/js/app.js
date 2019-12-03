@@ -29529,7 +29529,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".QuestionsList {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.QuestionsList__list {\n  width: 100%;\n}\n.QuestionsList__title {\n  text-align: center;\n}\n.QuestionsList__question {\n  display: grid;\n  grid-template-columns: 70px 8fr 128px;\n}\n.QuestionsList .Icon__badge {\n  position: absolute;\n  top: 52px;\n  left: 8px;\n  bottom: initial;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  margin: 0 8px !important;\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggle-button {\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggle-button--set {\n  background-color: #00c107 !important;\n}\n.QuestionsList__toggle-button--unset {\n  background-color: #c13c2b !important;\n}\n.QuestionsList__actions {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
+exports.push([module.i, ".QuestionsList {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-align: center;\n          align-items: center;\n  width: 100%;\n}\n.QuestionsList__list {\n  width: 100%;\n}\n.QuestionsList__title {\n  text-align: center;\n  width: 100%;\n}\n.QuestionsList__question {\n  display: grid;\n  grid-template-columns: 70px 8fr 128px;\n}\n.QuestionsList .Icon__badge {\n  position: absolute;\n  top: 52px;\n  left: 8px;\n  bottom: initial;\n}\n.QuestionsList__question-wording {\n  margin: 0 4px;\n}\n.QuestionsList__question-answer {\n  margin: 0 4px;\n}\n.QuestionsList__delete-button {\n  background-color: #c13c2b !important;\n  margin: 0 8px !important;\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggle-button {\n  padding: 4px;\n  width: 48px;\n  height: 48px;\n}\n.QuestionsList__toggle-button--set {\n  background-color: #00c107 !important;\n}\n.QuestionsList__toggle-button--unset {\n  background-color: #c13c2b !important;\n}\n.QuestionsList__actions {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.QuestionsList__delete-icon {\n  color: white;\n}", ""]);
 
 // exports
 
@@ -96665,14 +96665,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Home */ "./resources/js/components/Home.js");
-/* harmony import */ var _components_AddKnowledge__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/AddKnowledge */ "./resources/js/components/AddKnowledge.js");
+/* harmony import */ var _components_pages_AddKnowledge__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/pages/AddKnowledge */ "./resources/js/components/pages/AddKnowledge.js");
 /* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Navbar */ "./resources/js/components/Navbar.js");
 /* harmony import */ var _components_pages_QuestionsList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/pages/QuestionsList */ "./resources/js/components/pages/QuestionsList.js");
 /* harmony import */ var _components_Register__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Register */ "./resources/js/components/Register.js");
 /* harmony import */ var _components_Login__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/Login */ "./resources/js/components/Login.js");
 /* harmony import */ var _components_Profile__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Profile */ "./resources/js/components/Profile.js");
 /* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./server */ "./resources/js/server.js");
-/* harmony import */ var _components_SoftTraining__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/SoftTraining */ "./resources/js/components/SoftTraining.js");
+/* harmony import */ var _components_pages_SoftTraining__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/pages/SoftTraining */ "./resources/js/components/pages/SoftTraining.js");
 /* harmony import */ var _components_Users__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Users */ "./resources/js/components/Users.js");
 /* harmony import */ var _components_pages_Welcome__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/pages/Welcome */ "./resources/js/components/pages/Welcome.js");
 /* harmony import */ var _components_Changelogs__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Changelogs */ "./resources/js/components/Changelogs.js");
@@ -96768,7 +96768,7 @@ function App() {
     path: "/login"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Login__WEBPACK_IMPORTED_MODULE_11__["default"], null)), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/soft_training"
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_SoftTraining__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_pages_SoftTraining__WEBPACK_IMPORTED_MODULE_14__["default"], {
     updateUserScore: updateUser
   })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/logout"
@@ -96784,7 +96784,7 @@ function App() {
     path: "/users"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Users__WEBPACK_IMPORTED_MODULE_15__["default"], null)), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/add"
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_AddKnowledge__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_pages_AddKnowledge__WEBPACK_IMPORTED_MODULE_7__["default"], {
     is_connected: is_connected
   })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/questions"
@@ -96816,212 +96816,6 @@ function App() {
 
 if (document.getElementById('app')) {
   react_dom__WEBPACK_IMPORTED_MODULE_0___default.a.render(react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(App, null), document.getElementById('app'));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/AddKnowledge.js":
-/*!*************************************************!*\
-  !*** ./resources/js/components/AddKnowledge.js ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddKnowledge; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Button */ "./resources/js/components/Button.js");
-/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
-/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../server */ "./resources/js/server.js");
-/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! notistack */ "./node_modules/notistack/build/index.js");
-/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(notistack__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _material_ui_core_Radio__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Radio */ "./node_modules/@material-ui/core/esm/Radio/index.js");
-/* harmony import */ var _material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/FormControlLabel */ "./node_modules/@material-ui/core/esm/FormControlLabel/index.js");
-/* harmony import */ var _material_ui_core_RadioGroup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/RadioGroup */ "./node_modules/@material-ui/core/esm/RadioGroup/index.js");
-/* harmony import */ var react_dropzone__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-dropzone */ "./node_modules/react-dropzone/dist/es/index.js");
-/* harmony import */ var csv__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! csv */ "./node_modules/csv/lib/index.js");
-/* harmony import */ var csv__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(csv__WEBPACK_IMPORTED_MODULE_9__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-
-
-
-
-function AddKnowledge(props) {
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState({
-    question: '',
-    answer: ''
-  }),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      form = _React$useState2[0],
-      setForm = _React$useState2[1];
-
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
-      _React$useState4 = _slicedToArray(_React$useState3, 2),
-      categories = _React$useState4[0],
-      updateCategories = _React$useState4[1];
-
-  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0),
-      _React$useState6 = _slicedToArray(_React$useState5, 2),
-      selectedCategory = _React$useState6[0],
-      setSelectedCategory = _React$useState6[1];
-
-  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
-    updateCategoriesList();
-  }, []);
-
-  var _useSnackbar = Object(notistack__WEBPACK_IMPORTED_MODULE_4__["useSnackbar"])(),
-      enqueueSnackbar = _useSnackbar.enqueueSnackbar,
-      closeSnackbar = _useSnackbar.closeSnackbar; // CSV management
-
-
-  var onDrop = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (acceptedFiles) {
-    var reader = new FileReader();
-
-    reader.onload = function () {
-      csv__WEBPACK_IMPORTED_MODULE_9___default.a.parse(reader.result, function (err, data) {
-        if (err) {
-          enqueueSnackbar('Aïe aïe aïe ! Il y a eu une erreur lors de l\'import ! Appuyez sur F12 et consultez la console pour en savoir plus !', {
-            anchorOrigin: {
-              vertical: 'top',
-              horizontal: 'center'
-            },
-            variant: 'error'
-          });
-        } else {
-          importQuestions(data);
-        }
-      });
-    };
-
-    reader.readAsText(acceptedFiles[0]);
-  }, []);
-
-  var _useDropzone = Object(react_dropzone__WEBPACK_IMPORTED_MODULE_8__["useDropzone"])({
-    onDrop: onDrop
-  }),
-      getRootProps = _useDropzone.getRootProps,
-      getInputProps = _useDropzone.getInputProps,
-      isDragActive = _useDropzone.isDragActive;
-
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "Addknowledge"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "jumbotron Addknowledge__title"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Ajouter une question"), props.is_connected && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({}, getRootProps(), {
-    className: "Addknowledge__import-drop-zone"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", getInputProps()), isDragActive ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Drop the files here ...") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Drag 'n' drop some files here, or click to select files"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    onSubmit: submitValues,
-    className: "Addknowledge__form card"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_RadioGroup__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    className: "Addknowledge__radiogroup",
-    "aria-label": "Cat\xE9gorie",
-    name: "category",
-    value: selectedCategory,
-    onChange: handleSelection
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    value: 0,
-    control: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Radio__WEBPACK_IMPORTED_MODULE_5__["default"], null),
-    label: "Sans cat\xE9gorie"
-  }), categories && categories.map(function (category) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      key: "category-" + category.id,
-      value: category.id,
-      control: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Radio__WEBPACK_IMPORTED_MODULE_5__["default"], null),
-      label: category.name
-    });
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    value: form.question,
-    name: "question",
-    onChange: updateForm,
-    label: "Question"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    value: form.answer,
-    name: "answer",
-    onChange: updateForm,
-    label: "R\xE9ponse"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    text: "Enregistrer la question",
-    onClick: submitValues
-  }))));
-
-  function handleSelection(event) {
-    setSelectedCategory(parseInt(event.target.value, 10));
-  }
-
-  function updateForm(e) {
-    setForm(_objectSpread({}, form, _defineProperty({}, e.target.name, e.target.value))); // TODO #11 - Create a new SnackbarComponent
-  }
-
-  function submitValues(event) {
-    event.preventDefault();
-    _server__WEBPACK_IMPORTED_MODULE_3__["default"].post('question', {
-      question: form.question,
-      answer: form.answer,
-      category: selectedCategory
-    }).then(function (response) {
-      setForm({
-        question: '',
-        answer: ''
-      });
-      enqueueSnackbar("La question a bien été ajoutée !", {
-        anchorOrigin: {
-          vertical: 'top',
-          horizontal: 'center'
-        },
-        variant: 'success'
-      });
-    });
-  }
-
-  function updateCategoriesList() {
-    _server__WEBPACK_IMPORTED_MODULE_3__["default"].get('categories').then(function (response) {
-      updateCategories(response.data.categories);
-    });
-  }
-  /**
-   * Send the imported JSON questions from csv file
-   * Json data: the questions we want to import
-   */
-
-
-  function importQuestions(questions) {
-    _server__WEBPACK_IMPORTED_MODULE_3__["default"].post('question_import', {
-      questions: questions
-    }).then(function () {
-      enqueueSnackbar("Les questions ont bien été importées !", {
-        anchorOrigin: {
-          vertical: 'top',
-          horizontal: 'center'
-        },
-        variant: 'success'
-      });
-    });
-  }
 }
 
 /***/ }),
@@ -97815,114 +97609,6 @@ function Register() {
 
 /***/ }),
 
-/***/ "./resources/js/components/SoftTraining.js":
-/*!*************************************************!*\
-  !*** ./resources/js/components/SoftTraining.js ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SoftTraining; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _QuestionCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QuestionCard */ "./resources/js/components/QuestionCard.js");
-/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../server */ "./resources/js/server.js");
-/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! notistack */ "./node_modules/notistack/build/index.js");
-/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(notistack__WEBPACK_IMPORTED_MODULE_3__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-function SoftTraining(props) {
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      question = _React$useState2[0],
-      updateQuestions = _React$useState2[1];
-
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
-      _React$useState4 = _slicedToArray(_React$useState3, 2),
-      questionCardMessage = _React$useState4[0],
-      updateQuestionCardMessage = _React$useState4[1];
-
-  var _useSnackbar = Object(notistack__WEBPACK_IMPORTED_MODULE_3__["useSnackbar"])(),
-      enqueueSnackbar = _useSnackbar.enqueueSnackbar,
-      closeSnackbar = _useSnackbar.closeSnackbar;
-
-  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
-    updateQuestionsBag(); // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
-  }, []);
-  return (// TODO Afficher tous les composants sur la même page Home.js pour le moment puisqu'on n'a que très peu de contenu*
-    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "jumbotron Home__title"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Mode consolidation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "R\xE9pondez aux questions en fonction du temps pass\xE9 pour consolider vos m\xE9morisations"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Seules les questions auxquelles vous n'avez pas r\xE9pondu depuis assez longtemps appara\xEEtront")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "container Home"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "row"
-    }, question && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      question: question || undefined,
-      onSubmit: submitAnswer,
-      onSkip: function onSkip() {
-        return updateQuestionsBag();
-      },
-      message: questionCardMessage
-    }), !question && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, questionCardMessage))))
-  ); // TODO - Create import from Excel feature, the program can take a csv file with 2 columns : Question,Answer
-
-  function submitAnswer(answer) {
-    event.preventDefault();
-    _server__WEBPACK_IMPORTED_MODULE_2__["default"].post('question/submit_answer', {
-      id: question.id,
-      answer: answer,
-      mode: "soft",
-      is_golden_card: question.is_golden_card
-    }).then(function (response) {
-      var snackbar_text = response.data.text;
-
-      if (response.data.status !== 200) {
-        snackbar_text += " Réponses correctes : " + response.data.correct_answer;
-      }
-
-      var score = response.data.status === 200 && response.data.earned_points > 0 ? response.data.earned_points : undefined;
-      enqueueSnackbar(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "Home__snackbar"
-      }, snackbar_text, score && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "Home__snackbar-score"
-      }, "+", score)), {
-        anchorOrigin: {
-          vertical: 'top',
-          horizontal: 'center'
-        },
-        variant: response.data.status === 200 ? 'success' : 'warning'
-      });
-
-      if (response.data.status === 200) {
-        props.updateUserScore();
-      }
-
-      updateQuestionsBag();
-    });
-  }
-
-  function updateQuestionsBag() {
-    _server__WEBPACK_IMPORTED_MODULE_2__["default"].get('question/soft').then(function (response) {
-      updateQuestions(response.data.question || undefined);
-      updateQuestionCardMessage(response.data.message);
-    });
-  }
-}
-
-/***/ }),
-
 /***/ "./resources/js/components/Users.js":
 /*!******************************************!*\
   !*** ./resources/js/components/Users.js ***!
@@ -97973,6 +97659,212 @@ function Users() {
   function fetchUsers() {
     _server__WEBPACK_IMPORTED_MODULE_1__["default"].get('users').then(function (response) {
       setUsers(response.data.users || undefined);
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/AddKnowledge.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/pages/AddKnowledge.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddKnowledge; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Button */ "./resources/js/components/Button.js");
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
+/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../server */ "./resources/js/server.js");
+/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! notistack */ "./node_modules/notistack/build/index.js");
+/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(notistack__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _material_ui_core_Radio__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Radio */ "./node_modules/@material-ui/core/esm/Radio/index.js");
+/* harmony import */ var _material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/FormControlLabel */ "./node_modules/@material-ui/core/esm/FormControlLabel/index.js");
+/* harmony import */ var _material_ui_core_RadioGroup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/RadioGroup */ "./node_modules/@material-ui/core/esm/RadioGroup/index.js");
+/* harmony import */ var react_dropzone__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-dropzone */ "./node_modules/react-dropzone/dist/es/index.js");
+/* harmony import */ var csv__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! csv */ "./node_modules/csv/lib/index.js");
+/* harmony import */ var csv__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(csv__WEBPACK_IMPORTED_MODULE_9__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+function AddKnowledge(props) {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState({
+    question: '',
+    answer: ''
+  }),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      form = _React$useState2[0],
+      setForm = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      categories = _React$useState4[0],
+      updateCategories = _React$useState4[1];
+
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      selectedCategory = _React$useState6[0],
+      setSelectedCategory = _React$useState6[1];
+
+  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
+    updateCategoriesList();
+  }, []);
+
+  var _useSnackbar = Object(notistack__WEBPACK_IMPORTED_MODULE_4__["useSnackbar"])(),
+      enqueueSnackbar = _useSnackbar.enqueueSnackbar,
+      closeSnackbar = _useSnackbar.closeSnackbar; // CSV management
+
+
+  var onDrop = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (acceptedFiles) {
+    var reader = new FileReader();
+
+    reader.onload = function () {
+      csv__WEBPACK_IMPORTED_MODULE_9___default.a.parse(reader.result, function (err, data) {
+        if (err) {
+          enqueueSnackbar('Aïe aïe aïe ! Il y a eu une erreur lors de l\'import ! Appuyez sur F12 et consultez la console pour en savoir plus !', {
+            anchorOrigin: {
+              vertical: 'top',
+              horizontal: 'center'
+            },
+            variant: 'error'
+          });
+        } else {
+          importQuestions(data);
+        }
+      });
+    };
+
+    reader.readAsText(acceptedFiles[0]);
+  }, []);
+
+  var _useDropzone = Object(react_dropzone__WEBPACK_IMPORTED_MODULE_8__["useDropzone"])({
+    onDrop: onDrop
+  }),
+      getRootProps = _useDropzone.getRootProps,
+      getInputProps = _useDropzone.getInputProps,
+      isDragActive = _useDropzone.isDragActive;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "Addknowledge"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "jumbotron Addknowledge__title"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Ajouter une question"), props.is_connected && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", _extends({}, getRootProps(), {
+    className: "Addknowledge__import-drop-zone"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", getInputProps()), isDragActive ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Drop the files here ...") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Drag 'n' drop some files here, or click to select files"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: submitValues,
+    className: "Addknowledge__form card"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_RadioGroup__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    className: "Addknowledge__radiogroup",
+    "aria-label": "Cat\xE9gorie",
+    name: "category",
+    value: selectedCategory,
+    onChange: handleSelection
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    value: 0,
+    control: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Radio__WEBPACK_IMPORTED_MODULE_5__["default"], null),
+    label: "Sans cat\xE9gorie"
+  }), categories && categories.map(function (category) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      key: "category-" + category.id,
+      value: category.id,
+      control: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Radio__WEBPACK_IMPORTED_MODULE_5__["default"], null),
+      label: category.name
+    });
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    value: form.question,
+    name: "question",
+    onChange: updateForm,
+    label: "Question"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    value: form.answer,
+    name: "answer",
+    onChange: updateForm,
+    label: "R\xE9ponse"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    text: "Enregistrer la question",
+    onClick: submitValues
+  }))));
+
+  function handleSelection(event) {
+    setSelectedCategory(parseInt(event.target.value, 10));
+  }
+
+  function updateForm(e) {
+    setForm(_objectSpread({}, form, _defineProperty({}, e.target.name, e.target.value))); // TODO #11 - Create a new SnackbarComponent
+  }
+
+  function submitValues(event) {
+    event.preventDefault();
+    _server__WEBPACK_IMPORTED_MODULE_3__["default"].post('question', {
+      question: form.question,
+      answer: form.answer,
+      category: selectedCategory
+    }).then(function (response) {
+      setForm({
+        question: '',
+        answer: ''
+      });
+      enqueueSnackbar("La question a bien été ajoutée !", {
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'center'
+        },
+        variant: 'success'
+      });
+    });
+  }
+
+  function updateCategoriesList() {
+    _server__WEBPACK_IMPORTED_MODULE_3__["default"].get('categories').then(function (response) {
+      updateCategories(response.data.categories);
+    });
+  }
+  /**
+   * Send the imported JSON questions from csv file
+   * Json data: the questions we want to import
+   */
+
+
+  function importQuestions(questions) {
+    _server__WEBPACK_IMPORTED_MODULE_3__["default"].post('question_import', {
+      questions: questions
+    }).then(function () {
+      enqueueSnackbar("Les questions ont bien été importées !", {
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'center'
+        },
+        variant: 'success'
+      });
     });
   }
 }
@@ -98154,6 +98046,122 @@ function QuestionsList(props) {
 
     _server__WEBPACK_IMPORTED_MODULE_3__["default"].get(url, page).then(function (response) {
       updateQuestions(response.data.questions || undefined);
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/SoftTraining.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/pages/SoftTraining.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SoftTraining; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _QuestionCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../QuestionCard */ "./resources/js/components/QuestionCard.js");
+/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../server */ "./resources/js/server.js");
+/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! notistack */ "./node_modules/notistack/build/index.js");
+/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(notistack__WEBPACK_IMPORTED_MODULE_3__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+function SoftTraining(props) {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      question = _React$useState2[0],
+      updateQuestions = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      questionCardMessage = _React$useState4[0],
+      updateQuestionCardMessage = _React$useState4[1];
+
+  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(undefined),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      userProgress = _React$useState6[0],
+      updateUserProgress = _React$useState6[1];
+
+  var _useSnackbar = Object(notistack__WEBPACK_IMPORTED_MODULE_3__["useSnackbar"])(),
+      enqueueSnackbar = _useSnackbar.enqueueSnackbar,
+      closeSnackbar = _useSnackbar.closeSnackbar;
+
+  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(function () {
+    _server__WEBPACK_IMPORTED_MODULE_2__["default"].get('update_progress').then(function (response) {
+      updateQuestionsBag();
+    }); // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
+  }, []);
+  return (// TODO Afficher tous les composants sur la même page Home.js pour le moment puisqu'on n'a que très peu de contenu*
+    react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "jumbotron Home__title"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Mode consolidation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "R\xE9pondez aux questions en fonction du temps pass\xE9 pour consolider vos m\xE9morisations"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Seules les questions auxquelles vous n'avez pas r\xE9pondu depuis assez longtemps appara\xEEtront"), userProgress && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Progression : ", userProgress.daily_progress, " / ", userProgress.daily_objective)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "container Home"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "row"
+    }, question && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuestionCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      question: question || undefined,
+      onSubmit: submitAnswer,
+      onSkip: function onSkip() {
+        return updateQuestionsBag();
+      },
+      message: questionCardMessage
+    }), !question && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, questionCardMessage))))
+  ); // TODO - Create import from Excel feature, the program can take a csv file with 2 columns : Question,Answer
+
+  function submitAnswer(answer) {
+    event.preventDefault();
+    _server__WEBPACK_IMPORTED_MODULE_2__["default"].post('question/submit_answer', {
+      id: question.id,
+      answer: answer,
+      mode: "soft",
+      is_golden_card: question.is_golden_card
+    }).then(function (response) {
+      var snackbar_text = response.data.text;
+
+      if (response.data.status !== 200) {
+        snackbar_text += " Réponses correctes : " + response.data.correct_answer;
+      }
+
+      var score = response.data.status === 200 && response.data.earned_points > 0 ? response.data.earned_points : undefined;
+      enqueueSnackbar(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "Home__snackbar"
+      }, snackbar_text, score && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "Home__snackbar-score"
+      }, "+", score)), {
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'center'
+        },
+        variant: response.data.status === 200 ? 'success' : 'warning'
+      });
+
+      if (response.data.status === 200) {
+        props.updateUserScore();
+      }
+
+      updateQuestionsBag();
+    });
+  }
+
+  function updateQuestionsBag() {
+    _server__WEBPACK_IMPORTED_MODULE_2__["default"].get('question/soft').then(function (response) {
+      updateQuestions(response.data.question || undefined);
+      updateQuestionCardMessage(response.data.message);
+      updateUserProgress(response.data.userProgress);
     });
   }
 }

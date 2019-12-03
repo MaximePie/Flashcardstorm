@@ -1,16 +1,19 @@
 import React from 'react';
-import QuestionCard from "./QuestionCard";
-import server from '../server'
+import QuestionCard from "../QuestionCard";
+import server from '../../server'
 import {useSnackbar} from "notistack";
 
 export default function SoftTraining(props) {
   const [question, updateQuestions] = React.useState(undefined);
   const [questionCardMessage, updateQuestionCardMessage] = React.useState(undefined);
+  const [userProgress, updateUserProgress] = React.useState(undefined);
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   React.useEffect(() => {
-    updateQuestionsBag()
+    server.get('update_progress').then(response => {
+      updateQuestionsBag()
+    })
     // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
   }, []);
 
@@ -21,6 +24,11 @@ export default function SoftTraining(props) {
         <h1>Mode consolidation</h1>
         <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
         <p>Seules les questions auxquelles vous n'avez pas répondu depuis assez longtemps apparaîtront</p>
+        {userProgress && (
+          <div>
+            Progression : {userProgress.daily_progress} / {userProgress.daily_objective}
+          </div>
+        )}
       </div>
       <div className="container Home">
         <div className="row">
@@ -92,6 +100,7 @@ export default function SoftTraining(props) {
     server.get('question/soft').then(response => {
       updateQuestions(response.data.question || undefined);
       updateQuestionCardMessage(response.data.message);
+      updateUserProgress(response.data.userProgress);
     })
   }
 }

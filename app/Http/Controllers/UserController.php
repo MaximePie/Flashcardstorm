@@ -49,4 +49,23 @@ class UserController extends Controller
             return response()->json(['score' => $user->score]);
         }
     }
+
+    /**
+     * Returns the progress of the user
+     *
+     * @return JsonResponse
+     */
+    protected function updateProgress(): JsonResponse
+    {
+        $user = Auth::user();
+        if ($user) {
+            if (!now()->isSameDay($user->last_daily_updated_at)) {
+                $user->last_daily_updated_at = now();
+                $user->daily_objective = $user->questions(true)->count();
+                $user->daily_progress = 0;
+                $user->save();
+            }
+            return response()->json(['userProgress' => $user->dailyProgress()]);
+        }
+    }
 }

@@ -61,4 +61,16 @@ class User extends Authenticatable
     {
         return $this->questions()->orderBy('next_question_at', 'asc')->first();
     }
+
+    public function dailyProgress() {
+        $user_progress = [];
+        $user_progress['daily_objective'] = $this->daily_objective;
+        $user_progress['daily_progress'] = $this->daily_progress;
+
+        return $user_progress;
+    }
+
+    public function updateDailyProgress() {
+        $this->daily_progress = $this->daily_objective - $this->questions(true)->count();
+    }
 }

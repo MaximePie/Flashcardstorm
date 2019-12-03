@@ -93,6 +93,9 @@ class QuestionController extends Controller
                     $message = "Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit";
                 }
             }
+            else {
+                $user_progress = $user->dailyProgress();
+            }
         }
         else {
             if ($user && $mode === 'for_user') {
@@ -124,7 +127,12 @@ class QuestionController extends Controller
         }
 
 
-        return response()->json(['question' => $question, 'message' => $message, 'next_question' => $next_question ?? null]);
+        return response()->json([
+            'question' => $question,
+            'message' => $message,
+            'next_question' => $next_question ?? null,
+            'userProgress' => $user_progress ?? null,
+        ]);
     }
 
 
@@ -265,7 +273,9 @@ class QuestionController extends Controller
 
                 if ($request->mode === 'soft') {
                     $question_user = Question_user::findFromTuple($question->id, $user->id);
-                    $question_user->save_failure();
+                    if ($question_user) {
+                        $question_user->first()->save_failure();
+                    }
                 }
             }
             return response()->json([

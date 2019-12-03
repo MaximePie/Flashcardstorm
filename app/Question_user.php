@@ -52,6 +52,8 @@ class Question_user extends Model
         }
         $is_golden_card && $earned_points *= $earned_points;
 
+        $user->updateDailyProgress();
+
         $user->score += $earned_points;
         $user->save();
 

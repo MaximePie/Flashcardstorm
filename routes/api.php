@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/me', static function (Request $request) {
 
 Route::middleware('auth:api')->get('/authenticated/me/score/', 'UserController@score');
 Route::middleware('auth:api')->get('/authenticated/users', 'UserController@index');
+Route::middleware('auth:api')->get('/authenticated/update_progress', 'UserController@updateProgress');
 
 Route::middleware('auth:api')->get('/authenticated/questions_list/', 'QuestionController@index');
 Route::middleware('auth:api')->get('/authenticated/question/delete/{question}', 'QuestionController@destroy');

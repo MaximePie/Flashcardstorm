@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
-import Button from "./Button";
+import Button from "../Button";
 import TextField from "@material-ui/core/TextField";
-import server from "../server";
+import server from "../../server";
 import {useSnackbar} from "notistack";
 import Radio from "@material-ui/core/Radio";
 import FormControlLabel from "@material-ui/core/FormControlLabel";

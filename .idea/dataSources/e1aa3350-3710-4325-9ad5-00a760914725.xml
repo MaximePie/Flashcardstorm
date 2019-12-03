@@ -1374,26 +1374,41 @@
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="315" parent="238" name="users_email_unique">
+    <column id="315" parent="238" name="daily_objective">
+      <Position>11</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="316" parent="238" name="daily_progress">
+      <Position>12</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="317" parent="238" name="last_daily_updated_at">
+      <Position>13</Position>
+      <DataType>datetime|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="318" parent="238" name="users_email_unique">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="316" parent="238" name="users_api_token_unique">
+    <index id="319" parent="238" name="users_api_token_unique">
       <ColNames>api_token</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="317" parent="238" name="PRIMARY">
+    <key id="320" parent="238" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="318" parent="238" name="users_email_unique">
+    <key id="321" parent="238" name="users_email_unique">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>users_email_unique</UnderlyingIndexName>
     </key>
-    <key id="319" parent="238" name="users_api_token_unique">
+    <key id="322" parent="238" name="users_api_token_unique">
       <ColNames>api_token</ColNames>
       <UnderlyingIndexName>users_api_token_unique</UnderlyingIndexName>
     </key>
