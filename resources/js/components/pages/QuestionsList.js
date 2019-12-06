@@ -8,6 +8,7 @@ import Switch from "@material-ui/core/Switch";
 import {Pagination} from "react-laravel-paginex";
 import Button from "../Button";
 import {useSnackbar} from "notistack";
+import Checkbox from "@material-ui/core/Checkbox";
 
 
 
@@ -39,7 +40,7 @@ export default function QuestionsList(props) {
             }
             label="Afficher seulement mes questions"
           />
-          {questions && questions.data && (
+          {props.is_connected && questions && questions.data && (
             <Button text="Enregistrer la sélection" onClick={saveSelection}/>
           )}
           </>
@@ -47,6 +48,19 @@ export default function QuestionsList(props) {
       </div>
       <form className="QuestionsList__list">
         <ul className="container list-group list-group-flush">
+          <FormControlLabel
+            control={
+              <Checkbox
+                onChange={toggleAllQuestions}
+                value="toggleAll"
+                color="primary"
+                inputProps={{
+                  'aria-label': 'secondary checkbox',
+                }}
+              />
+              }
+            label={"Cocher toutes les questions"}
+          />
           {questions && questions.data && questions.data.length && questions.data.map(function(question, key){
             return (
               <li key={`question${question.id}`} className="QuestionsList__question list-group-item">
@@ -134,6 +148,15 @@ export default function QuestionsList(props) {
   function toggleQuestionForUser(event, id, key) {
     let questionsData = Object.assign({}, questions.data);
     questionsData[key].is_set_for_user = event.target.checked;
+    updateQuestions({...questions, questionsData});
+  }
+
+  function toggleAllQuestions(event) {
+    let questionsData = Object.assign({}, questions.data);
+    Object.values(questionsData).forEach(selectedQuestion => {
+      selectedQuestion.is_set_for_user = event.target.checked;
+    });
+    console.log(questionsData)
     updateQuestions({...questions, questionsData});
   }
 
