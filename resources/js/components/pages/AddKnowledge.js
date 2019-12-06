@@ -103,8 +103,6 @@ export default function AddKnowledge(props) {
       ...form,
       [e.target.name]: e.target.value
     });
-
-    // TODO #11 - Create a new SnackbarComponent
   }
 
   function submitValues(event) {

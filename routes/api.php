@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::middleware('auth:api')->post('/authenticated/changelog', 'ChangelogController@store');
 
 Route::middleware('auth:api')->get('/me', static function (Request $request) {
     return Auth::user();

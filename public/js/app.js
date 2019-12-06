@@ -97512,6 +97512,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Changelogs__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Changelogs */ "./resources/js/components/Changelogs.js");
 /* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! notistack */ "./node_modules/notistack/build/index.js");
 /* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(notistack__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _components_pages_AddChangelog__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/pages/AddChangelog */ "./resources/js/components/pages/AddChangelog.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -97550,6 +97551,7 @@ __webpack_require__(/*! ../sass/QuestionsList.scss */ "./resources/sass/Question
 __webpack_require__(/*! ../sass/Snackbar.scss */ "./resources/sass/Snackbar.scss");
 
 __webpack_require__(/*! ../sass/Changelogs.scss */ "./resources/sass/Changelogs.scss");
+
 
 
 
@@ -97628,7 +97630,9 @@ function App() {
     path: "/about"
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Changelogs__WEBPACK_IMPORTED_MODULE_17__["default"], null)), is_connected && react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/profile"
-  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Profile__WEBPACK_IMPORTED_MODULE_12__["default"], null))))));
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_Profile__WEBPACK_IMPORTED_MODULE_12__["default"], null)), is_connected && react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+    path: "/add_changelog"
+  }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_components_pages_AddChangelog__WEBPACK_IMPORTED_MODULE_19__["default"], null))))));
 
   function updateUser() {
     _server__WEBPACK_IMPORTED_MODULE_13__["default"].get('me/score').then(function (response) {
@@ -98499,6 +98503,108 @@ function Users() {
 
 /***/ }),
 
+/***/ "./resources/js/components/pages/AddChangelog.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/pages/AddChangelog.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddChangelog; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/index.js");
+/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Button */ "./resources/js/components/Button.js");
+/* harmony import */ var _server__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../server */ "./resources/js/server.js");
+/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! notistack */ "./node_modules/notistack/build/index.js");
+/* harmony import */ var notistack__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(notistack__WEBPACK_IMPORTED_MODULE_4__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+function AddChangelog() {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState({
+    title: '',
+    text: '',
+    nextstep: ''
+  }),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      form = _React$useState2[0],
+      setForm = _React$useState2[1];
+
+  var _useSnackbar = Object(notistack__WEBPACK_IMPORTED_MODULE_4__["useSnackbar"])(),
+      enqueueSnackbar = _useSnackbar.enqueueSnackbar,
+      closeSnackbar = _useSnackbar.closeSnackbar;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: submitValues
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    value: form.title,
+    name: "title",
+    onChange: updateForm,
+    label: "title",
+    multiline: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    value: form.text,
+    name: "text",
+    onChange: updateForm,
+    label: "text",
+    multiline: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    value: form.nextstep,
+    name: "nextstep",
+    onChange: updateForm,
+    label: "nextstep",
+    multiline: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    text: "Enregistrer le changelog",
+    onClick: submitValues
+  })));
+
+  function updateForm(e) {
+    setForm(_objectSpread({}, form, _defineProperty({}, e.target.name, e.target.value)));
+  }
+
+  function submitValues(event) {
+    event.preventDefault();
+    _server__WEBPACK_IMPORTED_MODULE_3__["default"].post('changelog', form).then(function (response) {
+      setForm({
+        title: '',
+        text: '',
+        nextstep: ''
+      });
+      enqueueSnackbar("Le changelog a bien été ajoutée !", {
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'center'
+        },
+        variant: 'success'
+      });
+    });
+  }
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/pages/AddKnowledge.js":
 /*!*******************************************************!*\
   !*** ./resources/js/components/pages/AddKnowledge.js ***!
@@ -98653,7 +98759,7 @@ function AddKnowledge(props) {
   }
 
   function updateForm(e) {
-    setForm(_objectSpread({}, form, _defineProperty({}, e.target.name, e.target.value))); // TODO #11 - Create a new SnackbarComponent
+    setForm(_objectSpread({}, form, _defineProperty({}, e.target.name, e.target.value)));
   }
 
   function submitValues(event) {

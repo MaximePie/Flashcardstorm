@@ -37,6 +37,7 @@ import Welcome from "./components/pages/Welcome";
 import Changelogs from "./components/Changelogs";
 
 import { SnackbarProvider } from 'notistack';
+import AddChangelog from "./components/pages/AddChangelog";
 
 export default function App() {
 
@@ -95,6 +96,11 @@ export default function App() {
             {is_connected && (
               <Route path="/profile">
                 <Profile />
+              </Route>
+            )}
+            {is_connected && (
+              <Route path="/add_changelog">
+                <AddChangelog />
               </Route>
             )}
           </Switch>
