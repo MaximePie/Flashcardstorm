@@ -36,6 +36,8 @@ import Users from "./components/Users";
 import Welcome from "./components/pages/Welcome";
 import Changelogs from "./components/Changelogs";
 
+import moment from 'moment'
+
 import { SnackbarProvider } from 'notistack';
 import AddChangelog from "./components/pages/AddChangelog";
 
@@ -46,6 +48,7 @@ export default function App() {
   const is_connected = Cookies.get('Bearer') !== null && Cookies.get('Bearer') !== undefined;
 
   React.useEffect(() => {
+    moment.locale('fr_FR');
     if (is_connected) {
       updateUser()
     }

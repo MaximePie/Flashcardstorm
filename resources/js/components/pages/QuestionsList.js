@@ -9,6 +9,7 @@ import {Pagination} from "react-laravel-paginex";
 import Button from "../Button";
 import {useSnackbar} from "notistack";
 import Checkbox from "@material-ui/core/Checkbox";
+import toLocale from '../../helper';
 
 
 
@@ -89,7 +90,7 @@ export default function QuestionsList(props) {
                         <div className="QuestionsList__question-score">Prochain gain : +{question.score}</div>
                       )}
                       {question.next_question_at && (
-                        <div className="QuestionsList__question-next">Prochaine question le {question.next_question_at}</div>
+                        <div className="QuestionsList__question-next">Prochaine question le {toLocale(question.next_question_at)}</div>
                       )}
                     </>
                   )}

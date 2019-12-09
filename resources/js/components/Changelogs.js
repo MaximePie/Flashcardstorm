@@ -1,7 +1,7 @@
 import React from 'react';
 import server from "../server";
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
+import toLocale from '../helper';
 
 export default function Changelogs() {
 
@@ -27,7 +27,7 @@ export default function Changelogs() {
           <Paper className="Changelogs__log">
             <div>
               <h3 className="Changelogs__log-title d-inline-flex mr-3">{changelog.title}</h3>
-              <span className="text-secondary text-muted">{changelog.created_at}</span>
+              <span className="text-secondary text-muted">{toLocale(changelog.created_at)}</span>
             </div>
               <p className="Changelogs__log-text">{changelog.text}</p>
               <p className="Changelogs__log-nextstep">Prochaine étape : {changelog.nextstep}</p>
