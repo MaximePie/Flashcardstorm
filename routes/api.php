@@ -19,7 +19,11 @@ Route::middleware('auth:api')->get('/me', static function (Request $request) {
     return Auth::user();
 });
 
-Route::middleware('auth:api')->get('/authenticated/me/score/', 'UserController@score');
+/*
+ * For connecter Users
+ */
+
+Route::middleware('auth:api')->get('/authenticated/me/score/{last_checked_at?}', 'UserController@score');
 Route::middleware('auth:api')->get('/authenticated/users', 'UserController@index');
 Route::middleware('auth:api')->get('/authenticated/update_progress', 'UserController@updateProgress');
 
@@ -34,6 +38,10 @@ Route::middleware('auth:api')->post('/authenticated/question/toggle', 'QuestionC
 Route::middleware('auth:api')->post('/authenticated/question/submit_answer', 'QuestionController@submitAnswer');
 Route::middleware('auth:api')->post('/authenticated/question', 'QuestionController@store');
 Route::middleware('auth:api')->post('/authenticated/question_import', 'QuestionController@import');
+
+/*
+ * For Visitors
+ */
 
 Route::post('register', 'RegisterController@create');
 

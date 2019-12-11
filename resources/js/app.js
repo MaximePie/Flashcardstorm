@@ -50,7 +50,9 @@ export default function App() {
   React.useEffect(() => {
     moment.locale('fr_FR');
     if (is_connected) {
-      updateUser()
+      Cookies.remove('number_of_new_questions');
+      Cookies.remove('number_of_new_changelogs');
+      updateUser(true)
     }
   }, [is_connected]);
 
@@ -112,14 +114,22 @@ export default function App() {
     </SnackbarProvider>
   );
 
-  function updateUser() {
-    server.get('me/score').then(response => {
+  function updateUser(is_initial = false) {
+    server.get('me/score/' + Cookies.get('last_checked_at')).then(response => {
       if (!user) {
         setUser({initial_score: response.data.score, current_score: response.data.score});
       }
       else {
         setCountClassName('Navbar__counter-rising');
         setUser({initial_score: user.current_score, current_score: response.data.score})
+      }
+      if (is_initial) {
+        if (window.location.pathname !== '/soft_training') {
+          Cookies.set('number_of_new_questions', response.data.number_of_questions > 0 ? response.data.number_of_questions : undefined);
+        }
+        if (window.location.pathname !== '/about') {
+          Cookies.set('number_of_new_changelogs', response.data.number_of_new_changelogs > 0 && response.data.number_of_new_changelogs);
+        }
       }
     });
   }

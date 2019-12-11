@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
+ * App\Question
+ *
  * @property integer $id
  * @property integer $answer_id
  * @property string $wording
@@ -21,6 +23,23 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $last_answered_at
  * @property string $next_question_at
  * @property Answer $answer
+ * @property int|null $user_id
+ * @property int|null $category_id
+ * @property-read \App\Category|null $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
+ * @property-read int|null $users_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Question newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Question newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Question query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Question whereAnswerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Question whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Question whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Question whereDetails($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Question whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Question whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Question whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Question whereWording($value)
+ * @mixin \Eloquent
  */
 class Question extends Model
 {

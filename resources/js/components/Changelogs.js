@@ -2,14 +2,16 @@ import React from 'react';
 import server from "../server";
 import Paper from "@material-ui/core/Paper";
 import toLocale from '../helper';
+import Cookies from "js-cookie";
+import moment from "moment";
 
 export default function Changelogs() {
 
   const [changelogs, setChangelogs] = React.useState([]);
 
   React.useEffect(() => {
+    Cookies.set('last_checked_at', moment().subtract(1, 'hours').format())
     updateChangelogs()
-    // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
   }, []);
 
   return (

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Changelog;
 use App\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -40,13 +42,21 @@ class UserController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
+     * @param string|null $last_checked_at
      * @return JsonResponse
      */
-    protected function score(): JsonResponse
+    protected function score(string $last_checked_at = null): JsonResponse
     {
         $user = Auth::user();
         if ($user) {
-            return response()->json(['score' => $user->score]);
+            return response()->json([
+                'score' => $user->score,
+                'number_of_questions' => $user->questions(true)->count(),
+                'number_of_new_changelogs' => Changelog::query()->where('created_at', '>', $last_checked_at?: now())->count(),
+                'last_checked_at' => $last_checked_at ?: now(),
+                'lasted_changelog_date' => Changelog::query()->latest()->pluck('created_at'),
+                'is_new' => Changelog::query()->latest()->first()->pluck('created_at') > $last_checked_at
+            ]);
         }
     }
 

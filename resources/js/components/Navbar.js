@@ -11,8 +11,13 @@ import Cookies from "js-cookie";
 import CountTo from 'react-count-to';
 import Drawer from "@material-ui/core/Drawer";
 import Icon from "./Icon";
+import Badge from "@material-ui/core/Badge";
 
 export default function Navbar(props) {
+
+  const number_of_new_questions = Cookies.get('number_of_new_questions');
+
+  const number_of_new_changelogs = Cookies.get('number_of_new_changelogs');
 
   const [isOpen, setOpen] = React.useState(false);
 
@@ -44,7 +49,15 @@ export default function Navbar(props) {
         {props.is_connected && (
           <ListItem button component="a" href="/soft_training" className="Navbar__item">
             <ListItemIcon>
-              <i className="fas fa-calendar-alt"/>
+              {number_of_new_questions && number_of_new_questions > 0 ? (
+                <Badge color="secondary" badgeContent={number_of_new_questions}>
+                  <i className="fas fa-calendar-alt"/>
+                </Badge>
+              ) : (
+                <>
+                  <i className="fas fa-calendar-alt"/>
+                </>
+              )}
             </ListItemIcon>
             <ListItemText>
               Mode entraînement planifié
@@ -109,7 +122,15 @@ export default function Navbar(props) {
         )}
         <ListItem button component="a" href="/about" className="Navbar__item">
           <ListItemIcon>
-            <i className="fas fa-question-circle"/>
+            {number_of_new_changelogs && number_of_new_changelogs > 0 ? (
+              <Badge color="secondary" badgeContent={number_of_new_changelogs}>
+                <i className="fas fa-question-circle"/>
+              </Badge>
+            ) : (
+              <>
+                <i className="fas fa-question-circle"/>
+              </>
+            )}
           </ListItemIcon>
           <ListItemText>
             à propos
@@ -142,7 +163,16 @@ export default function Navbar(props) {
           aria-label="Toggle navigation"
           onClick={() => setOpen(true)}
         >
-          <Icon name="bars" className="Navbar__drawer-icon"/>
+          {
+            (number_of_new_changelogs && number_of_new_changelogs > 0) ||
+            (number_of_new_questions && number_of_new_questions > 0) ?
+          (
+            <Badge color="secondary" variant="dot">
+              <Icon name="bars" className="Navbar__drawer-icon"/>
+            </Badge>
+          ) : (
+            <Icon name="bars" className="Navbar__drawer-icon"/>
+          )}
         </button>
         <a className="navbar-brand Navbar__home-link" href="/home">
           <Avatar className="Navbar__logo" alt="GIPSI Logo" src="/images/logo.png" />
@@ -171,7 +201,7 @@ export default function Navbar(props) {
         )}
       </nav>
     </div>
-  )
+  );
 
   function logout() {
     axios.get('/logout').then(response => {

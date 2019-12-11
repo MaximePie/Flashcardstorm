@@ -2,8 +2,9 @@ import React from 'react';
 import QuestionCard from "../QuestionCard";
 import server from '../../server'
 import {useSnackbar} from "notistack";
-import MobileStepper from "@material-ui/core/MobileStepper";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import Cookies from "js-cookie";
+import moment from "moment";
 
 export default function SoftTraining(props) {
   const [question, updateQuestions] = React.useState(undefined);
@@ -13,14 +14,12 @@ export default function SoftTraining(props) {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   React.useEffect(() => {
+    Cookies.remove('number_of_new_questions');
     server.get('update_progress').then(response => {
       updateQuestionsBag()
     })
-    // TODO Créer une méthode updateUserInfo pour récupérer les infos (dont le score)
   }, []);
-
   return (
-    // TODO Afficher tous les composants sur la même page Home.js pour le moment puisqu'on n'a que très peu de contenu*
     <>
       <div className="jumbotron Home__title">
         <h1>Mode consolidation</h1>
@@ -52,8 +51,6 @@ export default function SoftTraining(props) {
       </div>
     </>
   );
-
-  // TODO - Create import from Excel feature, the program can take a csv file with 2 columns : Question,Answer
 
   function submitAnswer(answer) {
     event.preventDefault();
