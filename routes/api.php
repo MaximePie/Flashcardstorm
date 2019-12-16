@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth:api']], static function() {
 
         Route::post('question/toggle', 'QuestionController@toggleQuestionForUser');
         Route::post('question/submit_answer', 'QuestionController@submitAnswer');
+        Route::post('question', 'QuestionController@store');
     });
 });
 
