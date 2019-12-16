@@ -119,11 +119,8 @@ class QuestionController extends Controller
             if ($category) {
                 $question['category'] = $category->first();
             }
-            try {
-                $question['is_golden_card'] = random_int(0, config('app.golden_card_ratio')) === 1;
-            } catch (Exception $e) {
-                throw new Exception('Error generating the random golden card');
-            }
+
+            $question->tryGoldenCard();
         }
 
 

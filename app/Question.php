@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -118,5 +119,13 @@ class Question extends Model
     public function users(): BelongsToMany
     {
         return $this->BelongsToMany(User::class, 'question_users');
+    }
+
+    public function tryGoldenCard(): void {
+        try {
+            $this->is_golden_card = random_int(0, config('app.golden_card_ratio')) === 1;
+        } catch (Exception $e) {
+            throw new \RuntimeException('Error generating the random golden card');
+        }
     }
 }
