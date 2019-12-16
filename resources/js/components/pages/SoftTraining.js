@@ -61,6 +61,7 @@ export default function SoftTraining(props) {
         answer: answer,
         mode: "soft",
         is_golden_card: question.is_golden_card,
+        is_reverse_question: question.is_reverse,
       }
     ).then(response => {
       let snackbar_text = response.data.text;
@@ -75,8 +76,8 @@ export default function SoftTraining(props) {
           {snackbar_text}
           {score && (
             <span className="Home__snackbar-score">
-                +{score}
-              </span>
+              +{score}
+            </span>
           )}
         </div>
         ,

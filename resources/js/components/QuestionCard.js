@@ -9,34 +9,41 @@ export default function QuestionCard(props) {
 
   React.useEffect(() => {
     setAnswer('');
-  }, [props.question]);
+  }, [question]);
 
   return (
-    <form onSubmit={() => props.onSubmit(answer)} className={"QuestionCard card " + (props.question.is_golden_card && "QuestionCard--golden")}>
-      {props.question.is_golden_card && (
+    <form onSubmit={() => props.onSubmit(answer)} className={"QuestionCard card " + (question.is_golden_card && "QuestionCard--golden")}>
+      {question.is_golden_card && (
         <Icon
           className={"QuestionCard--golden__icon"}
           name="star"
           badge="gold"
         />
       )}
-      {props.question.is_new && (
+      {question.is_reverse && (
+        <Icon
+          className={"QuestionCard--reverse__icon"}
+          name="sync"
+          badge="reverse"
+        />
+      )}
+      {question.is_new && (
         <Icon
           className={"QuestionCard--new__icon"}
           name="feather-alt"
           badge="new"
         />
       )}
-      {props.question.category && (
+      {question.category && (
         <Icon
           className={"QuestionCard--category__icon"}
-          name={props.question.category.icon}
-          badge={props.question.category.name}
-          color={props.question.category.color}
+          name={question.category.icon}
+          badge={question.category.name}
+          color={question.category.color}
         />
       )}
       <h3 className={"QuestionCard__question " + (!question && "QuestionCard__question--is-empty")}>
-        {props.question.wording || props.message}
+        {question.is_reverse ? question.answer : question.wording || props.message}
       </h3>
       <TextField label="Réponse" onChange={e => setAnswer(e.target.value)} value={answer}/>
       <div className="QuestionCard__actions">

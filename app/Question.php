@@ -100,6 +100,11 @@ class Question extends Model
     public function isValidWith(string $submited_answer)
     {
         $correct_answer = $this->answer()->first()->wording;
+
+        if ($this->is_reverse) {
+            $correct_answer = $this->wording;
+        }
+
         if ($submited_answer === $correct_answer) {
             return true;
         }
@@ -121,11 +126,25 @@ class Question extends Model
         return $this->BelongsToMany(User::class, 'question_users');
     }
 
+    /**
+     * Generate a random number to determine if the question will give a bonus or not
+     */
     public function tryGoldenCard(): void {
         try {
             $this->is_golden_card = random_int(0, config('app.golden_card_ratio')) === 1;
         } catch (Exception $e) {
             throw new \RuntimeException('Error generating the random golden card');
+        }
+    }
+
+    /**
+     * Randomly make the question reverse and swap the answer and question
+     */
+    public function tryReverse(): void {
+        try {
+            $this->is_reverse = random_int(0, config('app.reverse_ratio')) === 1;
+        } catch (Exception $e) {
+            throw new \RuntimeException('Error generating the reverse card');
         }
     }
 }

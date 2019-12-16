@@ -55,6 +55,7 @@ export default function Home(props) {
         answer: answer,
         mode: "storm",
         is_golden_card: question.is_golden_card,
+        is_reverse_question: question.is_reverse,
       }
       ).then(response => {
         let snackbar_text = response.data.text;

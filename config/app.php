@@ -125,6 +125,8 @@ return [
 
     'golden_card_ratio' => '100',
 
+    'reverse_ratio' => '2',
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

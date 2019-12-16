@@ -120,6 +120,7 @@ class QuestionController extends Controller
                 $question['category'] = $category->first();
             }
 
+            $question->tryReverse();
             $question->tryGoldenCard();
         }
 
@@ -248,6 +249,8 @@ class QuestionController extends Controller
     public function submitAnswer(Request $request): JsonResponse
     {
         $question = QUESTION::query()->find($request->id);
+        $question->is_reverse = $request->is_reverse_question;
+
         $user = Auth::user();
         $earned_points = 0;
         if ($request->answer && $question->isValidWith($request->answer)) {
@@ -279,7 +282,8 @@ class QuestionController extends Controller
                 'text' => 'Oups, ce n\'est pas ça, réessayons !',
                 'status' => 500,
                 'earned_points' => $earned_points,
-                'correct_answer' => $question->answer()->first()->wording,
+                'correct_answer' => $question->is_reverse ? $question->wording : $question->answer()->first()->wording,
+                'is_reverse' => $question->is_reverse,
             ]);
         }
 
