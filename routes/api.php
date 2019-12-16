@@ -19,28 +19,34 @@ Route::middleware('auth:api')->get('/me', static function (Request $request) {
     return Auth::user();
 });
 
-/*
- * For connecter Users
+/**************************
+ * For connected Users
+ * *************************
  */
+Route::group(['middleware' => ['auth:api']], static function() {
+    Route::prefix('authenticated')->group(static function() {
+        Route::get('question/{mode}', 'QuestionController@randomQuestion');
+        Route::get('users', 'UserController@index');
+        Route::get('me/score/{last_checked_at?}', 'UserController@score');
+        Route::get('users', 'UserController@index');
+        Route::get('update_progress', 'UserController@updateProgress');
 
-Route::middleware('auth:api')->get('/authenticated/me/score/{last_checked_at?}', 'UserController@score');
-Route::middleware('auth:api')->get('/authenticated/users', 'UserController@index');
-Route::middleware('auth:api')->get('/authenticated/update_progress', 'UserController@updateProgress');
+        Route::get('questions_list/', 'QuestionController@index');
+        Route::get('question/delete/{question}', 'QuestionController@destroy');
+        Route::get('question/{mode}', 'QuestionController@randomQuestion');
+        Route::get('questions_list/{visibility}', 'QuestionController@index');
+        Route::get('categories', 'CategoryController@index');
+        Route::get('changelogs', 'ChangelogController@index');
 
-Route::middleware('auth:api')->get('/authenticated/questions_list/', 'QuestionController@index');
-Route::middleware('auth:api')->get('/authenticated/question/delete/{question}', 'QuestionController@destroy');
-Route::middleware('auth:api')->get('/authenticated/question/{mode}', 'QuestionController@randomQuestion');
-Route::middleware('auth:api')->get('/authenticated/questions_list/{visibility}', 'QuestionController@index');
-Route::middleware('auth:api')->get('/authenticated/categories', 'CategoryController@index');
-Route::middleware('auth:api')->get('/authenticated/changelogs', 'ChangelogController@index');
+        Route::post('question/toggle', 'QuestionController@toggleQuestionForUser');
+        Route::post('question/submit_answer', 'QuestionController@submitAnswer');
+    });
+});
 
-Route::middleware('auth:api')->post('/authenticated/question/toggle', 'QuestionController@toggleQuestionForUser');
-Route::middleware('auth:api')->post('/authenticated/question/submit_answer', 'QuestionController@submitAnswer');
-Route::middleware('auth:api')->post('/authenticated/question', 'QuestionController@store');
-Route::middleware('auth:api')->post('/authenticated/question_import', 'QuestionController@import');
 
-/*
+/***************************
  * For Visitors
+ * *************************
  */
 
 Route::post('register', 'RegisterController@create');
