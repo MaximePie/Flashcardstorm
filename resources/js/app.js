@@ -23,6 +23,7 @@ require ("../sass/Snackbar.scss");
 require ("../sass/Changelogs.scss");
 
 
+import Button from "./components/Button"
 import Home from "./components/Home"
 import AddKnowledge from "./components/pages/AddKnowledge"
 import Navbar from "./components/Navbar";
@@ -56,8 +57,28 @@ export default function App() {
     }
   }, [is_connected]);
 
+  const isMobile = Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < 768;
+  const snackbarConfig = {
+    maxSnack: isMobile ? 1 : 3,
+    dense: isMobile
+  };
+
+  // add action to all snackbars
+  const notistackRef = React.createRef();
+  const onClickDismiss = key => () => {
+    notistackRef.current.closeSnackbar(key);
+  };
+
   return (
-    <SnackbarProvider maxSnack={3} >
+    <SnackbarProvider
+      {...snackbarConfig}
+      ref={notistackRef}
+      action={(key) => (
+        <span onClick={onClickDismiss(key)}>
+          X
+        </span>
+      )}
+    >
       <BrowserRouter>
         <div className="App">
           <Navbar

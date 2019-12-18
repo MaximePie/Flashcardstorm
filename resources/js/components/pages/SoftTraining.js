@@ -4,7 +4,6 @@ import server from '../../server'
 import {useSnackbar} from "notistack";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Cookies from "js-cookie";
-import moment from "moment";
 
 export default function SoftTraining(props) {
   const [question, updateQuestions] = React.useState(undefined);
