@@ -53,6 +53,22 @@ class Question_user extends Model
     }
 
     /**
+     * @return BelongsTo
+     */
+    public function question(): BelongsTo
+    {
+        return $this->belongsTo(Question::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * @param $question_id
      * @param $user_id
      * @return \Illuminate\Database\Eloquent\Builder|Model|object|null

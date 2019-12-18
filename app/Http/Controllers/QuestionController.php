@@ -60,10 +60,6 @@ class QuestionController extends Controller
             $question = Question::query()->where('id', $selected_question['id'])->first();
             if ($question && $question->exists() && !$question->isSetForUser($user)) {
                 Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
-                $reversed_question = $question->revertedQuestion();
-                if ($reversed_question->exists()) {
-                    Question_user::create(['user_id' => $user->id, 'question_id' => $reversed_question->first()->id]);
-                }
             }
             else {
                 $question->users()->detach($user);

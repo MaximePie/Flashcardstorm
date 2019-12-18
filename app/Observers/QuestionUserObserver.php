@@ -14,7 +14,11 @@ class QuestionUserObserver
      */
     public function created(Question_user $questionUser)
     {
-        //
+        $question = $questionUser->question()->first();
+        $reversed_question = $question->revertedQuestion()->first();
+        if ($reversed_question) {
+            Question_user::create(['user_id' => $questionUser->user_id, 'question_id' => $reversed_question->id]);
+        }
     }
 
     /**

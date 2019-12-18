@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * App\Question
@@ -88,11 +89,11 @@ class Question extends Model
     }
 
     /**
-     * @return BelongsTo
+     * @return HasOne
      */
-    public function revertedQuestion(): BelongsTo
+    public function revertedQuestion(): HasOne
     {
-        return $this->belongsTo(Question::class, 'reverse_question_id');
+        return $this->hasOne(Question::class, 'reverse_question_id');
     }
 
     public function scoreByUser($user)
