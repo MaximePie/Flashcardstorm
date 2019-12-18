@@ -50,11 +50,9 @@
         .Navbar__counter {
             color: initial;
             transition: all 0.15s ease;
-            font-size: 1.5em;
 
             &-rising {
                 color: green;
-                font-size: 2.5em;
                 transition: all 0.15s ease;
             }
         }
@@ -64,5 +62,36 @@
 @media screen and (max-width: 992px) {
     .Navbar__toggler-wide {
         display: none;
+    }
+
+    .Navbar__counter {
+        font-size: 0.75em;
+    }
+
+    .Navbar__home-link {
+        margin-right: 0;
+    }
+
+    .Navbar__item-profile {
+        margin-left: 0;
+
+        &-icon {
+            font-size: 0.75em;
+        }
+    }
+
+    .Navbar__toggler {
+        margin: 0;
+        padding: 0;
+        .Icon {
+            font-size: 0.75em;
+        }
+    }
+
+    .Navbar__logo {
+        img {
+            width: 32px;
+            height: 32px;
+        }
     }
 }

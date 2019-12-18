@@ -37,15 +37,64 @@
     margin: 16px 0;
 }
 
-@media screen and (max-width: 600px) {
+/*
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    .hide_on_medium {
+        display: none;
+    }
+}
+*/
+@media screen and (min-width: 768px) {
+    .hide_on_medium {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    /**
+        SOFT TRAINING
+     */
+    .daily_progress {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        max-width: 60%;
+        margin: auto;
+
+        .daily-progress__counter {
+            text-align: center;
+            margin-bottom: 0.2rem;
+        }
+    }
+
+    /**
+    GENERAL PROPERTIES
+     */
+
+    .hide_on_small {
+        display: none;
+    }
+
     .Home__title {
         margin:  initial;
     }
+
+    .Welcome__title {
+        h1 {
+            text-align: center;
+        }
+    }
+
     h1 {
         font-size: 1.5em;
     }
 
     h3 {
         font-size: 1.25em;
+    }
+
+    .jumbotron {
+        padding: 0.7rem 0.7rem;
     }
 }

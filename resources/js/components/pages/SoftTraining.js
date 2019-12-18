@@ -19,18 +19,24 @@ export default function SoftTraining(props) {
       updateQuestionsBag()
     })
   }, []);
+
+  const user_progress = userProgress && (
+    <div className="daily_progress">
+      <p className="daily-progress__counter"><span className="hide_on_small">Progression journalière: </span>{userProgress.daily_progress} / {userProgress.daily_objective}</p>
+      <LinearProgress variant="determinate" value={userProgress.daily_progress/userProgress.daily_objective * 100} />
+    </div>
+  );
+
   return (
     <>
-      <div className="jumbotron Home__title">
+      <div className="jumbotron Home__title hide_on_small">
         <h1>Mode consolidation</h1>
         <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
         <p>Seules les questions auxquelles vous n'avez pas répondu depuis assez longtemps apparaîtront</p>
-        {userProgress && (
-          <div>
-            Progression journalière: {userProgress.daily_progress} / {userProgress.daily_objective}
-            <LinearProgress variant="determinate" value={userProgress.daily_progress/userProgress.daily_objective * 100} />
-          </div>
-        )}
+        {user_progress}
+      </div>
+      <div className="hide_on_medium">
+        {user_progress}
       </div>
       <div className="container Home">
         <div className="row">
