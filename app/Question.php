@@ -32,6 +32,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Question newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Question newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Question query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Question OriginalsOnly()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Question whereAnswerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Question whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Question whereCreatedAt($value)
@@ -54,7 +55,21 @@ class Question extends Model
     /**
      * @var array
      */
-    protected $fillable = ['answer_id', 'wording', 'details', 'created_at', 'updated_at', 'current_delay', 'score', 'full_score', 'number_of_successful_answer', 'number_of_unsuccessful_answer', 'last_answered_at', 'next_question_at'];
+    protected $fillable = [
+        'answer_id',
+        'wording',
+        'details',
+        'created_at',
+        'updated_at',
+        'current_delay',
+        'score',
+        'full_score',
+        'number_of_successful_answer',
+        'number_of_unsuccessful_answer',
+        'last_answered_at',
+        'next_question_at',
+        'reverse_question_id',
+    ];
 
     /**
      * @return BelongsTo
@@ -70,6 +85,14 @@ class Question extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function revertedQuestion(): BelongsTo
+    {
+        return $this->belongsTo(Question::class, 'reverse_question_id');
     }
 
     public function scoreByUser($user)
@@ -138,13 +161,38 @@ class Question extends Model
     }
 
     /**
-     * Randomly make the question reverse and swap the answer and question
+     * Scope a query to only include popular users.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function tryReverse(): void {
-        try {
-            $this->is_reverse = random_int(0, config('app.reverse_ratio')) === 1;
-        } catch (Exception $e) {
-            throw new \RuntimeException('Error generating the reverse card');
+    public function scopeOriginalsOnly($query)
+    {
+        return $query->whereNull('reverse_question_id');
+    }
+
+    /**
+     * Make the reverse version of the question
+     * @throws Exception
+     */
+    public function createReverseQuestion(): Question {
+        if (!Question::find('reverse_question_id')) {
+            $reverted_answer = Answer::create([
+                'wording' => $this->wording,
+            ]);
+
+            $reverted_answer->save();
+            $question = Question::create([
+                'wording' => $this->answer()->first()->wording,
+                'reverse_question_id' => $this->id,
+                'category_id' => $this->category_id,
+                'answer_id' => $reverted_answer->id,
+            ]);
+            $question->save();
+            return $question;
+        }
+        else {
+            throw new \RuntimeException('Error, the inverted question already exists for this one');
         }
     }
 }

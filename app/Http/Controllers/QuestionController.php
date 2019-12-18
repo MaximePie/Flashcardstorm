@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use App\Answer;
 use App\Question;
 use App\Question_user;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
@@ -23,7 +21,7 @@ class QuestionController extends Controller
     public function index(string $visibility = 'all'): JsonResponse
     {
         $user = Auth::user();
-        $questions = Question::query()->paginate(20);
+        $questions = Question::OriginalsOnly()->paginate(20);
         if ($user && $visibility === 'for_user') {
             $questions = $user->questions()->paginate(20);
         }
@@ -62,6 +60,10 @@ class QuestionController extends Controller
             $question = Question::query()->where('id', $selected_question['id'])->first();
             if ($question && $question->exists() && !$question->isSetForUser($user)) {
                 Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
+                $reversed_question = $question->revertedQuestion();
+                if ($reversed_question->exists()) {
+                    Question_user::create(['user_id' => $user->id, 'question_id' => $reversed_question->first()->id]);
+                }
             }
             else {
                 $question->users()->detach($user);
@@ -71,9 +73,9 @@ class QuestionController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Returns a random questoin for the user
      *
-     * @param string $mode
+     * @param string $mode The mode we want to use
      * @return JsonResponse
      * @throws Exception
      */
@@ -120,7 +122,6 @@ class QuestionController extends Controller
                 $question['category'] = $category->first();
             }
 
-            $question->tryReverse();
             $question->tryGoldenCard();
         }
 

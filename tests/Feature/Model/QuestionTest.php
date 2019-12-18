@@ -82,18 +82,17 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * Test that the user can get the current score for each questions he answered
+     * Test create a reverted question for the current question
      * @return void
+     * @throws \Exception
      */
-    public function test_score_by_user(): void
+    public function test_create_reverted_question(): void
     {
-        $user = $this->user();
-        dd($user);
-        $this->question = Question::query()->first();
-        $correct_answer = Answer::create(['wording' => 'la raclette']);
-        $this->question->answer_id = $correct_answer->id;
-        $this->question->save();
-        self::assertFalse($this->question->isValidWith($invalid_answer));
+        $reverted_question = $this->question->createReverseQuestion();
+        self::assertTrue($this->question->isValidWith($reverted_question->wording));
+        self::assertTrue($reverted_question->isValidWith($this->question->wording));
+        self::assertSame($reverted_question->reverse_question_id, $this->question->id);
+        self::assertSame($reverted_question->category_id, $this->question->category_id);
     }
 
     protected function setUp(): void
@@ -101,6 +100,9 @@ class QuestionTest extends TestCase
         parent::setUp();
         QUESTION::query()->forceDelete();
         $this->question = factory(Question::class)->make();
+        $this->question->save();
+        $correct_answer = Answer::create(['wording' => 'la raclette']);
+        $this->question->answer_id = $correct_answer->id;
         $this->question->save();
     }
 }

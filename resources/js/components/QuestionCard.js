@@ -20,7 +20,7 @@ export default function QuestionCard(props) {
           badge="gold"
         />
       )}
-      {question.is_reverse && (
+      {question.reverse_question_id && (
         <Icon
           className={"QuestionCard--reverse__icon"}
           name="sync"

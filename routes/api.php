@@ -31,16 +31,16 @@ Route::group(['middleware' => ['auth:api']], static function() {
         Route::get('users', 'UserController@index');
         Route::get('update_progress', 'UserController@updateProgress');
 
-        Route::get('questions_list/', 'QuestionController@index');
         Route::get('question/delete/{question}', 'QuestionController@destroy');
         Route::get('question/{mode}', 'QuestionController@randomQuestion');
-        Route::get('questions_list/{visibility}', 'QuestionController@index');
+        Route::get('questions_list/{visibility?}', 'QuestionController@index');
         Route::get('categories', 'CategoryController@index');
         Route::get('changelogs', 'ChangelogController@index');
 
         Route::post('question/toggle', 'QuestionController@toggleQuestionForUser');
         Route::post('question/submit_answer', 'QuestionController@submitAnswer');
         Route::post('question', 'QuestionController@store');
+        Route::post('question_import', 'QuestionController@import');
     });
 });
 
@@ -56,7 +56,7 @@ Route::get('changelogs', 'ChangelogController@index');
 Route::get('question', 'QuestionController@randomQuestion');
 Route::get('question/{mode}', 'QuestionController@randomQuestion');
 Route::get('question/delete/{question}', 'QuestionController@destroy');
-Route::get('questions_list/{visibility}', 'QuestionController@index');
+Route::get('questions_list/{visibility?}', 'QuestionController@index');
 Route::get('categories', 'CategoryController@index');
 Route::post('question', 'QuestionController@store');
 Route::post('question/submit_answer', 'QuestionController@submitAnswer')->middleware('guest');
