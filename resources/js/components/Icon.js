@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Icon(props) {
 
-  let containerClassName = "Icon__container hide_on_small" + props.className;
+  let containerClassName = "Icon__container hide_on_small " + props.className;
   let className="Icon far fas";
   className += " fa-" + props.name + " ";
 
