@@ -1,7 +1,7 @@
 import React from 'react';
 import server from "../server";
 import Paper from "@material-ui/core/Paper";
-import toLocale from '../helper';
+import { toLocale } from '../helper';
 import Cookies from "js-cookie";
 import moment from "moment";
 

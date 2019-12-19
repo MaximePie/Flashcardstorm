@@ -13,45 +13,55 @@ export default function QuestionCard(props) {
 
   return (
     <form onSubmit={() => props.onSubmit(answer)} className={"QuestionCard card " + (question.is_golden_card && "QuestionCard--golden")}>
-      {question.is_golden_card && (
-        <Icon
-          className={"QuestionCard--golden__icon hide_on_small"}
-          name="star"
-          badge="gold"
-        />
-      )}
-      {question.reverse_question_id && (
-        <Icon
-          className={"QuestionCard--reverse__icon hide_on_small"}
-          name="sync"
-          badge="reverse"
-        />
-      )}
-      {question.is_new && (
-        <Icon
-          className={"QuestionCard--new__icon hide_on_small"}
-          name="feather-alt"
-          badge="new"
-        />
-      )}
-      {question.category && (
-        <Icon
-          className={"QuestionCard--category__icon hide_on_small"}
-          name={question.category.icon}
-          badge={question.category.name}
-          color={question.category.color}
-        />
-      )}
-      <h3 className={"QuestionCard__question " + (!question && "QuestionCard__question--is-empty")}>
-        {question.is_reverse ? question.answer : question.wording || props.message}
-      </h3>
-      <TextField label="Réponse" onChange={e => setAnswer(e.target.value)} value={answer}/>
-      <div className="QuestionCard__actions">
-        <a type="button" className="Button btn btn-secondary" onClick={handleSkip}>Passer</a>
-        <Button onClick={() => props.onSubmit(answer)} text="Envoyer"/>
+      {icons()}
+      <div className="QuestionCard__content">
+        <h3 className={"QuestionCard__question " + (!question && "QuestionCard__question--is-empty")}>
+          {question.is_reverse ? question.answer : question.wording || props.message}
+        </h3>
+        <TextField label="Réponse" onChange={e => setAnswer(e.target.value)} value={answer}/>
+        <div className="QuestionCard__actions">
+          <a type="button" className="Button btn btn-secondary" onClick={handleSkip}>Passer</a>
+          <Button onClick={() => props.onSubmit(answer)} text="Envoyer"/>
+        </div>
       </div>
     </form>
   );
+
+  function icons() {
+    return (
+      <div className="QuestionCard__icons">
+        {question.is_golden_card && (
+          <Icon
+            className={"QuestionCard--golden__icon hide_on_small"}
+            name="star"
+            badge="gold"
+          />
+        )}
+        {question.reverse_question_id && (
+          <Icon
+            className={"QuestionCard--reverse__icon hide_on_small"}
+            name="sync"
+            badge="reverse"
+          />
+        )}
+        {question.is_new && (
+          <Icon
+            className={"QuestionCard--new__icon hide_on_small"}
+            name="feather-alt"
+            badge="new"
+          />
+        )}
+        {question.category && (
+          <Icon
+            className={"QuestionCard--category__icon hide_on_small"}
+            name={question.category.icon}
+            badge={question.category.name}
+            color={question.category.color}
+          />
+        )}
+      </div>
+    )
+  }
 
   function handleSkip(event) {
     event.preventDefault();

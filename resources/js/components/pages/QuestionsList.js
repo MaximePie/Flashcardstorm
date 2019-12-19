@@ -9,7 +9,7 @@ import {Pagination} from "react-laravel-paginex";
 import Button from "../Button";
 import {useSnackbar} from "notistack";
 import Checkbox from "@material-ui/core/Checkbox";
-import toLocale from '../../helper';
+import { toLocale }from '../../helper';
 
 
 

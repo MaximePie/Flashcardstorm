@@ -9,7 +9,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::view('/{path?}', 'welcome');
+Route::view('/{path?}', 'welcome')->where('path', '(.*)');
+
+/*Route::get('/', function () {
+    App::abort(404);
+});
+*/
 
 Route::group(['middleware' => ['web']], function () {
     Route::auth();

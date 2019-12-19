@@ -23,7 +23,6 @@ require ("../sass/Snackbar.scss");
 require ("../sass/Changelogs.scss");
 
 
-import Button from "./components/Button"
 import Home from "./components/Home"
 import AddKnowledge from "./components/pages/AddKnowledge"
 import Navbar from "./components/Navbar";
@@ -41,6 +40,7 @@ import moment from 'moment'
 
 import { SnackbarProvider } from 'notistack';
 import AddChangelog from "./components/pages/AddChangelog";
+import { isMobile } from "./helper";
 
 export default function App() {
 
@@ -57,10 +57,9 @@ export default function App() {
     }
   }, [is_connected]);
 
-  const isMobile = Math.max(document.documentElement.clientWidth, window.innerWidth || 0) < 768;
   const snackbarConfig = {
-    maxSnack: isMobile ? 1 : 3,
-    dense: isMobile
+    maxSnack: isMobile() ? 1 : 3,
+    dense: isMobile()
   };
 
   // add action to all snackbars
