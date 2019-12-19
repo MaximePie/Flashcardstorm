@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from "./Button";
+import Button from "./molecule/Button";
 import TextField from "@material-ui/core/TextField";
 import Icon from "./Icon";
 

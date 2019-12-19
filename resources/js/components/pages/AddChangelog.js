@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from "@material-ui/core/TextField";
-import Button from "../Button";
+import Button from "../molecule/Button";
 import server from "../../server";
 import {useSnackbar} from "notistack";
 

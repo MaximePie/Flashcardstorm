@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
-import Button from "./Button";
+import Button from "./molecule/Button";
 import {useSnackbar} from "notistack";
 
 export default function Register() {

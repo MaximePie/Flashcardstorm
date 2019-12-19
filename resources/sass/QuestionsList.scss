@@ -23,10 +23,7 @@
     }
 
     .Icon__badge {
-        position: absolute;
-        top: 52px;
-        left: 8px;
-        bottom: initial;
+        position: initial;
     }
 
     &__question-wording {
@@ -77,9 +74,21 @@
         }
 
         .Icon__badge {
+            position: absolute;
             left: 50%;
             transform: translateX(-50%);
             top: -8px;
+        }
+
+        &__collapsible-trigger {
+            text-align: center;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 1.3em;
+        }
+
+        &__question-wording, &__question-answer {
+            margin-left: 0;
         }
     }
 }

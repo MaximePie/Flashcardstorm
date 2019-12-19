@@ -1,15 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
-import IconButton from "@material-ui/core/IconButton";
 import server from "../../server";
-import Icon from "../Icon";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import {Pagination} from "react-laravel-paginex";
-import Button from "../Button";
+import Button from "../molecule/Button";
 import {useSnackbar} from "notistack";
 import Checkbox from "@material-ui/core/Checkbox";
-import { toLocale }from '../../helper';
+import QuestionsListItem from "../molecule/QuestionsListItem";
 
 
 
@@ -66,60 +64,14 @@ export default function QuestionsList(props) {
           </div>
           {questions && questions.data && questions.data.length && questions.data.map(function(question, key){
             return (
-              <li key={`question${question.id}`} className="QuestionsList__question list-group-item">
-                {question.category && (
-                  <Icon
-                    className={"QuestionsList__category-icon"}
-                    name={question.category.icon}
-                    badge={question.category.name}
-                    color={question.category.color}
-                  />
-                )}
-                {!question.category && (
-                  <Icon
-                    className={"QuestionsList__category-icon"}
-                    name={'question'}
-                    badge={'divers'}
-                    color={'grey'}
-                  />
-                )}
-                <div>
-                  <h3 className="QuestionsList__question-wording">{question.wording}</h3>
-                  <div className="QuestionsList__question-answer">{question.answer}</div>
-                  {props.is_connected && (
-                    <>
-                      {question.score && (
-                        <div className="QuestionsList__question-score">Prochain gain : +{question.score}</div>
-                      )}
-                      {question.next_question_at && (
-                        <div className="QuestionsList__question-next">Prochaine question le {toLocale(question.next_question_at)}</div>
-                      )}
-                    </>
-                  )}
-                </div>
-                <div className="QuestionsList__actions">
-                  {props.is_connected && (
-                    <>
-                      <input
-                        type="checkbox"
-                        value={question.id}
-                        checked={question.is_set_for_user}
-                        onChange={(event) => toggleQuestionForUser(event, question.id, key)}
-                        className="QuestionsList__toggle-button"
-                        />
-                      <IconButton
-                        aria-label="delete"
-                        color="primary"
-                        className="QuestionsList__delete-button"
-                        classes
-                        onClick={() => deleteQuestion(question.id)}
-                      >
-                        <i className="far fa-trash-alt QuestionsList__delete-icon"/>
-                      </IconButton>
-                    </>
-                  )}
-                </div>
-              </li>
+              <QuestionsListItem
+                question={question}
+                questionKey={key}
+                deleteQuestion={deleteQuestion}
+                toggleQuestionForUser={toggleQuestionForUser}
+                key={"question-"+key}
+                is_connected={props.is_connected}
+              />
             )
           })}
         </ul>
