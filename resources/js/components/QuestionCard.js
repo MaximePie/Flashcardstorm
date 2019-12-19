@@ -15,28 +15,28 @@ export default function QuestionCard(props) {
     <form onSubmit={() => props.onSubmit(answer)} className={"QuestionCard card " + (question.is_golden_card && "QuestionCard--golden")}>
       {question.is_golden_card && (
         <Icon
-          className={"QuestionCard--golden__icon"}
+          className={"QuestionCard--golden__icon hide_on_small"}
           name="star"
           badge="gold"
         />
       )}
       {question.reverse_question_id && (
         <Icon
-          className={"QuestionCard--reverse__icon"}
+          className={"QuestionCard--reverse__icon hide_on_small"}
           name="sync"
           badge="reverse"
         />
       )}
       {question.is_new && (
         <Icon
-          className={"QuestionCard--new__icon"}
+          className={"QuestionCard--new__icon hide_on_small"}
           name="feather-alt"
           badge="new"
         />
       )}
       {question.category && (
         <Icon
-          className={"QuestionCard--category__icon"}
+          className={"QuestionCard--category__icon hide_on_small"}
           name={question.category.icon}
           badge={question.category.name}
           color={question.category.color}
