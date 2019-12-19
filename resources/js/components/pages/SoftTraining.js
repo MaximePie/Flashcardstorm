@@ -4,6 +4,7 @@ import server from '../../server'
 import {useSnackbar} from "notistack";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Cookies from "js-cookie";
+import {isMobile} from "../../helper";
 
 export default function SoftTraining(props) {
   const [question, updateQuestions] = React.useState(undefined);
@@ -28,12 +29,17 @@ export default function SoftTraining(props) {
 
   return (
     <>
-      <div className="jumbotron Home__title hide_on_small">
-        <h1>Mode consolidation</h1>
-        <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
-        <p>Seules les questions auxquelles vous n'avez pas répondu depuis assez longtemps apparaîtront</p>
-        {user_progress}
-      </div>
+      {!isMobile() && (
+        <div className="jumbotron Home__title">
+          <h1>Mode consolidation</h1>
+          <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
+          <p>Seules les questions auxquelles vous n'avez pas répondu depuis assez longtemps apparaîtront</p>
+          {user_progress}
+        </div>
+      )}
+      {isMobile() && (
+        <h2 className="Home__title">Mode tempête !</h2>
+      )}
       <div className="hide_on_medium">
         {user_progress}
       </div>

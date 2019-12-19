@@ -4,6 +4,7 @@ import server from '../server'
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import {useSnackbar} from "notistack";
+import {isMobile} from "../helper";
 
 export default function Home(props) {
   const [question, updateQuestion] = React.useState(undefined);
@@ -18,19 +19,24 @@ export default function Home(props) {
 
   return (
     <>
-      <div className="jumbotron Home__title">
-        <h1>Mode tempête !</h1>
-        <p>Répondez à un maximum de question toutes catégories confondues sans limite de temps ni d'essai</p>
-        <p>Attention, en mode tempête les questions ne rapportent que 10 points chacunes !</p>
-        {props.is_connected && (
-          <FormControlLabel
-            control={
-              <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>
-            }
-            label="Afficher seulement mes questions"
-          />
-        )}
-      </div>
+      {!isMobile() && (
+        <div className="jumbotron Home__title">
+          <h1>Mode tempête !</h1>
+          <p>Répondez à un maximum de question toutes catégories confondues sans limite de temps ni d'essai</p>
+          <p>Attention, en mode tempête les questions ne rapportent que 10 points chacunes !</p>
+          {props.is_connected && (
+            <FormControlLabel
+              control={
+                <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>
+              }
+              label="Afficher seulement mes questions"
+            />
+          )}
+        </div>
+      )}
+      {isMobile() && (
+        <h2 className="Home__title">Mode tempête !</h2>
+      )}
       <div className="container Home">
         <div className="row">
           {question && (
