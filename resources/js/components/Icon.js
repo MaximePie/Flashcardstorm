@@ -3,7 +3,7 @@ import { isMobile } from "../helper";
 
 export default function Icon(props) {
 
-  let containerClassName = "Icon__container" + props.className;
+  let containerClassName = "Icon__container " + props.className;
   let className="Icon far fas";
   className += " fa-" + props.name + " ";
 

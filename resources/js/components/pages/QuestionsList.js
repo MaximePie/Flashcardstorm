@@ -49,19 +49,21 @@ export default function QuestionsList(props) {
       </div>
       <form className="QuestionsList__list">
         <ul className="container list-group list-group-flush">
-          <FormControlLabel
-            control={
-              <Checkbox
-                onChange={toggleAllQuestions}
-                value="toggleAll"
-                color="primary"
-                inputProps={{
-                  'aria-label': 'secondary checkbox',
-                }}
-              />
-              }
-            label={"Cocher toutes les questions"}
-          />
+          <div className="QuestionsList__global-checker">
+            <FormControlLabel
+              control={
+                <Checkbox
+                  onChange={toggleAllQuestions}
+                  value="toggleAll"
+                  color="primary"
+                  inputProps={{
+                    'aria-label': 'secondary checkbox',
+                  }}
+                />
+                }
+              label={"Cocher toutes les questions"}
+            />
+          </div>
           {questions && questions.data && questions.data.length && questions.data.map(function(question, key){
             return (
               <li key={`question${question.id}`} className="QuestionsList__question list-group-item">
@@ -109,6 +111,7 @@ export default function QuestionsList(props) {
                         aria-label="delete"
                         color="primary"
                         className="QuestionsList__delete-button"
+                        classes
                         onClick={() => deleteQuestion(question.id)}
                       >
                         <i className="far fa-trash-alt QuestionsList__delete-icon"/>
