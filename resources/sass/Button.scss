@@ -2,6 +2,9 @@
     min-width: 100px;
     margin: 0 8px;
     &--secondary {
-        color: white;
+        color: grey !important;
+        outline: none;
+        border: none;
+        -webkit-appearance: inherit;
     }
 }
