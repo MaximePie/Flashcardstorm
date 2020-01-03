@@ -69,61 +69,72 @@ class QuestionController extends Controller
     }
 
     /**
-     * Returns a random questoin for the user
+     * Returns a random question for the user
      *
      * @param string $mode The mode we want to use
+     * @param null $questions_bag_ids
      * @return JsonResponse
-     * @throws Exception
      */
-    public function randomQuestion(string $mode = null): JsonResponse
+    public function randomQuestion(string $mode = null, $questions_bag_ids = null): JsonResponse
     {
         $message = null;
         $user = Auth::user();
+        $already_in_bag_questions = explode(',', $questions_bag_ids);
+        $limit = config('app.question_bag_max_size') - count($already_in_bag_questions);
+        if ($limit > 0) {
+            if ($mode === 'soft' && $user) {
+                $questions = $user->questions(true)
+                    ->whereNotIn('question_id', $already_in_bag_questions)
+                    ->inRandomOrder()
+                    ->limit($limit)
+                    ->get();
 
-        if ($mode === 'soft' && $user) {
-            $question = $user->questions(true)->inRandomOrder()->first();
-            if (!$question) {
-                $next_question = Question_user::query()->orderBy('next_question_at', 'asc')->first();
-                if ($next_question) {
-                    $message = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $next_question->next_question_at;
+                if ($questions) {
+                    $next_question = Question_user::query()->orderBy('next_question_at', 'asc')->first();
+                    if ($next_question) {
+                        $message = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $next_question->next_question_at;
+                    }
+                    else {
+                        $message = "Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit";
+                    }
                 }
                 else {
-                    $message = "Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit";
+                    $user_progress = $user->dailyProgress();
                 }
             }
             else {
-                $user_progress = $user->dailyProgress();
+                if ($user && $mode === 'for_user') {
+                    $question_builder = $user->questions();
+                }
+                else {
+                    $question_builder = Question::query();
+                }
+
+                $questions = $question_builder->inRandomOrder()
+                    ->limit($limit)
+                    ->get();
+
+                if (!$questions) {
+                    $message = "Il n'y a pas de question disponible, vous pouvez en créer en cliquant sur Ajouter des Questions";
+                }
+            }
+
+            if ($questions) {
+                $questions->each(static function (QUESTION $question) use ($user){
+                    $question['answer'] = $question->answer()->first()->wording;
+                    $question['is_new'] = !$question->isSetForUser($user) ?: null;
+                    $category = $question->category();
+                    if ($category) {
+                        $question['category'] = $category->first();
+                    }
+
+                    $question->tryGoldenCard();
+                });
             }
         }
-        else {
-            if ($user && $mode === 'for_user') {
-                $question_builder = $user->questions();
-            }
-            else {
-                $question_builder = Question::query();
-            }
-
-            $question = $question_builder->inRandomOrder()->first();
-
-            if (!$question) {
-                $message = "Il n'y a pas de question disponible, vous pouvez en créer en cliquant sur Ajouter des Questions";
-            }
-        }
-
-        if ($question) {
-            $question['answer'] = $question->answer()->first()->wording;
-            $question['is_new'] = !$question->isSetForUser($user) ?: null;
-            $category = $question->category();
-            if ($category) {
-                $question['category'] = $category->first();
-            }
-
-            $question->tryGoldenCard();
-        }
-
 
         return response()->json([
-            'question' => $question,
+            'questions' => $questions ?? null,
             'message' => $message,
             'next_question' => $next_question ?? null,
             'userProgress' => $user_progress ?? null,

@@ -112,7 +112,6 @@ export default function QuestionsList(props) {
     Object.values(questionsData).forEach(selectedQuestion => {
       selectedQuestion.is_set_for_user = event.target.checked;
     });
-    console.log(questionsData)
     updateQuestions({...questions, questionsData});
   }
 

@@ -7,7 +7,8 @@ import Cookies from "js-cookie";
 import {isMobile} from "../../helper";
 
 export default function SoftTraining(props) {
-  const [question, updateQuestions] = React.useState(undefined);
+
+  const [questions, updateQuestions] = React.useState([]);
   const [questionCardMessage, updateQuestionCardMessage] = React.useState(undefined);
   const [userProgress, updateUserProgress] = React.useState(undefined);
 
@@ -45,15 +46,15 @@ export default function SoftTraining(props) {
       </div>
       <div className="container Home">
         <div className="row">
-          {question && (
+          {questions[0] && (
             <QuestionCard
-              question={question || undefined}
+              question={questions[0] || undefined}
               onSubmit={submitAnswer}
               onSkip={() => updateQuestionsBag()}
               message={questionCardMessage}
             />
           )}
-          {!question && (
+          {!questions[0] && (
             <div>
               {questionCardMessage}
             </div>
@@ -64,15 +65,20 @@ export default function SoftTraining(props) {
   );
 
   function submitAnswer(answer) {
+    let submited_question = questions[0];
+    let current_questions = Array.from(questions);
+    current_questions.shift();
+    updateQuestions(current_questions);
+
     event.preventDefault();
     server.post(
       'question/submit_answer',
       {
-        id: question.id,
+        id: submited_question.id,
         answer: answer,
         mode: "soft",
-        is_golden_card: question.is_golden_card,
-        is_reverse_question: question.is_reverse,
+        is_golden_card: submited_question.is_golden_card,
+        is_reverse_question: submited_question.is_reverse,
       }
     ).then(response => {
       let snackbar_text = response.data.text;
@@ -109,8 +115,16 @@ export default function SoftTraining(props) {
   }
 
   function updateQuestionsBag() {
-    server.get('question/soft').then(response => {
-      updateQuestions(response.data.question || undefined);
+    let questions_in_bag = '';
+    questions.forEach((question, index) => {
+      questions_in_bag += index === 0 ? '/' : '';
+      questions_in_bag += question.id;
+      questions_in_bag += index < questions.length - 1 ? ',' : '';
+    });
+
+    server.get('question/soft' + questions_in_bag).then(response => {
+      questions.shift();
+      response.data.questions && updateQuestions(questions.concat(response.data.questions));
       updateQuestionCardMessage(response.data.message);
       updateUserProgress(response.data.userProgress);
     })
