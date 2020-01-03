@@ -23,7 +23,6 @@ require ("../sass/Snackbar.scss");
 require ("../sass/Changelogs.scss");
 
 
-import Home from "./components/Home"
 import AddKnowledge from "./components/pages/AddKnowledge"
 import Navbar from "./components/Navbar";
 import QuestionsList from "./components/pages/QuestionsList";
@@ -31,7 +30,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import server from "./server";
-import SoftTraining from "./components/pages/SoftTraining";
+import Training from "./components/pages/Training";
 import Users from "./components/Users";
 import Welcome from "./components/pages/Welcome";
 import Changelogs from "./components/Changelogs";
@@ -98,13 +97,13 @@ export default function App() {
               <Login />
             </Route>
             <Route path="/soft_training">
-              <SoftTraining updateUserScore={updateUser}/>
+              <Training mode="soft" updateUserScore={updateUser}/>
             </Route>
             <Route path="/logout">
-              <Home updateUserScore={updateUser} is_connected={is_connected}/>
+              <Training updateUserScore={updateUser} is_connected={is_connected}/>
             </Route>
             <Route path="/home">
-              <Home updateUserScore={updateUser} is_connected={is_connected}/>
+              <Training mode="storm" updateUserScore={updateUser} />
             </Route>
             <Route path="/users">
               <Users/>

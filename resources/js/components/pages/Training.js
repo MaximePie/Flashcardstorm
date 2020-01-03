@@ -1,12 +1,14 @@
 import React from 'react';
 import QuestionCard from "../QuestionCard";
-import server from '../../server'
 import {useSnackbar} from "notistack";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Cookies from "js-cookie";
+import server from '../../server'
+import Switch from "@material-ui/core/Switch";
 import {isMobile} from "../../helper";
 
-export default function SoftTraining(props) {
+export default function Training(props) {
 
   const [questions, updateQuestions] = React.useState([]);
   const [questionCardMessage, updateQuestionCardMessage] = React.useState(undefined);
@@ -21,29 +23,9 @@ export default function SoftTraining(props) {
     })
   }, []);
 
-  const user_progress = userProgress && (
-    <div className="daily_progress">
-      <p className="daily-progress__counter"><span className="hide_on_small">Progression journalière: </span>{userProgress.daily_progress} / {userProgress.daily_objective}</p>
-      <LinearProgress variant="determinate" value={userProgress.daily_progress/userProgress.daily_objective * 100} />
-    </div>
-  );
-
   return (
     <>
-      {!isMobile() && (
-        <div className="jumbotron Home__title">
-          <h1>Mode consolidation</h1>
-          <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
-          <p>Seules les questions auxquelles vous n'avez pas répondu depuis assez longtemps apparaîtront</p>
-          {user_progress}
-        </div>
-      )}
-      {isMobile() && (
-        <h2 className="Home__title">Mode tempête !</h2>
-      )}
-      <div className="hide_on_medium">
-        {user_progress}
-      </div>
+      {pageHeader()}
       <div className="container Home">
         <div className="row">
           {questions[0] && (
@@ -122,12 +104,62 @@ export default function SoftTraining(props) {
       questions_in_bag += index < questions.length - 1 ? ',' : '';
     });
 
-    server.get('question/soft' + questions_in_bag).then(response => {
+    server.get('question/' + props.mode + questions_in_bag).then(response => {
       questions.shift();
       response.data.questions && updateQuestions(questions.concat(response.data.questions));
       updateQuestionCardMessage(response.data.message);
       updateUserProgress(response.data.userProgress);
     })
+  }
+
+  function pageHeader() {
+
+    const user_progress = userProgress && (
+      <div className="daily_progress">
+        <p className="daily-progress__counter"><span className="hide_on_small">Progression journalière: </span>{userProgress.daily_progress} / {userProgress.daily_objective}</p>
+        <LinearProgress variant="determinate" value={userProgress.daily_progress/userProgress.daily_objective * 100} />
+      </div>
+    );
+
+    return props.mode === "soft" ? (
+      <>
+        {!isMobile() && (
+          <div className="jumbotron Home__title">
+            <h1>Mode consolidation</h1>
+            <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
+            <p>Seules les questions auxquelles vous n'avez pas répondu depuis assez longtemps apparaîtront</p>
+            <div className="hide_on_medium">
+              {user_progress}
+            </div>
+          </div>
+        )}
+        {isMobile() && (
+          <h2 className="Home__title">Mode consolidation</h2>
+        )}
+      </>
+    )
+    : (
+      <>
+        {!isMobile() && (
+          <div className="jumbotron Home__title">
+            <h1>Mode tempête !</h1>
+            <p>Répondez à un maximum de question toutes catégories confondues sans limite de temps ni d'essai</p>
+            <p>Attention, en mode tempête les questions ne rapportent que 10 points chacunes !</p>
+            {props.is_connected && (
+              <FormControlLabel
+                control={
+                  <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>
+                }
+                label="Afficher seulement mes questions"
+              />
+            )}
+          </div>
+        )}
+        {isMobile() && (
+          <h2 className="Home__title">Mode tempête !</h2>
+        )}
+      </>
+    )
   }
 }
 
