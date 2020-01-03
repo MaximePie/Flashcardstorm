@@ -23,20 +23,13 @@
 
     &--golden__icon{
         left: -24px;
-        color: goldenrod;
     }
 
     &--new__icon {
-        color: mediumspringgreen;
         left: 36px;
     }
 
-    &--new__icon {
-        color: blueviolet;
-    }
-
     &--category__icon {
-        color: mediumspringgreen;
         right: -24px;
     }
 
@@ -61,6 +54,7 @@
             height: 90%;
         }
         .Icon__badge {
+            margin: 2px;
             .Icon {
                 margin-right: 4px;
             }

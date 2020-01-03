@@ -30,35 +30,29 @@ export default function QuestionCard(props) {
   function icons() {
     return (
       <div className="QuestionCard__icons">
-        {question.is_golden_card && (
           <Icon
             className={"QuestionCard--golden__icon hide_on_small"}
             name="star"
             badge="gold"
+            color="goldenrod"
           />
-        )}
-        {question.reverse_question_id && (
           <Icon
             className={"QuestionCard--reverse__icon hide_on_small"}
             name="sync"
             badge="reverse"
           />
-        )}
-        {question.is_new && (
           <Icon
             className={"QuestionCard--new__icon hide_on_small"}
             name="feather-alt"
             badge="new"
+            color="mediumspringgreen"
           />
-        )}
-        {question.category && (
           <Icon
             className={"QuestionCard--category__icon hide_on_small"}
             name={question.category.icon}
             badge={question.category.name}
             color={question.category.color}
           />
-        )}
       </div>
     )
   }
