@@ -128,7 +128,7 @@ export default function Training(props) {
             <h1>Mode consolidation</h1>
             <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
             <p>Seules les questions auxquelles vous n'avez pas répondu depuis assez longtemps apparaîtront</p>
-            <div className="hide_on_medium">
+            <div className="hide_on_small">
               {user_progress}
             </div>
           </div>
