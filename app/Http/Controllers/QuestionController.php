@@ -89,7 +89,7 @@ class QuestionController extends Controller
                     ->limit($limit)
                     ->get();
 
-                if ($questions) {
+                if ($questions->isEmpty()) {
                     $next_question = Question_user::query()->orderBy('next_question_at', 'asc')->first();
                     if ($next_question) {
                         $message = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $next_question->next_question_at;
