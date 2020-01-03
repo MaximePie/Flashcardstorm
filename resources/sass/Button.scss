@@ -1,10 +1,7 @@
 .Button {
     min-width: 100px;
     margin: 0 8px;
-}
-
-.btn {
-    &-secondary {
+    &--secondary {
         color: white;
     }
 }
