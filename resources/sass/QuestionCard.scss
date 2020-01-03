@@ -4,6 +4,7 @@
     width: 500px;
 
     .QuestionCard__content {
+        padding-top: 40px;
         min-height: 550px;
         display: flex;
         justify-content: space-between;
@@ -22,15 +23,19 @@
     }
 
     &--golden__icon{
-        left: -24px;
+        left: 104px;
     }
 
     &--new__icon {
-        left: 36px;
+        left: 40px;
     }
 
     &--category__icon {
         right: -24px;
+    }
+
+    &--reverse__icon {
+        left: -24px;
     }
 
     .Icon__container {
