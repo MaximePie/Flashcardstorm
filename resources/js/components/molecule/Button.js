@@ -1,4 +1,5 @@
 import React from 'react';
+require ("../../../sass/Button.scss");
 
 export default function Button(props) {
 

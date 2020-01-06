@@ -15,7 +15,6 @@ require('bootstrap');
 require ("../sass/Icon.scss");
 require ("../sass/QuestionCard.scss");
 require ("../sass/Home.scss");
-require ("../sass/Button.scss");
 require ("../sass/Navbar.scss");
 require ("../sass/Addknowledge.scss");
 require ("../sass/QuestionsList.scss");
