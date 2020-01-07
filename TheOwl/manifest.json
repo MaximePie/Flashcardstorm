@@ -12,7 +12,13 @@
     }
   ],
 
-  "permissions": ["activeTab", "declarativeContent","storage", "tabs"],
+  "permissions": [
+    "activeTab",
+    "declarativeContent",
+    "storage",
+    "tabs",
+    "commands"
+  ],
 
   "background": {
     "scripts": ["background.js"]
@@ -24,5 +30,30 @@
 
   "icons": {
     "128": "favicon.png"
+  },
+
+  "commands": {
+    "alert": {
+      "description": "Déclare une alerte",
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      }
+    },
+    "toggle-feature": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X",
+        "windows": "Ctrl+Shift+X",
+        "linux": "Ctrl+Shift+X"
+      },
+      "description": "Send a 'toggle-feature' event"
+    },
+    "toggle-feature-foo": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+U",
+        "windows": "Ctrl+Shift+U",
+        "linux": "Ctrl+Shift+U"
+      },
+      "description": "Send a 'toggle-feature' event"
+    }
   }
 }
