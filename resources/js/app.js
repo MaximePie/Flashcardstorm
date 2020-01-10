@@ -71,7 +71,7 @@ export default function App() {
       {...snackbarConfig}
       ref={notistackRef}
       action={(key) => (
-        <span className="Haha" onClick={onClickDismiss(key)}>
+        <span onClick={onClickDismiss(key)}>
           X
         </span>
       )}
