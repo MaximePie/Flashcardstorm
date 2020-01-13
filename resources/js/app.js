@@ -20,6 +20,7 @@ require ("../sass/Addknowledge.scss");
 require ("../sass/QuestionsList.scss");
 require ("../sass/Snackbar.scss");
 require ("../sass/Changelogs.scss");
+require ("../sass/Register.scss");
 
 
 import AddKnowledge from "./components/pages/AddKnowledge"

@@ -38,13 +38,10 @@
     margin: 16px 0;
 }
 
-/*
-@media screen and (min-width: 768px) and (max-width: 992px) {
-    .hide_on_medium {
-        display: none;
-    }
+.Title {
+    font-size: 24px;
 }
-*/
+
 @media screen and (min-width: 768px) {
     .hide_on_medium {
         display: none;

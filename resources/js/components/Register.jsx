@@ -1,5 +1,5 @@
 import React from 'react';
-import TextField from "@material-ui/core/TextField";
+import TextField from "./molecule/TextField";
 import axios from "axios";
 import Button from "./molecule/Button";
 import {useSnackbar} from "notistack";
@@ -12,32 +12,39 @@ export default function Register() {
     password: ''
   });
 
-  const [is_open, setOpen] = React.useState(false);
-
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
   return (
-    <div className="container">
-      <form onSubmit={submitValues} className="card">
+    <div className="Register">
+      <form onSubmit={submitValues} className="card Form RegisterForm">
+      <h2 className="Title FormTitle">S'inscrire</h2>
         <TextField
           value={form.name}
           name="name"
           onChange={updateForm}
-          label="Pseudo"
+          variant="big"
+          placeholder="Pseudo"
         />
         <TextField
           value={form.email}
           name="email"
           onChange={updateForm}
-          label="E-mail"
+          variant="big"
+          placeholder="E-mail"
         />
         <TextField
           value={form.password}
           name="password"
           onChange={updateForm}
-          label="Mot de passe"
+          placeholder="Mot de passe"
+          type="password"
+          variant="big"
         />
-        <Button  text="S'enregistrer" onClick={submitValues}/>
+        <Button
+          text="S'enregistrer"
+          onClick={submitValues}
+          variant="big"
+        />
       </form>
     </div>
   );
@@ -52,7 +59,7 @@ export default function Register() {
 
   function submitValues(event) {
     event.preventDefault();
-    axios.post('/api/register', form).then(response => {
+    axios.post('/api/register', form).then(() => {
       enqueueSnackbar('Connecté', {variant: "success", anchorOrigin: {
           vertical: 'top',
           horizontal: 'center',

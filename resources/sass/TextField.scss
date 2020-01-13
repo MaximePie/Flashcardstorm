@@ -1,0 +1,19 @@
+.TextField {
+    margin: 8px 0;
+    padding: 4px;
+    display: grid;
+
+    &__input {
+        padding: 8px;
+    }
+
+    &--big {
+        .TextField__input {
+            padding: 16px;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        width: 100%;
+    }
+}

@@ -1,10 +1,16 @@
 .Button {
     min-width: 100px;
-    margin: 0 8px;
+    margin: 8px;
+
+    width: 250px;
     &--secondary {
         color: grey !important;
         outline: none;
         border: none;
         -webkit-appearance: inherit;
+    }
+
+    &--big {
+        padding: 16px;
     }
 }
