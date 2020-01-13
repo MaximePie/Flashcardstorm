@@ -20,8 +20,8 @@ export default function QuestionCard(props) {
         </h3>
         <TextField label="Réponse" onChange={e => setAnswer(e.target.value)} value={answer}/>
         <div className="QuestionCard__actions">
-          <a type="button" className="Button btn Button--secondary" onClick={handleSkip}>Passer</a>
-          <Button onClick={() => props.onSubmit(answer)} text="Envoyer"/>
+          <a type="button" className="Button btn Button--secondary Button--small" onClick={handleSkip}>Passer</a>
+          <Button variant="small" onClick={() => props.onSubmit(answer)} text="Envoyer"/>
         </div>
       </div>
     </form>

@@ -19,6 +19,7 @@ export default function TextField(props) {
         name={props.name}
         onChange={props.onChange}
         placeholder={props.placeholder}
+        type={props.type}
       />
     </span>
   );

@@ -1,3 +1,5 @@
+@import './variables';
+
 .Register {
     display: grid;
     width: 100%;
@@ -10,6 +12,7 @@
         align-items: center;
         width: 500px;
         margin: auto;
+        box-shadow: $card-box-shadow;
     }
 
     .FormTitle {

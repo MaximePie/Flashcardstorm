@@ -1,0 +1,28 @@
+@import './variables';
+
+.Login {
+    display: grid;
+    width: 100%;
+    height: 92vh;
+    overflow: hidden;
+    background: content-box no-repeat url("../images/loginbackground.jpg");
+    background-size: 100% 100%;
+
+    .LoginForm {
+        padding: 60px;
+        align-items: center;
+        width: 500px;
+        margin: auto;
+        box-shadow: $card-box-shadow;
+    }
+
+    .FormTitle {
+        border-radius: 8px;
+        text-align: center;
+        color: dimgrey;
+    }
+
+    @media screen and (max-width: 767px) {
+        background-size: auto;
+    }
+}

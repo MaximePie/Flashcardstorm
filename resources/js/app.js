@@ -21,13 +21,14 @@ require ("../sass/QuestionsList.scss");
 require ("../sass/Snackbar.scss");
 require ("../sass/Changelogs.scss");
 require ("../sass/Register.scss");
+require ("../sass/Login.scss");
 
 
 import AddKnowledge from "./components/pages/AddKnowledge"
 import Navbar from "./components/Navbar";
 import QuestionsList from "./components/pages/QuestionsList";
-import Register from "./components/Register";
-import Login from "./components/Login";
+import Register from "./components/pages/Register";
+import Login from "./components/pages/Login";
 import Profile from "./components/Profile";
 import server from "./server";
 import Training from "./components/pages/Training";

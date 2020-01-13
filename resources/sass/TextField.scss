@@ -2,9 +2,13 @@
     margin: 8px 0;
     padding: 4px;
     display: grid;
+    width: 350px;
 
     &__input {
         padding: 8px;
+        font-size: 1.2em;
+        border: 1px solid #d6d6d6;
+        border-radius: 6px;
     }
 
     &--big {
