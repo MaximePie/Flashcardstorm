@@ -1,7 +1,7 @@
-import moment from 'moment'
+import moment from 'moment';
 
 export function toLocale(date) {
-  return moment(date).format('Do MMMM YYYY')
+  return moment(date).format('Do MMMM YYYY');
 }
 
 export function isMobile() {

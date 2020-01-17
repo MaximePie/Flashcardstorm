@@ -1,44 +1,42 @@
-import axios from "axios";
-import Cookies from "js-cookie";
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 class server {
   static async post(url, data) {
-    let bearer =  Cookies.get('Bearer');
+    const bearer = Cookies.get('Bearer');
     if (bearer) {
-      let headers = {
-        Authorization: 'Bearer ' + bearer,
+      const headers = {
+        Authorization: `Bearer ${bearer}`,
         Accept: 'application/json',
       };
 
-      return axios.post('/api/authenticated/' + url,
+      return axios.post(`/api/authenticated/${url}`,
         data, {
-          headers: headers
-        })
+          headers,
+        });
     }
-    else {
-      return axios.post('/api/' + url, data);
-    }
+
+    return axios.post(`/api/${url}`, data);
   }
 
   static async get(url, params = null) {
-    let bearer =  Cookies.get('Bearer');
-    let server_url = '/api/';
+    const bearer = Cookies.get('Bearer');
+    let serverUrl = '/api/';
 
     if (bearer) {
-      server_url += 'authenticated/' + url + '?api_token=' + bearer;
+      serverUrl += `authenticated/${url}?api_token=${bearer}`;
       if (params) {
-        server_url += '&' + params;
+        serverUrl += `&${params}`;
       }
-    }
-    else {
-      server_url += url;
+    } else {
+      serverUrl += url;
       if (params) {
-        server_url += '?' + params;
+        serverUrl += `?${params}`;
       }
     }
 
-    return axios.get(server_url);
+    return axios.get(serverUrl);
   }
 }
 
-export default server
+export default server;

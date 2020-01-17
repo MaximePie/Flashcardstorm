@@ -1,9 +1,13 @@
+.App {
+    background-color: grey;
+    height: 100vh;
+}
+
 .Home {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
-
 
 .MuiSnackbarContent-message {
     width: 100%;
@@ -40,6 +44,11 @@
 
 .Title {
     font-size: 24px;
+}
+
+.jumbotron {
+    background-color: #686868;
+    color: white;
 }
 
 @media screen and (min-width: 768px) {

@@ -3,6 +3,10 @@
     &__nav {
         display: flex;
         justify-content: space-between;
+
+        width: 100%;
+        position: absolute;
+        background-color: #ffffff00 !important;
     }
 
     &__home-link {
@@ -34,6 +38,7 @@
         background: transparent;
         margin: 0 16px;
         font-size: 36px;
+        color: white;
     }
 
     &__item-profile {
