@@ -1,94 +1,99 @@
 .QuestionsList {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  &__content {
     width: 100%;
+  }
 
-    &__global-checker {
-        text-align: center;
-    }
+  &__global-checker {
+    text-align: center;
+  }
 
-    &__list {
-        width: 100%;
-    }
+  &__list {
+    width: 100%;
+  }
 
-    &__title {
-        text-align: center;
-        width: 100%;
-    }
+  &__title {
+    text-align: center;
+    width: 100%;
+  }
 
+  &__question {
+    display: grid;
+    grid-template-columns: 70px 8fr 128px;
+  }
+
+  .Icon__badge {
+    position: initial;
+  }
+
+  &__question-wording {
+    margin: 0 4px;
+  }
+
+  &__question-answer {
+    margin: 0 4px;
+  }
+
+  &__delete-button {
+    background-color: #c13c2b !important;
+    margin: 0 8px !important;
+    padding: 4px;
+    width: 48px;
+    height: 48px;
+  }
+
+  &__toggle-button {
+    padding: 4px;
+    width: 48px;
+    height: 48px;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__delete-icon {
+    color: white;
+  }
+
+  @media screen and (max-width: 767px) {
     &__question {
-        display: grid;
-        grid-template-columns: 70px 8fr 128px;
+      grid-template-columns: 2fr 80px;
+      margin: 4px 0;
     }
 
-    .Icon__badge {
-        position: initial;
-    }
-
-    &__question-wording {
-        margin: 0 4px;
-    }
-
-    &__question-answer {
-        margin: 0 4px;
+    &__delete-button, &__toggle-button {
+      width: 24px;
+      height: 24px;
     }
 
     &__delete-button {
-        background-color: #c13c2b !important;
-        margin: 0 8px !important;
-        padding: 4px;
-        width: 48px;
-        height: 48px;
+      font-size: 1rem !important;
+      padding: 0 !important;
     }
 
-    &__toggle-button {
-        padding: 4px;
-        width: 48px;
-        height: 48px;
+    .Icon__badge {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: -8px;
     }
 
-    &__actions {
-        display: flex;
-        align-items: center;
+    &__collapsible-trigger {
+      text-align: center;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 1.3em;
     }
 
-    &__delete-icon {
-        color: white;
+    &__question-wording, &__question-answer {
+      margin-left: 0;
     }
-
-    @media screen and (max-width: 767px) {
-        &__question {
-            grid-template-columns: 2fr 80px;
-            margin: 4px 0;
-        }
-
-        &__delete-button, &__toggle-button {
-            width: 24px;
-            height: 24px;
-        }
-
-        &__delete-button {
-            font-size: 1rem !important;
-            padding: 0 !important;
-        }
-
-        .Icon__badge {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            top: -8px;
-        }
-
-        &__collapsible-trigger {
-            text-align: center;
-            cursor: pointer;
-            display: inline-block;
-            font-size: 1.3em;
-        }
-
-        &__question-wording, &__question-answer {
-            margin-left: 0;
-        }
-    }
+  }
 }

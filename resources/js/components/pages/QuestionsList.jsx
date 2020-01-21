@@ -23,65 +23,69 @@ export default function QuestionsList(props) {
   }, [switchStatus]);
 
   React.useEffect(() => {
-  }, [questions && questions.data]);
+  }, [questions?.data]);
 
   return (
     <div className="QuestionsList">
-      <div className="jumbotron QuestionsList__title">
-        <h1>Liste des questions</h1>
-        <p>Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection</p>
-        <p>Une question est automatiquement intégrée à votre collection quand vous créez une question ou quand vous y répondez depuis le mode Tempête</p>
-        {props.is_connected && (
-          <>
-          <FormControlLabel
-            control={
-              <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>
-            }
-            label="Afficher seulement mes questions"
-          />
-          {props.is_connected && questions && questions.data && (
-            <Button text="Enregistrer la sélection" onClick={saveSelection}/>
+      <div className="card QuestionsList__content">
+        <div className="jumbotron QuestionsList__title">
+          <h1>Liste des questions</h1>
+          <p>Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection</p>
+          <p>Une question est automatiquement intégrée à votre collection quand vous créez une question ou quand vous y répondez depuis le mode Tempête</p>
+          {props.is_connected && (
+            <>
+            <FormControlLabel
+              control={
+                <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>
+              }
+              label="Afficher seulement mes questions"
+            />
+            {props.is_connected && questions && questions.data && (
+              <Button text="Enregistrer la sélection" onClick={saveSelection}/>
+            )}
+            </>
           )}
+        </div>
+        <form className="QuestionsList__list">
+          <ul className="container list-group list-group-flush">
+            <div className="QuestionsList__global-checker">
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    onChange={toggleAllQuestions}
+                    value="toggleAll"
+                    color="primary"
+                    inputProps={{
+                      'aria-label': 'secondary checkbox',
+                    }}
+                  />
+                  }
+                label={"Cocher toutes les questions"}
+              />
+            </div>
+            {questions && questions.data && questions.data.length && questions.data.map(function(question, key){
+              return (
+                <QuestionsListItem
+                  question={question}
+                  questionKey={key}
+                  deleteQuestion={deleteQuestion}
+                  toggleQuestionForUser={toggleQuestionForUser}
+                  key={"question-"+key}
+                  is_connected={props.is_connected}
+                />
+              )
+            })}
+          </ul>
+        </form>
+        {questions?.data?.length && (
+          <>
+            <div className="QuestionsList__actions">
+              <Button text="Enregistrer la sélection" onClick={saveSelection}/>
+              <Pagination changePage={updateQuestionsBag} data={questions}/>
+            </div>
           </>
         )}
       </div>
-      <form className="QuestionsList__list">
-        <ul className="container list-group list-group-flush">
-          <div className="QuestionsList__global-checker">
-            <FormControlLabel
-              control={
-                <Checkbox
-                  onChange={toggleAllQuestions}
-                  value="toggleAll"
-                  color="primary"
-                  inputProps={{
-                    'aria-label': 'secondary checkbox',
-                  }}
-                />
-                }
-              label={"Cocher toutes les questions"}
-            />
-          </div>
-          {questions && questions.data && questions.data.length && questions.data.map(function(question, key){
-            return (
-              <QuestionsListItem
-                question={question}
-                questionKey={key}
-                deleteQuestion={deleteQuestion}
-                toggleQuestionForUser={toggleQuestionForUser}
-                key={"question-"+key}
-                is_connected={props.is_connected}
-              />
-            )
-          })}
-        </ul>
-      </form>
-      {questions && questions.data && questions.data.length && (
-        <>
-          <Button text="Enregistrer la sélection" onClick={saveSelection}/>
-          <Pagination changePage={updateQuestionsBag} data={questions}/>
-        </>
-      )}
     </div>
   );
 

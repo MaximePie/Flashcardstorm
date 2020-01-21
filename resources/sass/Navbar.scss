@@ -1,105 +1,119 @@
 .Navbar {
 
-    &__nav {
-        display: flex;
-        justify-content: space-between;
+  &__nav {
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
 
-        width: 100%;
-        position: absolute;
-        background-color: #ffffff00 !important;
+    width: 100%;
+    position: absolute;
+    background-color: #ffffff00 !important;
+  }
+
+  &__home-link {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__logo {
+    margin: 0 8px;
+  }
+
+  &__item {
+    margin: 0 8px;
+    font-size: 1.3em;
+  }
+
+  &__item-profile-icon:before {
+    font-size: 3em;
+  }
+
+  &___item-profile-icon-link {
+    margin-right: 8%;
+  }
+
+  &__toggler, &__toggler-wide {
+    outline: none;
+    border: none;
+    background: transparent;
+    margin: 0 16px;
+    font-size: 36px;
+
+    .Icon {
+      color: white;
     }
+  }
 
-    &__home-link {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-    }
+  &__item-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 32px;
 
-    &__logo {
-        margin: 0 8px;
-    }
+    &-score {
+      display: block;
+      font-size: 1.5em;
 
-    &__item {
-        margin: 0 8px;
-        font-size: 1.3em;
-    }
+      &-counter {
+        color: white;
+        transition: all 0.15s ease;
 
-    &__item-profile-icon:before {
-        font-size: 3em;
-    }
-
-    &___item-profile-icon-link {
-        margin-right: 8%;
-    }
-
-    &__toggler, &__toggler-wide {
-        outline: none;
-        border: none;
-        background: transparent;
-        margin: 0 16px;
-        font-size: 36px;
-
-        .Icon {
-            color: white;
+        &-rising {
+          color: green;
+          transition: all 0.15s ease;
         }
+      }
     }
-
-    &__item-profile {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-left: 32px;
-
-        &-score {
-            display: block;
-            font-size: 1.5em;
-        }
-
-        .Navbar__counter {
-            color: initial;
-            transition: all 0.15s ease;
-
-            &-rising {
-                color: green;
-                transition: all 0.15s ease;
-            }
-        }
-    }
+  }
 }
-
 @media screen and (max-width: 992px) {
-    .Navbar__toggler-wide {
-        display: none;
+  .Navbar__toggler-wide {
+    display: none;
+  }
+
+  .Navbar__counter {
+    font-size: 0.75em;
+  }
+
+  .Navbar__home-link {
+    margin-right: 0;
+  }
+
+  .Navbar__item-profile {
+    margin-left: 0;
+
+    &-icon {
+      font-size: 0.75em;
+    }
+  }
+
+  .Navbar__toggler {
+    margin: 0;
+    padding: 0;
+    .Icon {
+      font-size: 0.75em;
+    }
+  }
+
+  .Navbar__logo {
+    img {
+      width: 32px;
+      height: 32px;
     }
 
-    .Navbar__counter {
-        font-size: 0.75em;
+    &-text {
+      display: none;
     }
+  }
 
-    .Navbar__home-link {
-        margin-right: 0;
+  .Navbar__item-profile {
+    &-score {
+      position: absolute;
+      font-size: 1em;
+      top: 50%;
+      transform: translateY(-50%);
     }
-
-    .Navbar__item-profile {
-        margin-left: 0;
-
-        &-icon {
-            font-size: 0.75em;
-        }
-    }
-
-    .Navbar__toggler {
-        margin: 0;
-        padding: 0;
-        .Icon {
-            font-size: 0.75em;
-        }
-    }
-
-    .Navbar__logo {
-        img {
-            width: 32px;
-            height: 32px;
-        }
-    }
+  }
 }
+

@@ -1,16 +1,15 @@
 import React from 'react';
-import axios from "axios";
-import Cookies from "js-cookie";
-import {useSnackbar} from "notistack";
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { useSnackbar } from 'notistack';
 
-import TextField from "../molecule/TextField";
-import Button from "../molecule/Button";
+import TextField from '../molecule/TextField';
+import Button from '../molecule/Button';
 
 export default function Login() {
-
   const [form, setForm] = React.useState({
     email: '',
-    password: ''
+    password: '',
   });
 
   const { enqueueSnackbar } = useSnackbar();
@@ -44,26 +43,28 @@ export default function Login() {
   );
 
 
-  function updateForm (e) {
+  function updateForm(e) {
     setForm({
       ...form,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   }
 
   function submitValues(event) {
     event.preventDefault();
-    axios.post('/login', form).then(response => {
-      if(response.data.status && response.data.status !== 200) {
-        enqueueSnackbar('Informations incorrectes', {variant: "error", anchorOrigin: {
+    axios.post('/login', form).then((response) => {
+      if (response.data.status && response.data.status !== 200) {
+        enqueueSnackbar('Informations incorrectes', {
+          variant: 'error',
+          anchorOrigin: {
             vertical: 'top',
             horizontal: 'center',
-          },})
-      }
-      else {
+          },
+        });
+      } else {
         Cookies.set('Bearer', response.data.bearer);
-        document.location = "/home";
+        document.location = '/home';
       }
-    })
+    });
   }
 }

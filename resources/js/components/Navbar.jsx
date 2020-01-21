@@ -1,27 +1,26 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from "react";
-import Avatar from "@material-ui/core/Avatar";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import axios from "axios";
-import Cookies from "js-cookie";
+import React from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 import CountTo from 'react-count-to';
-import Drawer from "@material-ui/core/Drawer";
-import Icon from "./Icon";
-import Badge from "@material-ui/core/Badge";
+import Drawer from '@material-ui/core/Drawer';
+import Badge from '@material-ui/core/Badge';
+import Icon from './Icon';
 
 export default function Navbar(props) {
-
   const number_of_new_questions = Cookies.get('number_of_new_questions');
 
-  const number_of_new_changelogs = Cookies.get('number_of_new_changelogs');
+  const numberOfNewChangelogs = Cookies.get('number_of_new_changelogs');
 
   const [isOpen, setOpen] = React.useState(false);
 
-  const toggleDrawer = (open) => event => {
+  const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
@@ -30,9 +29,9 @@ export default function Navbar(props) {
   };
 
 
-  const sideList = side => (
+  const sideList = (side) => (
     <div
-      className={"Navbar__drawer"}
+      className="Navbar__drawer"
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
@@ -40,7 +39,7 @@ export default function Navbar(props) {
       <List className="navbar-nav mr-auto Navbar__list">
         <ListItem button component="a" href="/home" className="Navbar__item">
           <ListItemIcon>
-            <i className="fas fa-cloud-meatball"/>
+            <i className="fas fa-cloud-meatball" />
           </ListItemIcon>
           <ListItemText>
             Mode tempête
@@ -51,11 +50,11 @@ export default function Navbar(props) {
             <ListItemIcon>
               {number_of_new_questions && number_of_new_questions > 0 ? (
                 <Badge color="secondary" badgeContent={number_of_new_questions}>
-                  <i className="fas fa-calendar-alt"/>
+                  <i className="fas fa-calendar-alt" />
                 </Badge>
               ) : (
                 <>
-                  <i className="fas fa-calendar-alt"/>
+                  <i className="fas fa-calendar-alt" />
                 </>
               )}
             </ListItemIcon>
@@ -66,7 +65,7 @@ export default function Navbar(props) {
         )}
         <ListItem button component="a" href="/questions" className="Navbar__item">
           <ListItemIcon>
-            <i className="fas fa-list"/>
+            <i className="fas fa-list" />
           </ListItemIcon>
           <ListItemText>
             Questions
@@ -74,7 +73,7 @@ export default function Navbar(props) {
         </ListItem>
         <ListItem button component="a" href="/add" className="Navbar__item">
           <ListItemIcon>
-            <i className="fas fa-folder-plus"/>
+            <i className="fas fa-folder-plus" />
           </ListItemIcon>
           <ListItemText>
             Ajouter des questions
@@ -84,7 +83,7 @@ export default function Navbar(props) {
           <>
             <ListItem button component="a" href="/register" className="Navbar__item">
               <ListItemIcon>
-                <i className="fas fa-user-plus"/>
+                <i className="fas fa-user-plus" />
               </ListItemIcon>
               <ListItemText>
                 S'enregistrer
@@ -92,7 +91,7 @@ export default function Navbar(props) {
             </ListItem>
             <ListItem button component="a" href="/login" className="Navbar__item">
               <ListItemIcon>
-                <i className="fas fa-sign-in-alt"/>
+                <i className="fas fa-sign-in-alt" />
               </ListItemIcon>
               <ListItemText>
                 Se connecter
@@ -104,7 +103,7 @@ export default function Navbar(props) {
           <>
             <ListItem button component="a" href="/users" className="Navbar__item">
               <ListItemIcon>
-                <i className="fas fa-users"/>
+                <i className="fas fa-users" />
               </ListItemIcon>
               <ListItemText>
                 Utilisateurs
@@ -112,7 +111,7 @@ export default function Navbar(props) {
             </ListItem>
             <ListItem button component="a" onClick={logout} className="Navbar__item">
               <ListItemIcon>
-                <i className="fas fa-sign-out-alt"/>
+                <i className="fas fa-sign-out-alt" />
               </ListItemIcon>
               <ListItemText>
                 Se déconnecter
@@ -122,13 +121,13 @@ export default function Navbar(props) {
         )}
         <ListItem button component="a" href="/about" className="Navbar__item">
           <ListItemIcon>
-            {number_of_new_changelogs && number_of_new_changelogs > 0 ? (
-              <Badge color="secondary" badgeContent={number_of_new_changelogs}>
-                <i className="fas fa-question-circle"/>
+            {numberOfNewChangelogs && numberOfNewChangelogs > 0 ? (
+              <Badge color="secondary" badgeContent={numberOfNewChangelogs}>
+                <i className="fas fa-question-circle" />
               </Badge>
             ) : (
               <>
-                <i className="fas fa-question-circle"/>
+                <i className="fas fa-question-circle" />
               </>
             )}
           </ListItemIcon>
@@ -153,7 +152,7 @@ export default function Navbar(props) {
           aria-label="Toggle navigation"
           onClick={() => setOpen(true)}
         >
-          <Icon name="bars" className="Navbar__drawer-icon"/>
+          <Icon name="bars" className="Navbar__drawer-icon" />
         </button>
         <button
           className="Navbar__toggler-wide"
@@ -164,19 +163,22 @@ export default function Navbar(props) {
           onClick={() => setOpen(true)}
         >
           {
-            (number_of_new_changelogs && number_of_new_changelogs > 0) ||
-            (number_of_new_questions && number_of_new_questions > 0) ?
-          (
-            <Badge color="secondary" variant="dot">
-              <Icon name="bars" className="Navbar__drawer-icon"/>
-            </Badge>
-          ) : (
-            <Icon name="bars" className="Navbar__drawer-icon"/>
-          )}
+            (numberOfNewChangelogs && numberOfNewChangelogs > 0)
+            || (number_of_new_questions && number_of_new_questions > 0)
+              ? (
+                <Badge color="secondary" variant="dot">
+                  <Icon name="bars" className="Navbar__drawer-icon" />
+                </Badge>
+              ) : (
+                <Icon name="bars" className="Navbar__drawer-icon" />
+              )
+}
         </button>
         <a className="navbar-brand Navbar__home-link" href="/home">
           <Avatar className="Navbar__logo" alt="GIPSI Logo" src="/images/logo.png" />
-          FlashcardStorm
+          <div className="Navbar__logo-text">
+            FlashcardStorm
+          </div>
         </a>
         <Drawer open={isOpen} onClose={toggleDrawer(false)}>
           {sideList('left')}
@@ -184,7 +186,7 @@ export default function Navbar(props) {
         {props.is_connected && (
           <div className="Navbar__item-profile">
             <a href="/profile" className="Navbar__item-profile-icon-link">
-              <i className="Navbar__item-profile-icon fas fa-user-circle"/>
+              <i className="Navbar__item-profile-icon fas fa-user-circle" />
             </a>
             {props.user && (
               <span className="Navbar__item-profile-score">
@@ -192,7 +194,7 @@ export default function Navbar(props) {
                   from={props.user.initial_score}
                   to={props.user.current_score}
                   speed={1000}
-                  className={"Navbar__counter " + props.countClassName}
+                  className={`Navbar__item-profile-score-counter ${props.countClassName}`}
                   onComplete={props.onCountComplete}
                 />
               </span>
@@ -204,9 +206,9 @@ export default function Navbar(props) {
   );
 
   function logout() {
-    axios.get('/logout').then(response => {
+    axios.get('/logout').then((response) => {
       Cookies.remove('Bearer');
-      document.location = "/home";
-    })
+      document.location = '/home';
+    });
   }
 }

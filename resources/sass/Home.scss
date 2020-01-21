@@ -7,21 +7,26 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 60px;
+
+    &__snackbar {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    &__title {
+        text-align: center;
+        color: white;
+    }
+}
+
+.container {
+    margin: 60px 0 0;
+    padding: 0;
 }
 
 .MuiSnackbarContent-message {
     width: 100%;
-}
-
-.Home__snackbar {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.Home__title {
-    text-align: center;
 }
 
 .jumbotron {
@@ -60,6 +65,10 @@
         background-size: cover;
     }
 
+    .container {
+        max-width: 768px;
+    }
+
     /**
         SOFT TRAINING
      */
@@ -79,6 +88,10 @@
     /**
     GENERAL PROPERTIES
      */
+
+    .row {
+        margin: 0;
+    }
 
     .hide_on_small {
         display: none;
