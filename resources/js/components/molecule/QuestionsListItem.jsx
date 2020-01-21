@@ -69,7 +69,7 @@ export default function QuestionsListItem(props) {
         )}
         {isMobile() && collapsibleForDetails(question)}
       </div>
-      {questionActions(key)}
+      {questionActions()}
     </li>
   );
 
@@ -98,7 +98,7 @@ export default function QuestionsListItem(props) {
 
   function questionActions() {
     return (
-      <div className="QuestionsList__actions">
+      <div className="QuestionsListItem__actions">
         {isConnected && (
           <>
             <input
@@ -106,15 +106,15 @@ export default function QuestionsListItem(props) {
               value={question.id}
               checked={question.isSetForUser}
               onChange={(event) => toggleQuestionForUser(event, question.id, key)}
-              className="QuestionsList__toggle-button"
+              className="QuestionsListItem__toggle-button"
             />
             <IconButton
               aria-label="delete"
               color="primary"
-              className="QuestionsList__delete-button"
+              className="QuestionsListItem__delete-button"
               onClick={() => deleteQuestion(question.id)}
             >
-              <i className="far fa-trash-alt QuestionsList__delete-icon" />
+              <i className="far fa-trash-alt QuestionsListItem__delete-icon" />
             </IconButton>
           </>
         )}

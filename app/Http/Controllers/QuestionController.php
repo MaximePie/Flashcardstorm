@@ -33,8 +33,8 @@ class QuestionController extends Controller
                 $question['category'] = $category->first();
             }
             if ($user) {
-                $question['is_set_for_user'] = $question->isSetForUser($user);
-                if ($question['is_set_for_user']) {
+                $question['isSetForUser'] = $question->isSetForUser($user);
+                if ($question['isSetForUser']) {
                     $question['score'] = $question->scoreByUser($user);
                     $question['next_question_at'] = $question->nextQuestionatForUser($user);
                 }
