@@ -24,5 +24,10 @@
 
     @media screen and (max-width: 767px) {
         background-size: auto;
+
+        .LoginForm {
+            padding: 16px;
+            width: 350px;
+        }
     }
 }

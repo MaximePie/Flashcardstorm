@@ -3,6 +3,7 @@
     margin: 8px;
 
     width: 250px;
+
     &--secondary {
         color: grey !important;
         outline: none;
@@ -16,5 +17,11 @@
 
     &--small {
         width: 150px;
+    }
+
+    @media screen and (max-width: 767px) {
+        &--big {
+            padding: 8px;
+        }
     }
 }

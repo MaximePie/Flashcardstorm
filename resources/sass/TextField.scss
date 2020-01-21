@@ -19,5 +19,17 @@
 
     @media screen and (max-width: 767px) {
         width: 100%;
+
+        &__input {
+            padding: 4px;
+            font-size: 1em;
+        }
+
+        &--big {
+            .TextField__input {
+                font-size: 1em;
+                padding: 8px;
+            }
+        }
     }
 }

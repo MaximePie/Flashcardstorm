@@ -23,5 +23,10 @@
 
     @media screen and (max-width: 767px) {
         background-size: auto;
+
+        .RegisterForm {
+            padding: 16px;
+            width: 350px;
+        }
     }
 }
