@@ -10,8 +10,10 @@ import csv from 'csv';
 import { Checkbox } from '@material-ui/core';
 import server from '../../server';
 import Button from '../molecule/Button';
+import { isMobile } from '../../helper';
 
 export default function AddKnowledge(props) {
+  const {is_connected} = props;
   const [form, setForm] = React.useState({
     question: '',
     answer: '',
@@ -25,7 +27,7 @@ export default function AddKnowledge(props) {
     updateCategoriesList();
   }, []);
 
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
   // CSV management
   const onDrop = useCallback((acceptedFiles) => {
@@ -33,6 +35,7 @@ export default function AddKnowledge(props) {
     reader.onload = () => {
       csv.parse(reader.result, (err, data) => {
         if (err) {
+          // eslint-disable-next-line max-len
           enqueueSnackbar('Aïe aïe aïe ! Il y a eu une erreur lors de l\'import ! Appuyez sur F12 et consultez la console pour en savoir plus !',
             {
               anchorOrigin: {
@@ -55,7 +58,7 @@ export default function AddKnowledge(props) {
     <div className="Addknowledge">
       <div className="jumbotron Addknowledge__title">
         <h1>Ajouter une question</h1>
-        {props.is_connected && (
+        {is_connected && !isMobile() && (
           <div {...getRootProps()} className="Addknowledge__import-drop-zone">
             <input {...getInputProps()} />
             {
@@ -68,10 +71,21 @@ export default function AddKnowledge(props) {
       </div>
       <div className="row justify-content-center">
         <form onSubmit={submitValues} className="Addknowledge__form card">
-          <RadioGroup className="Addknowledge__radiogroup" aria-label="Catégorie" name="category" value={selectedCategory} onChange={handleSelection}>
+          <RadioGroup
+            className="Addknowledge__radiogroup"
+            aria-label="Catégorie"
+            name="category"
+            value={selectedCategory}
+            onChange={handleSelection}
+          >
             <FormControlLabel value={0} control={<Radio />} label="Sans catégorie" />
             {categories && categories.map((category) => (
-              <FormControlLabel key={`category-${category.id}`} value={category.id} control={<Radio />} label={category.name} />
+              <FormControlLabel
+                key={`category-${category.id}`}
+                value={category.id}
+                control={<Radio />}
+                label={category.name}
+              />
             ))}
           </RadioGroup>
           <TextField
@@ -114,8 +128,13 @@ export default function AddKnowledge(props) {
 
   function submitValues(event) {
     event.preventDefault();
-    server.post('question', { question: form.question, answer: form.answer, category: selectedCategory, shouldHaveReverseQuestion: form.shouldHaveReverseQuestion }).then((response) => {
-      setForm({ ...form, question: '', answer: ''});
+    server.post('question', {
+      question: form.question,
+      answer: form.answer,
+      category: selectedCategory,
+      shouldHaveReverseQuestion: form.shouldHaveReverseQuestion,
+    }).then(() => {
+      setForm({ ...form, question: '', answer: '' });
       enqueueSnackbar('La question a bien été ajoutée !',
         {
           anchorOrigin: {
