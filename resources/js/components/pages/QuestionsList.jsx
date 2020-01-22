@@ -75,6 +75,7 @@ export default function QuestionsList(props) {
             {questions?.data?.map(function (question, key) {
               return (
                 <QuestionsListItem
+                  key={key}
                   question={question}
                   questionKey={key}
                   deleteQuestion={deleteQuestion}
@@ -120,8 +121,10 @@ export default function QuestionsList(props) {
   }
 
   function toggleQuestionForUser(event, id, key) {
+    console.log(id, key)
     let questionsData = Object.assign({}, questions.data);
     questionsData[key].isSetForUser = event.target.checked;
+    console.log(questionsData)
     updateQuestions({
       ...questions,
       questionsData

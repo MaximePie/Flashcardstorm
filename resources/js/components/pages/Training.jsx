@@ -96,14 +96,14 @@ export default function Training(props) {
   }
 
   function updateQuestionsBag() {
-    let questions_in_bag = '';
+    let questionsInBag = '';
     questions.forEach((question, index) => {
-      questions_in_bag += index === 0 ? '/' : '';
-      questions_in_bag += question.id;
-      questions_in_bag += index < questions.length - 1 ? ',' : '';
+      questionsInBag += index === 0 ? '/' : '';
+      questionsInBag += question.id;
+      questionsInBag += index < questions.length - 1 ? ',' : '';
     });
 
-    server.get(`question/${props.mode}${questions_in_bag}`).then((response) => {
+    server.get(`question/${props.mode}${questionsInBag}`).then((response) => {
       questions.shift();
       response.data.questions && updateQuestions(questions.concat(response.data.questions));
       updateQuestionCardMessage(response.data.message);

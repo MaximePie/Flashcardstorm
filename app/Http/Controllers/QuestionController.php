@@ -26,8 +26,9 @@ class QuestionController extends Controller
             $questions = $user->questions()->paginate(20);
         }
 
-        $questions->each(static function(Question $question) use ($user){
-            $question['answer'] = $question->answer()->first()->wording;
+        $questions->each(static function(Question $question) use ($user) {
+            $answer = $question->answer()->first();
+            $question['answer'] = $answer->wording;
             $category = $question->category();
             if ($category) {
                 $question['category'] = $category->first();
@@ -124,9 +125,12 @@ class QuestionController extends Controller
             }
 
             if ($questions) {
-                $questions->each(static function (QUESTION $question) use ($user){
-                    $question['answer'] = $question->answer()->first()->wording;
+                $questions->each(static function (QUESTION $question) use ($user) {
+                    $answer = $question->answer()->first();
+                    $question['answer'] = $answer->wording;
                     $question['is_new'] = !$question->isSetForUser($user) ?: null;
+                    $question['additionalAnswers'] = $answer->additional_answers;
+                    $question['lecharlot'] = 'HAHACharlot';
                     $category = $question->category();
                     if ($category) {
                         $question['category'] = $category->first();
@@ -159,12 +163,19 @@ class QuestionController extends Controller
             'wording' => $request->answer,
         ]);
 
+
+        if ($request->additionalAnswers) {
+            $additionalAnswers = $request->additionalAnswers;
+            $additionalAnswers = substr($additionalAnswers, 0, -1); // Removing last character
+            $answer->additional_answers = $additionalAnswers;
+        }
         $answer->save();
 
         $question = Question::create([
             'wording' => $request->question,
             'answer_id' => $answer->id,
             'category_id' => $request->category ?: null,
+            'is_mcq' => $answer->additional_answers !== null,
         ]);
         $question->save();
 

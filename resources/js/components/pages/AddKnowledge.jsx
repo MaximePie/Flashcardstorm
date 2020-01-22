@@ -13,13 +13,15 @@ import Button from '../molecule/Button';
 import { isMobile } from '../../helper';
 
 export default function AddKnowledge(props) {
-  const {is_connected} = props;
+  const { is_connected } = props;
   const [form, setForm] = React.useState({
     question: '',
     answer: '',
     shouldHaveReverseQuestion: false,
+    additionalAnswers: [],
   });
 
+  const [fieldsAmount, setFieldsAmount] = React.useState(0);
   const [categories, updateCategories] = React.useState(undefined);
   const [selectedCategory, setSelectedCategory] = React.useState(0);
 
@@ -28,6 +30,20 @@ export default function AddKnowledge(props) {
   }, []);
 
   const { enqueueSnackbar } = useSnackbar();
+
+  const additionalTextFields = [];
+
+  for (let i = 0; i < fieldsAmount; i += 1) {
+    additionalTextFields.push(
+      <TextField
+        key={`additionalAnswers-${i}`}
+        value={form.additionalAnswers[i] || ""}
+        name={`additionalAnswers-${i}`}
+        onChange={(event) => updateForm(event, i)}
+        label="Réponse additionelle"
+      />,
+    );
+  }
 
   // CSV management
   const onDrop = useCallback((acceptedFiles) => {
@@ -71,6 +87,7 @@ export default function AddKnowledge(props) {
       </div>
       <div className="row justify-content-center">
         <form onSubmit={submitValues} className="Addknowledge__form card">
+          <Button onClick={addField} text="+" />
           <RadioGroup
             className="Addknowledge__radiogroup"
             aria-label="Catégorie"
@@ -88,18 +105,21 @@ export default function AddKnowledge(props) {
               />
             ))}
           </RadioGroup>
-          <TextField
-            value={form.question}
-            name="question"
-            onChange={updateForm}
-            label="Question"
-          />
-          <TextField
-            value={form.answer}
-            name="answer"
-            onChange={updateForm}
-            label="Réponse"
-          />
+          <div className="Addknowledge__questions-group">
+            <TextField
+              value={form.question}
+              name="question"
+              onChange={updateForm}
+              label="Question"
+            />
+            <TextField
+              value={form.answer}
+              name="answer"
+              onChange={updateForm}
+              label="Réponse"
+            />
+            {additionalTextFields}
+          </div>
           <div className="Addknowledge__reserveQuestionCheckbox">
             <Checkbox
               checked={form.shouldHaveReverseQuestion}
@@ -115,26 +135,56 @@ export default function AddKnowledge(props) {
     </div>
   );
 
+  /**
+   * Set the wanted category for the question
+   * @param event MouseClick event to provide category info
+   */
   function handleSelection(event) {
     setSelectedCategory(parseInt(event.target.value, 10));
   }
 
-  function updateForm(e) {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+  /**
+   * Add a text field for additionalAnswers
+   */
+  function addField() {
+    setFieldsAmount(fieldsAmount + 1);
+  }
+
+  function updateForm(e, index) {
+    if (index !== undefined) {
+      const additionalAnswers = [...form.additionalAnswers];
+      additionalAnswers[index] = e.target.value;
+      console.log(additionalAnswers)
+      setForm({
+        ...form,
+        additionalAnswers,
+      });
+    } else {
+      setForm({
+        ...form,
+        [e.target.name]: e.target.value,
+      });
+    }
   }
 
   function submitValues(event) {
     event.preventDefault();
+
+    let additionnalAnswers = '';
+    const explodedAdditionnalAnswers = [...form.additionalAnswers];
+    for (let i = 0; i < explodedAdditionnalAnswers.length; i += 1) {
+      additionnalAnswers += `${explodedAdditionnalAnswers[i]},`;
+    }
+
     server.post('question', {
       question: form.question,
       answer: form.answer,
       category: selectedCategory,
       shouldHaveReverseQuestion: form.shouldHaveReverseQuestion,
+      additionalAnswers: additionnalAnswers,
     }).then(() => {
       setForm({ ...form, question: '', answer: '' });
+      setFieldsAmount(0);
       enqueueSnackbar('La question a bien été ajoutée !',
         {
           anchorOrigin: {

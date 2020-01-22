@@ -31,4 +31,17 @@
         border: dashed 2px #685a20;
         cursor: pointer;
     }
+
+    &__questions-group {
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        overflow: auto;
+    }
+
+    @media screen and (max-width: 767px) {
+        &__form {
+            min-width: initial;
+        }
+    }
 }

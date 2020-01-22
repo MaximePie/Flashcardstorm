@@ -22,6 +22,7 @@ QuestionsListItem.propTypes = {
   deleteQuestion: PropTypes.func.isRequired,
   toggleQuestionForUser: PropTypes.func.isRequired,
   key: PropTypes.string.isRequired,
+  questionKey: PropTypes.number.isRequired,
   isConnected: PropTypes.bool,
 };
 
@@ -35,7 +36,7 @@ export default function QuestionsListItem(props) {
 
   const {
     question,
-    key,
+    questionKey,
     isConnected,
     toggleQuestionForUser,
     deleteQuestion,
@@ -102,6 +103,7 @@ export default function QuestionsListItem(props) {
   }
 
   function questionActions() {
+    console.log(questionKey)
     return (
       <div className="QuestionsListItem__actions">
         {isConnected && (
@@ -110,7 +112,7 @@ export default function QuestionsListItem(props) {
               type="checkbox"
               value={question.id}
               checked={question.isSetForUser}
-              onChange={(event) => toggleQuestionForUser(event, question.id, key)}
+              onChange={(event) => toggleQuestionForUser(event, question.id, questionKey)}
               className="QuestionsListItem__toggle-button"
             />
             <IconButton
