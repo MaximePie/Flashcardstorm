@@ -48,7 +48,7 @@ class Question extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -58,6 +58,7 @@ class Question extends Model
      */
     protected $fillable = [
         'answer_id',
+        'category_id',
         'wording',
         'details',
         'created_at',

@@ -62,7 +62,12 @@ export default function QuestionsListItem(props) {
             {question.next_question_at && (
               <div className="QuestionsList__question-next">
                 Prochaine question le
-                {toLocale(question.next_question_at)}
+                {` ${toLocale(question.next_question_at)}`}
+              </div>
+            )}
+            {question.has_reverse && (
+              <div className="QuestionsList__has-reverse-text">
+                Cette question a une version inversée
               </div>
             )}
           </>

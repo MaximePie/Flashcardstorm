@@ -39,6 +39,10 @@ class QuestionController extends Controller
                     $question['next_question_at'] = $question->nextQuestionatForUser($user);
                 }
             }
+
+            if ($question->revertedQuestion()->count()) {
+                $question['has_reverse'] = true;
+            }
         });
         return response()->json(['questions' => $questions]);
     }
@@ -145,8 +149,9 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
+     * @throws Exception
      */
     public function store(Request $request)
     {
@@ -168,7 +173,11 @@ class QuestionController extends Controller
             Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
         }
 
-        return response()->json($question);
+        if ($request->shouldHaveReverseQuestion) {
+            $question->createReverseQuestion();
+        }
+
+        return response()->json(["Question" => $question, "Resquest Category" => $request->category]);
     }
 
 
