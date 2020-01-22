@@ -40,6 +40,7 @@ require('../sass/Snackbar.scss');
 require('../sass/Changelogs.scss');
 require('../sass/Register.scss');
 require('../sass/Login.scss');
+require('../sass/Welcome.scss');
 
 export default function App() {
   const [user, setUser] = React.useState(undefined);

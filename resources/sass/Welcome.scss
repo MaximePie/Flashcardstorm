@@ -1,0 +1,43 @@
+.Welcome {
+  min-height: 100vh;
+  background-color: white;
+  color: white;
+
+  &__title {
+    position: absolute;
+    width: 100%;
+
+  }
+
+  &__presentation-section {
+    background: content-box no-repeat url("../images/pencils.jpg");
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .Welcome__presentation-title {
+      opacity: 0;
+      transform: scale(1.25);
+      animation: appear 0.5s 0.5s forwards;
+      text-align: center;
+    }
+  }
+
+  &__text {
+
+  }
+}
+
+@keyframes appear {
+  from {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
