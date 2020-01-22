@@ -45,15 +45,19 @@
     }
   }
 
+  &__item-profile-container {
+    flex-direction: column;
+  }
+
   &__item-profile {
     display: flex;
-    flex-direction: column;
     align-items: center;
     margin-left: 32px;
 
     &-score {
       display: block;
       font-size: 1.5em;
+      text-align: center;
 
       &-counter {
         color: white;

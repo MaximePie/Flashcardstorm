@@ -15,15 +15,15 @@ export default function Changelogs() {
   }, []);
 
   return (
-    <>
+    <div className={"Changelogs"}>
       <div className="jumbotron">
         <h1>Les petits changements</h1>
       </div>
-      <div className="Changelogs container">
+      <div className="Changelogs__list">
         {!changelogs.length && (
           <p>Pas de changements pour l'instant, nous allons revenir avec des bonnes nouvelles très bientôt !</p>
         )}
-        <ul className="Changelogs__list">
+        <ul>
         {changelogs.map(function (changelog) {
           return (
           <Paper className="Changelogs__log">
@@ -38,7 +38,7 @@ export default function Changelogs() {
         })}
         </ul>
       </div>
-    </>
+    </div>
     );
 
   function updateChangelogs() {

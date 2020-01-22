@@ -1,4 +1,10 @@
 .Changelogs {
+    height: 100vh;
+
+    &__list {
+        height: 89%;
+        overflow: auto;
+    }
     &__log {
         padding: 16px;
         margin: 16px;

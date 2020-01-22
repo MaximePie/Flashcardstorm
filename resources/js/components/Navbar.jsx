@@ -174,33 +174,35 @@ export default function Navbar(props) {
               )
 }
         </button>
-        <a className="navbar-brand Navbar__home-link" href="/home">
-          <Avatar className="Navbar__logo" alt="GIPSI Logo" src="/images/logo.png" />
-          <div className="Navbar__logo-text">
-            FlashcardStorm
-          </div>
-        </a>
         <Drawer open={isOpen} onClose={toggleDrawer(false)}>
           {sideList('left')}
         </Drawer>
-        {props.is_connected && (
-          <div className="Navbar__item-profile">
-            <a href="/profile" className="Navbar__item-profile-icon-link">
-              <i className="Navbar__item-profile-icon fas fa-user-circle" />
-            </a>
-            {props.user && (
-              <span className="Navbar__item-profile-score">
-                <CountTo
-                  from={props.user.initial_score}
-                  to={props.user.current_score}
-                  speed={1000}
-                  className={`Navbar__item-profile-score-counter ${props.countClassName}`}
-                  onComplete={props.onCountComplete}
-                />
-              </span>
-            )}
-          </div>
-        )}
+        <div className="Navbar__item-profile">
+          <a className="navbar-brand Navbar__home-link" href="/home">
+            <Avatar className="Navbar__logo" alt="GIPSI Logo" src="/images/logo.png" />
+            <div className="Navbar__logo-text">
+              FlashcardStorm
+            </div>
+          </a>
+          {props.is_connected && (
+            <div className="Navbar__item-profile-container">
+              <a href="/profile" className="Navbar__item-profile-icon-link">
+                <i className="Navbar__item-profile-icon fas fa-user-circle" />
+              </a>
+              {props.user && (
+                <span className="Navbar__item-profile-score">
+                  <CountTo
+                    from={props.user.initial_score}
+                    to={props.user.current_score}
+                    speed={1000}
+                    className={`Navbar__item-profile-score-counter ${props.countClassName}`}
+                    onComplete={props.onCountComplete}
+                  />
+                </span>
+              )}
+            </div>
+          )}
+        </div>
       </nav>
     </div>
   );
