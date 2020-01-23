@@ -1,7 +1,7 @@
 import React from 'react';
-import server from "../server";
+import server from "../../server";
 import Paper from "@material-ui/core/Paper";
-import { toLocale } from '../helper';
+import { toLocale } from '../../helper';
 import Cookies from "js-cookie";
 import moment from "moment";
 
@@ -15,8 +15,8 @@ export default function Changelogs() {
   }, []);
 
   return (
-    <div className={"Changelogs"}>
-      <div className="jumbotron">
+    <div className="Changelogs">
+      <div className="Changelogs__title">
         <h1>Les petits changements</h1>
       </div>
       <div className="Changelogs__list">

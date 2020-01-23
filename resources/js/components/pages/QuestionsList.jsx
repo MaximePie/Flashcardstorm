@@ -28,7 +28,7 @@ export default function QuestionsList(props) {
   return (
     <div className="QuestionsList">
       <div className="card QuestionsList__content">
-        <div className="jumbotron QuestionsList__title">
+        <div className="QuestionsList__title">
           {!isMobile() && (
             <>
               <h1>Liste des questions</h1>

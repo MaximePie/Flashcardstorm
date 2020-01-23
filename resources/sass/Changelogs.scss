@@ -1,12 +1,19 @@
 .Changelogs {
-    height: 100vh;
 
-    &__list {
-        height: 89%;
-        overflow: auto;
-    }
-    &__log {
-        padding: 16px;
-        margin: 16px;
-    }
+  &__title {
+    text-align: center;
+    margin-bottom: 16px;
+    color: white;
+    margin-top: 8px;
+  }
+
+  &__list {
+    height: 89%;
+    overflow: auto;
+  }
+
+  &__log {
+    padding: 16px;
+    margin: 16px;
+  }
 }

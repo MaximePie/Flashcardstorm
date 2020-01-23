@@ -56,6 +56,10 @@ export default function Training(props) {
     </div>
   );
 
+  /**
+   * Submit the answer to the server and display the next question from questionsBag
+   * @param answer: string the answer we want to submit
+   */
   function submitAnswer(answer) {
     const currentQuestions = [...questions];
     const submittedQuestions = currentQuestions[0];
