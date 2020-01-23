@@ -81,7 +81,7 @@ export default function AddKnowledge(props) {
 
   return (
     <div className="Addknowledge">
-      <div className="jumbotron Addknowledge__title">
+      <div className="Addknowledge__title">
         <h1>Ajouter une question</h1>
         {isConnected && !isMobile() && (
           <div {...getRootProps()} className="Addknowledge__import-drop-zone">

@@ -16,7 +16,7 @@ export default function QuestionCard(props) {
   React.useEffect(() => {
     setAnswer('');
     if (question.additionalAnswers) {
-      let additionnalAnswers = shuffle([...question.additionalAnswers.split(','), question.answer])
+      let additionnalAnswers = shuffle([...question.additionalAnswers.split(','), question.answer]);
       setAdditionalAnswers(additionnalAnswers);
       setSelectedAnswerKey(0);
       setAnswer(additionnalAnswers[0]);
@@ -25,14 +25,15 @@ export default function QuestionCard(props) {
 
 
   return (
-    <form onSubmit={() => props.onSubmit(answer)} className={`QuestionCard card ${question.is_golden_card && 'QuestionCard--golden'}`}>
+    <form key={'QuestionCard-' + question.id} onSubmit={() => props.onSubmit(answer)}
+          className={`QuestionCard card ${question.is_golden_card && 'QuestionCard--golden'}`}>
       {icons()}
       <div className="QuestionCard__content">
         <h3 className={`QuestionCard__question ${!question && 'QuestionCard__question--is-empty'}`}>
           {question.is_reverse ? question.answer : question.wording || props.message}
         </h3>
         {!question.additionalAnswers && (
-          <TextField label="Réponse" onChange={(e) => setAnswer(e.target.value)} value={answer} />
+          <TextField label="Réponse" onChange={(e) => setAnswer(e.target.value)} value={answer}/>
         )}
         {question.additionalAnswers && (
           <RadioGroup
@@ -46,7 +47,7 @@ export default function QuestionCard(props) {
               <FormControlLabel
                 key={`answer-${answerChoice}`}
                 value={key}
-                control={<Radio />}
+                control={<Radio/>}
                 label={answerChoice}
               />
             ))}
@@ -54,7 +55,7 @@ export default function QuestionCard(props) {
         )}
         <div className="QuestionCard__actions">
           <a type="button" className="Button btn Button--secondary Button--small" onClick={handleSkip}>Passer</a>
-          <Button variant="small" onClick={() => props.onSubmit(answer)} text="Envoyer" />
+          <Button variant="small" onClick={() => props.onSubmit(answer)} text="Envoyer"/>
         </div>
       </div>
     </form>
@@ -109,7 +110,7 @@ export default function QuestionCard(props) {
    * @param event
    */
   function handleSelection(event) {
-    setAnswer(additionalAnswers[event.target.value])
+    setAnswer(additionalAnswers[event.target.value]);
     setSelectedAnswerKey(parseInt(event.target.value, 10));
   }
 }

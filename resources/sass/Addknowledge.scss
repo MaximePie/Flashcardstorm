@@ -6,8 +6,9 @@
     background: content-box no-repeat url("../images/add.jpg");
 
     &__title {
-        margin-bottom: 16px;
         text-align: center;
+        margin-bottom: 16px;
+        color: white;
     }
 
     &__form {
@@ -31,6 +32,8 @@
     &__import-drop-zone {
         border: dashed 2px #685a20;
         cursor: pointer;
+        max-width: 500px;
+        margin: auto;
     }
 
     &__questions-group {
@@ -43,6 +46,10 @@
     @media screen and (max-width: 767px) {
         &__form {
             min-width: initial;
+        }
+
+        &__import-drop-zone {
+            max-width: 250px;
         }
     }
 }

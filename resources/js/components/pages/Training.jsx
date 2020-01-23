@@ -18,29 +18,31 @@ export default function Training(props) {
 
   React.useEffect(() => {
     Cookies.remove('number_of_new_questions');
-    server.get('update_progress').then(() => {
-      updateQuestionsBag();
-    });
+    server.get('update_progress')
+      .then(() => {
+        updateQuestionsBag();
+      });
   }, []);
 
   return (
     <div className="Home">
       {pageHeader()}
-      <div className="Home__QuestionCard-row">
-        {questions[0] && (
+      {questions[0] && (
+        <div className="Home__QuestionCard-row">
           <QuestionCard
             question={questions[0] || undefined}
             onSubmit={submitAnswer}
             onSkip={() => updateQuestionsBag()}
             message={questionCardMessage}
+            key={'QuestionCard-' + questions[0].id}
           />
-        )}
-        {!questions[0] && (
-          <div className="Home--no-question">
-            {questionCardMessage}
-          </div>
-        )}
-      </div>
+        </div>
+      )}
+      {!questions[0] && (
+        <div className="Home--no-question">
+          {questionCardMessage}
+        </div>
+      )}
     </div>
   );
 
@@ -58,37 +60,38 @@ export default function Training(props) {
         is_golden_card: submittedQuestions.is_golden_card,
         is_reverse_question: submittedQuestions.is_reverse,
       },
-    ).then((response) => {
-      let snackbarText = response.data.text;
-      if (response.data.status !== 200) {
-        snackbarText += ` Réponses correctes : ${response.data.correct_answer}`;
-      }
+    )
+      .then((response) => {
+        let snackbarText = response.data.text;
+        if (response.data.status !== 200) {
+          snackbarText += ` Réponses correctes : ${response.data.correct_answer}`;
+        }
 
-      const score = response.data.status === 200
+        const score = response.data.status === 200
         && response.data.earned_points > 0
-        ? response.data.earned_points
-        : undefined;
+          ? response.data.earned_points
+          : undefined;
 
-      enqueueSnackbar(
-        <div className="Home__snackbar">
-          {snackbarText}
-          {score && (
-            <span className="Home__snackbar-score">
+        enqueueSnackbar(
+          <div className="Home__snackbar">
+            {snackbarText}
+            {score && (
+              <span className="Home__snackbar-score">
               +
-              {score}
+                {score}
             </span>
-          )}
-        </div>,
-        {
-          anchorOrigin: {
-            vertical: 'top',
-            horizontal: 'center',
+            )}
+          </div>,
+          {
+            anchorOrigin: {
+              vertical: 'top',
+              horizontal: 'center',
+            },
+            variant: response.data.status === 200 ? 'success' : 'warning',
           },
-          variant: response.data.status === 200 ? 'success' : 'warning',
-        },
-      );
-      updateQuestionsBag(response.data.status);
-    });
+        );
+        updateQuestionsBag(response.data.status);
+      });
   }
 
   function updateQuestionsBag() {
@@ -105,17 +108,18 @@ export default function Training(props) {
     const currentQuestions = [...questions];
     currentQuestions.shift();
 
-    server.get(`question/${props.mode}${questionsInBag}`).then((response) => {
-      const updatedQuestions = currentQuestions.concat(response.data.questions);
-      updateQuestions(updatedQuestions);
-      const forbiddenIds = [];
-      updatedQuestions.forEach((question) => {
-        forbiddenIds.push(question.id);
+    server.get(`question/${props.mode}${questionsInBag}`)
+      .then((response) => {
+        const updatedQuestions = currentQuestions.concat(response.data.questions);
+        updateQuestions(updatedQuestions);
+        const forbiddenIds = [];
+        updatedQuestions.forEach((question) => {
+          forbiddenIds.push(question.id);
+        });
+        setUnwantedIdsList(forbiddenIds);
+        updateQuestionCardMessage(response.data.message);
+        updateUserProgress(response.data.userProgress);
       });
-      setUnwantedIdsList(forbiddenIds);
-      updateQuestionCardMessage(response.data.message);
-      updateUserProgress(response.data.userProgress);
-    });
   }
 
   function pageHeader() {
@@ -125,7 +129,7 @@ export default function Training(props) {
           <span>Progression journalière: </span>
           {userProgress.daily_progress}
           {' '}
-/
+          /
           {userProgress.daily_objective}
         </p>
         <LinearProgress
@@ -136,43 +140,43 @@ export default function Training(props) {
     );
 
     return props.mode === 'soft' ? (
-      <>
-        {!isMobile() && (
-          <div className="Home__title jumbotron">
-            <h1>Mode consolidation</h1>
-            <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
-            <p>Seules les questions auxquelles vous n'avez pas répondu depuis assez longtemps apparaîtront</p>
-            <div>
-              {userProgressComponent}
+        <>
+          {!isMobile() && (
+            <div className="Home__title">
+              <h1>Mode consolidation</h1>
+              <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
+              <p>Seules les questions auxquelles vous n'avez pas répondu depuis assez longtemps apparaîtront</p>
+              <div>
+                {userProgressComponent}
+              </div>
             </div>
-          </div>
-        )}
-        {isMobile() && (
-          <>
-            <h2 className="Home__title">Mode consolidation</h2>
-            <div>
-              {userProgressComponent}
-            </div>
-          </>
-        )}
-      </>
-    )
+          )}
+          {isMobile() && (
+            <>
+              <h2 className="Home__title">Mode consolidation</h2>
+              <div>
+                {userProgressComponent}
+              </div>
+            </>
+          )}
+        </>
+      )
       : (
         <>
           {!isMobile() && (
-          <div className="jumbotron Home__title">
-            <h1>Mode tempête !</h1>
-            <p>Répondez à un maximum de question toutes catégories confondues sans limite de temps ni d'essai</p>
-            <p>Attention, en mode tempête les questions ne rapportent que 10 points chacunes !</p>
-            {props.is_connected && (
-              <FormControlLabel
-                control={
-                  <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)} />
-                }
-                label="Afficher seulement mes questions"
-              />
-            )}
-          </div>
+            <div className="Home__title">
+              <h1>Mode tempête !</h1>
+              <p>Répondez à un maximum de question toutes catégories confondues sans limite de temps ni d'essai</p>
+              <p>Attention, en mode tempête les questions ne rapportent que 10 points chacunes !</p>
+              {props.is_connected && (
+                <FormControlLabel
+                  control={
+                    <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>
+                  }
+                  label="Afficher seulement mes questions"
+                />
+              )}
+            </div>
           )}
           {isMobile() && (
             <h2 className="Home__title">Mode tempête !</h2>

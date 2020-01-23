@@ -50,6 +50,14 @@
         display: flex;
     }
 
+    &__multi-answer-group {
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        flex-direction: row !important;
+    }
+
     @media screen and (max-width: 767px) {
         height: 65vh;
         padding: 8px;
