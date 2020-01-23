@@ -8,12 +8,21 @@ import { useDropzone } from 'react-dropzone';
 
 import csv from 'csv';
 import { Checkbox } from '@material-ui/core';
+import { PropTypes } from 'prop-types';
 import server from '../../server';
 import Button from '../molecule/Button';
 import { isMobile } from '../../helper';
 
+AddKnowledge.propTypes = {
+  isConnected: PropTypes.bool,
+};
+
+AddKnowledge.defaultProps = {
+  isConnected: true,
+};
+
 export default function AddKnowledge(props) {
-  const { is_connected } = props;
+  const { isConnected } = props;
   const [form, setForm] = React.useState({
     question: '',
     answer: '',
@@ -37,7 +46,7 @@ export default function AddKnowledge(props) {
     additionalTextFields.push(
       <TextField
         key={`additionalAnswers-${i}`}
-        value={form.additionalAnswers[i] || ""}
+        value={form.additionalAnswers[i] || ''}
         name={`additionalAnswers-${i}`}
         onChange={(event) => updateForm(event, i)}
         label="Réponse additionelle"
@@ -74,13 +83,13 @@ export default function AddKnowledge(props) {
     <div className="Addknowledge">
       <div className="jumbotron Addknowledge__title">
         <h1>Ajouter une question</h1>
-        {is_connected && !isMobile() && (
+        {isConnected && !isMobile() && (
           <div {...getRootProps()} className="Addknowledge__import-drop-zone">
             <input {...getInputProps()} />
             {
               isDragActive
-                ? <p>Drop the files here ...</p>
-                : <p>Drag 'n' drop some files here, or click to select files</p>
+                ? <p>Déposez votre CSV ici</p>
+                : <p>Déposez votre CSV ici, ou parcourez les fichiers</p>
             }
           </div>
         )}
@@ -123,7 +132,10 @@ export default function AddKnowledge(props) {
           <div className="Addknowledge__reserveQuestionCheckbox">
             <Checkbox
               checked={form.shouldHaveReverseQuestion}
-              onChange={(event) => setForm({ ...form, shouldHaveReverseQuestion: event.target.checked })}
+              onChange={(event) => setForm({
+                ...form,
+                shouldHaveReverseQuestion: event.target.checked,
+              })}
             />
             <span>
               Créer une question inverse
@@ -154,7 +166,6 @@ export default function AddKnowledge(props) {
     if (index !== undefined) {
       const additionalAnswers = [...form.additionalAnswers];
       additionalAnswers[index] = e.target.value;
-      console.log(additionalAnswers)
       setForm({
         ...form,
         additionalAnswers,
@@ -182,24 +193,30 @@ export default function AddKnowledge(props) {
       category: selectedCategory,
       shouldHaveReverseQuestion: form.shouldHaveReverseQuestion,
       additionalAnswers: additionnalAnswers,
-    }).then(() => {
-      setForm({ ...form, question: '', answer: '' });
-      setFieldsAmount(0);
-      enqueueSnackbar('La question a bien été ajoutée !',
-        {
-          anchorOrigin: {
-            vertical: 'top',
-            horizontal: 'center',
-          },
-          variant: 'success',
+    })
+      .then(() => {
+        setForm({
+          ...form,
+          question: '',
+          answer: '',
         });
-    });
+        setFieldsAmount(0);
+        enqueueSnackbar('La question a bien été ajoutée !',
+          {
+            anchorOrigin: {
+              vertical: 'top',
+              horizontal: 'center',
+            },
+            variant: 'success',
+          });
+      });
   }
 
   function updateCategoriesList() {
-    server.get('categories').then((response) => {
-      updateCategories(response.data.categories);
-    });
+    server.get('categories')
+      .then((response) => {
+        updateCategories(response.data.categories);
+      });
   }
 
   /**
@@ -207,15 +224,16 @@ export default function AddKnowledge(props) {
    * Json data: the questions we want to import
    */
   function importQuestions(questions) {
-    server.post('question_import', { questions }).then(() => {
-      enqueueSnackbar('Les questions ont bien été importées !',
-        {
-          anchorOrigin: {
-            vertical: 'top',
-            horizontal: 'center',
-          },
-          variant: 'success',
-        });
-    });
+    server.post('question_import', { questions })
+      .then(() => {
+        enqueueSnackbar('Les questions ont bien été importées !',
+          {
+            anchorOrigin: {
+              vertical: 'top',
+              horizontal: 'center',
+            },
+            variant: 'success',
+          });
+      });
   }
 }
