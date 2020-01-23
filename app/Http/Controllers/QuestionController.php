@@ -130,7 +130,6 @@ class QuestionController extends Controller
                     $question['answer'] = $answer->wording;
                     $question['is_new'] = !$question->isSetForUser($user) ?: null;
                     $question['additionalAnswers'] = $answer->additional_answers;
-                    $question['lecharlot'] = 'HAHACharlot';
                     $category = $question->category();
                     if ($category) {
                         $question['category'] = $category->first();

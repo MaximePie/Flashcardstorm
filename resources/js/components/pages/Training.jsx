@@ -10,6 +10,7 @@ import { isMobile } from '../../helper';
 
 export default function Training(props) {
   const [questions, updateQuestions] = React.useState([]);
+  const [unwantedIdsList, setUnwantedIdsList] = React.useState([]);
   const [questionCardMessage, updateQuestionCardMessage] = React.useState(undefined);
   const [userProgress, updateUserProgress] = React.useState(undefined);
 
@@ -44,10 +45,8 @@ export default function Training(props) {
   );
 
   function submitAnswer(answer) {
-    const submittedQuestions = questions[0];
-    const currentQuestion = Array.from(questions);
-    currentQuestion.shift();
-    updateQuestions(currentQuestion);
+    const currentQuestions = [...questions];
+    const submittedQuestions = currentQuestions[0];
 
     event.preventDefault();
     server.post(
@@ -88,25 +87,32 @@ export default function Training(props) {
           variant: response.data.status === 200 ? 'success' : 'warning',
         },
       );
-
-      if (response.data.status === 200) {
-        props.updateUserScore();
-      }
-      updateQuestionsBag();
+      updateQuestionsBag(response.data.status);
     });
   }
 
   function updateQuestionsBag() {
     let questionsInBag = '';
-    questions.forEach((question, index) => {
+    const storedForbiddenIds = [...unwantedIdsList];
+    storedForbiddenIds.shift();
+
+    storedForbiddenIds.forEach((id, index) => {
       questionsInBag += index === 0 ? '/' : '';
-      questionsInBag += question.id;
-      questionsInBag += index < questions.length - 1 ? ',' : '';
+      questionsInBag += id;
+      questionsInBag += index < unwantedIdsList.length - 1 ? ',' : '';
     });
 
+    const currentQuestions = [...questions];
+    currentQuestions.shift();
+
     server.get(`question/${props.mode}${questionsInBag}`).then((response) => {
-      questions.shift();
-      response.data.questions && updateQuestions(questions.concat(response.data.questions));
+      const updatedQuestions = currentQuestions.concat(response.data.questions);
+      updateQuestions(updatedQuestions);
+      const forbiddenIds = [];
+      updatedQuestions.forEach((question) => {
+        forbiddenIds.push(question.id);
+      });
+      setUnwantedIdsList(forbiddenIds);
       updateQuestionCardMessage(response.data.message);
       updateUserProgress(response.data.userProgress);
     });

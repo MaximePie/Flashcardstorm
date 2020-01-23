@@ -80,6 +80,21 @@ class WebQuestionTest extends TestCase
         $this->assertCount(1, $response['questions']['data']);
     }
 
+    /**
+     * Test to submit an answer with only one remaining daily objective occurrence
+     * @throws \Exception
+     */
+    public function test_get_random_question_with_one_answer_left(): void
+    {
+        $this->question->createReverseQuestion();
+
+        $response = $this->get('/api/questions_list');
+        $response->assertStatus(200);
+        $response = json_decode($response->getContent(), true);
+        $this->assertNotNull($response['questions']['data'][0]);
+        $this->assertCount(1, $response['questions']['data']);
+    }
+
     protected function setUp(): void
     {
         parent::setUp();

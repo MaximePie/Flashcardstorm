@@ -1,11 +1,17 @@
 .App {
     background: content-box no-repeat url("../images/soft.jpg");
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }
 
 .Home {
     display: flex;
     align-items: center;
     flex-direction: column;
+
+    height: 100%;
+    overflow: auto;
 
     &--no-question {
         color: white;

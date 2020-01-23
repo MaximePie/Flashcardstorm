@@ -59,9 +59,11 @@ export default function App() {
   }, [isConnected]);
 
   React.useEffect(() => {
-    const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    $('html, body, .App').css({ width, height });
+    if (isMobile()) {
+      const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+      $('html, body, .App').css({ width, height });
+    }
   }, []);
 
   const snackbarConfig = {
