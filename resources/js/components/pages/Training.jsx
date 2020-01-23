@@ -9,10 +9,14 @@ import QuestionCard from '../QuestionCard';
 import { isMobile } from '../../helper';
 
 export default function Training(props) {
-  const [questions, updateQuestions] = React.useState([]);
-  const [unwantedIdsList, setUnwantedIdsList] = React.useState([]);
-  const [questionCardMessage, updateQuestionCardMessage] = React.useState(undefined);
-  const [userProgress, updateUserProgress] = React.useState(undefined);
+  const [questionsBag, updateQuestionsBag] = React.useState({
+    questions: [],
+    unwantedIdsList: [],
+    questionCardMessage: undefined,
+    userProgress: undefined,
+  });
+
+  const [serverSwitch, setServerSwitch] = React.useState(false);
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -20,9 +24,15 @@ export default function Training(props) {
     Cookies.remove('number_of_new_questions');
     server.get('update_progress')
       .then(() => {
-        updateQuestionsBag();
+        updateQuestionsList();
       });
   }, []);
+
+  React.useEffect(() => {
+    updateQuestionsList();
+  }, [serverSwitch]);
+
+  const { questions, questionCardMessage, userProgress } = questionsBag;
 
   return (
     <div className="Home">
@@ -32,9 +42,9 @@ export default function Training(props) {
           <QuestionCard
             question={questions[0] || undefined}
             onSubmit={submitAnswer}
-            onSkip={() => updateQuestionsBag()}
+            onSkip={goNext}
             message={questionCardMessage}
-            key={'QuestionCard-' + questions[0].id}
+            key={`QuestionCard-${questions[0].id}`}
           />
         </div>
       )}
@@ -49,8 +59,8 @@ export default function Training(props) {
   function submitAnswer(answer) {
     const currentQuestions = [...questions];
     const submittedQuestions = currentQuestions[0];
+    goNext();
 
-    event.preventDefault();
     server.post(
       'question/submit_answer',
       {
@@ -79,7 +89,7 @@ export default function Training(props) {
               <span className="Home__snackbar-score">
               +
                 {score}
-            </span>
+              </span>
             )}
           </div>,
           {
@@ -90,36 +100,51 @@ export default function Training(props) {
             variant: response.data.status === 200 ? 'success' : 'warning',
           },
         );
-        updateQuestionsBag(response.data.status);
       });
   }
 
-  function updateQuestionsBag() {
-    let questionsInBag = '';
+  function updateQuestionsList() {
+    const { unwantedIdsList } = questionsBag;
+    let questionsInList = '';
     const storedForbiddenIds = [...unwantedIdsList];
     storedForbiddenIds.shift();
 
     storedForbiddenIds.forEach((id, index) => {
-      questionsInBag += index === 0 ? '/' : '';
-      questionsInBag += id;
-      questionsInBag += index < unwantedIdsList.length - 1 ? ',' : '';
+      questionsInList += index === 0 ? '/' : '';
+      questionsInList += id;
+      questionsInList += index < unwantedIdsList.length - 1 ? ',' : '';
     });
 
     const currentQuestions = [...questions];
-    currentQuestions.shift();
 
-    server.get(`question/${props.mode}${questionsInBag}`)
+    server.get(`question/${props.mode}${questionsInList}`)
       .then((response) => {
-        const updatedQuestions = currentQuestions.concat(response.data.questions);
-        updateQuestions(updatedQuestions);
+        const { message, userProgress: userProgressData, questions: questionsData } = response.data;
+        const updatedQuestions = currentQuestions.concat(questionsData);
         const forbiddenIds = [];
         updatedQuestions.forEach((question) => {
-          forbiddenIds.push(question.id);
+          if (question) {
+            forbiddenIds.push(question.id);
+          }
         });
-        setUnwantedIdsList(forbiddenIds);
-        updateQuestionCardMessage(response.data.message);
-        updateUserProgress(response.data.userProgress);
+
+        updateQuestionsBag({
+          questions: updatedQuestions,
+          unwantedIdsList: forbiddenIds,
+          questionCardMessage: message,
+          userProgress: userProgressData,
+        });
       });
+  }
+
+  function goNext() {
+    const currentQuestions = [...questions];
+    currentQuestions.shift();
+
+    const unwantedIds = [...questionsBag.unwantedIdsList];
+    unwantedIds.shift();
+    updateQuestionsBag({ ...questionsBag, unwantedIdsList: unwantedIds, questions: currentQuestions });
+    setServerSwitch(!serverSwitch);
   }
 
   function pageHeader() {
@@ -140,27 +165,27 @@ export default function Training(props) {
     );
 
     return props.mode === 'soft' ? (
-        <>
-          {!isMobile() && (
-            <div className="Home__title">
-              <h1>Mode consolidation</h1>
-              <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
-              <p>Seules les questions auxquelles vous n'avez pas répondu depuis assez longtemps apparaîtront</p>
-              <div>
-                {userProgressComponent}
-              </div>
+      <>
+        {!isMobile() && (
+        <div className="Home__title">
+          <h1>Mode consolidation</h1>
+          <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
+          <p>Seules les questions auxquelles vous n'avez pas répondu depuis assez longtemps apparaîtront</p>
+          <div>
+            {userProgressComponent}
+          </div>
+        </div>
+        )}
+        {isMobile() && (
+          <>
+            <h2 className="Home__title">Mode consolidation</h2>
+            <div>
+              {userProgressComponent}
             </div>
-          )}
-          {isMobile() && (
-            <>
-              <h2 className="Home__title">Mode consolidation</h2>
-              <div>
-                {userProgressComponent}
-              </div>
-            </>
-          )}
-        </>
-      )
+          </>
+        )}
+      </>
+    )
       : (
         <>
           {!isMobile() && (
@@ -171,7 +196,7 @@ export default function Training(props) {
               {props.is_connected && (
                 <FormControlLabel
                   control={
-                    <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>
+                    <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)} />
                   }
                   label="Afficher seulement mes questions"
                 />
