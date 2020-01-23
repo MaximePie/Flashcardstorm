@@ -24,23 +24,21 @@ export default function Training(props) {
 
   return (
     <div className="Home">
-      <div className="container">
-        {pageHeader()}
-        <div className="row">
-          {questions[0] && (
-            <QuestionCard
-              question={questions[0] || undefined}
-              onSubmit={submitAnswer}
-              onSkip={() => updateQuestionsBag()}
-              message={questionCardMessage}
-            />
-          )}
-          {!questions[0] && (
-            <div>
-              {questionCardMessage}
-            </div>
-          )}
-        </div>
+      {pageHeader()}
+      <div className="Home__QuestionCard-row">
+        {questions[0] && (
+          <QuestionCard
+            question={questions[0] || undefined}
+            onSubmit={submitAnswer}
+            onSkip={() => updateQuestionsBag()}
+            message={questionCardMessage}
+          />
+        )}
+        {!questions[0] && (
+          <div className="Home--no-question">
+            {questionCardMessage}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -67,7 +65,10 @@ export default function Training(props) {
         snackbarText += ` Réponses correctes : ${response.data.correct_answer}`;
       }
 
-      const score = response.data.status === 200 && response.data.earned_points > 0 ? response.data.earned_points : undefined;
+      const score = response.data.status === 200
+        && response.data.earned_points > 0
+        ? response.data.earned_points
+        : undefined;
 
       enqueueSnackbar(
         <div className="Home__snackbar">
@@ -121,14 +122,17 @@ export default function Training(props) {
 /
           {userProgress.daily_objective}
         </p>
-        <LinearProgress variant="determinate" value={userProgress.daily_progress / userProgress.daily_objective * 100} />
+        <LinearProgress
+          variant="determinate"
+          value={(userProgress.daily_progress / userProgress.daily_objective) * 100}
+        />
       </div>
     );
 
     return props.mode === 'soft' ? (
       <>
         {!isMobile() && (
-          <div className="jumbotron Home__title">
+          <div className="Home__title jumbotron">
             <h1>Mode consolidation</h1>
             <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
             <p>Seules les questions auxquelles vous n'avez pas répondu depuis assez longtemps apparaîtront</p>

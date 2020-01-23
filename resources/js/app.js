@@ -28,6 +28,7 @@ import Changelogs from './components/Changelogs';
 import AddChangelog from './components/pages/AddChangelog';
 import { isMobile } from './helper';
 
+const $ = require('jquery');
 require('popper.js');
 require('bootstrap');
 require('../sass/Icon.scss');
@@ -47,6 +48,7 @@ export default function App() {
   const [countClassName, setCountClassName] = React.useState('');
   const isConnected = Cookies.get('Bearer') !== null && Cookies.get('Bearer') !== undefined;
 
+
   React.useEffect(() => {
     moment.locale('fr_FR');
     if (isConnected) {
@@ -55,6 +57,12 @@ export default function App() {
       updateUser(true);
     }
   }, [isConnected]);
+
+  React.useEffect(() => {
+    const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    $('html, body, .App').css({ width, height });
+  }, []);
 
   const snackbarConfig = {
     maxSnack: isMobile() ? 1 : 3,
