@@ -22,7 +22,7 @@ import server from './server';
 import Training from './components/pages/Training';
 import Users from './components/Users';
 import Welcome from './components/pages/Welcome';
-import Changelogs from './components/Changelogs';
+import Changelogs from './components/pages/Changelogs';
 
 
 import AddChangelog from './components/pages/AddChangelog';

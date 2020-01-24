@@ -27,75 +27,73 @@ export default function QuestionsList(props) {
 
   return (
     <div className="QuestionsList">
-      <div className="card QuestionsList__content">
-        <div className="QuestionsList__title">
-          {!isMobile() && (
-            <>
-              <h1>Liste des questions</h1>
-              <p>Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection</p>
-              <p>Une question est automatiquement intégrée à votre collection quand vous créez une question ou quand vous
-                y répondez depuis le mode Tempête</p>
-              {props.is_connected && questions?.data && (
-                <Button text="Enregistrer la sélection" onClick={saveSelection}/>
-              )}
-            </>
-          )}
-          {isMobile() && (
-            <h2 className="QuestionsList__title">Liste des questions</h2>
-          )}
-          {props.is_connected && (
-            <>
-              <FormControlLabel
-                control={
-                  <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>
-                }
-                label="Afficher seulement mes questions"
-              />
-
-            </>
-          )}
-        </div>
-        <form className="QuestionsList__list">
-          <ul className="list-group list-group-flush">
-            <div className="QuestionsList__global-checker">
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    onChange={toggleAllQuestions}
-                    value="toggleAll"
-                    color="primary"
-                    inputProps={{
-                      'aria-label': 'secondary checkbox',
-                    }}
-                  />
-                }
-                label={'Cocher toutes les questions'}
-              />
-            </div>
-            {questions?.data?.map(function (question, key) {
-              return (
-                <QuestionsListItem
-                  key={key}
-                  question={question}
-                  questionKey={key}
-                  deleteQuestion={deleteQuestion}
-                  toggleQuestionForUser={toggleQuestionForUser}
-                  key={'question-' + key}
-                  isConnected={props.is_connected}
-                />
-              );
-            })}
-          </ul>
-        </form>
-        {questions?.data?.length && (
+      <div className="QuestionsList__title">
+        {!isMobile() && (
           <>
-            <div className="QuestionsList__actions">
-              <Button text={isMobile() ? "Enregistrer" : "Enregistrer la sélection"} onClick={saveSelection}/>
-              <Pagination changePage={updateQuestionsBag} data={questions}/>
-            </div>
+            <h1>Liste des questions</h1>
+            <p>Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection</p>
+            <p>Une question est automatiquement intégrée à votre collection quand vous créez une question ou quand vous
+              y répondez depuis le mode Tempête</p>
+            {props.is_connected && questions?.data && (
+              <Button text="Enregistrer la sélection" onClick={saveSelection}/>
+            )}
+          </>
+        )}
+        {isMobile() && (
+          <h2 className="QuestionsList__title">Liste des questions</h2>
+        )}
+        {props.is_connected && (
+          <>
+            <FormControlLabel
+              control={
+                <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>
+              }
+              label="Afficher seulement mes questions"
+            />
+
           </>
         )}
       </div>
+      <form className="QuestionsList__list">
+        <ul className="list-group list-group-flush">
+          <div className="QuestionsList__global-checker">
+            <FormControlLabel
+              control={
+                <Checkbox
+                  onChange={toggleAllQuestions}
+                  value="toggleAll"
+                  color="primary"
+                  inputProps={{
+                    'aria-label': 'secondary checkbox',
+                  }}
+                />
+              }
+              label={'Cocher toutes les questions'}
+            />
+          </div>
+          {questions?.data?.map(function (question, key) {
+            return (
+              <QuestionsListItem
+                key={key}
+                question={question}
+                questionKey={key}
+                deleteQuestion={deleteQuestion}
+                toggleQuestionForUser={toggleQuestionForUser}
+                key={'question-' + key}
+                isConnected={props.is_connected}
+              />
+            );
+          })}
+        </ul>
+      </form>
+      {questions?.data?.length && (
+        <>
+          <div className="QuestionsList__actions">
+            <Button text={isMobile() ? "Enregistrer" : "Enregistrer la sélection"} onClick={saveSelection}/>
+            <Pagination changePage={updateQuestionsBag} data={questions}/>
+          </div>
+        </>
+      )}
     </div>
   );
 

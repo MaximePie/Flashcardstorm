@@ -15,14 +15,15 @@ export default function AddChangelog() {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   return (
-    <div className="container">
-      <form onSubmit={submitValues}>
+    <div className="container AddChangelog">
+      <form className="AddChangelog__form card" onSubmit={submitValues}>
         <TextField
           value={form.title}
           name="title"
           onChange={updateForm}
           label="title"
           multiline
+          classes={{root: "AddChangelog__field"}}
         />
         <TextField
           value={form.text}
@@ -30,6 +31,7 @@ export default function AddChangelog() {
           onChange={updateForm}
           label="text"
           multiline
+          classes={{root: "AddChangelog__field"}}
         />
         <TextField
           value={form.nextstep}
@@ -37,6 +39,7 @@ export default function AddChangelog() {
           onChange={updateForm}
           label="nextstep"
           multiline
+          classes={{root: "AddChangelog__field"}}
         />
         <Button text="Enregistrer le changelog" onClick={submitValues}/>
       </form>

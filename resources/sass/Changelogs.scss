@@ -1,4 +1,6 @@
 .Changelogs {
+  height: 100%;
+  margin-top: 16px;
 
   &__title {
     text-align: center;
@@ -15,5 +17,21 @@
   &__log {
     padding: 16px;
     margin: 16px;
+  }
+}
+
+.AddChangelog {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+
+  &__form {
+    padding: 16px;
+  }
+
+  &__field {
+    min-height: 60px;
   }
 }

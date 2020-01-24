@@ -113,11 +113,14 @@
   }
 
   .Navbar__item-profile {
+    position: relative;
+
     &-score {
       position: absolute;
-      font-size: 1em;
-      top: 50%;
+      font-size: 0.8em;
       transform: translate(50%, -50%);
+      top: 50%;
+      right: 50%;
     }
   }
 }

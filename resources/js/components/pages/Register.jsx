@@ -1,16 +1,15 @@
 import React from 'react';
-import axios from "axios";
-import {useSnackbar} from "notistack";
+import axios from 'axios';
+import { useSnackbar } from 'notistack';
 
-import Button from "../molecule/Button";
-import TextField from "../molecule/TextField";
+import Button from '../molecule/Button';
+import TextField from '../molecule/TextField';
 
-export default function Register() {
-
+export default function Register(props) {
   const [form, setForm] = React.useState({
     name: '',
     email: '',
-    password: ''
+    password: '',
   });
 
   const { enqueueSnackbar } = useSnackbar();
@@ -18,7 +17,7 @@ export default function Register() {
   return (
     <div className="Register">
       <form onSubmit={submitValues} className="card RegisterForm">
-      <h2 className="Title FormTitle">S'inscrire</h2>
+        <h2 className="Title FormTitle">S'inscrire</h2>
         <TextField
           value={form.name}
           name="name"
@@ -51,21 +50,24 @@ export default function Register() {
   );
 
 
-  function updateForm (e) {
+  function updateForm(e) {
     setForm({
       ...form,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   }
 
   function submitValues(event) {
     event.preventDefault();
     axios.post('/api/register', form).then(() => {
-      enqueueSnackbar("L'enregistrement s'est bien passé, bienvenue !", {variant: "success", anchorOrigin: {
+      enqueueSnackbar("L'enregistrement s'est bien passé, bienvenue !", {
+        variant: 'success',
+        anchorOrigin: {
           vertical: 'top',
           horizontal: 'center',
-        }});
-      props.history.push('/login');
-    })
+        },
+      });
+      document.location = '/login';
+    });
   }
 }

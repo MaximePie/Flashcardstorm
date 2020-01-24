@@ -12,6 +12,7 @@ import CountTo from 'react-count-to';
 import Drawer from '@material-ui/core/Drawer';
 import Badge from '@material-ui/core/Badge';
 import Icon from './Icon';
+import { isMobile } from '../helper';
 
 export default function Navbar(props) {
   const number_of_new_questions = Cookies.get('number_of_new_questions');
@@ -178,12 +179,14 @@ export default function Navbar(props) {
           {sideList('left')}
         </Drawer>
         <div className="Navbar__item-profile">
-          <a className="navbar-brand Navbar__home-link" href="/home">
-            <Avatar className="Navbar__logo" alt="GIPSI Logo" src="/images/logo.png" />
-            <div className="Navbar__logo-text">
-              FlashcardStorm
-            </div>
-          </a>
+          {!isMobile() && (
+            <a className="navbar-brand Navbar__home-link" href="/home">
+              <Avatar className="Navbar__logo" alt="GIPSI Logo" src="/images/logo.png" />
+              <div className="Navbar__logo-text">
+                FlashcardStorm
+              </div>
+            </a>
+          )}
           {props.is_connected && (
             <div className="Navbar__item-profile-container">
               <a href="/profile" className="Navbar__item-profile-icon-link">
