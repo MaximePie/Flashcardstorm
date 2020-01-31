@@ -97,6 +97,21 @@ export default function AddKnowledge(props) {
       <div className="row justify-content-center">
         <form onSubmit={submitValues} className="Addknowledge__form card">
           <Button onClick={addField} text="+" />
+          <div className="Addknowledge__questions-group">
+            <TextField
+              value={form.question}
+              name="question"
+              onChange={updateForm}
+              label="Question"
+            />
+            <TextField
+              value={form.answer}
+              name="answer"
+              onChange={updateForm}
+              label="Réponse"
+            />
+            {additionalTextFields}
+          </div>
           <RadioGroup
             className="Addknowledge__radiogroup"
             aria-label="Catégorie"
@@ -114,21 +129,6 @@ export default function AddKnowledge(props) {
               />
             ))}
           </RadioGroup>
-          <div className="Addknowledge__questions-group">
-            <TextField
-              value={form.question}
-              name="question"
-              onChange={updateForm}
-              label="Question"
-            />
-            <TextField
-              value={form.answer}
-              name="answer"
-              onChange={updateForm}
-              label="Réponse"
-            />
-            {additionalTextFields}
-          </div>
           <div className="Addknowledge__reserveQuestionCheckbox">
             <Checkbox
               checked={form.shouldHaveReverseQuestion}
