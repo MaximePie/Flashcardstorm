@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import TextField from '@material-ui/core/TextField';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -13,6 +13,8 @@ export default function QuestionCard(props) {
   const [selectedAnswerKey, setSelectedAnswerKey] = React.useState(0);
   const [additionalAnswers, setAdditionalAnswers] = React.useState([]);
 
+  const inputRef = useRef();
+
   React.useEffect(() => {
     setAnswer('');
     if (question.additionalAnswers) {
@@ -21,6 +23,7 @@ export default function QuestionCard(props) {
       setSelectedAnswerKey(0);
       setAnswer(additionnalAnswers[0]);
     }
+    inputRef?.current?.focus();
   }, [question]);
 
 
@@ -36,7 +39,12 @@ export default function QuestionCard(props) {
           {question.is_reverse ? question.answer : question.wording || props.message}
         </h3>
         {!question.additionalAnswers && (
-          <TextField label="Réponse" onChange={(e) => setAnswer(e.target.value)} value={answer} />
+          <TextField
+            inputRef={inputRef}
+            label="Réponse"
+            onChange={(e) => setAnswer(e.target.value)}
+            value={answer}
+          />
         )}
         {question.additionalAnswers && (
           <RadioGroup
