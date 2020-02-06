@@ -2,23 +2,26 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Answer.
  *
  * @property int $id
  * @property string $wording
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Answer whereWording($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|Answer newModelQuery()
+ * @method static Builder|Answer newQuery()
+ * @method static Builder|Answer query()
+ * @method static Builder|Answer whereCreatedAt($value)
+ * @method static Builder|Answer whereId($value)
+ * @method static Builder|Answer whereUpdatedAt($value)
+ * @method static Builder|Answer whereWording($value)
+ * @mixin Eloquent
  */
 class Answer extends Model
 {

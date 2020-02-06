@@ -15,7 +15,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param Request $request
-     * @return \App\User
+     * @return User
      */
     protected function create(Request $request): User
     {
