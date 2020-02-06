@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         Question_user::observe(QuestionUserObserver::class);
         //
         Schema::defaultStringLength(191);
-        if(config('app.env') === 'production') {
+        if (config('app.env') === 'production') {
             \URL::forceScheme('https');
         }
     }

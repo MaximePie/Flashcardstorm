@@ -14,10 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         $category = CATEGORY::create([
             'name' => 'Anglais',
-            'color' => "#0000AA",
+            'color' => '#0000AA',
             'icon' => 'coffee',
         ]);
 
@@ -31,7 +30,7 @@ class DatabaseSeeder extends Seeder
 
         Question::create([
             'wording' => 'Gallus en celte',
-            'answer_id' => $answer->id
+            'answer_id' => $answer->id,
         ]);
 
         $answer = Answer::create([
@@ -42,7 +41,7 @@ class DatabaseSeeder extends Seeder
 
         Question::create([
             'wording' => 'Année de la prise de la Bastille',
-            'answer_id' => $answer->id
+            'answer_id' => $answer->id,
         ]);
 
         $answer = Answer::create([

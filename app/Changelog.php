@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Changelog
+ * App\Changelog.
  *
  * @property int $id
  * @property \Illuminate\Support\Carbon|null $created_at

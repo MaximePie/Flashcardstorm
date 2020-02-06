@@ -25,8 +25,8 @@ Route::name('api.')->group(function () {
      * For connected Users
      * *************************
      */
-    Route::group(['middleware' => ['auth:api']], static function() {
-        Route::prefix('authenticated')->group(static function() {
+    Route::group(['middleware' => ['auth:api']], static function () {
+        Route::prefix('authenticated')->group(static function () {
             Route::get('question/{mode}/{already_in_bag_questions}', 'QuestionController@randomQuestion');
             Route::get('users', 'UserController@index');
             Route::get('me/score/{last_checked_at?}', 'UserController@score');
@@ -63,6 +63,3 @@ Route::name('api.')->group(function () {
         Route::post('question/submit_answer', 'QuestionController@submitAnswer')->middleware('guest');
     });
 });
-
-
-

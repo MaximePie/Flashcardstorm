@@ -26,7 +26,7 @@ class QuestionController extends Controller
             $questions = $user->questions()->paginate(20);
         }
 
-        $questions->each(static function(Question $question) use ($user) {
+        $questions->each(static function (Question $question) use ($user) {
             $answer = $question->answer()->first();
             $question['answer'] = $answer->wording;
             $category = $question->category();
@@ -37,7 +37,7 @@ class QuestionController extends Controller
                 $question['isSetForUser'] = $question->isSetForUser($user);
                 if ($question['isSetForUser']) {
                     $question['score'] = $question->scoreByUser($user);
-                    $question['next_question_at'] = $question->nextQuestionatForUser($user);
+                    $question['next_question_at'] = $question->nextQuestionAtForUser($user);
                 }
             }
 
@@ -45,6 +45,7 @@ class QuestionController extends Controller
                 $question['has_reverse'] = true;
             }
         });
+
         return response()->json(['questions' => $questions]);
     }
 
@@ -57,24 +58,24 @@ class QuestionController extends Controller
     public function toggleQuestionForUser(Request $request): JsonResponse
     {
         $user = Auth::user();
-        if (!$user) {
+        if (! $user) {
             throw new \RuntimeException('User does now exist');
         }
 
-        foreach($request->questions as $selected_question) {
+        foreach ($request->questions as $selected_question) {
             $question = Question::query()->where('id', $selected_question['id'])->first();
-            if ($question && $question->exists() && !$question->isSetForUser($user)) {
+            if ($question && $question->exists() && ! $question->isSetForUser($user)) {
                 Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
-            }
-            else {
+            } else {
                 $question->users()->detach($user);
             }
         }
+
         return response()->json(['Questions' => $user->questions()->get()]);
     }
 
     /**
-     * Returns a random question for the user
+     * Returns a random question for the user.
      *
      * @param string $mode The mode we want to use
      * @param null $questions_bag_ids
@@ -97,21 +98,17 @@ class QuestionController extends Controller
                 if ($questions->isEmpty()) {
                     $next_question = Question_user::query()->orderBy('next_question_at', 'asc')->first();
                     if ($next_question) {
-                        $message = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $next_question->next_question_at;
+                        $message = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le ".$next_question->next_question_at;
+                    } else {
+                        $message = 'Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit';
                     }
-                    else {
-                        $message = "Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit";
-                    }
-                }
-                else {
+                } else {
                     $user_progress = $user->dailyProgress();
                 }
-            }
-            else {
+            } else {
                 if ($user && $mode === 'for_user') {
                     $question_builder = $user->questions();
-                }
-                else {
+                } else {
                     $question_builder = Question::query();
                 }
 
@@ -119,7 +116,7 @@ class QuestionController extends Controller
                     ->limit($limit)
                     ->get();
 
-                if (!$questions) {
+                if (! $questions) {
                     $message = "Il n'y a pas de question disponible, vous pouvez en créer en cliquant sur Ajouter des Questions";
                 }
             }
@@ -128,7 +125,7 @@ class QuestionController extends Controller
                 $questions->each(static function (QUESTION $question) use ($user) {
                     $answer = $question->answer()->first();
                     $question['answer'] = $answer->wording;
-                    $question['is_new'] = !$question->isSetForUser($user) ?: null;
+                    $question['is_new'] = ! $question->isSetForUser($user) ?: null;
                     $question['additionalAnswers'] = $answer->additional_answers;
                     $category = $question->category();
                     if ($category) {
@@ -148,7 +145,6 @@ class QuestionController extends Controller
         ]);
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -161,7 +157,6 @@ class QuestionController extends Controller
         $answer = Answer::create([
             'wording' => $request->answer,
         ]);
-
 
         if ($request->additionalAnswers) {
             $additionalAnswers = $request->additionalAnswers;
@@ -187,9 +182,8 @@ class QuestionController extends Controller
             $question->createReverseQuestion();
         }
 
-        return response()->json(["Question" => $question, "Resquest Category" => $request->category]);
+        return response()->json(['Question' => $question, 'Resquest Category' => $request->category]);
     }
-
 
     /**
      * Import a lot of questions ! WOOHOO !
@@ -208,14 +202,14 @@ class QuestionController extends Controller
             ]);
 
             $question = Question::create([
-                'wording' => explode(';',$question)[0],
+                'wording' => explode(';', $question)[0],
                 'answer_id' => $answer->id,
             ]);
 
             if ($user) {
                 Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
             }
-            $added_questions ++;
+            $added_questions++;
         }
 
         return response()->json(['Questions ajoutées ' => $added_questions]);
@@ -258,7 +252,7 @@ class QuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Int $questionId
+     * @param int $questionId
      * @return JsonResponse
      */
     public function destroy(Int $questionId)
@@ -281,7 +275,6 @@ class QuestionController extends Controller
         $user = Auth::user();
         $earned_points = 0;
         if ($request->answer && $question->isValidWith($request->answer)) {
-
             if ($user) {
                 $question_user = QUESTION_USER::query()->firstOrCreate(['user_id' => $user->id, 'question_id' => $question->id]);
                 $question_user->save();
@@ -293,8 +286,7 @@ class QuestionController extends Controller
                 'status' => 200,
                 'earned_points' => $earned_points,
             ]);
-        }
-        else {
+        } else {
             if ($user) {
                 QUESTION_USER::query()->firstOrCreate(['user_id' => $user->id, 'question_id' => $question->id]);
 
@@ -305,6 +297,7 @@ class QuestionController extends Controller
                     }
                 }
             }
+
             return response()->json([
                 'text' => 'Oups, ce n\'est pas ça, réessayons !',
                 'status' => 500,
@@ -313,6 +306,5 @@ class QuestionController extends Controller
                 'is_reverse' => $question->is_reverse,
             ]);
         }
-
     }
 }

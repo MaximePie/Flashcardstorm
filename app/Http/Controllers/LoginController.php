@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +23,7 @@ class LoginController extends Controller
         $user = User::query()->where('email', $request['email'])->first();
         $response = response()->json(['message' => 'Echec', 'status' => 500]);
 
-        if (!$user) {
+        if (! $user) {
             return $response;
         }
 
@@ -47,6 +46,7 @@ class LoginController extends Controller
     {
         Auth::logout();
         $cookie = Cookie::queue(Cookie::forget('bearer'));
+
         return redirect('/home')->withCookie($cookie);
     }
 }

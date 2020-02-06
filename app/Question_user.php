@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * App\Question_user
+ * App\Question_user.
  *
  * @property int $id
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -78,24 +78,25 @@ class Question_user extends Model
         return self::query()->where('question_id', $question_id)->where('user_id', $user_id);
     }
 
-    public function save_failure() {
+    public function save_failure()
+    {
         if ($this->current_delay > 1) {
-            $this->current_delay --;
+            $this->current_delay--;
             $this->next_question_at = Carbon::now()->subDays($this->current_delay);
             $this->save();
         }
     }
 
-    public function save_success($user, $mode, $is_golden_card) {
+    public function save_success($user, $mode, $is_golden_card)
+    {
         if ($mode === 'soft') {
             $earned_points = $this->full_score ?: $this->score;
-            $this->current_delay ++;
+            $this->current_delay++;
             $this->last_answered_at = Carbon::now();
             $this->next_question_at = Carbon::now()->addDays($this->current_delay);
-            $this->full_score = $this->score*$this->current_delay;
+            $this->full_score = $this->score * $this->current_delay;
             $this->save();
-        }
-        else {
+        } else {
             $earned_points = $this->score;
         }
         $is_golden_card && $earned_points *= $earned_points;

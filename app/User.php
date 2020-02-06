@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticable;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * App\User
+ * App\User.
  *
  * @property int $id
  * @property string $name
@@ -52,7 +52,7 @@ class User extends Authenticable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'api_token'
+        'name', 'email', 'password', 'api_token',
     ];
 
     /**
@@ -73,7 +73,6 @@ class User extends Authenticable
         'email_verified_at' => 'datetime',
     ];
 
-
     /**
      * @param bool $with_delay
      * @return BelongsToMany
@@ -84,6 +83,7 @@ class User extends Authenticable
         if ($with_delay) {
             $query->whereDate('next_question_at', '<=', now());
         }
+
         return $query;
     }
 

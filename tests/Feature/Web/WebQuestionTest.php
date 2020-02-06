@@ -5,8 +5,6 @@ namespace Tests\Feature;
 use App\Question;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 /**
@@ -16,7 +14,7 @@ use Tests\TestCase;
 class WebQuestionTest extends TestCase
 {
     /**
-     * Test submit with success
+     * Test submit with success.
      *
      * @return void
      */
@@ -49,7 +47,7 @@ class WebQuestionTest extends TestCase
     }
 
     /**
-     * Test to fetch the list of the questions as connected user
+     * Test to fetch the list of the questions as connected user.
      * @throws \Exception
      */
     public function test_index_with_connected_user(): void
@@ -66,7 +64,7 @@ class WebQuestionTest extends TestCase
     }
 
     /**
-     * Test to fetch the list of the questions as guest
+     * Test to fetch the list of the questions as guest.
      * @throws \Exception
      */
     public function test_index_for_guest(): void
@@ -81,7 +79,7 @@ class WebQuestionTest extends TestCase
     }
 
     /**
-     * Test to submit an answer with only one remaining daily objective occurrence
+     * Test to submit an answer with only one remaining daily objective occurrence.
      * @throws \Exception
      */
     public function test_get_random_question_with_one_answer_left(): void
