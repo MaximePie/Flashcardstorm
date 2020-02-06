@@ -2,27 +2,30 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
- * App\Changelog
+ * App\Changelog.
  *
  * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string $title
  * @property string $text
  * @property string $nextstep
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Changelog newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Changelog newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Changelog query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Changelog whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Changelog whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Changelog whereNextstep($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Changelog whereText($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Changelog whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Changelog whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @method static Builder|Changelog newModelQuery()
+ * @method static Builder|Changelog newQuery()
+ * @method static Builder|Changelog query()
+ * @method static Builder|Changelog whereCreatedAt($value)
+ * @method static Builder|Changelog whereId($value)
+ * @method static Builder|Changelog whereNextstep($value)
+ * @method static Builder|Changelog whereText($value)
+ * @method static Builder|Changelog whereTitle($value)
+ * @method static Builder|Changelog whereUpdatedAt($value)
+ * @mixin Eloquent
  */
 class Changelog extends Model
 {

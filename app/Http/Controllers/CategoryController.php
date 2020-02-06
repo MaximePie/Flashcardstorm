@@ -7,13 +7,13 @@ use Illuminate\Http\JsonResponse;
 
 class CategoryController extends Controller
 {
-
     /**
-     * Get all categories
+     * Get all categories.
      */
     protected function index(): JsonResponse
     {
         $categories = Category::all();
+
         return response()->json(['categories' => $categories]);
     }
 }

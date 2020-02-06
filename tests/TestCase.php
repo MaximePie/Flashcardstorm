@@ -10,8 +10,10 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    public function user() {
-        return User::query()->firstOr('*', static function() {User::create([
+    public function user()
+    {
+        return User::query()->firstOr('*', static function () {
+            User::create([
                 'name' => 'Popol',
                 'email' => 'popol@popol.pol',
                 'password' => Hash::make('zozo'),

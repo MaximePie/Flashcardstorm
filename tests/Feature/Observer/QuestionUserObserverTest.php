@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: maxime
  * Date: 18/12/19
- * Time: 20:48
+ * Time: 20:48.
  */
 
 namespace App\Observers;
@@ -17,7 +17,7 @@ use Tests\TestCase;
 class QuestionUserObserverTest extends TestCase
 {
     /**
-     * Test that the reverted question is also assigned to a user when he selects a question
+     * Test that the reverted question is also assigned to a user when he selects a question.
      * @return void
      * @throws \Exception
      */
@@ -25,8 +25,8 @@ class QuestionUserObserverTest extends TestCase
     {
         Question_user::query()->forceDelete();
 
-        $answer_1 = Answer::create(['wording' => "Pikachu"]);
-        $answer_2 = Answer::create(['wording' => "Snorlax"]);
+        $answer_1 = Answer::create(['wording' => 'Pikachu']);
+        $answer_2 = Answer::create(['wording' => 'Snorlax']);
 
         $question_1 = Question::create(['wording' => 'haha1', 'answer_id' => $answer_1->id]);
         $question_2 = Question::create(['wording' => 'haha2', 'answer_id' => $answer_2->id]);
