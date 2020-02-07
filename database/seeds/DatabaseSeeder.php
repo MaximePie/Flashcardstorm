@@ -3,6 +3,9 @@
 use App\Answer;
 use App\Category;
 use App\Question;
+use App\Question_user;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,46 +17,41 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $category = CATEGORY::create([
-            'name' => 'Anglais',
-            'color' => '#0000AA',
-            'icon' => 'coffee',
+        factory(Category::class)->times(10)->create();
+        factory(Answer::class)->times(10)->create();
+        factory(Question::class)->times(10)->create();
+        factory(User::class)->times(5)->create();
+        factory(Question_user::class)->times(5)->create();
+
+        $user = User::query()->where('email', 'maxime.pie@group-hpi.com')->first();
+        if (!$user) {
+            $user = User::create([
+                'name' => 'The Owl',
+                'email' => 'maxime.pie@group-hpi.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123'), // password
+                'remember_token' => Str::random(10),
+                'api_token' => Str::random(60),
+            ]);
+        }
+
+        $this->createQuestionsForUser($user);
+
+    }
+
+    private function createQuestionsForUser(User $user): void
+    {
+        Question_user::create([
+            'user_id' => $user->id,
+            'question_id' => Question::query()->inRandomOrder()->first()->id,
         ]);
 
-        $category->save();
+        $questionUser = new Question_user();
+        $questionUser->user_id = $user->id;
+        $questionUser->question_id = Question::query()->inRandomOrder()->first()->id;
+        $questionUser->current_delay = 3;
+        $questionUser->next_question_at = Carbon::now()->addDays(3);
 
-        $answer = Answer::create([
-            'wording' => 'Coq',
-        ]);
-
-        $answer->save();
-
-        Question::create([
-            'wording' => 'Gallus en celte',
-            'answer_id' => $answer->id,
-        ]);
-
-        $answer = Answer::create([
-            'wording' => '1789',
-        ]);
-
-        $answer->save();
-
-        Question::create([
-            'wording' => 'Année de la prise de la Bastille',
-            'answer_id' => $answer->id,
-        ]);
-
-        $answer = Answer::create([
-            'wording' => 'Nageoire',
-        ]);
-
-        $answer->save();
-
-        Question::create([
-            'wording' => 'Fin - Anglais',
-            'answer_id' => $answer->id,
-            'category_id' => $category->id,
-        ]);
+        $questionUser->save();
     }
 }

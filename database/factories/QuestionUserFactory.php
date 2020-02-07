@@ -1,10 +1,12 @@
 <?php
 
 /** @var Factory $factory */
+
+use App\Question;
+use App\Question_user;
 use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
-use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +19,9 @@ use Illuminate\Support\Str;
 |
 */
 
-
-$factory->define(User::class, static function (Faker $faker) {
+$factory->define(Question_user::class, static function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => Hash::make('123'), // password
-        'remember_token' => Str::random(10),
-        'api_token' => Str::random(60),
+        'question_id' => Question::query()->inRandomOrder()->first()->id,
+        'user_id' => User::query()->inRandomOrder()->first()->id,
     ];
 });
