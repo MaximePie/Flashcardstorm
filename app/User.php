@@ -120,6 +120,6 @@ class User extends Authenticable
 
     public function updateDailyProgress(): void
     {
-        $this->daily_progress = $this->daily_objective - $this->questions(true)->count();
+        $this->daily_progress = $this->daily_objective - $this->questions(true, false, false)->count();
     }
 }
