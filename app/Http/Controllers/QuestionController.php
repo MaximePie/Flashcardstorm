@@ -8,7 +8,9 @@ use App\Question_user;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use RuntimeException;
 
 class QuestionController extends Controller
 {
@@ -59,7 +61,7 @@ class QuestionController extends Controller
     {
         $user = Auth::user();
         if (! $user) {
-            throw new \RuntimeException('User does now exist');
+            throw new RuntimeException('User does now exist');
         }
 
         foreach ($request->questions as $selected_question) {
@@ -90,7 +92,7 @@ class QuestionController extends Controller
         if ($limit > 0) {
             if ($mode === 'soft' && $user) {
                 $questions = $user->questions(true, false, false)
-                    ->whereNotIn('question_id', $already_in_bag_questions)
+                    ->whereNotIn('question_users.question_id', $already_in_bag_questions)
                     ->inRandomOrder()
                     ->limit($limit)
                     ->get();
@@ -148,8 +150,8 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      * @throws Exception
      */
     public function store(Request $request)
@@ -188,7 +190,7 @@ class QuestionController extends Controller
     /**
      * Import a lot of questions ! WOOHOO !
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      * @return JsonResponse
      */
     public function import(Request $request)
@@ -218,8 +220,8 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
+     * @param Question $question
+     * @return Response
      */
     public function show(Question $question)
     {
@@ -229,7 +231,7 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Question $question
+     * @param Question $question
      * @return void
      */
     public function edit(Question $question)
@@ -240,8 +242,8 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Question $question
+     * @param Request $request
+     * @param Question $question
      * @return void
      */
     public function update(Request $request, Question $question)
@@ -265,7 +267,7 @@ class QuestionController extends Controller
     /**
      * @param Request $request
      * @return JsonResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function submitAnswer(Request $request): JsonResponse
     {

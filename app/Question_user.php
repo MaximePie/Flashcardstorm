@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Eloquent;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -89,7 +90,7 @@ class Question_user extends Model
      * @param string $mode Soft : Increase the score and delay. Storm : Do nothing
      * @param bool|null $is_golden_card Whether the question has a bonus or not
      * @return int the new score of the question
-     * @throws \Exception
+     * @throws Exception
      */
     public function save_success(User $user, string $mode, bool $is_golden_card = false): int
     {

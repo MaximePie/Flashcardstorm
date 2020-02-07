@@ -99,7 +99,7 @@ class User extends Authenticable
         }
 
         if ($with_delay) {
-            $query->whereDate('next_question_at', '<=', now());
+            $query->whereDate('question_users.next_question_at', '<=', now());
         }
 
         if ($are_original) {
