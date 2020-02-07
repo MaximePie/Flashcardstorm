@@ -99,6 +99,11 @@ class Question_user extends Model
             $this->last_answered_at = Carbon::now();
             $this->next_question_at = (new Carbon($this->next_question_at))->addDays($this->current_delay);
             $this->full_score = $this->score * $this->current_delay;
+
+            if ($this->full_score >= 100) {
+                $this->isMemorized = true;
+            }
+
             $this->save();
         } else {
             $earned_points = $this->score;
