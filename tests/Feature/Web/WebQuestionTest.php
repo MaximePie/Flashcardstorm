@@ -3,8 +3,10 @@
 namespace Tests\Feature;
 
 use App\Question;
+use App\Question_user;
 use App\User;
 use Carbon\Carbon;
+use Exception;
 use Tests\TestCase;
 
 /**
@@ -48,7 +50,7 @@ class WebQuestionTest extends TestCase
 
     /**
      * Test to fetch the list of the questions as connected user.
-     * @throws \Exception
+     * @throws Exception
      */
     public function test_index_with_connected_user(): void
     {
@@ -65,7 +67,7 @@ class WebQuestionTest extends TestCase
 
     /**
      * Test to fetch the list of the questions as guest.
-     * @throws \Exception
+     * @throws Exception
      */
     public function test_index_for_guest(): void
     {
@@ -80,7 +82,7 @@ class WebQuestionTest extends TestCase
 
     /**
      * Test to submit an answer with only one remaining daily objective occurrence.
-     * @throws \Exception
+     * @throws Exception
      */
     public function test_get_random_question_with_one_answer_left(): void
     {
@@ -93,12 +95,43 @@ class WebQuestionTest extends TestCase
         $this->assertCount(1, $response['questions']['data']);
     }
 
+
+    /**
+     * Test to submit an answer with only one remaining daily objective occurrence.
+     * @throws Exception
+     */
+    public function test_get_random_question_for_auth_user(): void
+    {
+        $this->actingAs($this->user, 'api');
+        $user = $this->user;
+        $questions = $this->createQuestions(5);
+        $questions->each(static function($question) use ($user){
+            Question_user::create([
+                'question_id' => $question->id,
+                'user_id' => $user->id,
+            ]);
+        });
+        $response = $this->get('/api/authenticated/question/soft');
+        $response->assertStatus(200);
+        $response = json_decode($response->getContent(), true);
+        $this->assertNotNull($response['questions']);
+        $this->assertCount(4, $response['questions']);
+        $unwantedIds = '';
+        foreach ($response['questions'] as $question) {
+            $unwantedIds .= $question['id'] . ',';
+        }
+        $response = $this->get('/api/authenticated/question/soft/' .$unwantedIds);
+        $response->assertStatus(200);
+        $response = json_decode($response->getContent(), true);
+        $this->assertNull($response['questions']);
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
         QUESTION::query()->forceDelete();
         $this->question = factory(Question::class)->make();
         $this->question->save();
-        $this->user = factory(User::class)->make();
+        $this->user = $this->user();
     }
 }
