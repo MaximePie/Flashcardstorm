@@ -51,6 +51,8 @@ class Question_user extends Model
     {
         parent::__construct($attributes);
         $this->full_score = 10;
+        $this->score = 10;
+        $this->current_delay = 1;
         $this->next_question_at = now();
     }
 
@@ -80,22 +82,21 @@ class Question_user extends Model
         return self::query()->where('question_id', $question_id)->where('user_id', $user_id);
     }
 
-    public function save_failure(): void
-    {
-        if ($this->current_delay > 1) {
-            $this->current_delay--;
-            $this->next_question_at = Carbon::now()->subDays($this->current_delay);
-            $this->save();
-        }
-    }
-
-    public function save_success($user, $mode, $is_golden_card): int
+    /**
+     * Update the questionUser row on success
+     * @param User $user The user that successfully answered the question
+     * @param string $mode Soft : Increase the score and delay. Storm : Do nothing
+     * @param bool|null $is_golden_card Whether the question has a bonus or not
+     * @return int the new score of the question
+     * @throws \Exception
+     */
+    public function save_success(User $user, string $mode, bool $is_golden_card = false): int
     {
         if ($mode === 'soft') {
             $earned_points = $this->full_score ?: $this->score;
             $this->current_delay++;
             $this->last_answered_at = Carbon::now();
-            $this->next_question_at = Carbon::now()->addDays($this->current_delay);
+            $this->next_question_at = (new Carbon($this->next_question_at))->addDays($this->current_delay);
             $this->full_score = $this->score * $this->current_delay;
             $this->save();
         } else {

@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use App\Answer;
+use App\Question;
 use App\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Hash;
@@ -10,7 +12,7 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    public function user()
+    public function user(): User
     {
         return User::query()->firstOr('*', static function () {
             User::create([
@@ -19,5 +21,16 @@ abstract class TestCase extends BaseTestCase
                 'password' => Hash::make('zozo'),
             ]);
         });
+    }
+
+    public function question(): Question
+    {
+        $question = factory(Question::class)->make();
+        $question->save();
+        $correct_answer = Answer::create(['wording' => 'la raclette']);
+        $question->answer_id = $correct_answer->id;
+        $question->save();
+
+        return $question;
     }
 }

@@ -286,25 +286,14 @@ class QuestionController extends Controller
                 'status' => 200,
                 'earned_points' => $earned_points,
             ]);
-        } else {
-            if ($user) {
-                QUESTION_USER::query()->firstOrCreate(['user_id' => $user->id, 'question_id' => $question->id]);
-
-                if ($request->mode === 'soft') {
-                    $question_user = Question_user::findFromTuple($question->id, $user->id);
-                    if ($question_user) {
-                        $question_user->first()->save_failure();
-                    }
-                }
-            }
-
-            return response()->json([
-                'text' => 'Oups, ce n\'est pas ça, réessayons !',
-                'status' => 500,
-                'earned_points' => $earned_points,
-                'correct_answer' => $question->is_reverse ? $question->wording : $question->answer()->first()->wording,
-                'is_reverse' => $question->is_reverse,
-            ]);
         }
+
+        return response()->json([
+            'text' => 'Oups, ce n\'est pas ça, réessayons !',
+            'status' => 500,
+            'earned_points' => $earned_points,
+            'correct_answer' => $question->is_reverse ? $question->wording : $question->answer()->first()->wording,
+            'is_reverse' => $question->is_reverse,
+        ]);
     }
 }

@@ -119,9 +119,9 @@ class Question extends Model
     /**
      * Next question At for a given user.
      * @param  User $user
-     * @return Question_user|null
+     * @return string
      */
-    public function nextQuestionAtForUser(User $user): ?Question_user
+    public function nextQuestionAtForUser(User $user): ?string
     {
         $nextQuestionAt = Question_user::findFromTuple($this->id, $user->id);
         if ($nextQuestionAt) {
