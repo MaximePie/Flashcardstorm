@@ -25,6 +25,8 @@ export default function QuestionsList(props) {
   React.useEffect(() => {
   }, [questions?.data]);
 
+  console.log(questions?.data?.length);
+
   return (
     <div className="QuestionsList">
       <div className="QuestionsList__title">
@@ -56,25 +58,26 @@ export default function QuestionsList(props) {
       </div>
       <form className="QuestionsList__list">
         <ul className="list-group list-group-flush">
-          <div className="QuestionsList__global-checker">
-            <FormControlLabel
-              control={
-                <Checkbox
-                  onChange={toggleAllQuestions}
-                  value="toggleAll"
-                  color="primary"
-                  inputProps={{
-                    'aria-label': 'secondary checkbox',
-                  }}
-                />
-              }
-              label={'Cocher toutes les questions'}
-            />
-          </div>
+          {questions?.data?.length && (
+            <div className="QuestionsList__global-checker">
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    onChange={toggleAllQuestions}
+                    value="toggleAll"
+                    color="primary"
+                    inputProps={{
+                      'aria-label': 'secondary checkbox',
+                    }}
+                  />
+                }
+                label={'Cocher toutes les questions'}
+              />
+            </div>
+          )}
           {questions?.data?.map(function (question, key) {
             return (
               <QuestionsListItem
-                key={key}
                 question={question}
                 questionKey={key}
                 deleteQuestion={deleteQuestion}

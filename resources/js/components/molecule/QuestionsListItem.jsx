@@ -13,6 +13,7 @@ QuestionsListItem.propTypes = {
     isSetForUser: PropTypes.bool,
     wording: PropTypes.string,
     answer: PropTypes.string,
+    has_reverse: PropTypes.bool,
     category: PropTypes.shape({
       icon: PropTypes.string,
       name: PropTypes.string,
@@ -21,7 +22,6 @@ QuestionsListItem.propTypes = {
   }).isRequired,
   deleteQuestion: PropTypes.func.isRequired,
   toggleQuestionForUser: PropTypes.func.isRequired,
-  key: PropTypes.string.isRequired,
   questionKey: PropTypes.number.isRequired,
   isConnected: PropTypes.bool,
 };

@@ -32,6 +32,8 @@
   }
 
   &__question {
+    opacity: 0;
+    animation: appear 0.25s forwards;
     display: grid;
     grid-template-columns: 70px 8fr 128px;
   }
@@ -129,5 +131,19 @@
     &__question-wording, &__question-answer {
       margin-left: 0;
     }
+  }
+}
+
+
+
+@keyframes appear {
+  from {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
 }

@@ -47,6 +47,7 @@ class UserController extends Controller
      */
     protected function score(string $last_checked_at = null): JsonResponse
     {
+        $newChangelog = Changelog::query()->latest()->first();
         $user = Auth::user();
         if ($user) {
             return response()->json([
@@ -55,7 +56,7 @@ class UserController extends Controller
                 'number_of_new_changelogs' => Changelog::query()->where('created_at', '>', $last_checked_at ?: now())->count(),
                 'last_checked_at' => $last_checked_at ?: now(),
                 'lasted_changelog_date' => Changelog::query()->latest()->pluck('created_at'),
-                'is_new' => Changelog::query()->latest()->first()->pluck('created_at') > $last_checked_at,
+                'is_new' => isset($newChangelog) ?? $newChangelog->pluck('created_at') > $last_checked_at,
             ]);
         }
     }
