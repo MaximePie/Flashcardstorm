@@ -81,11 +81,22 @@ class User extends Authenticable
     /**
      * @param bool $with_delay Whether we only need further questions or all questions
      * @param bool $are_original Wheter we only need original questions or if we also need its reverse version
+     * @param bool $are_memorized
      * @return BelongsToMany
      */
-    public function questions(bool $with_delay = false, bool $are_original = false): BelongsToMany
+    public function questions(bool $with_delay = false, bool $are_original = false, bool $are_memorized = true): BelongsToMany
     {
-        $query = $this->BelongsToMany(Question::class, 'question_users');
+        $query = $this->BelongsToMany(Question::class, 'question_users')->joinSub(
+            Question_user::query(),
+            'user_question',
+            'user_question.question_id',
+            '=',
+            'questions.id'
+        );
+
+        if (!$are_memorized) {
+            $query = $query->where('user_question.isMemorized', false);
+        }
 
         if ($with_delay) {
             $query->whereDate('next_question_at', '<=', now());

@@ -54,6 +54,7 @@ class Question_user extends Model
         $this->score = 10;
         $this->current_delay = 1;
         $this->next_question_at = now();
+        $this->isMemorized = false;
     }
 
     /**

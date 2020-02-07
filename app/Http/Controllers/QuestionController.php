@@ -89,7 +89,7 @@ class QuestionController extends Controller
         $limit = config('app.question_bag_max_size') - count($already_in_bag_questions);
         if ($limit > 0) {
             if ($mode === 'soft' && $user) {
-                $questions = $user->questions(true)
+                $questions = $user->questions(true, false, false)
                     ->whereNotIn('question_id', $already_in_bag_questions)
                     ->inRandomOrder()
                     ->limit($limit)
