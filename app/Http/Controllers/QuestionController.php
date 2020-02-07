@@ -23,7 +23,7 @@ class QuestionController extends Controller
         $user = Auth::user();
         $questions = Question::OriginalsOnly()->paginate(20);
         if ($user && $visibility === 'for_user') {
-            $questions = $user->questions()->paginate(20);
+            $questions = $user->questions(false, true)->paginate(20);
         }
 
         $questions->each(static function (Question $question) use ($user) {

@@ -79,14 +79,20 @@ class User extends Authenticable
     ];
 
     /**
-     * @param bool $with_delay
+     * @param bool $with_delay Whether we only need further questions or all questions
+     * @param bool $are_original Wheter we only need original questions or if we also need its reverse version
      * @return BelongsToMany
      */
-    public function questions(bool $with_delay = false): BelongsToMany
+    public function questions(bool $with_delay = false, bool $are_original = false): BelongsToMany
     {
         $query = $this->BelongsToMany(Question::class, 'question_users');
+
         if ($with_delay) {
             $query->whereDate('next_question_at', '<=', now());
+        }
+
+        if ($are_original) {
+            $query->whereNull('reverse_question_id');
         }
 
         return $query;

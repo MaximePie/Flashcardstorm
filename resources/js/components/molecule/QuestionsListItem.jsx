@@ -103,7 +103,6 @@ export default function QuestionsListItem(props) {
   }
 
   function questionActions() {
-    console.log(questionKey)
     return (
       <div className="QuestionsListItem__actions">
         {isConnected && (
