@@ -79,34 +79,21 @@ class User extends Authenticable
     ];
 
     /**
-     * @param bool $with_delay Whether we only need further questions or all questions
-     * @param bool $are_original Wheter we only need original questions or if we also need its reverse version
-     * @param bool $are_memorized
      * @return BelongsToMany
      */
-    public function questions(bool $with_delay = false, bool $are_original = false, bool $are_memorized = true): BelongsToMany
+    public function questions(): BelongsToMany
     {
-        $query = $this->BelongsToMany(Question::class, 'question_users')->joinSub(
-            Question_user::query(),
-            'user_question',
-            'user_question.question_id',
-            '=',
-            'questions.id'
-        );
+        return $this->BelongsToMany(Question::class, 'question_users');
+    }
 
-        if (!$are_memorized) {
-            $query = $query->where('user_question.isMemorized', false);
-        }
-
-        if ($with_delay) {
-            $query->whereDate('question_users.next_question_at', '<=', now());
-        }
-
-        if ($are_original) {
-            $query->whereNull('reverse_question_id');
-        }
-
-        return $query;
+    /**
+     * @return BelongsToMany
+     */
+    public function dailyQuestions(): BelongsToMany
+    {
+        return $this->BelongsToMany(Question::class, 'question_users')
+        ->where('question_users.isMemorized', false)
+        ->whereDate('question_users.next_question_at', '<=', now());
     }
 
     public function dailyProgress(): array
@@ -120,6 +107,7 @@ class User extends Authenticable
 
     public function updateDailyProgress(): void
     {
-        $this->daily_progress = $this->daily_objective - $this->questions(true, false, false)->count();
+        $this->daily_progress = $this->daily_objective - $this->dailyQuestions()->count();
+        $this->save();
     }
 }

@@ -98,7 +98,7 @@ class Question_user extends Model
             $earned_points = $this->full_score ?: $this->score;
             $this->current_delay++;
             $this->last_answered_at = Carbon::now();
-            $this->next_question_at = (new Carbon($this->next_question_at))->addDays($this->current_delay);
+            $this->next_question_at = Carbon::now()->addDays($this->current_delay);
             $this->full_score = $this->score * $this->current_delay;
 
             if ($this->full_score >= 100) {
@@ -111,14 +111,11 @@ class Question_user extends Model
         }
         $is_golden_card && $earned_points *= $earned_points;
 
-        $user->updateDailyProgress();
 
-        if ($user->questions(true)->count() === $user->daily_objective) {
-            $earned_points += 200;
-        }
 
         $user->score += $earned_points;
         $user->save();
+        $user->updateDailyProgress();
 
         return $earned_points;
     }

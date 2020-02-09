@@ -13,8 +13,9 @@ export default function Training(props) {
     questions: [],
     unwantedIdsList: [],
     questionCardMessage: undefined,
-    userProgress: undefined,
   });
+
+  const [userProgress, setUserProgress] = React.useState(undefined);
 
   const [serverSwitch, setServerSwitch] = React.useState(false);
 
@@ -23,7 +24,9 @@ export default function Training(props) {
   React.useEffect(() => {
     Cookies.remove('number_of_new_questions');
     server.get('update_progress')
-      .then(() => {
+      .then((response) => {
+        const { userProgress: userProgressData } = response.data;
+        setUserProgress(userProgressData)
         updateQuestionsList();
       });
   }, []);
@@ -32,7 +35,7 @@ export default function Training(props) {
     updateQuestionsList();
   }, [serverSwitch]);
 
-  const { questions, questionCardMessage, userProgress } = questionsBag;
+  const { questions, questionCardMessage } = questionsBag;
 
   return (
     <div className="Home">
@@ -86,6 +89,7 @@ export default function Training(props) {
           ? response.data.earned_points
           : undefined;
 
+
         enqueueSnackbar(
           <div className="Home__snackbar">
             {snackbarText}
@@ -104,6 +108,7 @@ export default function Training(props) {
             variant: response.data.status === 200 ? 'success' : 'warning',
           },
         );
+        setUserProgress(response.data.userProgress)
       });
   }
 
@@ -123,7 +128,7 @@ export default function Training(props) {
 
     server.get(`question/${props.mode}${questionsInList}`)
       .then((response) => {
-        const { message, userProgress: userProgressData, questions: questionsData } = response.data;
+        const { message, questions: questionsData } = response.data;
         const updatedQuestions = currentQuestions.concat(questionsData);
         const forbiddenIds = [];
         updatedQuestions.forEach((question) => {
@@ -136,7 +141,6 @@ export default function Training(props) {
           questions: updatedQuestions,
           unwantedIdsList: forbiddenIds,
           questionCardMessage: message,
-          userProgress: userProgressData,
         });
       });
   }
@@ -147,7 +151,11 @@ export default function Training(props) {
 
     const unwantedIds = [...questionsBag.unwantedIdsList];
     unwantedIds.shift();
-    updateQuestionsBag({ ...questionsBag, unwantedIdsList: unwantedIds, questions: currentQuestions });
+    updateQuestionsBag({
+      ...questionsBag,
+      unwantedIdsList: unwantedIds,
+      questions: currentQuestions,
+    });
     setServerSwitch(!serverSwitch);
   }
 

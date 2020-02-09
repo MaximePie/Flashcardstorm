@@ -25,7 +25,7 @@ class QuestionController extends Controller
         $user = Auth::user();
         $questions = Question::OriginalsOnly()->paginate(20);
         if ($user && $visibility === 'for_user') {
-            $questions = $user->questions(false, true)->paginate(20);
+            $questions = $user->questions()->paginate(20);
         }
 
         $questions->each(static function (Question $question) use ($user) {
@@ -60,13 +60,13 @@ class QuestionController extends Controller
     public function toggleQuestionForUser(Request $request): JsonResponse
     {
         $user = Auth::user();
-        if (! $user) {
+        if (!$user) {
             throw new RuntimeException('User does now exist');
         }
 
         foreach ($request->questions as $selected_question) {
             $question = Question::query()->where('id', $selected_question['id'])->first();
-            if ($question && $question->exists() && ! $question->isSetForUser($user)) {
+            if ($question && $question->exists() && !$question->isSetForUser($user)) {
                 Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
             } else {
                 $question->users()->detach($user);
@@ -91,7 +91,7 @@ class QuestionController extends Controller
         $limit = config('app.question_bag_max_size') - count($already_in_bag_questions);
         if ($limit > 0) {
             if ($mode === 'soft' && $user) {
-                $questions = $user->questions(true, false, false)
+                $questions = $user->dailyQuestions()
                     ->whereNotIn('question_users.question_id', $already_in_bag_questions)
                     ->inRandomOrder()
                     ->limit($limit)
@@ -100,12 +100,10 @@ class QuestionController extends Controller
                 if ($questions->isEmpty()) {
                     $next_question = Question_user::query()->orderBy('next_question_at', 'asc')->first();
                     if ($next_question) {
-                        $message = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le ".$next_question->next_question_at;
+                        $message = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $next_question->next_question_at;
                     } else {
                         $message = 'Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit';
                     }
-                } else {
-                    $user_progress = $user->dailyProgress();
                 }
             } else {
                 if ($user && $mode === 'for_user') {
@@ -118,7 +116,7 @@ class QuestionController extends Controller
                     ->limit($limit)
                     ->get();
 
-                if (! $questions) {
+                if (!$questions) {
                     $message = "Il n'y a pas de question disponible, vous pouvez en créer en cliquant sur Ajouter des Questions";
                 }
             }
@@ -127,7 +125,7 @@ class QuestionController extends Controller
                 $questions->each(static function (QUESTION $question) use ($user) {
                     $answer = $question->answer()->first();
                     $question['answer'] = $answer->wording;
-                    $question['is_new'] = ! $question->isSetForUser($user) ?: null;
+                    $question['is_new'] = !$question->isSetForUser($user) ?: null;
                     $question['additionalAnswers'] = $answer->additional_answers;
                     $category = $question->category();
                     if ($category) {
@@ -143,7 +141,6 @@ class QuestionController extends Controller
             'questions' => $questions ?? null,
             'message' => $message,
             'next_question' => $next_question ?? null,
-            'userProgress' => $user_progress ?? null,
         ]);
     }
 
@@ -287,6 +284,7 @@ class QuestionController extends Controller
                 'text' => 'Bien joué !',
                 'status' => 200,
                 'earned_points' => $earned_points,
+                'userProgress' => $user->dailyProgress(),
             ]);
         }
 
@@ -295,7 +293,7 @@ class QuestionController extends Controller
             'status' => 500,
             'earned_points' => $earned_points,
             'correct_answer' => $question->is_reverse ? $question->wording : $question->answer()->first()->wording,
-            'is_reverse' => $question->is_reverse,
+            'userProgress' => $user->dailyProgress(),
         ]);
     }
 }

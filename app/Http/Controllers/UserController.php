@@ -52,7 +52,6 @@ class UserController extends Controller
         if ($user) {
             return response()->json([
                 'score' => $user->score,
-                'number_of_questions' => $user->questions(true)->count(),
                 'number_of_new_changelogs' => Changelog::query()->where('created_at', '>', $last_checked_at ?: now())->count(),
                 'last_checked_at' => $last_checked_at ?: now(),
                 'lasted_changelog_date' => Changelog::query()->latest()->pluck('created_at'),
@@ -72,7 +71,7 @@ class UserController extends Controller
         if ($user) {
             if (! now()->isSameDay($user->last_daily_updated_at) || $user->last_daily_updated_at === null) {
                 $user->last_daily_updated_at = now();
-                $user->daily_objective = $user->questions(true)->count();
+                $user->daily_objective = $user->dailyQuestions()->count();
                 $user->daily_progress = 0;
                 $user->save();
             }
