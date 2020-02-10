@@ -52,8 +52,7 @@ export default function App() {
   React.useEffect(() => {
     moment.locale('fr_FR');
     if (isConnected) {
-      Cookies.remove('number_of_new_questions');
-      updateUser(true);
+      updateUser();
     }
   }, [isConnected]);
 
@@ -143,26 +142,27 @@ export default function App() {
     </SnackbarProvider>
   );
 
-  function updateUser(isInitial = false) {
+  function updateUser() {
     server.get('me/score').then((response) => {
+
       const { number_of_questions: numberOfQuestions, number_of_new_changelogs } = response.data;
+      const newUser = {};
       if (!user) {
-        setUser({ initial_score: response.data.score, current_score: response.data.score });
+        newUser.initial_score = response.data.score;
+        newUser.current_score = response.data.score;
       } else {
         setCountClassName('Navbar__counter-rising');
-        setUser({ initial_score: user.current_score, current_score: response.data.score });
+        newUser.initial_score = user.current_score;
+        newUser.current_score = response.data.score;
       }
-      if (isInitial) {
-        if (window.location.pathname !== '/soft_training') {
-          Cookies.set(
-            'number_of_new_questions',
-            numberOfQuestions > 0 ? numberOfQuestions : undefined,
-          );
-        }
-        if (window.location.pathname !== '/about') {
-          setUser({...user, numberOfNewChangelogs: number_of_new_changelogs});
-        }
+      if (window.location.pathname !== '/soft_training') {
+        newUser.numberOfQuestions = numberOfQuestions;
       }
+      if (window.location.pathname !== '/about') {
+        newUser.numberOfNewChangelogs = number_of_new_changelogs;
+      }
+
+      setUser(newUser);
     });
   }
 }

@@ -42,20 +42,16 @@ class UserController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param string|null $last_checked_at
      * @return JsonResponse
      */
-    protected function score(string $last_checked_at = null): JsonResponse
+    protected function score(): JsonResponse
     {
-        $newChangelog = Changelog::query()->latest()->first();
         $user = Auth::user();
         if ($user) {
             return response()->json([
                 'score' => $user->score,
                 'number_of_new_changelogs' => $user->unreadNotifications()->count(),
-                'last_checked_at' => $last_checked_at ?: now(),
-                'lasted_changelog_date' => Changelog::query()->latest()->pluck('created_at'),
-                'is_new' => isset($newChangelog) ?? $newChangelog->pluck('created_at') > $last_checked_at,
+                'number_of_questions' => $user->dailyQuestions()->count(),
             ]);
         }
     }

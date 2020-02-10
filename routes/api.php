@@ -29,7 +29,7 @@ Route::name('api.')->group(function () {
         Route::prefix('authenticated')->group(static function () {
             Route::get('question/{mode}/{already_in_bag_questions}', 'QuestionController@randomQuestion');
             Route::get('users', 'UserController@index');
-            Route::get('me/score/{last_checked_at?}', 'UserController@score');
+            Route::get('me/score', 'UserController@score');
             Route::get('users', 'UserController@index');
             Route::get('update_progress', 'UserController@updateProgress');
 

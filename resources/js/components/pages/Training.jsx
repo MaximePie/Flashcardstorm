@@ -22,7 +22,6 @@ export default function Training(props) {
   const { enqueueSnackbar } = useSnackbar();
 
   React.useEffect(() => {
-    Cookies.remove('number_of_new_questions');
     server.get('update_progress')
       .then((response) => {
         const { userProgress: userProgressData } = response.data;
@@ -109,6 +108,7 @@ export default function Training(props) {
           },
         );
         setUserProgress(response.data.userProgress)
+        props.updateUserScore()
       });
   }
 

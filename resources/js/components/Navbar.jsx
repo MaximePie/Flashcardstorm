@@ -15,8 +15,8 @@ import Icon from './Icon';
 import { isMobile } from '../helper';
 
 export default function Navbar(props) {
-  const number_of_new_questions = Cookies.get('number_of_new_questions');
 
+  const number_of_new_questions = props.user?.numberOfQuestions
   const numberOfNewChangelogs = props.user?.numberOfNewChangelogs
 
   const [isOpen, setOpen] = React.useState(false);

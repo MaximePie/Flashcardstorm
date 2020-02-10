@@ -25,8 +25,6 @@ export default function QuestionsList(props) {
   React.useEffect(() => {
   }, [questions?.data]);
 
-  console.log(questions?.data?.length);
-
   return (
     <div className="QuestionsList">
       <div className="QuestionsList__title">
