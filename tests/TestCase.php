@@ -24,6 +24,17 @@ abstract class TestCase extends BaseTestCase
         });
     }
 
+    public function createUsers(int $amount): Collection
+    {
+        $neededUsers = $amount - User::query()->count();
+
+        if ($neededUsers > 0) {
+            factory(User::class)->times($neededUsers)->create();
+        }
+
+        return User::all();
+    }
+
     public function question(): Question
     {
         $question = factory(Question::class)->make();
