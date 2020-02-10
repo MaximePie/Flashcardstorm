@@ -1,0 +1,18 @@
+.AddCategory {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+
+    &__form {
+        padding: 16px;
+        margin-right: 24px;
+    }
+
+    &__field {
+        min-height: 60px;
+        margin: 16px !important;
+        display: flex;
+        align-items: baseline;
+    }
+}

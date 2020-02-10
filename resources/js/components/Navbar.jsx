@@ -102,6 +102,14 @@ export default function Navbar(props) {
         )}
         {props.is_connected && (
           <>
+            <ListItem button component="a" href="/add_category" className="Navbar__item">
+              <ListItemIcon>
+                <i className="fas fa-folder-plus" />
+              </ListItemIcon>
+              <ListItemText>
+                Ajouter des categories
+              </ListItemText>
+            </ListItem>
             <ListItem button component="a" href="/users" className="Navbar__item">
               <ListItemIcon>
                 <i className="fas fa-users" />

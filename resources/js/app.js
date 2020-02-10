@@ -26,6 +26,7 @@ import Changelogs from './components/pages/Changelogs';
 
 
 import AddChangelog from './components/pages/AddChangelog';
+import AddCategory from './components/pages/AddCategory';
 import { isMobile } from './helper';
 
 const $ = require('jquery');
@@ -39,6 +40,7 @@ require('../sass/Addknowledge.scss');
 require('../sass/QuestionsList.scss');
 require('../sass/Snackbar.scss');
 require('../sass/Changelogs.scss');
+require('../sass/AddCategory.scss');
 require('../sass/Register.scss');
 require('../sass/Login.scss');
 require('../sass/Welcome.scss');
@@ -127,14 +129,17 @@ export default function App() {
               <Changelogs />
             </Route>
             {isConnected && (
-              <Route path="/profile">
-                <Profile />
-              </Route>
-            )}
-            {isConnected && (
-              <Route path="/add_changelog">
-                <AddChangelog />
-              </Route>
+              <>
+                <Route path="/profile">
+                  <Profile />
+                </Route>
+                <Route path="/add_changelog">
+                  <AddChangelog />
+                </Route>
+                <Route path="/add_category">
+                  <AddCategory />
+                </Route>
+              </>
             )}
           </Switch>
         </div>

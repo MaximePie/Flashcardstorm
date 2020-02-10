@@ -8,7 +8,7 @@ import Button from './molecule/Button';
 import { shuffle } from '../helper';
 
 export default function QuestionCard(props) {
-  const { question } = props;
+  const { question, isDemo} = props;
   const [answer, setAnswer] = React.useState('');
   const [selectedAnswerKey, setSelectedAnswerKey] = React.useState(0);
   const [additionalAnswers, setAdditionalAnswers] = React.useState([]);
@@ -23,9 +23,10 @@ export default function QuestionCard(props) {
       setSelectedAnswerKey(0);
       setAnswer(additionnalAnswers[0]);
     }
-    inputRef?.current?.focus();
+    if (!isDemo) {
+      inputRef?.current?.focus();
+    }
   }, [question]);
-
 
   return (
     <form
@@ -58,7 +59,7 @@ export default function QuestionCard(props) {
               <FormControlLabel
                 key={`answer-${answerChoice}`}
                 value={key}
-                control={<Radio />}
+                control={<Radio/>}
                 label={answerChoice}
               />
             ))}
@@ -66,13 +67,14 @@ export default function QuestionCard(props) {
         )}
         <div className="QuestionCard__actions">
           <a type="button" className="Button btn Button--secondary Button--small" onClick={handleSkip}>Passer</a>
-          <Button variant="small" onClick={() => props.onSubmit(answer)} text="Envoyer" />
+          <Button variant="small" onClick={() => props.onSubmit(answer)} text="Envoyer"/>
         </div>
       </div>
     </form>
   );
 
   function icons() {
+
     return (
       <div className="QuestionCard__icons">
         {question.is_golden_card && (

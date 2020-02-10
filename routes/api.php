@@ -39,6 +39,7 @@ Route::name('api.')->group(function () {
             Route::get('categories', 'CategoryController@index');
             Route::get('changelogs', 'ChangelogController@index');
 
+            Route::post('category', 'CategoryController@store');
             Route::post('question/toggle', 'QuestionController@toggleQuestionForUser');
             Route::post('question/submit_answer', 'QuestionController@submitAnswer');
             Route::post('question', 'QuestionController@store');
