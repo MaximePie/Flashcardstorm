@@ -52,7 +52,7 @@ class UserController extends Controller
         if ($user) {
             return response()->json([
                 'score' => $user->score,
-                'number_of_new_changelogs' => Changelog::query()->where('created_at', '>', $last_checked_at ?: now())->count(),
+                'number_of_new_changelogs' => $user->unreadNotifications()->count(),
                 'last_checked_at' => $last_checked_at ?: now(),
                 'lasted_changelog_date' => Changelog::query()->latest()->pluck('created_at'),
                 'is_new' => isset($newChangelog) ?? $newChangelog->pluck('created_at') > $last_checked_at,

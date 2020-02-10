@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Changelog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChangelogController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
+        if ($user) {
+            $user->unreadNotifications()->get()->markAsRead();
+        }
+
         return response()->json(Changelog::query()->orderBy('created_at', 'desc')->get());
     }
 
