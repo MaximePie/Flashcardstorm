@@ -1,18 +1,17 @@
 import React from 'react';
-import TextField from "@material-ui/core/TextField";
-import Button from "../molecule/Button";
-import server from "../../server";
-import {useSnackbar} from "notistack";
+import TextField from '@material-ui/core/TextField';
+import { useSnackbar } from 'notistack';
+import Button from '../molecule/Button';
+import server from '../../server';
 
 export default function AddChangelog() {
-
   const [form, setForm] = React.useState({
     title: '',
     text: '',
     nextstep: '',
   });
 
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
   return (
     <div className="container AddChangelog">
@@ -23,7 +22,7 @@ export default function AddChangelog() {
           onChange={updateForm}
           label="title"
           multiline
-          classes={{root: "AddChangelog__field"}}
+          classes={{ root: 'AddChangelog__field' }}
         />
         <TextField
           value={form.text}
@@ -31,7 +30,7 @@ export default function AddChangelog() {
           onChange={updateForm}
           label="text"
           multiline
-          classes={{root: "AddChangelog__field"}}
+          classes={{ root: 'AddChangelog__field' }}
         />
         <TextField
           value={form.nextstep}
@@ -39,9 +38,9 @@ export default function AddChangelog() {
           onChange={updateForm}
           label="nextstep"
           multiline
-          classes={{root: "AddChangelog__field"}}
+          classes={{ root: 'AddChangelog__field' }}
         />
-        <Button text="Enregistrer le changelog" onClick={submitValues}/>
+        <Button text="Enregistrer le changelog" onClick={submitValues} />
       </form>
     </div>
   );
@@ -49,29 +48,27 @@ export default function AddChangelog() {
   function updateForm(e) {
     setForm({
       ...form,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   }
 
 
   function submitValues(event) {
     event.preventDefault();
-    server.post('changelog', form).then(response => {
+    server.post('changelog', form).then(() => {
       setForm({
         title: '',
         text: '',
         nextstep: '',
       });
-      enqueueSnackbar("Le changelog a bien été ajoutée !",
+      enqueueSnackbar('Le changelog a bien été ajoutée !',
         {
           anchorOrigin: {
             vertical: 'top',
             horizontal: 'center',
           },
           variant: 'success',
-        }
-      );
-    })
+        });
+    });
   }
 }
-
