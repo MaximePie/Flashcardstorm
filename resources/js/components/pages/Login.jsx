@@ -53,7 +53,8 @@ export default function Login() {
   function submitValues(event) {
     event.preventDefault();
     axios.post('/login', form).then((response) => {
-      if (response.data.status && response.data.status !== 200) {
+      const { status, bearer } = response.data;
+      if (status !== 200) {
         enqueueSnackbar('Informations incorrectes', {
           variant: 'error',
           anchorOrigin: {
@@ -62,8 +63,8 @@ export default function Login() {
           },
         });
       } else {
-        Cookies.set('Bearer', response.data.bearer);
-        document.location = '/home';
+        Cookies.set('Bearer', bearer);
+        document.location = '/soft_training';
       }
     });
   }
