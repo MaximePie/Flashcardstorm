@@ -125,7 +125,9 @@ class QuestionController extends Controller
                 $questions->each(static function (QUESTION $question) use ($user) {
                     $answer = $question->answer()->first();
                     $question['answer'] = $answer->wording;
-                    $question['is_new'] = !$question->isSetForUser($user) ?: null;
+                    if ($user) {
+                        $question['is_new'] = !$question->isSetForUser($user) ?: null;
+                    }
                     $question['additionalAnswers'] = $answer->additional_answers;
                     $category = $question->category();
                     if ($category) {
@@ -284,7 +286,7 @@ class QuestionController extends Controller
                 'text' => 'Bien joué !',
                 'status' => 200,
                 'earned_points' => $earned_points,
-                'userProgress' => $user->dailyProgress(),
+                'userProgress' => $user ? $user->dailyProgress() : null,
             ]);
         }
 
@@ -293,7 +295,7 @@ class QuestionController extends Controller
             'status' => 500,
             'earned_points' => $earned_points,
             'correct_answer' => $question->is_reverse ? $question->wording : $question->answer()->first()->wording,
-            'userProgress' => $user->dailyProgress(),
+            'userProgress' => $user ? $user->dailyProgress() : null,
         ]);
     }
 }

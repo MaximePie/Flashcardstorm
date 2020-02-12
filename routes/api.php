@@ -55,7 +55,7 @@ Route::name('api.')->group(function () {
         Route::post('register', 'RegisterController@create');
 
         Route::get('changelogs', 'ChangelogController@index');
-        Route::get('question', 'QuestionController@randomQuestion');
+        Route::get('question/{mode}', 'QuestionController@randomQuestion');
         Route::get('question/{mode}/{already_in_bag_questions}', 'QuestionController@randomQuestion');
         Route::get('question/delete/{question}', 'QuestionController@destroy');
         Route::get('questions_list/{visibility?}', 'QuestionController@index');

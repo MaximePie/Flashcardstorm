@@ -86,7 +86,7 @@ class Question extends Model
     }
 
     /**
-     * @return BelongsTo
+     * @return BelongsTo:
      */
     public function category(): BelongsTo
     {
