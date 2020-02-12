@@ -5,6 +5,7 @@ namespace App;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 
 /**
@@ -30,4 +31,13 @@ use Illuminate\Support\Carbon;
 class Changelog extends Model
 {
     protected $fillable = ['title', 'text', 'nextstep'];
+
+
+    /**
+     * @return Int
+     */
+    public function numberOfVotes(): Int
+    {
+        return $this->BelongsToMany(User::class, 'user_votes')->count();
+    }
 }

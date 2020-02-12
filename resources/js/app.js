@@ -126,7 +126,7 @@ export default function App() {
               <QuestionsList is_connected={isConnected} />
             </Route>
             <Route path="/about">
-              <Changelogs />
+              <Changelogs isConnected={isConnected} />
             </Route>
             {isConnected && (
               <>

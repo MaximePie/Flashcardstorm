@@ -31,6 +31,7 @@ Route::name('api.')->group(function () {
             Route::get('users', 'UserController@index');
             Route::get('me/score', 'UserController@score');
             Route::get('users', 'UserController@index');
+            Route::get('vote/{changelog}', 'UservoteController@toggle');
             Route::get('update_progress', 'UserController@updateProgress');
 
             Route::get('question/delete/{question}', 'QuestionController@destroy');

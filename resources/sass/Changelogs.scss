@@ -15,8 +15,46 @@
   }
 
   &__log {
-    padding: 16px;
     margin: 16px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    grid-column-gap: 8px;
+
+    &-like-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__like-icon-link {
+    margin-right: 4px;
+    cursor: pointer;
+
+    .Changelogs__like-icon {
+
+      .Icon {
+        font-size: initial;
+
+        &:before {
+          color: #565961;
+        }
+      }
+    }
+
+    &--liked {
+      .Changelogs__like-icon {
+
+        .Icon {
+          font-size: initial;
+
+          &:before {
+            color: #044fd8;
+          }
+        }
+      }
+    }
   }
 }
 

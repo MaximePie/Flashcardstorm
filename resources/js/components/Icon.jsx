@@ -12,23 +12,24 @@ export default function Icon(props) {
   return props.badge ? (
     <>
       {!isMobile() && (
-        <div className={containerClassName} style={color}>
-          <i className={className} />
-          <span className="Icon__badge badge badge-secondary">{props.badge}</span>
-        </div>
+      <div className={containerClassName} style={color}>
+        <i className={className} />
+        <span className="Icon__badge badge badge-secondary">{props.badge}</span>
+      </div>
       )}
       {isMobile() && (
-        <span
-          style={backgroundColor}
-          className="Icon__badge badge badge-secondary"
-        >
-          <i className={className} />
-          {props.badge}
-        </span>
+      <span
+        style={backgroundColor}
+        className="Icon__badge badge badge-secondary"
+      >
+        <i className={className} />
+        {props.badge}
+      </span>
       )}
     </>
-  )
-    : (
-      <i className={className} />
+  ) : (
+      <span className={containerClassName}>
+        <i className={className} />
+      </span>
     );
 }
