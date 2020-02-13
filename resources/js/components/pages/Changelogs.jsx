@@ -1,14 +1,25 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
+import Tooltip from '@material-ui/core/Tooltip';
 import Cookies from 'js-cookie';
 import moment from 'moment';
 import classNames from 'classnames';
+import { PropTypes } from 'prop-types';
 import { toLocale } from '../../helper';
 import server from '../../server';
 import Icon from '../Icon';
 
+Changelogs.propTypes = {
+  isConnected: PropTypes.bool,
+};
+
+Changelogs.defaultProps = {
+  isConnected: false,
+};
+
 export default function Changelogs(props) {
   const [changelogs, setChangelogs] = React.useState([]);
+  const { isConnected } = props;
 
   React.useEffect(() => {
     Cookies.set('last_checked_at', moment()
@@ -24,7 +35,7 @@ export default function Changelogs(props) {
       </div>
       <div className="Changelogs__list">
         {!changelogs.length && (
-          <p>Pas de changements pour l'instant, nous allons revenir avec des bonnes nouvelles très bientôt !</p>
+          <p>Pas de changements pour l&aposinstant, nous allons revenir avec des bonnes nouvelles très bientôt !</p>
         )}
         {changelogs.map((changelog) => {
           const changelogsLikesLinkClassnames = classNames({
@@ -36,17 +47,25 @@ export default function Changelogs(props) {
             <Paper>
               <div className="Changelogs__log">
                 <div className="Changelogs__log-like-section">
-                  <a
-                    id={`Changelogs__log-${changelog.id}`}
-                    className={changelogsLikesLinkClassnames}
-                    onClick={() => handleVote(changelog.id)}
+                  <Tooltip
+                    title={
+                      isConnected
+                        ? 'Nombre de votes pour cette fonctionalité'
+                        : 'Vous devez vous connecter pour pouvoir voter'
+                    }
                   >
-                    <Icon
-                      name="heart"
-                      color="mediumspringgreen"
-                      className="Changelogs__like-icon"
-                    />
-                  </a>
+                    <a
+                      id={`Changelogs__log-${changelog.id}`}
+                      className={changelogsLikesLinkClassnames}
+                      onClick={() => handleVote(changelog.id)}
+                    >
+                      <Icon
+                        name="heart"
+                        color="mediumspringgreen"
+                        className="Changelogs__like-icon"
+                      />
+                    </a>
+                  </Tooltip>
                   <span>
                     {changelog.numberOfVotes}
                   </span>
