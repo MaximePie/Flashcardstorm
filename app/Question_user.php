@@ -58,6 +58,29 @@ class Question_user extends Model
         $this->isMemorized = false;
     }
 
+
+    public function setIsMemorizedAttribute(bool $isMemorized): void
+    {
+        if ($isMemorized === true ) {
+            $userStatistics = UserStatistics::query()
+                ->where('user_id', $this->user_id)
+                ->whereDate('created_at', '=', Carbon::today()->toDateString())
+                ->first();
+
+            if ($userStatistics) {
+                ++$userStatistics->memorized_questions;
+            }
+            else {
+                $userStatistics = new UserStatistics();
+                $userStatistics->user_id = $this->user_id;
+                $userStatistics->memorized_questions = 1;
+                $userStatistics->save();
+            }
+        }
+        $this->attributes['isMemorized'] = $isMemorized;
+    }
+
+
     /**
      * @return BelongsTo
      */

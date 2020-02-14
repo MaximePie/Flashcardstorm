@@ -15,11 +15,9 @@ use Illuminate\Support\Facades\Auth;
 */
 Route::middleware('auth:api')->post('/authenticated/changelog', 'ChangelogController@store');
 
-Route::middleware('auth:api')->get('/me', static function (Request $request) {
-    return Auth::user();
-});
+Route::middleware('auth:api')->get('/me', 'UserController@showLoggedIn');
 
-Route::name('api.')->group(function () {
+Route::name('api.')->group(static function () {
 
     /**************************
      * For connected Users
@@ -28,7 +26,6 @@ Route::name('api.')->group(function () {
     Route::group(['middleware' => ['auth:api']], static function () {
         Route::prefix('authenticated')->group(static function () {
             Route::get('question/{mode}/{already_in_bag_questions}', 'QuestionController@randomQuestion');
-            Route::get('users', 'UserController@index');
             Route::get('me/score', 'UserController@score');
             Route::get('users', 'UserController@index');
             Route::get('vote/{changelog}', 'UservoteController@toggle');

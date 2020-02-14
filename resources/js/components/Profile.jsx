@@ -1,15 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
+import React from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 
 export default function Profile() {
-
   const [user, setUser] = React.useState(undefined);
+  const [statistics, setStatistics] = React.useState(undefined);
 
   React.useEffect(() => {
-    fetchUserInfo()
+    fetchUserInfo();
   }, []);
 
 
@@ -17,15 +17,20 @@ export default function Profile() {
     <div className="QuestionsList">
       {user && (
         <div className="jumbotron">
-          <h2>Bienvenue, {user.name}</h2>
+          <h2>
+Bienvenue,
+            {user.name}
+          </h2>
         </div>
       )}
     </div>
   );
 
   function fetchUserInfo() {
-    axios.get('api/me?api_token='+ Cookies.get('Bearer')).then(response => {
-      setUser(response.data)
-    })
+    axios.get(`api/me?api_token=${Cookies.get('Bearer')}`).then((response) => {
+      const { user: userData, statistics: statisticsData } = response.data;
+      setUser(userData);
+      setStatistics(statisticsData);
+    });
   }
 }

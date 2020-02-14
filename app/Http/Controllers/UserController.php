@@ -28,15 +28,18 @@ class UserController extends Controller
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * Show user
      *
      * @return JsonResponse
      */
     protected function showLoggedIn(): JsonResponse
     {
         $user = Auth::user();
+        if ($user) {
+            return response()->json(['user' => $user, 'statistics' => $user->statistics]);
+        }
 
-        return response()->json(['user' => $user]);
+        return response()->json();
     }
 
     /**
