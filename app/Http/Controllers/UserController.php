@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Changelog;
 use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -68,7 +67,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         if ($user) {
-            if (! now()->isSameDay($user->last_daily_updated_at) || $user->last_daily_updated_at === null) {
+            if ($user->last_daily_updated_at === null || !now()->isSameDay($user->last_daily_updated_at)) {
                 $user->last_daily_updated_at = now();
                 $user->daily_objective = $user->dailyQuestions()->count();
                 $user->daily_progress = 0;

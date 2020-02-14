@@ -28,7 +28,10 @@ class ChangelogController extends Controller
             }
         });
 
-        return response()->json($changelogs);
+        $potentialChangelogs = $changelogs->where('is_implemented', false);
+        $changelogs = $changelogs->where('is_implemented', true);
+
+        return response()->json(['changelogs' => $changelogs, 'potentialChangelogs' => $potentialChangelogs]);
     }
 
     public function store(Request $request)

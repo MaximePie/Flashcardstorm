@@ -23,6 +23,11 @@
         pointer-events: none;
     }
 
+    &--inactive {
+        background-color: grey !important;
+        border-color: grey !important;
+    }
+
     @media screen and (max-width: 767px) {
         &--big {
             padding: 8px;

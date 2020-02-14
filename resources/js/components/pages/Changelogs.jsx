@@ -8,6 +8,7 @@ import { PropTypes } from 'prop-types';
 import { toLocale } from '../../helper';
 import server from '../../server';
 import Icon from '../Icon';
+import Button from '../molecule/Button';
 
 Changelogs.propTypes = {
   isConnected: PropTypes.bool,
@@ -19,25 +20,21 @@ Changelogs.defaultProps = {
 
 export default function Changelogs(props) {
   const [changelogs, setChangelogs] = React.useState([]);
+  const [potentialChangelogs, setPotentialChangelogs] = React.useState([]);
+  const [activeTab, setActiveTab] = React.useState('potential');
   const { isConnected } = props;
 
   React.useEffect(() => {
-    Cookies.set('last_checked_at', moment()
-      .subtract(1, 'hours')
-      .format());
     updateChangelogs();
   }, []);
 
-  return (
-    <div className="Changelogs">
-      <div className="Changelogs__title">
-        <h1>Les petits changements</h1>
-      </div>
-      <div className="Changelogs__list">
-        {!changelogs.length && (
+  function changelogsList(displayedChangelogs) {
+    return (
+      <>
+        {!potentialChangelogs.length && (
           <p>Pas de changements pour l&aposinstant, nous allons revenir avec des bonnes nouvelles très bientôt !</p>
         )}
-        {changelogs.map((changelog) => {
+        {displayedChangelogs.map((changelog) => {
           const changelogsLikesLinkClassnames = classNames({
             'Changelogs__like-icon-link': true,
             'Changelogs__like-icon-link--liked': changelog.isSetForUser,
@@ -67,8 +64,8 @@ export default function Changelogs(props) {
                     </a>
                   </Tooltip>
                   <span>
-                    {changelog.numberOfVotes}
-                  </span>
+                        {changelog.numberOfVotes}
+                      </span>
                 </div>
                 <div className="Changelogs__log-content">
                   <div>
@@ -76,15 +73,57 @@ export default function Changelogs(props) {
                     <span className="text-secondary text-muted">{toLocale(changelog.created_at)}</span>
                   </div>
                   <p className="Changelogs__log-text">{changelog.text}</p>
-                  <p className="Changelogs__log-nextstep">
-                    Prochaine étape :
-                    {changelog.nextstep}
-                  </p>
+                  {changelog.nextstep && (
+                    <p className="Changelogs__log-nextstep">
+                      Prochaine étape :
+                      {changelog.nextstep}
+                    </p>
+                  )}
                 </div>
               </div>
             </Paper>
           );
         })}
+      </>
+    );
+  }
+
+  return (
+    <div className="Changelogs">
+      <div className="Changelogs__title">
+        <h1>Les petits changements</h1>
+      </div>
+      <div className="Changelogs__tabs">
+        <div className="Changelogs__tabs-actions">
+          <Button
+            text="Fonctionnalités potentielles"
+            className="Changelogs__tab-button"
+            variant={activeTab !== 'potential' ? 'inactive' : undefined}
+            onClick={() => setActiveTab('potential')}
+          />
+          <Button
+            text="Mises à jour"
+            className="Changelogs__tab-button"
+            variant={activeTab !== 'changelogs' ? 'inactive' : undefined}
+            onClick={() => setActiveTab('changelogs')}
+          />
+        </div>
+        {isConnected && (
+          <Button
+            text="Proposez une amélioration !"
+            className="Changelogs__tab-button"
+            href="/add_changelog"
+            onClick={() => { document.location = '/add_changelog';}}
+          />
+        )}
+      </div>
+      <div className="Changelogs__list">
+        {activeTab === 'potential' && (
+          changelogsList(potentialChangelogs)
+        )}
+        {activeTab === 'changelogs' && (
+          changelogsList(changelogs)
+        )}
       </div>
     </div>
   );
@@ -92,7 +131,9 @@ export default function Changelogs(props) {
   function updateChangelogs() {
     server.get('changelogs')
       .then((response) => {
-        setChangelogs(response.data);
+        const { changelogs, potentialChangelogs } = response.data;
+        setChangelogs(Object.values(changelogs));
+        setPotentialChangelogs(Object.values(potentialChangelogs));
       });
   }
 
@@ -100,7 +141,9 @@ export default function Changelogs(props) {
     if (props.isConnected) {
       server.get(`vote/${changelogId}`)
         .then((response) => {
-          setChangelogs(response.data);
+          const { changelogs, potentialChangelogs } = response.data;
+          setChangelogs(Object.values(changelogs));
+          setPotentialChangelogs(Object.values(potentialChangelogs));
         });
     }
   }

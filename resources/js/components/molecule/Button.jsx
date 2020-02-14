@@ -23,6 +23,7 @@ export default function Button(props) {
     'Button--big': variant === 'big',
     'Button--small': variant === 'small',
     'Button--disabled': isDisabled,
+    'Button--inactive': variant === 'inactive',
   });
 
   return (

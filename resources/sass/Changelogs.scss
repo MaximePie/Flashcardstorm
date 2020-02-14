@@ -9,6 +9,13 @@
     margin-top: 8px;
   }
 
+
+  &__tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+  }
+
   &__list {
     height: 89%;
     overflow: auto;
@@ -60,16 +67,22 @@
 
 .AddChangelog {
   height: 100%;
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: auto;
 
   &__form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     padding: 16px;
+    min-width: 500px;
   }
 
   &__field {
-    min-height: 60px;
+    min-width: 300px !important;
+    min-height: 100px;
   }
 }
