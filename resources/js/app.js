@@ -41,6 +41,7 @@ require('../sass/QuestionsList.scss');
 require('../sass/Snackbar.scss');
 require('../sass/Changelogs.scss');
 require('../sass/AddCategory.scss');
+require('../sass/Profile.scss');
 require('../sass/Register.scss');
 require('../sass/Login.scss');
 require('../sass/Welcome.scss');
