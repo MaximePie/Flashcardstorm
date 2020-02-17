@@ -16,3 +16,5 @@ yarn-error.log
 .php_cs.cache
 /public/css
 /public/js
+/public/js/
+/public/css/
