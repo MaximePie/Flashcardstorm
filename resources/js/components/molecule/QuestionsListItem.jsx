@@ -47,7 +47,7 @@ export default function QuestionsListItem(props) {
   };
 
   return (
-    <li key={`question${question.id}`} className="QuestionsList__question list-group-item">
+    <li key={`question${question.id}`} className="QuestionsList__question list-group-item card">
       {questionIcon(question)}
       <div>
         <h3 className="QuestionsList__question-wording">{question.wording}</h3>

@@ -89,7 +89,7 @@ export default function App() {
       )}
     >
       <BrowserRouter>
-        <div className="App">
+        <div className="App" id="App">
           <Navbar
             is_connected={isConnected}
             user={user}

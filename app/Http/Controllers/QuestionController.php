@@ -65,10 +65,11 @@ class QuestionController extends Controller
         }
 
         foreach ($request->questions as $selected_question) {
-            $question = Question::query()->where('id', $selected_question['id'])->first();
-            if ($question && $question->exists() && !$question->isSetForUser($user)) {
+            $question = Question::findOrFail($selected_question['id']);
+
+            if ($selected_question['isSetForUser'] && !$question->isSetForUser($user)) {
                 Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
-            } else {
+            } else if (!$selected_question['isSetForUser']) {
                 $question->users()->detach($user);
             }
         }

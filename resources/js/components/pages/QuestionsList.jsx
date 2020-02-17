@@ -18,6 +18,12 @@ export default function QuestionsList(props) {
 
   const [switchStatus, setSwitchStatus] = React.useState(false);
 
+  React.useEffect(() => {
+    document.getElementById('App').style.background = 'content-box no-repeat url("../images/registerbackground.jpeg")';
+    document.getElementById('App').style.backgroundSize = 'cover';
+    console.log(document.getElementById('App').style)
+  }, [])
+
   React.useEffect(() => {
     updateQuestionsBag();
   }, [switchStatus]);
@@ -31,11 +37,13 @@ export default function QuestionsList(props) {
         {!isMobile() && (
           <>
             <h1>Liste des questions</h1>
-            <p>Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection</p>
-            <p>Une question est automatiquement intégrée à votre collection quand vous créez une question ou quand vous
-              y répondez depuis le mode Tempête</p>
-            {props.is_connected && questions?.data && (
-              <Button text="Enregistrer la sélection" onClick={saveSelection}/>
+            {props.is_connected && questions?.data && isMobile() && (
+              <>
+                <p>Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection</p>
+                <p>Une question est automatiquement intégrée à votre collection quand vous créez une question ou quand vous
+                  y répondez depuis le mode Tempête</p>
+                <Button text="Enregistrer la sélection" onClick={saveSelection}/>
+              </>
             )}
           </>
         )}
@@ -54,9 +62,9 @@ export default function QuestionsList(props) {
           </>
         )}
       </div>
-      <form className="QuestionsList__list">
-        <ul className="list-group list-group-flush">
-          {questions?.data?.length && (
+      <form className="QuestionsList__form">
+        <ul className="QuestionsList__list">
+          {questions?.data?.length && props.is_connected && (
             <div className="QuestionsList__global-checker">
               <FormControlLabel
                 control={
@@ -73,25 +81,32 @@ export default function QuestionsList(props) {
               />
             </div>
           )}
-          {questions?.data?.map(function (question, key) {
-            return (
-              <QuestionsListItem
-                question={question}
-                questionKey={key}
-                deleteQuestion={deleteQuestion}
-                toggleQuestionForUser={toggleQuestionForUser}
-                key={'question-' + key}
-                isConnected={props.is_connected}
-              />
-            );
-          })}
+
+          <div className="QuestionsList__questions-container">
+            {questions?.data?.map(function (question, key) {
+              return (
+                <QuestionsListItem
+                  question={question}
+                  questionKey={key}
+                  deleteQuestion={deleteQuestion}
+                  toggleQuestionForUser={toggleQuestionForUser}
+                  key={'question-' + key}
+                  isConnected={props.is_connected}
+                />
+              );
+            })}
+          </div>
         </ul>
       </form>
       {questions?.data?.length && (
         <>
           <div className="QuestionsList__actions">
-            <Button text={isMobile() ? "Enregistrer" : "Enregistrer la sélection"} onClick={saveSelection}/>
-            <Pagination changePage={updateQuestionsBag} data={questions}/>
+            {props.is_connected &&
+              <Button text={isMobile() ? "Enregistrer" : "Enregistrer la sélection"} onClick={saveSelection}/>
+            }
+            {questions.last_page !== 1 && (
+              <Pagination changePage={updateQuestionsBag} data={questions}/>
+            )}
           </div>
         </>
       )}

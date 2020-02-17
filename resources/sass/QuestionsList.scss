@@ -17,12 +17,13 @@
     background: white;
   }
 
-  &__list {
+  &__form {
     width: 100%;
     overflow-y: auto;
   }
 
   &__title {
+    margin-top: 16px;
     text-align: center;
     width: 100%;
     flex-direction: column;
@@ -31,11 +32,19 @@
     color: white;
   }
 
+  &__questions-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
   &__question {
     opacity: 0;
     animation: appear 0.25s forwards;
     display: grid;
     grid-template-columns: 70px 8fr 128px;
+
+    margin: 16px;
+    padding: 32px;
   }
 
   .Icon__badge {
@@ -84,6 +93,7 @@
   }
 
   @media screen and (max-width: 767px) {
+    height: calc(100% - 16px);
 
     .MuiFormControlLabel-root {
       margin: 0;
@@ -91,10 +101,27 @@
 
     .Button {
       margin: 4px;
+      width: initial;
     }
 
     &__title {
       margin: 0;
+    }
+
+    &__list {
+      padding: 8px;
+      margin-bottom: 0;
+    }
+
+    &__questions-container {
+      grid-template-columns: 1fr;
+    }
+
+    &__actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin: 8px 4px;
+      align-items: baseline;
     }
 
     &__question {
