@@ -49,10 +49,10 @@ export default function QuestionsListItem(props) {
   return (
     <li key={`question${question.id}`} className="QuestionsList__question list-group-item card">
       {questionIcon(question)}
-      <div>
+      <div className="QuestionsList__question-content">
         <h3 className="QuestionsList__question-wording">{question.wording}</h3>
         <div className="QuestionsList__question-answer">{question.answer}</div>
-        {isConnected && !isMobile() && (
+        {isConnected && (
           <>
             {question.score && (
               <div className="QuestionsList__question-score">
@@ -73,7 +73,6 @@ export default function QuestionsListItem(props) {
             )}
           </>
         )}
-        {isMobile() && collapsibleForDetails(question)}
       </div>
       {questionActions()}
     </li>

@@ -85,7 +85,6 @@ export default function AddKnowledge(props) {
         <h1>Ajouter une question</h1>
         {isConnected && !isMobile() && (
           <div {...getRootProps()} className="Addknowledge__import-drop-zone">
-            <input {...getInputProps()} />
             {
               isDragActive
                 ? <p>Déposez votre CSV ici</p>
