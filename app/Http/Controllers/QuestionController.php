@@ -173,15 +173,22 @@ class QuestionController extends Controller
             'category_id' => $request->category ?: null,
             'is_mcq' => $answer->additional_answers !== null,
         ]);
+
+        Question::query()->leftJoinSub(Question::query()->whereNotNull('reverse_question_id'),
+            'lonelyQuestion',
+            'lonelyQuestion.id',
+            '=',
+            'question.id'
+        );
         $question->save();
+
+        if ($request->shouldHaveReverseQuestion) {
+            $question->createReverseQuestion();
+        }
 
         $user = Auth::user();
         if ($user) {
             Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
-        }
-
-        if ($request->shouldHaveReverseQuestion) {
-            $question->createReverseQuestion();
         }
 
         return response()->json(['Question' => $question, 'Resquest Category' => $request->category]);
