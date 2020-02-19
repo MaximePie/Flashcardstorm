@@ -1,20 +1,37 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { isMobile } from '../helper';
 
+Icon.propTypes = {
+  className: PropTypes.string,
+  color: PropTypes.string,
+  badge: PropTypes.string,
+  name: PropTypes.string.isRequired,
+};
+
+Icon.defaultProps = {
+  badge: '',
+  className: '',
+  color: '#000000',
+};
+
 export default function Icon(props) {
-  const containerClassName = `Icon__container ${props.className}`;
+  const {
+    className: outerClassName, name, color: propsColor, badge,
+  } = props;
+  const containerClassName = `Icon__container ${outerClassName}`;
   let className = 'Icon far fas';
-  className += ` fa-${props.name} `;
+  className += ` fa-${name} `;
 
-  const color = props.color && { color: props.color };
-  const backgroundColor = props.color && { backgroundColor: props.color };
+  const color = propsColor && { color: propsColor };
+  const backgroundColor = propsColor && { backgroundColor: propsColor };
 
-  return props.badge ? (
+  return badge ? (
     <>
       {!isMobile() && (
       <div className={containerClassName} style={color}>
         <i className={className} />
-        <span className="Icon__badge badge badge-secondary">{props.badge}</span>
+        <span className="Icon__badge badge badge-secondary">{badge}</span>
       </div>
       )}
       {isMobile() && (
@@ -23,13 +40,13 @@ export default function Icon(props) {
         className="Icon__badge badge badge-secondary"
       >
         <i className={className} />
-        {props.badge}
+        {badge}
       </span>
       )}
     </>
   ) : (
-      <span className={containerClassName}>
-        <i className={className} />
-      </span>
-    );
+    <span className={containerClassName}>
+      <i className={className} />
+    </span>
+  );
 }

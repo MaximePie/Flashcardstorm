@@ -188,7 +188,7 @@ export default function Navbar(props) {
         </Drawer>
         <div className="Navbar__item-profile">
           {!isMobile() && (
-            <a className="navbar-brand Navbar__home-link" href="/home">
+            <a className="navbar-brand Navbar__home-link" href="/">
               <Avatar className="Navbar__logo" alt="GIPSI Logo" src="/images/logo.png" />
               <div className="Navbar__logo-text">
                 FlashcardStorm

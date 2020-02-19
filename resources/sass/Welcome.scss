@@ -6,12 +6,13 @@
   &__title {
     position: absolute;
     width: 100%;
-
+    text-align: center;
+    padding-top: 16px;
   }
 
   &__presentation-section {
     background: content-box no-repeat url("../images/pencils.jpg");
-    height: 100vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,6 +28,19 @@
 
   &__text {
 
+  }
+}
+
+@media screen and (max-width: 767px) {
+
+  .Welcome {
+
+    &__title {
+      h1 {
+        width: 80%;
+        margin: auto;
+      }
+    }
   }
 }
 

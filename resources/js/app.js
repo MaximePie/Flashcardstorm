@@ -61,8 +61,8 @@ export default function App() {
 
   React.useEffect(() => {
     if (isMobile()) {
-      const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-      const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+      const width = document.documentElement.clientWidth;
+      const height = document.documentElement.clientHeight;
       $('html, body, .App').css({ width, height });
     }
   }, []);

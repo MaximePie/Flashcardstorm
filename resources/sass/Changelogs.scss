@@ -1,12 +1,10 @@
 .Changelogs {
-  height: 100%;
-  margin-top: 16px;
+  height: 100vh;
 
   &__title {
     text-align: center;
     margin-bottom: 16px;
     color: white;
-    margin-top: 8px;
   }
 
 
@@ -17,8 +15,9 @@
   }
 
   &__list {
-    height: 89%;
+    height: 85%;
     overflow: auto;
+    padding: 16px;
   }
 
   &__log {
@@ -65,8 +64,22 @@
   }
 }
 
+
+@media screen and (max-width: 767px) {
+  .Changelogs {
+    &__tabs {
+      flex-direction: column;
+    }
+
+    &__list {
+      height: 60%;
+    }
+  }
+}
+
+
 .AddChangelog {
-  height: 100%;
+  height: 100vh;
   margin: auto;
   display: flex;
   align-items: center;

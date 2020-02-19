@@ -11,7 +11,7 @@
         <link href="{{ asset('facss/css/all.css') }}" rel="stylesheet">
         <link rel="icon" type="image/png" href="{{asset('images/favicon.png')}}" />
         <!-- Hotjar Tracking Code for https://flashcardstorm.herokuapp.com/ -->
-        <script>
+        <script async>
           (function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
             h._hjSettings={hjid:1693062,hjsv:6};
@@ -25,5 +25,5 @@
     <body>
         <div id="app"></div>
     </body>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script async src="{{ asset('js/app.js') }}"></script>
 </html>

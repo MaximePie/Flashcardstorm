@@ -48,10 +48,18 @@
 
         &__form {
             min-width: initial;
+            max-width: 90vw;
         }
 
         &__import-drop-zone {
             max-width: 250px;
+        }
+
+        &__radiogroup {
+            overflow-x: auto;
+            width: 100%;
+            flex-wrap: nowrap !important;
+            justify-content: flex-start !important;
         }
     }
 }
