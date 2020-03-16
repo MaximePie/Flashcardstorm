@@ -80,7 +80,12 @@
 
 @media screen and (max-width: 767px) {
 
+    html, body {
+        height: 100%;
+    }
+
     .App {
+        height: 100%;
         background-size: cover;
     }
 

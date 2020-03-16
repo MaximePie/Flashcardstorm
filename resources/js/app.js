@@ -63,7 +63,7 @@ export default function App() {
     if (isMobile()) {
       const width = document.documentElement.clientWidth;
       const height = document.documentElement.clientHeight;
-      $('html, body, .App').css({ width, height });
+      // $('html, body, .App').css({ width, height });
     }
   }, []);
 
