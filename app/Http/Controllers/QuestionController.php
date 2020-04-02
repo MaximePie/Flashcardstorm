@@ -145,7 +145,6 @@ class QuestionController extends Controller
         return response()->json([
             'questions' => $questions ?? null,
             'message' => $message,
-            'next_question' => $next_question ?? null,
         ]);
     }
 

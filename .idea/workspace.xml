@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/phpunit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/Model/UserTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Model/UserTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +188,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
@@ -207,7 +207,7 @@
     </configuration>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>$USER_HOME$/.subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -235,7 +235,10 @@
       <workItem from="1585744169902" duration="3334000" />
       <workItem from="1585747693075" duration="541000" />
       <workItem from="1585748584471" duration="561000" />
-      <workItem from="1585815278978" duration="2688000" />
+      <workItem from="1585815278978" duration="4476000" />
+      <workItem from="1585829612623" duration="3156000" />
+      <workItem from="1585840045169" duration="867000" />
+      <workItem from="1585841129064" duration="2040000" />
     </task>
     <servers />
   </component>
@@ -248,6 +251,10 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
+    <state x="555" y="177" width="800" height="684" key="#Notifications" timestamp="1585841334113">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="555" y="177" width="800" height="684" key="#Notifications/0.0.1920.1032@0.0.1920.1032" timestamp="1585841334113" />
     <state x="669" y="141" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585651300778">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -260,21 +267,25 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="655" y="327" width="639" height="385" key="NewPhpClassDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1585745970580" />
-    <state x="449" y="151" key="SettingsEditor" timestamp="1585723104038">
+    <state x="541" y="141" width="1022" height="737" key="SettingsEditor" timestamp="1585840911876">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="449" y="151" key="SettingsEditor/0.0.1920.1032@0.0.1920.1032" timestamp="1585723104038" />
-    <state x="620" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1585747777587">
+    <state x="541" y="141" width="1022" height="737" key="SettingsEditor/0.0.1920.1032@0.0.1920.1032" timestamp="1585840911876" />
+    <state x="620" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1585841151766">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="620" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1585747777587" />
-    <state x="608" y="247" width="857" height="608" key="find.popup" timestamp="1585671720297">
+    <state x="620" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1585841151766" />
+    <state x="683" y="158" width="543" height="722" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1585841868830">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="608" y="247" width="857" height="608" key="find.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1585671720297" />
-    <state x="624" y="158" width="672" height="676" key="search.everywhere.popup" timestamp="1585821088791">
+    <state x="683" y="158" width="543" height="722" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1032@0.0.1920.1032" timestamp="1585841868830" />
+    <state x="608" y="247" width="857" height="608" key="find.popup" timestamp="1585840353937">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="624" y="158" width="672" height="676" key="search.everywhere.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1585821088791" />
+    <state x="608" y="247" width="857" height="608" key="find.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1585840353937" />
+    <state x="624" y="158" width="672" height="676" key="search.everywhere.popup" timestamp="1585841445313">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="624" y="158" width="672" height="676" key="search.everywhere.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1585841445313" />
   </component>
 </project>

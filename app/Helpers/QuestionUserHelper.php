@@ -41,33 +41,44 @@ class QuestionUserHelper
 
 
     /**
+     * Create and return a scheduled question for the given user
+     * @param User $user
+     * @return Question_user
+     */
+    public static function createScheduledQuestionForUser(User $user)
+    {
+        $question = $user->addQuestion(self::newQuestion());
+        $question->save();
+        return $question;
+    }
+
+    /**
      * Create 3 questions assigned to the user and return them as Collection
      * make sure they are MEMORIZED by the user
      * @param User $user The user we want to assign the memorized question
-     * @return Collection
+     * @return Question_user
      */
-    public static function createMemorizedQuestionsForUser(User $user): Collection
+    public static function createMemorizedQuestionsForUser(User $user): Question_user
     {
-        /** @var Question_user $memorizedQuestion */
+        $memorizedQuestion = $user->addQuestion(self::newQuestion());
+        $memorizedQuestion->current_delay = 10;
+        $memorizedQuestion->full_score = 100;
+        $memorizedQuestion->isMemorized = true;
+        $memorizedQuestion->last_answered_at = Carbon::now()->subDays(1);
+        $memorizedQuestion->save();
 
-        $questions = collect();
-        for ($questionPlacement = 0; $questionPlacement < 3; $questionPlacement ++)
-        {
-            $memorizedQuestion = $user->addQuestion(self::newQuestion());
-            $memorizedQuestion->current_delay = 10;
-            $memorizedQuestion->full_score = 100;
-            $memorizedQuestion->isMemorized = true;
-            $memorizedQuestion->next_question_at = Carbon::now()->addDays(10);
-            $memorizedQuestion->last_answered_at = Carbon::now()->subDays($questionPlacement + 1);
-
-            $memorizedQuestion->save();
-            $questions->add($memorizedQuestion);
-        }
-
-        return $questions;
+        return $memorizedQuestion;
     }
 
-    public static function removeAllQuestionsForUser(User $user) {
-        return Question_user::query()->whereIn('question_id', $user->questions())->forceDelete();
+    /**
+     * Remove and hard delete all question attached to the given user
+     * @param User $user
+     * @return Question_User
+     */
+    public static function removeAllQuestionsForUser(User $user)
+    {
+        $deletedQuestions = $user->questions()->forceDelete();
+        $user->save();
+        return $deletedQuestions;
     }
 }

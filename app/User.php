@@ -4,6 +4,7 @@ namespace App;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticable;
@@ -136,5 +137,15 @@ class User extends Authenticable
             ->where('next_question_at', '>=', now())
             ->orderBy('next_question_at', 'asc')
             ->first();
+    }
+
+    /**
+     * Returns a random daily question
+     *
+     * @return Collection
+     */
+    public function scheduledRandomQuestion()
+    {
+        return $this->dailyQuestions()->inRandomOrder()->get();
     }
 }
