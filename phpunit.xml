@@ -19,6 +19,13 @@
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
     </testsuites>
+    <listeners>
+        <listener class="Pretzlaw\PHPUnit\DocGen\TestCaseListener">
+            <arguments>
+                <string>test-evidence.md</string>
+            </arguments>
+        </listener>
+    </listeners>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./app</directory>
