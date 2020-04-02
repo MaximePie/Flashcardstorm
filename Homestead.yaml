@@ -7,7 +7,7 @@ keys:
     - ~/.ssh/id_rsa
 folders:
     -
-        map: /home/maxime/Documents/FlashcardStorm
+        map: .
         to: /home/vagrant/code
 sites:
     -

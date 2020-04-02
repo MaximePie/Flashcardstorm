@@ -41,7 +41,6 @@ class QuestionUserTest extends TestCase
         self::assertSame(1, 1);
     }
 
-
     protected function setUp(): void
     {
         parent::setUp();

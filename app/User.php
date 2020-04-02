@@ -87,6 +87,11 @@ class User extends Authenticable
         return $this->BelongsToMany(Question::class, 'question_users');
     }
 
+    public function addQuestion(Question $question): Question_user
+    {
+        return Question_user::create(['user_id' => $this->id, 'question_id' => $question->id]);
+    }
+
     /**
      * @return HasMany
      */
@@ -118,5 +123,18 @@ class User extends Authenticable
     {
         $this->daily_progress = $this->daily_objective - $this->dailyQuestions()->count();
         $this->save();
+    }
+
+    /**
+     * Returns the next daily question for the current user
+     * @return Question_user|null
+     */
+    public function nextQuestion(): ?Question_user
+    {
+        return Question_user::query()
+            ->where('user_id', $this->id)
+            ->where('next_question_at', '>=', now())
+            ->orderBy('next_question_at', 'asc')
+            ->first();
     }
 }

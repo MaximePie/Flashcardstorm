@@ -16,7 +16,7 @@ abstract class TestCase extends BaseTestCase
     public function user(): User
     {
         return User::query()->firstOr('*', static function () {
-            User::create([
+            return User::create([
                 'name' => 'Popol',
                 'email' => 'popol@popol.pol',
                 'password' => Hash::make('zozo'),

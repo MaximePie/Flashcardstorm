@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $number_of_unsuccessful_answer
  * @property string|null $last_answered_at
  * @property string|null $next_question_at
+ * @property bool $isMemorized
  * @method static Builder|Question_user newModelQuery()
  * @method static Builder|Question_user newQuery()
  * @method static Builder|Question_user query()
@@ -76,6 +77,8 @@ class Question_user extends Model
                 $userStatistics->memorized_questions = 1;
                 $userStatistics->save();
             }
+
+            $this->next_question_at = null;
         }
         $this->attributes['isMemorized'] = $isMemorized;
     }
@@ -122,11 +125,13 @@ class Question_user extends Model
             $this->current_delay++;
             $this->last_answered_at = Carbon::now();
             $this->next_question_at = Carbon::now()->addDays($this->current_delay);
-            $this->full_score = $this->score * $this->current_delay;
 
             if ($this->full_score >= 100) {
                 $this->isMemorized = true;
             }
+
+            $this->full_score = $this->score * $this->current_delay;
+
 
             $this->save();
         } else {

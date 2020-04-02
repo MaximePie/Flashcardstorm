@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Factory;
 $factory->define(Category::class, static function (Faker $faker) {
     return [
         'name' => $faker->word,
-        'icon' => 'head',
+        'icon' => 'anchor',
         'color' => $faker->hexColor,
     ];
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Answer;
 use App\Question;
 use App\Question_user;
+use App\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -87,6 +88,7 @@ class QuestionController extends Controller
     public function randomQuestion(string $mode = null, $questions_bag_ids = null): JsonResponse
     {
         $message = null;
+        /** @var User $user */
         $user = Auth::user();
         $already_in_bag_questions = explode(',', $questions_bag_ids);
         $limit = config('app.question_bag_max_size') - count($already_in_bag_questions);
@@ -99,7 +101,7 @@ class QuestionController extends Controller
                     ->get();
 
                 if ($questions->isEmpty()) {
-                    $next_question = Question_user::query()->orderBy('next_question_at', 'asc')->first();
+                    $next_question = $user->nextQuestion();
                     if ($next_question) {
                         $message = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $next_question->next_question_at;
                     } else {
