@@ -78,7 +78,6 @@ class UserTest extends TestCase
 
         $unwantedNextQuestion = QuestionUserHelper::createIncomingQuestionForUser($this->user);
         $unwantedNextQuestion->next_question_at = now()->subDays(1);
-        $unwantedNextQuestion->isMemorized = true;
         $unwantedNextQuestion->save();
 
         $this->assertNull($this->user->nextQuestion());

@@ -44,6 +44,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Question_user extends Model
 {
+    /** @var int Minimal score to reach for going memorized */
+    const FULL_SCORE_TRESHOLD = 100;
+
     /**
      * @var array
      */
@@ -60,9 +63,18 @@ class Question_user extends Model
     }
 
 
+    /**
+     * @param bool $isMemorized
+     * @throws Exception
+     */
     public function setIsMemorizedAttribute(bool $isMemorized): void
     {
         if ($isMemorized === true ) {
+
+            if ($this->full_score < self::FULL_SCORE_TRESHOLD) {
+                throw new Exception("Cannot set memorized attribute while full score is under threshold");
+            }
+
             $userStatistics = UserStatistics::query()
                 ->where('user_id', $this->user_id)
                 ->whereDate('created_at', '=', Carbon::today()->toDateString())

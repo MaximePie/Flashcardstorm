@@ -93,32 +93,6 @@ class QuestionTest extends TestCase
         self::assertSame($reverted_question->category_id, $this->question->category_id);
     }
 
-    /**
-     * Test get the date of the next question for user
-     * @return void
-     * @throws \Exception
-     */
-    public function test_next_question_at_for_user(): void
-    {
-        $user = $this->user();
-        $questionUser = Question_user::create(['question_id' => $this->question->id, 'user_id' => $user->id]);
-
-        $date1 = new DateTime($this->question->nextQuestionAtForUser($user));
-
-        $questionUser->save_success($user, 'storm');
-        $date2 = new DateTime($this->question->nextQuestionAtForUser($user));
-
-        $questionUser->save_success($user, 'soft');
-        $date3 = new DateTime($this->question->nextQuestionAtForUser($user));
-
-        $questionUser->save_success($user, 'soft');
-        $date4 = new DateTime($this->question->nextQuestionAtForUser($user));
-
-        self::assertEquals(date_diff($date1, $date2)->days, 0);
-        self::assertEquals(date_diff($date2, $date3)->days, 2);
-        self::assertEquals(date_diff($date3, $date4)->days, 3);
-
-    }
 
     protected function setUp(): void
     {

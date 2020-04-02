@@ -3,9 +3,11 @@
 namespace Tests\Feature;
 
 use App\Answer;
+use App\Helpers\QuestionUserHelper;
 use App\Question;
 use App\Question_user;
 use App\User;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +19,7 @@ use Tests\TestCase;
  */
 class QuestionUserTest extends TestCase
 {
+    const INVALID_FULL_SCORE_TRESHOLD = QUESTION_USER::FULL_SCORE_TRESHOLD - 1;
 
     /***************************
      * CUSTOM METHODS TESTS
@@ -24,21 +27,36 @@ class QuestionUserTest extends TestCase
      */
 
     /**
-     * Check that random question only returns non Memorized questions
-     * @return void
+     * Try to memorize a question while having a score UNDER the threshold
+     * Expected : Exception "Cannot memorize, threshold not reached"
+     * Unwanted : No exception and the question is memorized anyway
+     * @group question_user
+     * @test
      */
-    public function test_assert_random_question_is_not_memorized(): void
-    {
-        $user = $this->user;
-        $user->questions()->each(static function(Question $question) use ($user){
-            $questionUser = Question_user::findFromTuple($question->id, $user->id);
-            if ($questionUser) {
-                $questionUser->first()->isMemorized = true;
-                $questionUser->first()->save();
-            }
-        });
+    public function cannotMemorizeQuestionIfScoreIsUnderThreshold() {
 
-        self::assertSame(1, 1);
+        $question = QuestionUserHelper::createIncomingQuestionForUser($this->user);
+        $question->full_score = self::INVALID_FULL_SCORE_TRESHOLD;
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Cannot set memorized attribute while full score is under threshold");
+        $question->isMemorized = true;
+
+        $this->assertNull($question->isMemorized);
+    }
+
+    /**
+     * Try to memorize a question while having a score SUPERIOR THAN the threshold
+     * Expected : The User_Question is well memorized
+     * @group question_user
+     * @test
+     */
+    public function canMemorizeQuestionIfScoreHasReachedThreshold() {
+
+        $question = QuestionUserHelper::createIncomingQuestionForUser($this->user);
+        $question->full_score = Question_user::FULL_SCORE_TRESHOLD;
+        $question->isMemorized = true;
+
+        $this->assertTrue($question->isMemorized);
     }
 
     protected function setUp(): void
