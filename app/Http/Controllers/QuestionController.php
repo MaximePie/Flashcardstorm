@@ -97,12 +97,7 @@ class QuestionController extends Controller
                 $questions = $user->scheduledRandomQuestion($already_in_bag_questions, $limit);
 
                 if ($questions->isEmpty()) {
-                    $next_question = $user->nextQuestion();
-                    if ($next_question) {
-                        $message = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $next_question->next_question_at;
-                    } else {
-                        $message = 'Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit';
-                    }
+                    $message = $user->nextQuestionMessage();
                 }
             } else {
                 if ($user && $mode === 'for_user') {

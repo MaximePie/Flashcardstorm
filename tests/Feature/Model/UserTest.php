@@ -171,7 +171,8 @@ class UserTest extends TestCase
      * @group user
      * @test
      */
-    public function scheduledRandomQuestionWithEmptyBag() {
+    public function scheduledRandomQuestionWithEmptyBag()
+    {
         $expectedQuestion1 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
         $expectedQuestion2 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
 
@@ -193,7 +194,8 @@ class UserTest extends TestCase
      * @group user
      * @test
      */
-    public function scheduledRandomQuestionWithNonEmptyBag() {
+    public function scheduledRandomQuestionWithNonEmptyBag()
+    {
         $expectedQuestion1 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
         $expectedQuestion2 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
         $unexpectedQuestion = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
@@ -217,7 +219,8 @@ class UserTest extends TestCase
      * @group user
      * @test
      */
-    public function scheduledRandomQuestionWithSelfsameBag() {
+    public function scheduledRandomQuestionWithSelfsameBag()
+    {
         $unexpectedQuestion1 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
         $unexpectedQuestion2 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
 
@@ -225,6 +228,51 @@ class UserTest extends TestCase
 
         $this->assertFalse($questionsList->contains($questionsList));
         $this->assertEmpty($questionsList);
+    }
+
+
+    /**
+     * Question Message returns a message with the next question date
+     * Expected : Vous avez répondu à toutes vos questions pour aujourd'hui.
+     * La prochaine question sera prévue pour le " . $next_question->next_question_at
+     *
+     * @group question_user
+     * @group nextQuestionMessage
+     * @group user
+     * @test
+     */
+    public function questionMessageWithExistingNextQuestion()
+    {
+        $nextQuestion = QuestionUserHelper::createIncomingQuestionForUser($this->user);
+        $nextQuestion->next_question_at = now()->addDays(1);
+        $nextQuestion->save();
+        $nextQuestion = Question_user::find($nextQuestion->id);
+
+        $this->assertEquals(
+            "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $nextQuestion->next_question_at
+            , $this->user->nextQuestionMessage()
+        );
+    }
+
+
+    /**
+     * Question Message returns a message when no question is scheduled
+     * Expected : Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter
+     * automatiquement les questions à votre Kit
+     *
+     * @group question_user
+     * @group nextQuestionMessage
+     * @group user
+     * @test
+     */
+    public function questionMessageWithNoNextQuestion()
+    {
+        QuestionUserHelper::removeAllQuestionsForUser($this->user);
+
+        $this->assertEquals(
+            "Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit"
+            , $this->user->nextQuestionMessage()
+        );
     }
 
     protected function setUp(): void

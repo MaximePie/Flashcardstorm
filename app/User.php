@@ -154,4 +154,17 @@ class User extends Authenticable
             ->inRandomOrder()
             ->get();
     }
+
+    /**
+     * Returns a message based on daily question
+     */
+    public function nextQuestionMessage()
+    {
+        $next_question = $this->nextQuestion();
+        if ($next_question) {
+            return "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $next_question->next_question_at;
+        } else {
+            return $message = 'Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit';
+        }
+    }
 }
