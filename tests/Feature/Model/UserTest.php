@@ -99,7 +99,6 @@ class UserTest extends TestCase
      */
     public function dailyQuestionDoesNotReturnIncomingQuestions()
     {
-        QuestionUserHelper::removeAllQuestionsForUser($this->user);
         $unwantedIncomingQuestion = QuestionUserHelper::createIncomingQuestionForUser($this->user);
         $dailyQuestions = $this->user->dailyQuestions()->get();
 
@@ -117,7 +116,6 @@ class UserTest extends TestCase
      */
     public function dailyQuestionDoesNotReturnMemorizedQuestions()
     {
-        QuestionUserHelper::removeAllQuestionsForUser($this->user);
         $unwantedMemorizedQuestion = QuestionUserHelper::createMemorizedQuestionsForUser($this->user);
         $dailyQuestions = $this->user->dailyQuestions()->get();
 
@@ -135,12 +133,93 @@ class UserTest extends TestCase
      */
     public function dailyQuestionReturnsQuestion()
     {
-        QuestionUserHelper::removeAllQuestionsForUser($this->user);
         $expectedQuestion = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
         $dailyQuestions = $this->user->dailyQuestions()->get();
 
         $this->assertTrue($dailyQuestions->contains($expectedQuestion));
     }
+
+    /**
+     * Scheduled random question returns one or more questions
+     * Expected : 2 Scheduled questions
+     * @group question_user
+     * @group user
+     * @test
+     */
+    public function scheduledRandomQuestion()
+    {
+        $expectedQuestion = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
+        $randomQuestions = $this->user->scheduledRandomQuestion();
+
+        $this->assertTrue($randomQuestions->contains($expectedQuestion));
+    }
+
+    /**
+     * A scheduled random question takes an empty array as parameters and returns all questions
+     * Expected : 2 scheduled questions
+     * Unexpected : More or less questions
+     * @group question_user
+     * @group scheduledRandomQuestion
+     * @group scheduledRandomQuestionAlreadyInBag
+     * @group user
+     * @test
+     */
+    public function scheduledRandomQuestionWithEmptyBag() {
+        $expectedQuestion1 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
+        $expectedQuestion2 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
+
+        $questionsList = $this->user->scheduledRandomQuestion([]);
+
+        $this->assertTrue($questionsList->contains($expectedQuestion1));
+        $this->assertTrue($questionsList->contains($expectedQuestion2));
+    }
+
+
+    /**
+     * A scheduled random question takes an array of already loaded questions and doesn't return it but
+     * returns other questions
+     * Expected : 2 scheduled questions
+     * Unexpected : 1 scheduled question whose id is in the array
+     * @group question_user
+     * @group scheduledRandomQuestion
+     * @group scheduledRandomQuestionAlreadyInBag
+     * @group user
+     * @test
+     */
+    public function scheduledRandomQuestionWithNonEmptyBag() {
+        $expectedQuestion1 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
+        $expectedQuestion2 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
+        $unexpectedQuestion = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
+
+        $questionsList = $this->user->scheduledRandomQuestion([$unexpectedQuestion->id]);
+
+        $this->assertTrue($questionsList->contains($expectedQuestion1));
+        $this->assertTrue($questionsList->contains($expectedQuestion2));
+
+        $this->assertFalse($questionsList->contains($unexpectedQuestion));
+    }
+
+
+    /**
+     * ScheduledRandomQuestions returns nothing if provided array contains all questions ids
+     * Expected : 2 scheduled questions
+     * Unexpected : 1 scheduled question whose id is in the array
+     * @group question_user
+     * @group scheduledRandomQuestion
+     * @group scheduledRandomQuestionAlreadyInBag
+     * @group user
+     * @test
+     */
+    public function scheduledRandomQuestionWithSelfsameBag() {
+        $unexpectedQuestion1 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
+        $unexpectedQuestion2 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
+
+        $questionsList = $this->user->scheduledRandomQuestion([$unexpectedQuestion1->id, $unexpectedQuestion2->id]);
+
+        $this->assertFalse($questionsList->contains($questionsList));
+        $this->assertEmpty($questionsList);
+    }
+
 
     protected function setUp(): void
     {
@@ -149,5 +228,6 @@ class UserTest extends TestCase
         User::query()->forceDelete();
         $this->question = $this->question();
         $this->user = $this->user();
+        QuestionUserHelper::removeAllQuestionsForUser($this->user);
     }
 }

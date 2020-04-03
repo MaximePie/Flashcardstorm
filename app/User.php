@@ -142,10 +142,14 @@ class User extends Authenticable
     /**
      * Returns a random daily question
      *
+     * @param array $alreadyLoadedQuestionIds All ids of already loaded questions
      * @return Collection
      */
-    public function scheduledRandomQuestion()
+    public function scheduledRandomQuestion(array $alreadyLoadedQuestionIds = []): Collection
     {
-        return $this->dailyQuestions()->inRandomOrder()->get();
+        return $this->dailyQuestions()
+            ->whereNotIn('question_users.question_id', $alreadyLoadedQuestionIds)
+            ->inRandomOrder()
+            ->get();
     }
 }
