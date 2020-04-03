@@ -94,11 +94,7 @@ class QuestionController extends Controller
         $limit = config('app.question_bag_max_size') - count($already_in_bag_questions);
         if ($limit > 0) {
             if ($mode === 'soft' && $user) {
-                $questions = $user->dailyQuestions()
-                    ->whereNotIn('question_users.question_id', $already_in_bag_questions)
-                    ->inRandomOrder()
-                    ->limit($limit)
-                    ->get();
+                $questions = $user->scheduledRandomQuestion($already_in_bag_questions, $limit);
 
                 if ($questions->isEmpty()) {
                     $next_question = $user->nextQuestion();

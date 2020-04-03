@@ -20,10 +20,11 @@ class UserTest extends TestCase
      */
 
     /**
-     * @group user
-     * @group question_user
      * Expected : 1 question scheduled for in 1 day
      * Unwanted : 1 question scheduled for in 3 day
+     * @group user
+     * @group question_user
+     * @group nextQuestion
      * @test
      */
     public function nextQuestionReturnsTheClosestNextQuestion()
@@ -48,6 +49,7 @@ class UserTest extends TestCase
      * Unwanted : 1 question for the next day but memorized
      * @group user
      * @group question_user
+     * @group nextQuestion
      * @test
      */
     public function nextQuestionIgnoresMemorizedQuestions()
@@ -76,6 +78,7 @@ class UserTest extends TestCase
      * Unwanted : One question but next question at has already passed
      * @group user
      * @group question_user
+     * @group nextQuestion
      * @test
      */
     public function nextQuestionIsNullWhenNoQuestionIsScheduled()
@@ -94,6 +97,7 @@ class UserTest extends TestCase
      *
      * Unwanted : A question with next_question_at scheduled for later than now
      * @group question_user
+     * @group scheduledRandomQuestion
      * @group user
      * @test
      */
@@ -111,6 +115,7 @@ class UserTest extends TestCase
      *
      * Unwanted : A memorized question
      * @group question_user
+     * @group dailyQuestion
      * @group user
      * @test
      */
@@ -128,6 +133,7 @@ class UserTest extends TestCase
      *
      * Unwanted : A memorized question
      * @group question_user
+     * @group dailyQuestion
      * @group user
      * @test
      */
@@ -143,6 +149,7 @@ class UserTest extends TestCase
      * Scheduled random question returns one or more questions
      * Expected : 2 Scheduled questions
      * @group question_user
+     * @group scheduledRandomQuestion
      * @group user
      * @test
      */
@@ -219,7 +226,6 @@ class UserTest extends TestCase
         $this->assertFalse($questionsList->contains($questionsList));
         $this->assertEmpty($questionsList);
     }
-
 
     protected function setUp(): void
     {

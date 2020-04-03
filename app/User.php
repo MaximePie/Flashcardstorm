@@ -143,11 +143,13 @@ class User extends Authenticable
      * Returns a random daily question
      *
      * @param array $alreadyLoadedQuestionIds All ids of already loaded questions
+     * @param int $limit The maximum amount of question we should reach
      * @return Collection
      */
-    public function scheduledRandomQuestion(array $alreadyLoadedQuestionIds = []): Collection
+    public function scheduledRandomQuestion(array $alreadyLoadedQuestionIds = [], int $limit = Question_user::DEFAULT_BAG_LIMIT): Collection
     {
         return $this->dailyQuestions()
+            ->limit($limit)
             ->whereNotIn('question_users.question_id', $alreadyLoadedQuestionIds)
             ->inRandomOrder()
             ->get();
