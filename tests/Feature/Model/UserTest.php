@@ -235,6 +235,7 @@ class UserTest extends TestCase
      * Question Message returns a message with the next question date
      * Expected : Vous avez répondu à toutes vos questions pour aujourd'hui.
      * La prochaine question sera prévue pour le " . $next_question->next_question_at
+     * Check User::NEXT_QUESTION_MESSAGE
      *
      * @group question_user
      * @group nextQuestionMessage
@@ -248,9 +249,13 @@ class UserTest extends TestCase
         $nextQuestion->save();
         $nextQuestion = Question_user::find($nextQuestion->id);
 
-        $this->assertEquals(
+        $this->assertStringContainsString(
+            User::NEXT_QUESTION_MESSAGE,
             "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $nextQuestion->next_question_at
-            , $this->user->nextQuestionMessage()
+        );
+
+        $this->assertStringContainsString(
+            $nextQuestion->next_question_at, $this->user->nextQuestionMessage()
         );
     }
 
@@ -260,6 +265,7 @@ class UserTest extends TestCase
      * Expected : Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter
      * automatiquement les questions à votre Kit
      *
+     * Check User::NEXT_QUESTION_MESSAGE_NOT_FOUND
      * @group question_user
      * @group nextQuestionMessage
      * @group user
@@ -270,8 +276,7 @@ class UserTest extends TestCase
         QuestionUserHelper::removeAllQuestionsForUser($this->user);
 
         $this->assertEquals(
-            "Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit"
-            , $this->user->nextQuestionMessage()
+            User::NEXT_QUESTION_MESSAGE_NOT_FOUND, $this->user->nextQuestionMessage()
         );
     }
 

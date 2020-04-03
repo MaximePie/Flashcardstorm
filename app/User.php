@@ -52,6 +52,8 @@ use Illuminate\Support\Carbon;
 class User extends Authenticable
 {
     use Notifiable;
+    const NEXT_QUESTION_MESSAGE = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le ";
+    const NEXT_QUESTION_MESSAGE_NOT_FOUND = "Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit";
 
     /**
      * The attributes that are mass assignable.
@@ -162,9 +164,9 @@ class User extends Authenticable
     {
         $next_question = $this->nextQuestion();
         if ($next_question) {
-            return "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le " . $next_question->next_question_at;
+            return self::NEXT_QUESTION_MESSAGE . $next_question->next_question_at;
         } else {
-            return $message = 'Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit';
+            return self::NEXT_QUESTION_MESSAGE_NOT_FOUND;
         }
     }
 }
