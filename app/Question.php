@@ -228,4 +228,22 @@ class Question extends Model
 
         throw new RuntimeException('Error, the inverted question already exists for this one');
     }
+
+
+    /**
+     * Prepares to be displayed on front by adding the appropriate fields
+     * @param User $user The user that has to answer the question
+     * @return $this
+     */
+    public function preparedForView(User $user = null): self
+    {
+        $answer = $this->answer()->first();
+        if ($answer) {
+            $this['answer'] = $answer->wording;
+        }
+
+        $this['is_new'] = ($user && !$this->isSetForUser($user)) ?: false;
+
+        return $this;
+    }
 }
