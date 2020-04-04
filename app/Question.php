@@ -242,6 +242,8 @@ class Question extends Model
         $this['answer'] = $answer ? $answer->wording : null;
         $this['is_new'] = ($user && !$this->isSetForUser($user)) ?: false;
         $this['additionalAnswers'] = $answer ? $answer->additional_answers : null;
+        $this['category'] = $this->category() ? $this->category()->first() : null;
+        $this->tryGoldenCard();
 
         return $this;
     }

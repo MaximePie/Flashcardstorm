@@ -111,19 +111,7 @@ class QuestionController extends Controller
 
             if ($questions) {
                 $questions->each(static function (QUESTION $question) use ($user) {
-                    $answer = $question->answer()->first();
-                    $question['answer'] = $answer->wording;
-                    if ($user) {
-                        $question['is_new'] = !$question->isSetForUser($user) ?: null;
-                    }
-                    $question['additionalAnswers'] = $answer->additional_answers;
-                    $category = $question->category();
-                    if ($category) {
-                        $question['category'] = $category->first();
-                    }
-
-                    $question->tryGoldenCard();
-
+                    $question = $question->preparedForView();
                 });
             }
         }

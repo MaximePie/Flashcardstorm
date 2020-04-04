@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Answer;
+use App\Category;
 use App\Helpers\CategoryHelper;
 use App\Helpers\QuestionHelper;
 use App\Helpers\QuestionUserHelper;
@@ -215,6 +216,50 @@ class QuestionUserTest extends TestCase
         $question = $question->preparedForView();
 
         $this->assertNull($question['additionalAnswers']);
+    }
+
+    /**
+     * Prepared question returns the appropriate category
+     * Expected : The category of the question
+     * @group question_user
+     * @group QuestionUserPrepareForView
+     * @test
+     */
+    public function preparedQuestionReturnsAppropriateCategory(): void
+    {
+        CategoryHelper::newCategory();
+        $question = QuestionHelper::newQuestion();
+
+        /** @var Question $question */
+        $question = Question::find($question)->first();
+        $question = $question->preparedForView();
+
+        $expectedCategory = Category::find($question->category)->first();
+
+        $this->assertNotNull($question['category']);
+        $this->assertEquals($question['category'], $expectedCategory);
+    }
+
+    /**
+     * Prepared question category is null if there are no category assigned to the question
+     * Unexpected : A category
+     * @group question_user
+     * @group QuestionUserPrepareForView
+     * @test
+     */
+    public function preparedQuestionReturnsNoCategoryWhenCategoryFieldIsNull(): void
+    {
+        CategoryHelper::newCategory();
+        $question = QuestionHelper::newQuestion();
+        $question->category_id = null;
+        $question->save();
+
+        /** @var Question $question */
+        $question = Question::find($question)->first();
+        $question = $question->preparedForView();
+
+
+        $this->assertNull($question['category']);
     }
 
 
