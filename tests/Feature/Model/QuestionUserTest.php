@@ -176,6 +176,47 @@ class QuestionUserTest extends TestCase
         $this->assertFalse($question['is_new']);
     }
 
+    /**
+     * Prepared question matches all the additional answers
+     * Expected : All the additional answers in additional_answers attribute
+     * @group question_user
+     * @group QuestionUserPrepareForView
+     * @test
+     */
+    public function preparedQuestionHasAdditionalAnswers(): void
+    {
+        $multipleChoiceQuestion = QuestionHelper::newMCQ();
+
+        /** @var Question $question */
+        $question = Question::find($multipleChoiceQuestion)->first();
+
+        $question = $question->preparedForView();
+
+        $expectedAnswers = $question->answer()->first()->additional_answers;
+
+        $this->assertNotNull($question['additionalAnswers']);
+        $this->assertEquals($question['additionalAnswers'], $expectedAnswers);
+    }
+
+    /**
+     * Prepared question has empty additional answers if they are no additional answers available
+     * Expected : Additional answers attribute should be NULL
+     * @group question_user
+     * @group QuestionUserPrepareForView
+     * @test
+     */
+    public function preparedQuestionIsNullIfNoAdditionalAnswerAreAvailable(): void
+    {
+        $question = QuestionHelper::newQuestion();
+
+        /** @var Question $question */
+        $question = Question::find($question)->first();
+
+        $question = $question->preparedForView();
+
+        $this->assertNull($question['additionalAnswers']);
+    }
+
 
     protected function setUp(): void
     {

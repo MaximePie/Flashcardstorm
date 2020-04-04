@@ -17,4 +17,12 @@ class QuestionHelper
     {
         return factory(Question::class)->create();
     }
+
+    /**
+     * Creates an MCQ which is a question with additional answers
+     */
+    public static function newMCQ(): Question
+    {
+        return factory(Question::class, 'MCQ')->create();
+    }
 }

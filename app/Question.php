@@ -102,7 +102,7 @@ class Question extends Model
     }
 
     /**
-     * @param  User $user
+     * @param User $user
      * @return int
      */
     public function scoreByUser(User $user): int
@@ -118,7 +118,7 @@ class Question extends Model
 
     /**
      * Next question At for a given user.
-     * @param  User $user
+     * @param User $user
      * @return string
      */
     public function nextQuestionAtForUser(User $user): ?string
@@ -138,7 +138,7 @@ class Question extends Model
      */
     public function isSetForUser(User $user): bool
     {
-        if (! $user) {
+        if (!$user) {
             return false;
         }
 
@@ -209,7 +209,7 @@ class Question extends Model
      */
     public function createReverseQuestion(): Question
     {
-        if (! self::find('reverse_question_id')) {
+        if (!self::find('reverse_question_id')) {
             $reverted_answer = Answer::create([
                 'wording' => $this->wording,
             ]);
@@ -238,11 +238,10 @@ class Question extends Model
     public function preparedForView(User $user = null): self
     {
         $answer = $this->answer()->first();
-        if ($answer) {
-            $this['answer'] = $answer->wording;
-        }
 
+        $this['answer'] = $answer ? $answer->wording : null;
         $this['is_new'] = ($user && !$this->isSetForUser($user)) ?: false;
+        $this['additionalAnswers'] = $answer ? $answer->additional_answers : null;
 
         return $this;
     }

@@ -23,3 +23,10 @@ $factory->define(Answer::class, static function (Faker $faker) {
         'wording' => implode(' ', $faker->words),
     ];
 });
+
+$factory->define(Answer::class, static function (Faker $faker) {
+    return [
+        'wording' => implode(' ', $faker->words),
+        'additional_answers' => implode(',', $faker->words),
+    ];
+}, 'MCQ');

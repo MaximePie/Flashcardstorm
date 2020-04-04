@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Helpers/AnswerHelper.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/QuestionHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/QuestionHelper.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Question.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/AnswerFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/AnswerFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/QuestionFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/QuestionFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-evidence.md" beforeDir="false" afterPath="$PROJECT_DIR$/test-evidence.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/Model/QuestionUserTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Model/QuestionUserTest.php" afterDir="false" />
     </list>
@@ -248,7 +252,7 @@
       <workItem from="1585840045169" duration="867000" />
       <workItem from="1585841129064" duration="2210000" />
       <workItem from="1585927536231" duration="4518000" />
-      <workItem from="1586017497081" duration="2140000" />
+      <workItem from="1586017497081" duration="4192000" />
     </task>
     <servers />
   </component>
@@ -273,10 +277,10 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="693" y="274" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1585815485878" />
-    <state x="655" y="327" width="639" height="385" key="NewPhpClassDialog" timestamp="1585745970580">
+    <state x="655" y="327" width="639" height="385" key="NewPhpClassDialog" timestamp="1586020545641">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="655" y="327" width="639" height="385" key="NewPhpClassDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1585745970580" />
+    <state x="655" y="327" width="639" height="385" key="NewPhpClassDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1586020545641" />
     <state x="541" y="141" width="1022" height="737" key="SettingsEditor" timestamp="1586017481346">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -289,17 +293,17 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="683" y="158" width="543" height="722" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1032@0.0.1920.1032" timestamp="1585841868830" />
-    <state x="608" y="247" width="857" height="608" key="find.popup" timestamp="1585840353937">
+    <state x="608" y="247" width="857" height="608" key="find.popup" timestamp="1586021127167">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="608" y="247" width="857" height="608" key="find.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1585840353937" />
+    <state x="608" y="247" width="857" height="608" key="find.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1586021127167" />
     <state x="678" y="158" width="554" height="723" key="refactoring.ChangeSignatureDialog" timestamp="1586018409983">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="678" y="158" width="554" height="723" key="refactoring.ChangeSignatureDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1586018409983" />
-    <state x="624" y="158" width="672" height="676" key="search.everywhere.popup" timestamp="1586015582018">
+    <state x="624" y="158" width="672" height="676" key="search.everywhere.popup" timestamp="1586021096647">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="624" y="158" width="672" height="676" key="search.everywhere.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1586015582018" />
+    <state x="624" y="158" width="672" height="676" key="search.everywhere.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1586021096647" />
   </component>
 </project>
