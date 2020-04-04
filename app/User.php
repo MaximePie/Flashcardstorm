@@ -169,31 +169,4 @@ class User extends Authenticable
             return self::NEXT_QUESTION_MESSAGE_NOT_FOUND;
         }
     }
-
-    /**
-     * Returns a random question for the user based on the provided mode
-     * @param string $mode The mode we want to apply
-     * Modes :
-     * 'for_user' : Return a question assigned to the user
-     * 'for_guest' : Returns any question
-     * @param int $limit The maximum amount of question we want to return
-     * @return Collection
-     */
-    public function randomQuestion(string $mode, int $limit = Question_user::DEFAULT_BAG_LIMIT)
-    {
-        $question_builder = null;
-
-        switch ($mode) {
-            case 'for_user':
-                $question_builder = $this->questions();
-                break;
-            case 'for_guest':
-                $question_builder = Question::query();
-                break;
-        }
-
-        return $question_builder->inRandomOrder()
-            ->limit($limit)
-            ->get();
-    }
 }

@@ -13,6 +13,14 @@ use Illuminate\Support\Collection;
  */
 class QuestionUserHelper
 {
+    /**
+     * This method is just a syntactic helper for a more intuitive name
+     * @return Question
+     */
+    public static function newQuestion(): Question
+    {
+        return factory(Question::class)->create();
+    }
 
     /**
      * Create a new Question, assign it to the user
@@ -22,7 +30,7 @@ class QuestionUserHelper
      */
     public static function createIncomingQuestionForUser(User $user): Question_user
     {
-        $incomingQuestion = $user->addQuestion(QuestionHelper::newQuestion());
+        $incomingQuestion = $user->addQuestion(self::newQuestion());
         $incomingQuestion->current_delay = 3;
         $incomingQuestion->next_question_at = Carbon::now()->addDays(3);
 
@@ -39,7 +47,7 @@ class QuestionUserHelper
      */
     public static function createScheduledQuestionForUser(User $user)
     {
-        $question = $user->addQuestion(QuestionHelper::newQuestion());
+        $question = $user->addQuestion(self::newQuestion());
         $question->save();
         return $question;
     }
@@ -52,7 +60,7 @@ class QuestionUserHelper
      */
     public static function createMemorizedQuestionsForUser(User $user): Question_user
     {
-        $memorizedQuestion = $user->addQuestion(QuestionHelper::newQuestion());
+        $memorizedQuestion = $user->addQuestion(self::newQuestion());
         $memorizedQuestion->current_delay = 10;
         $memorizedQuestion->full_score = 100;
         $memorizedQuestion->isMemorized = true;
