@@ -81,11 +81,11 @@ class QuestionController extends Controller
     /**
      * Returns a random question for the user.
      *
-     * @param string $mode The mode we want to use
-     * @param null $questions_bag_ids
+     * @param string $mode The mode we want to use (soft, storm, or for_user
+     * @param string $questions_bag_ids Array containing the already loaded question ids
      * @return JsonResponse
      */
-    public function randomQuestion(string $mode = null, $questions_bag_ids = null): JsonResponse
+    public function randomQuestion(string $mode = null, string $questions_bag_ids = null): JsonResponse
     {
         $message = null;
         /** @var User $user */
@@ -100,15 +100,7 @@ class QuestionController extends Controller
                     $message = $user->nextQuestionMessage();
                 }
             } else {
-                if ($user && $mode === 'for_user') {
-                    $question_builder = $user->questions();
-                } else {
-                    $question_builder = Question::query();
-                }
-
-                $questions = $question_builder->inRandomOrder()
-                    ->limit($limit)
-                    ->get();
+                $questions = $user->randomQuestion($mode);
 
                 if (!$questions) {
                     $message = "Il n'y a pas de question disponible, vous pouvez en créer en cliquant sur Ajouter des Questions";

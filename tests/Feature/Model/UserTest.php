@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Helpers\QuestionHelper;
 use App\Question;
 use App\Question_user;
 use App\User;
@@ -278,6 +279,52 @@ class UserTest extends TestCase
         $this->assertEquals(
             User::NEXT_QUESTION_MESSAGE_NOT_FOUND, $this->user->nextQuestionMessage()
         );
+    }
+
+
+
+    /**
+     * RandomQuestion returns users questions on user mode
+     *
+     * Expected : Only questions assigned to the user
+     * Unexpected : Questions non assigned to the user
+     * @group question_user
+     * @group randomQuestion
+     * @group user
+     * @test
+     */
+    public function randomQuestionForUser()
+    {
+        $expectedQuestion = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
+
+        QuestionHelper::newQuestions(10);
+
+        $questionsList = $this->user->randomQuestion("for_user");
+
+        $this->assertTrue($questionsList->contains($expectedQuestion));
+        $this->assertCount(1, $questionsList);
+    }
+
+
+
+    /**
+     * RandomQuestion returns any question on "guest mode"
+     *
+     * Expected : Only questions assigned to the user
+     * Unexpected : Questions non assigned to the user
+     * @group question_user
+     * @group randomQuestion
+     * @group user
+     * @test
+     */
+    public function randomQuestionForGuest()
+    {
+        QuestionUserHelper::removeAllQuestionsForUser($this->user);
+        QuestionHelper::newQuestions(10);
+
+        $questionsList = $this->user->randomQuestion("for_guest");
+
+        $this->assertCount(Question_user::DEFAULT_BAG_LIMIT, $questionsList);
     }
 
     protected function setUp(): void
