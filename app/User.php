@@ -144,13 +144,22 @@ class User extends Authenticable
     /**
      * Returns a random daily question
      *
+     * @param string $mode
+     * 'soft': ScheduledQuestion
+     * 'for_user': Storm mode, returns only user questions
      * @param array $alreadyLoadedQuestionIds All ids of already loaded questions
      * @param int $limit The maximum amount of question we should reach
      * @return Collection
      */
-    public function scheduledRandomQuestion(array $alreadyLoadedQuestionIds = [], int $limit = Question_user::DEFAULT_BAG_LIMIT): Collection
+    public function randomQuestion(string $mode = 'for_user', array $alreadyLoadedQuestionIds = [], int $limit = Question_user::DEFAULT_BAG_LIMIT): Collection
     {
-        return $this->dailyQuestions()
+        $queryBuilder = Question::query();
+
+        if ($mode === 'soft') {
+            $queryBuilder = $this->dailyQuestions();
+        }
+
+        return $queryBuilder
             ->limit($limit)
             ->whereNotIn('question_users.question_id', $alreadyLoadedQuestionIds)
             ->inRandomOrder()

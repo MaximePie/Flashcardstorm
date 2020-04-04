@@ -93,20 +93,14 @@ class QuestionController extends Controller
         $already_in_bag_questions = explode(',', $questions_bag_ids);
         $limit = config('app.question_bag_max_size') - count($already_in_bag_questions);
         if ($limit > 0) {
-            if ($mode === 'soft' && $user) {
-                $questions = $user->scheduledRandomQuestion($already_in_bag_questions, $limit);
+            if ($user) {
+                $questions = $user->randomQuestion($mode, $already_in_bag_questions, $limit);
 
-                if ($questions->isEmpty()) {
+                if ($questions->isEmpty() && $mode === 'soft') {
                     $message = $user->nextQuestionMessage();
                 }
             } else {
-                if ($user && $mode === 'for_user') {
-                    $question_builder = $user->questions();
-                } else {
-                    $question_builder = Question::query();
-                }
-
-                $questions = $question_builder->inRandomOrder()
+                $questions = Question::query()->inRandomOrder()
                     ->limit($limit)
                     ->get();
 

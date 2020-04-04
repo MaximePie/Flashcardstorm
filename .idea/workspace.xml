@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Helpers/CategoryHelper.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Helpers/QuestionHelper.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/QuestionUserHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/QuestionUserHelper.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-evidence.md" beforeDir="false" afterPath="$PROJECT_DIR$/test-evidence.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/Model/QuestionUserTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Model/QuestionUserTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/Model/UserTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Model/UserTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

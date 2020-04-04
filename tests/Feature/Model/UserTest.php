@@ -156,7 +156,7 @@ class UserTest extends TestCase
     public function scheduledRandomQuestion()
     {
         $expectedQuestion = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
-        $randomQuestions = $this->user->scheduledRandomQuestion();
+        $randomQuestions = $this->user->randomQuestion();
 
         $this->assertTrue($randomQuestions->contains($expectedQuestion));
     }
@@ -176,7 +176,7 @@ class UserTest extends TestCase
         $expectedQuestion1 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
         $expectedQuestion2 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
 
-        $questionsList = $this->user->scheduledRandomQuestion([]);
+        $questionsList = $this->user->randomQuestion('soft', []);
 
         $this->assertTrue($questionsList->contains($expectedQuestion1));
         $this->assertTrue($questionsList->contains($expectedQuestion2));
@@ -200,7 +200,7 @@ class UserTest extends TestCase
         $expectedQuestion2 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
         $unexpectedQuestion = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
 
-        $questionsList = $this->user->scheduledRandomQuestion([$unexpectedQuestion->id]);
+        $questionsList = $this->user->randomQuestion('soft', [$unexpectedQuestion->id]);
 
         $this->assertTrue($questionsList->contains($expectedQuestion1));
         $this->assertTrue($questionsList->contains($expectedQuestion2));
@@ -224,7 +224,7 @@ class UserTest extends TestCase
         $unexpectedQuestion1 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
         $unexpectedQuestion2 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
 
-        $questionsList = $this->user->scheduledRandomQuestion([$unexpectedQuestion1->id, $unexpectedQuestion2->id]);
+        $questionsList = $this->user->randomQuestion('soft', [$unexpectedQuestion1->id, $unexpectedQuestion2->id]);
 
         $this->assertFalse($questionsList->contains($questionsList));
         $this->assertEmpty($questionsList);

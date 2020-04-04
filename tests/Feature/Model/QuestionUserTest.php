@@ -72,7 +72,7 @@ class QuestionUserTest extends TestCase
         CategoryHelper::newCategory();
         QuestionUserHelper::createScheduledQuestionForUser($this->user);
 
-        $questions = $this->user->scheduledRandomQuestion();
+        $questions = $this->user->randomQuestion();
     }
 
 

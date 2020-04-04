@@ -17,6 +17,9 @@ Unwanted : No exception and the question is memorized anyway
 ## Try to memorize a question while having a score SUPERIOR THAN the threshold
 Expected : The User_Question is well memorized
 
+## Prepared question has the correct answers
+Expected : The answer of the question
+
 ## Expected : 1 question scheduled for in 1 day
 Unwanted : 1 question scheduled for in 3 day
 
