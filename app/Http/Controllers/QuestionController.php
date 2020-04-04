@@ -129,6 +129,7 @@ class QuestionController extends Controller
                     }
 
                     $question->tryGoldenCard();
+
                 });
             }
         }

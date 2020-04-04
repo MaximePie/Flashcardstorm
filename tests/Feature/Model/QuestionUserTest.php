@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Answer;
+use App\Helpers\CategoryHelper;
 use App\Helpers\QuestionUserHelper;
 use App\Question;
 use App\Question_user;
@@ -57,6 +58,21 @@ class QuestionUserTest extends TestCase
         $question->isMemorized = true;
 
         $this->assertTrue($question->isMemorized);
+    }
+
+    /**
+     * Prepared question has the correct answers
+     * Expected : The answer of the question
+     * @group question_user
+     * @test
+     */
+    public function preparedQuestionHasTheAppropriateAnswer() {
+
+        QuestionUserHelper::removeAllQuestionsForUser($this->user);
+        CategoryHelper::newCategory();
+        QuestionUserHelper::createScheduledQuestionForUser($this->user);
+
+        $questions = $this->user->scheduledRandomQuestion();
     }
 
 

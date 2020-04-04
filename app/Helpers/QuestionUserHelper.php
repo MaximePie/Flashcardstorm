@@ -6,7 +6,6 @@ use App\Question;
 use App\Question_user;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Support\Collection;
 
 /**
  * Class QuestionUserHelper Provides helpful methods for seeding purposes
