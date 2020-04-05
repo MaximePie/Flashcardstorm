@@ -7,6 +7,7 @@ use App\Question;
 use App\Question_user;
 use App\User;
 use App\Helpers\QuestionUserHelper;
+use Carbon\Carbon;
 use Tests\TestCase;
 
 /**
@@ -340,6 +341,37 @@ class UserTest extends TestCase
             User::RANDOM_QUESTION_MESSAGE_NOT_FOUND,
             User::questionMessage(self::IS_QUESTIONS_LIST_EMPTY, 'storm')
         );
+    }
+
+    /**
+     * UpdateDailyProgress sets the appropriate value on daily objective and progress
+     * Expected : Daily Progress is up to date
+     *
+     * @group question_user
+     * @group dailyProgress
+     * @group user
+     * @test
+     */
+    public function updateDailyProgress(): void
+    {
+        QuestionUserHelper::removeAllQuestionsForUser($this->user);
+        QuestionUserHelper::createScheduledQuestionForUser($this->user);
+        QuestionUserHelper::createScheduledQuestionForUser($this->user);
+        QuestionUserHelper::createScheduledQuestionForUser($this->user);
+        $this->user->daily_objective = $this->user->dailyQuestions()->count();
+        $this->user->save();
+        $this->user->updateDailyProgress();
+        $expectedDailyProgress = 1;
+
+        /** @var Question_user $artificiallyAnsweredQuestion */
+        $artificiallyAnsweredQuestion = $this->user->dailyQuestions()->first();
+        $artificiallyAnsweredQuestion = Question_user::query()->where('question_id', $artificiallyAnsweredQuestion->id)->first();
+        $artificiallyAnsweredQuestion->next_question_at = Carbon::now()->addDay();
+        $artificiallyAnsweredQuestion->save();
+
+
+        $this->user->updateDailyProgress();
+        $this->assertEquals($this->user->daily_progress, $expectedDailyProgress);
     }
 
     protected function setUp(): void

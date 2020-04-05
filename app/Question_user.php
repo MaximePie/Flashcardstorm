@@ -70,7 +70,7 @@ class Question_user extends Model
      */
     public function setIsMemorizedAttribute(bool $isMemorized): void
     {
-        if ($isMemorized === true ) {
+        if ($isMemorized === true) {
 
             if ($this->full_score < self::FULL_SCORE_TRESHOLD) {
                 throw new Exception("Cannot set memorized attribute while full score is under threshold");
@@ -83,8 +83,7 @@ class Question_user extends Model
 
             if ($userStatistics) {
                 ++$userStatistics->memorized_questions;
-            }
-            else {
+            } else {
                 $userStatistics = new UserStatistics();
                 $userStatistics->user_id = $this->user_id;
                 $userStatistics->memorized_questions = 1;
@@ -129,15 +128,14 @@ class Question_user extends Model
      * @param string $mode Soft : Increase the score and delay. Storm : Do nothing
      * @param bool|null $is_golden_card Whether the question has a bonus or not
      * @return int the new score of the question
-     * @throws Exception
      */
-    public function save_success(User $user, string $mode, bool $is_golden_card = false): int
+    public function saveSuccess(User $user, string $mode, bool $is_golden_card = false): int
     {
         if ($mode === 'soft') {
-            $earned_points = $this->full_score ?: $this->score;
+            $earned_points = $this->full_score;
             $this->current_delay++;
             $this->last_answered_at = Carbon::now();
-            $this->next_question_at = Carbon::now()->addDays($this->current_delay);
+            $this->next_question_at = Carbon::now()->addDays($this->current_delay - 1);
 
             if ($this->full_score >= 100) {
                 $this->isMemorized = true;
@@ -151,8 +149,6 @@ class Question_user extends Model
             $earned_points = $this->score;
         }
         $is_golden_card && $earned_points *= $earned_points;
-
-
 
         $user->score += $earned_points;
         $user->save();

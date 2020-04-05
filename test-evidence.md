@@ -47,6 +47,29 @@ Expected : The category of the question
 ## Prepared question category is null if there are no category assigned to the question
 Unexpected : A category
 
+## Save success updates the appropriate fields for soft mode
+Expected : UserScore is equal to full_score before it is updated
+Expected : CurrentDelay is incremented
+Expected : LastAnswerAt is set to now
+Expected : NextQuestionAt is set to now + current delay
+Expected : $expectedFullScore is set to the new current delay times the question base score
+
+## Save success memorizes a question if its full score is greater than 100
+Expected : isMemorized is true
+
+## Save success add 10 points on storm mode
+Expected : user score is augmented by 10
+
+## Save success with golden card attribute
+Expected : earned points is multiplied itself
+
+## Save success with golden card attribute set to FALSE should not increase earned points
+Expected : earned points is left by itself
+Unexpected : earned points is multiplied by itself
+
+## A new question_user has its full_score automatically set to its score
+Expected : Full score is equal to score
+
 ## Expected : 1 question scheduled for in 1 day
 Unwanted : 1 question scheduled for in 3 day
 
@@ -114,6 +137,9 @@ Check User::NEXT_QUESTION_MESSAGE_NOT_FOUND
 Expected : Il n'y a pas de question disponible, vous pouvez en créer en cliquant sur Ajouter des Questions
 
 Check User::NEXT_QUESTION_MESSAGE_NOT_FOUND
+
+## UpdateDailyProgress sets the appropriate value on daily objective and progress
+Expected : Daily Progress is up to date
 
 ## Test submit with success.
 

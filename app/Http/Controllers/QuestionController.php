@@ -234,6 +234,7 @@ class QuestionController extends Controller
     }
 
     /**
+     * Compares the submitted answer with the real answers and saves if it is a success
      * @param Request $request
      * @return JsonResponse
      * @throws Exception
@@ -245,11 +246,12 @@ class QuestionController extends Controller
 
         $user = Auth::user();
         $earned_points = 0;
+
         if ($request->answer && $question->isValidWith($request->answer)) {
             if ($user) {
                 $question_user = QUESTION_USER::query()->firstOrCreate(['user_id' => $user->id, 'question_id' => $question->id]);
                 $question_user->save();
-                $earned_points = $question_user->save_success($user, $request->mode, $request->is_golden_card);
+                $earned_points = $question_user->saveSuccess($user, $request->mode, $request->is_golden_card);
             }
 
             return response()->json([
