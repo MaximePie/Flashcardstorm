@@ -93,25 +93,12 @@ class QuestionController extends Controller
         $already_in_bag_questions = explode(',', $questions_bag_ids);
         $limit = config('app.question_bag_max_size') - count($already_in_bag_questions);
         if ($limit > 0) {
-            if ($user) {
-                $questions = $user->randomQuestion($mode, $already_in_bag_questions, $limit);
-
-                if ($questions->isEmpty() && $mode === 'soft') {
-                    $message = $user->nextQuestionMessage();
-                }
-            } else {
-                $questions = Question::query()->inRandomOrder()
-                    ->limit($limit)
-                    ->get();
-
-                if (!$questions) {
-                    $message = "Il n'y a pas de question disponible, vous pouvez en créer en cliquant sur Ajouter des Questions";
-                }
-            }
+            $questions = User::randomQuestions($mode, $already_in_bag_questions, $limit, $user);
+            $message = User::questionMessage($questions->isEmpty(), $mode, $user);
 
             if ($questions) {
-                $questions->each(static function (QUESTION $question) use ($user) {
-                    $question = $question->preparedForView();
+                $questions->each(static function (QUESTION $question) {
+                    $question->preparedForView();
                 });
             }
         }
@@ -129,7 +116,7 @@ class QuestionController extends Controller
      * @return JsonResponse
      * @throws Exception
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $answer = Answer::create([
             'wording' => $request->answer,

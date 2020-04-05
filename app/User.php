@@ -54,6 +54,7 @@ class User extends Authenticable
     use Notifiable;
     const NEXT_QUESTION_MESSAGE = "Vous avez répondu à toutes vos questions pour aujourd'hui. La prochaine question sera prévue pour le ";
     const NEXT_QUESTION_MESSAGE_NOT_FOUND = "Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter automatiquement les questions à votre Kit";
+    const RANDOM_QUESTION_MESSAGE_NOT_FOUND = "Il n'y a pas de question disponible, vous pouvez en créer en cliquant sur Ajouter des Questions";
 
     /**
      * The attributes that are mass assignable.
@@ -81,6 +82,7 @@ class User extends Authenticable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 
     /**
      * @return BelongsToMany
@@ -141,6 +143,34 @@ class User extends Authenticable
             ->first();
     }
 
+
+    /**
+     * Returns a random question
+     *
+     * @param User $user If there is a user, there is a special method for the random question. If not, take any question
+     * @param string $mode
+     * @param array $alreadyLoadedQuestionIds
+     * @param int $limit
+     * @return Collection
+     */
+    public static function randomQuestions(
+        string $mode = 'storm',
+        array $alreadyLoadedQuestionIds = [],
+        int $limit = Question_user::DEFAULT_BAG_LIMIT,
+        User $user = null
+    ): Collection
+    {
+        if ($user && $mode !== 'storm') {
+            return $user->randomUserQuestion($mode, $alreadyLoadedQuestionIds, $limit);
+        }
+
+        return Question::query()
+            ->limit($limit)
+            ->whereNotIn('question_users.question_id', $alreadyLoadedQuestionIds)
+            ->inRandomOrder()
+            ->get();
+    }
+
     /**
      * Returns a random daily question
      *
@@ -151,12 +181,20 @@ class User extends Authenticable
      * @param int $limit The maximum amount of question we should reach
      * @return Collection
      */
-    public function randomQuestion(string $mode = 'for_user', array $alreadyLoadedQuestionIds = [], int $limit = Question_user::DEFAULT_BAG_LIMIT): Collection
+    public function randomUserQuestion(
+        string $mode = 'storm',
+        array $alreadyLoadedQuestionIds = [],
+        int $limit = Question_user::DEFAULT_BAG_LIMIT)
+    : Collection
     {
         $queryBuilder = Question::query();
 
         if ($mode === 'soft') {
             $queryBuilder = $this->dailyQuestions();
+        }
+
+        if ($mode === 'for_user') {
+            $queryBuilder = $this->questions();
         }
 
         return $queryBuilder
@@ -167,15 +205,29 @@ class User extends Authenticable
     }
 
     /**
-     * Returns a message based on daily question
+     * Returns a message based on question screen when no question is found
+     * @param bool $isQuestionListEmpty if the question list is empty
+     * @param string $mode The mode of the user
+     * 'soft': ScheduledQuestion
+     * 'for_user': Storm mode, returns only user questions
+     * 'storm' : Storm mode, returns any question
+     * @param User|null $user the connected user
+     * @return string|null
      */
-    public function nextQuestionMessage()
+    public static function questionMessage(bool $isQuestionListEmpty, string $mode, User $user = null): ?string
     {
-        $next_question = $this->nextQuestion();
-        if ($next_question) {
-            return self::NEXT_QUESTION_MESSAGE . $next_question->next_question_at;
-        } else {
-            return self::NEXT_QUESTION_MESSAGE_NOT_FOUND;
+        if ($isQuestionListEmpty) {
+            if ($user && $mode === 'soft') {
+                $next_question = $user->nextQuestion();
+                if ($next_question) {
+                    return self::NEXT_QUESTION_MESSAGE . $next_question->next_question_at;
+                }
+
+                return self::NEXT_QUESTION_MESSAGE_NOT_FOUND;
+            }
+
+            return self::RANDOM_QUESTION_MESSAGE_NOT_FOUND;
         }
+        return null;
     }
 }

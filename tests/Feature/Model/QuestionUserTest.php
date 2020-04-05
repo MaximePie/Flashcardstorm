@@ -104,7 +104,7 @@ class QuestionUserTest extends TestCase
         QuestionUserHelper::createScheduledQuestionForUser($this->user);
 
         /** @var Question $question */
-        $question = $this->user->randomQuestion()->first();
+        $question = $this->user->randomUserQuestion()->first();
         $question = $question->preparedForView();
 
         $expectedAnswer = $question->answer()->first();
@@ -128,7 +128,7 @@ class QuestionUserTest extends TestCase
         QuestionHelper::newQuestion();
 
         /** @var Question $question */
-        $question = $this->user->randomQuestion()->first();
+        $question = $this->user->randomUserQuestion()->first();
         $question = $question->preparedForView($this->user);
 
         $this->assertNotNull($question);
@@ -150,7 +150,7 @@ class QuestionUserTest extends TestCase
         QuestionUserHelper::createScheduledQuestionForUser($this->user);
 
         /** @var Question $question */
-        $question = $this->user->randomQuestion()->first();
+        $question = $this->user->randomUserQuestion()->first();
         $question = $question->preparedForView($this->user);
 
         $this->assertNotNull($question);

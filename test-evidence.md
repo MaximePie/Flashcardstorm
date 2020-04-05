@@ -86,9 +86,17 @@ returns other questions
 Expected : 2 scheduled questions
 Unexpected : 1 scheduled question whose id is in the array
 
-## ScheduledRandomQuestions returns nothing if provided array contains all questions ids
+## RandomQuestion returns nothing if provided array contains all questions ids
 Expected : 2 scheduled questions
 Unexpected : 1 scheduled question whose id is in the array
+
+## RandomQuestion returns any question if no user is provided
+Expected : A question not set for the User
+
+## RandomQuestion returns any question if
+There is a user
+He is in storm mode
+Expected : A question not set for the User
 
 ## Question Message returns a message with the next question date
 Expected : Vous avez répondu à toutes vos questions pour aujourd'hui.
@@ -99,6 +107,11 @@ Check User::NEXT_QUESTION_MESSAGE
 ## Question Message returns a message when no question is scheduled
 Expected : Aucune question ne vous est assignée pour le moment. Passez en mode Tempête pour ajouter
 automatiquement les questions à votre Kit
+
+Check User::NEXT_QUESTION_MESSAGE_NOT_FOUND
+
+## Question Message returns a message when in storm mode but no question has been found
+Expected : Il n'y a pas de question disponible, vous pouvez en créer en cliquant sur Ajouter des Questions
 
 Check User::NEXT_QUESTION_MESSAGE_NOT_FOUND
 

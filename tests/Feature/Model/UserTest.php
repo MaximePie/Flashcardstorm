@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Helpers\QuestionHelper;
 use App\Question;
 use App\Question_user;
 use App\User;
@@ -18,6 +19,7 @@ class UserTest extends TestCase
      * CUSTOM METHODS TESTS
      ***************************
      */
+    private const IS_QUESTIONS_LIST_EMPTY = true;
 
     /**
      * Expected : 1 question scheduled for in 1 day
@@ -27,7 +29,7 @@ class UserTest extends TestCase
      * @group nextQuestion
      * @test
      */
-    public function nextQuestionReturnsTheClosestNextQuestion()
+    public function nextQuestionReturnsTheClosestNextQuestion(): void
     {
         $expectedNextQuestion = QuestionUserHelper::createIncomingQuestionForUser($this->user);
         $expectedNextQuestion->next_question_at = now()->addDays(1);
@@ -52,7 +54,7 @@ class UserTest extends TestCase
      * @group nextQuestion
      * @test
      */
-    public function nextQuestionIgnoresMemorizedQuestions()
+    public function nextQuestionIgnoresMemorizedQuestions(): void
     {
 
         $expectedNextQuestion = QuestionUserHelper::createIncomingQuestionForUser($this->user);
@@ -81,7 +83,7 @@ class UserTest extends TestCase
      * @group nextQuestion
      * @test
      */
-    public function nextQuestionIsNullWhenNoQuestionIsScheduled()
+    public function nextQuestionIsNullWhenNoQuestionIsScheduled(): void
     {
 
         $unwantedNextQuestion = QuestionUserHelper::createIncomingQuestionForUser($this->user);
@@ -97,11 +99,11 @@ class UserTest extends TestCase
      *
      * Unwanted : A question with next_question_at scheduled for later than now
      * @group question_user
-     * @group scheduledRandomQuestion
+     * @group randomQuestion
      * @group user
      * @test
      */
-    public function dailyQuestionDoesNotReturnIncomingQuestions()
+    public function dailyQuestionDoesNotReturnIncomingQuestions(): void
     {
         $unwantedIncomingQuestion = QuestionUserHelper::createIncomingQuestionForUser($this->user);
         $dailyQuestions = $this->user->dailyQuestions()->get();
@@ -119,7 +121,7 @@ class UserTest extends TestCase
      * @group user
      * @test
      */
-    public function dailyQuestionDoesNotReturnMemorizedQuestions()
+    public function dailyQuestionDoesNotReturnMemorizedQuestions(): void
     {
         $unwantedMemorizedQuestion = QuestionUserHelper::createMemorizedQuestionsForUser($this->user);
         $dailyQuestions = $this->user->dailyQuestions()->get();
@@ -137,7 +139,7 @@ class UserTest extends TestCase
      * @group user
      * @test
      */
-    public function dailyQuestionReturnsQuestion()
+    public function dailyQuestionReturnsQuestion(): void
     {
         $expectedQuestion = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
         $dailyQuestions = $this->user->dailyQuestions()->get();
@@ -149,14 +151,14 @@ class UserTest extends TestCase
      * Scheduled random question returns one or more questions
      * Expected : 2 Scheduled questions
      * @group question_user
-     * @group scheduledRandomQuestion
+     * @group randomQuestion
      * @group user
      * @test
      */
-    public function scheduledRandomQuestion()
+    public function randomQuestion(): void
     {
         $expectedQuestion = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
-        $randomQuestions = $this->user->randomQuestion();
+        $randomQuestions = $this->user->randomUserQuestion();
 
         $this->assertTrue($randomQuestions->contains($expectedQuestion));
     }
@@ -166,17 +168,17 @@ class UserTest extends TestCase
      * Expected : 2 scheduled questions
      * Unexpected : More or less questions
      * @group question_user
-     * @group scheduledRandomQuestion
-     * @group scheduledRandomQuestionAlreadyInBag
+     * @group randomQuestion
+     * @group randomQuestionAlreadyInBag
      * @group user
      * @test
      */
-    public function scheduledRandomQuestionWithEmptyBag()
+    public function randomQuestionWithEmptyBag(): void
     {
         $expectedQuestion1 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
         $expectedQuestion2 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
 
-        $questionsList = $this->user->randomQuestion('soft', []);
+        $questionsList = $this->user->randomUserQuestion('soft', []);
 
         $this->assertTrue($questionsList->contains($expectedQuestion1));
         $this->assertTrue($questionsList->contains($expectedQuestion2));
@@ -189,18 +191,18 @@ class UserTest extends TestCase
      * Expected : 2 scheduled questions
      * Unexpected : 1 scheduled question whose id is in the array
      * @group question_user
-     * @group scheduledRandomQuestion
-     * @group scheduledRandomQuestionAlreadyInBag
+     * @group randomQuestion
+     * @group randomQuestionAlreadyInBag
      * @group user
      * @test
      */
-    public function scheduledRandomQuestionWithNonEmptyBag()
+    public function randomQuestionWithNonEmptyBag(): void
     {
         $expectedQuestion1 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
         $expectedQuestion2 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
         $unexpectedQuestion = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
 
-        $questionsList = $this->user->randomQuestion('soft', [$unexpectedQuestion->id]);
+        $questionsList = $this->user->randomUserQuestion('soft', [$unexpectedQuestion->id]);
 
         $this->assertTrue($questionsList->contains($expectedQuestion1));
         $this->assertTrue($questionsList->contains($expectedQuestion2));
@@ -210,24 +212,62 @@ class UserTest extends TestCase
 
 
     /**
-     * ScheduledRandomQuestions returns nothing if provided array contains all questions ids
+     * RandomQuestion returns nothing if provided array contains all questions ids
      * Expected : 2 scheduled questions
      * Unexpected : 1 scheduled question whose id is in the array
      * @group question_user
-     * @group scheduledRandomQuestion
-     * @group scheduledRandomQuestionAlreadyInBag
+     * @group randomQuestion
+     * @group randomQuestionAlreadyInBag
      * @group user
      * @test
      */
-    public function scheduledRandomQuestionWithSelfsameBag()
+    public function randomQuestionWithSelfsameBag(): void
     {
         $unexpectedQuestion1 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
         $unexpectedQuestion2 = QuestionUserHelper::createScheduledQuestionForUser($this->user)->question()->first();
 
-        $questionsList = $this->user->randomQuestion('soft', [$unexpectedQuestion1->id, $unexpectedQuestion2->id]);
+        $questionsList = $this->user->randomUserQuestion('soft', [$unexpectedQuestion1->id, $unexpectedQuestion2->id]);
 
         $this->assertFalse($questionsList->contains($questionsList));
         $this->assertEmpty($questionsList);
+    }
+
+    /**
+     * RandomQuestion returns any question if no user is provided
+     * Expected : A question not set for the User
+     * @group question_user
+     * @group randomQuestion
+     * @group user
+     * @test
+     */
+    public function randomQuestionWithNoUser(): void
+    {
+        QuestionUserHelper::removeAllQuestionsForUser($this->user);
+        QuestionHelper::newQuestion();
+
+        $questionsList = User::randomQuestions();
+
+        $this->assertFalse($this->user->questions()->get()->contains($questionsList));
+    }
+
+    /**
+     * RandomQuestion returns any question if
+     * There is a user
+     * He is in storm mode
+     * Expected : A question not set for the User
+     * @group question_user
+     * @group randomQuestion
+     * @group user
+     * @test
+     */
+    public function randomQuestionWithUserInStormMode(): void
+    {
+        QuestionUserHelper::removeAllQuestionsForUser($this->user);
+        QuestionHelper::newQuestion();
+
+        $questionsList = User::randomQuestions('storm', [], Question_user::DEFAULT_BAG_LIMIT ,$this->user);
+
+        $this->assertFalse($this->user->questions()->get()->contains($questionsList));
     }
 
 
@@ -238,11 +278,11 @@ class UserTest extends TestCase
      * Check User::NEXT_QUESTION_MESSAGE
      *
      * @group question_user
-     * @group nextQuestionMessage
+     * @group questionMessage
      * @group user
      * @test
      */
-    public function questionMessageWithExistingNextQuestion()
+    public function questionMessageWithExistingNextQuestion(): void
     {
         $nextQuestion = QuestionUserHelper::createIncomingQuestionForUser($this->user);
         $nextQuestion->next_question_at = now()->addDays(1);
@@ -255,7 +295,8 @@ class UserTest extends TestCase
         );
 
         $this->assertStringContainsString(
-            $nextQuestion->next_question_at, $this->user->nextQuestionMessage()
+            $nextQuestion->next_question_at,
+            User::questionMessage(self::IS_QUESTIONS_LIST_EMPTY, 'soft', $this->user)
         );
     }
 
@@ -267,16 +308,37 @@ class UserTest extends TestCase
      *
      * Check User::NEXT_QUESTION_MESSAGE_NOT_FOUND
      * @group question_user
-     * @group nextQuestionMessage
+     * @group questionMessage
      * @group user
      * @test
      */
-    public function questionMessageWithNoNextQuestion()
+    public function questionMessageWithNoNextQuestion(): void
     {
         QuestionUserHelper::removeAllQuestionsForUser($this->user);
 
         $this->assertEquals(
-            User::NEXT_QUESTION_MESSAGE_NOT_FOUND, $this->user->nextQuestionMessage()
+            User::NEXT_QUESTION_MESSAGE_NOT_FOUND,
+            User::questionMessage(self::IS_QUESTIONS_LIST_EMPTY, 'soft', $this->user)
+        );
+    }
+
+    /**
+     * Question Message returns a message when in storm mode but no question has been found
+     * Expected : Il n'y a pas de question disponible, vous pouvez en créer en cliquant sur Ajouter des Questions
+     *
+     * Check User::NEXT_QUESTION_MESSAGE_NOT_FOUND
+     * @group question_user
+     * @group questionMessage
+     * @group user
+     * @test
+     */
+    public function questionMessageWithNoQuestionInStormMode(): void
+    {
+        QuestionUserHelper::removeAllQuestionsForUser($this->user);
+
+        $this->assertEquals(
+            User::RANDOM_QUESTION_MESSAGE_NOT_FOUND,
+            User::questionMessage(self::IS_QUESTIONS_LIST_EMPTY, 'storm')
         );
     }
 
