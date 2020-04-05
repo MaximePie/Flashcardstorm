@@ -166,7 +166,7 @@ class User extends Authenticable
 
         return Question::query()
             ->limit($limit)
-            ->whereNotIn('question_users.question_id', $alreadyLoadedQuestionIds)
+            ->whereNotIn('id', $alreadyLoadedQuestionIds)
             ->inRandomOrder()
             ->get();
     }
