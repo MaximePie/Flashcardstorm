@@ -127,7 +127,7 @@ class QuestionController extends Controller
             }
 
             return response()->json([
-               'questions' => $questions->get() ?? []
+               'questions' => $questions->inRandomOrder()->get() ?? []
             ]);
         }
         else {
