@@ -1,6 +1,15 @@
 .Profile {
-    &__chart-zone {
-        padding: 12px;
-        background-color: #dedede;
+  &__chart-zone {
+    padding: 12px;
+    background-color: #dedede;
+  }
+
+  &__memorized-questions {
+
+    .Profile__memorized-question {
+      margin: 16px;
+      padding: 16px;
     }
+  }
+
 }

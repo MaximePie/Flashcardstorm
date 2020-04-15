@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
                 'api_token' => Str::random(60),
             ]);
         }
+
         QuestionUserHelper::createIncomingQuestionForUser($mainUser);
         QuestionUserHelper::createMemorizedQuestionsForUser($mainUser);
     }

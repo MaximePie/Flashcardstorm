@@ -1,8 +1,6 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
-import Cookies from 'js-cookie';
-import moment from 'moment';
 import classNames from 'classnames';
 import { PropTypes } from 'prop-types';
 import { toLocale } from '../../helper';
@@ -64,8 +62,8 @@ export default function Changelogs(props) {
                     </a>
                   </Tooltip>
                   <span>
-                        {changelog.numberOfVotes}
-                      </span>
+                    {changelog.numberOfVotes}
+                  </span>
                 </div>
                 <div className="Changelogs__log-content">
                   <div>
@@ -113,7 +111,7 @@ export default function Changelogs(props) {
             text="Proposez une amélioration !"
             className="Changelogs__tab-button"
             href="/add_changelog"
-            onClick={() => { document.location = '/add_changelog';}}
+            onClick={() => { document.location = '/add_changelog'; }}
           />
         )}
       </div>

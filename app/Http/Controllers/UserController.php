@@ -35,7 +35,17 @@ class UserController extends Controller
     {
         $user = Auth::user();
         if ($user) {
-            return response()->json(['user' => $user->name, 'statistics' => $user->statistics]);
+
+            $memorizedQuestions = $user->memorizedQuestions()->get();
+            foreach($memorizedQuestions as $question) {
+                $question['answer'] = $question->answer()->first()->wording;
+            }
+
+            return response()->json([
+                'user' => $user->name,
+                'statistics' => $user->statistics,
+                'memorizedQuestions' => $memorizedQuestions,
+            ]);
         }
 
         return response()->json();
