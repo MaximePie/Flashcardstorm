@@ -119,7 +119,7 @@ class QuestionController extends Controller
         /** @var User $user */
         $user = Auth::user();
         if ($user) {
-            $questions = $user->dailyQuestions();
+            $questions = $user->dailyQuestions()->inRandomOrder();
             if ($questions) {
                 $questions->each(static function (QUESTION $question) {
                     $question->preparedForView();
@@ -127,7 +127,7 @@ class QuestionController extends Controller
             }
 
             return response()->json([
-               'questions' => $questions->inRandomOrder()->get() ?? []
+               'questions' => $questions->get()->shuffle() ?? []
             ]);
         }
         else {
