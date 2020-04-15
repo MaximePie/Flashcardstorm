@@ -4,6 +4,8 @@ import QuestionRow from '../molecule/QuestionRow';
 
 export default function RoughTraining() {
   const [questions, updateQuestions] = React.useState([]);
+  const [failed, setFailed] = React.useState(0);
+  const [success, setSuccess] = React.useState(0);
 
   React.useEffect(() => {
     updateQuestionsBag();
@@ -11,6 +13,11 @@ export default function RoughTraining() {
 
   return (
     <div className="RoughTraining">
+      <h2 className="RoughTraining__score">
+        <span className="RoughTraining__success">{success}</span>
+        /
+        <span className="RoughTraining__failed">{failed}</span>
+      </h2>
       <div className="RoughTraining__questions">
         {questions.map((question) => (
           <QuestionRow
@@ -37,7 +44,9 @@ export default function RoughTraining() {
       const questionCard = document.getElementById(`question-${question.id}`);
       if (response.data.status === 200) {
         questionCard.classList.add('QuestionRow--success');
+        setSuccess(success + 1);
       } else if (response.data.status === 500) {
+        setFailed(failed + 1);
         questionCard.classList.add('QuestionRow--failed');
       }
     });

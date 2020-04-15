@@ -1,6 +1,18 @@
 .RoughTraining {
   height: 100vh;
-  padding-top: 5em;
+  padding-top: 6em;
+
+  &__score {
+    text-align: center;
+
+    .RoughTraining__failed {
+      color: darkred;
+    }
+
+    .RoughTraining__success {
+      color: forestgreen;
+    }
+  }
 
   &__questions {
     height: 100%;
