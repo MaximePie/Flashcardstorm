@@ -20,6 +20,7 @@ import Login from './components/pages/Login';
 import Profile from './components/Profile';
 import server from './server';
 import Training from './components/pages/Training';
+import RoughTraining from './components/pages/RoughTraining';
 import Users from './components/Users';
 import Welcome from './components/pages/Welcome';
 import Changelogs from './components/pages/Changelogs';
@@ -32,18 +33,20 @@ import { isMobile } from './helper';
 const $ = require('jquery');
 require('popper.js');
 require('bootstrap');
-require('../sass/Icon.scss');
-require('../sass/QuestionCard.scss');
-require('../sass/Home.scss');
-require('../sass/Navbar.scss');
-require('../sass/Addknowledge.scss');
-require('../sass/QuestionsList.scss');
-require('../sass/Snackbar.scss');
-require('../sass/Changelogs.scss');
 require('../sass/AddCategory.scss');
-require('../sass/Profile.scss');
-require('../sass/Register.scss');
+require('../sass/Addknowledge.scss');
+require('../sass/Changelogs.scss');
+require('../sass/Home.scss');
+require('../sass/Icon.scss');
 require('../sass/Login.scss');
+require('../sass/Navbar.scss');
+require('../sass/Profile.scss');
+require('../sass/QuestionCard.scss');
+require('../sass/QuestionsList.scss');
+require('../sass/QuestionRow.scss');
+require('../sass/Register.scss');
+require('../sass/RoughTraining.scss');
+require('../sass/Snackbar.scss');
 require('../sass/Welcome.scss');
 
 export default function App() {
@@ -58,14 +61,6 @@ export default function App() {
       updateUser();
     }
   }, [isConnected]);
-
-  React.useEffect(() => {
-    if (isMobile()) {
-      const width = document.documentElement.clientWidth;
-      const height = document.documentElement.clientHeight;
-      // $('html, body, .App').css({ width, height });
-    }
-  }, []);
 
   const snackbarConfig = {
     maxSnack: isMobile() ? 1 : 3,
@@ -111,6 +106,9 @@ export default function App() {
             <Route path="/soft_training">
               <Training mode="soft" updateUserScore={updateUser} />
             </Route>
+            <Route path="/rough_training">
+              <RoughTraining />
+            </Route>
             <Route path="/logout">
               <Training updateUserScore={updateUser} is_connected={isConnected} />
             </Route>
@@ -150,8 +148,7 @@ export default function App() {
 
   function updateUser() {
     server.get('me/score').then((response) => {
-
-      const { number_of_questions: numberOfQuestions, number_of_new_changelogs } = response.data;
+      const { number_of_questions: numberOfQuestions, number_of_new_changelogs: numberOfNewChangelogs } = response.data;
       const newUser = {};
       if (!user) {
         newUser.initial_score = response.data.score;
@@ -165,7 +162,7 @@ export default function App() {
         newUser.numberOfQuestions = numberOfQuestions;
       }
       if (window.location.pathname !== '/about') {
-        newUser.numberOfNewChangelogs = number_of_new_changelogs;
+        newUser.numberOfNewChangelogs = numberOfNewChangelogs;
       }
 
       setUser(newUser);

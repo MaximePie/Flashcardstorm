@@ -35,7 +35,28 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        $this->createQuestionForUser($mainUser);
+
+    }
+
+    /** Create questions for the given user
+     * @param User $mainUser
+     */
+    private function createQuestionForUser($mainUser)
+    {
+
         QuestionUserHelper::createIncomingQuestionForUser($mainUser);
+        QuestionUserHelper::createIncomingQuestionForUser($mainUser);
+        QuestionUserHelper::createIncomingQuestionForUser($mainUser);
+        QuestionUserHelper::createIncomingQuestionForUser($mainUser);
+
+        QuestionUserHelper::createScheduledQuestionForUser($mainUser);
+        QuestionUserHelper::createScheduledQuestionForUser($mainUser);
+        QuestionUserHelper::createScheduledQuestionForUser($mainUser);
+        QuestionUserHelper::createScheduledQuestionForUser($mainUser);
+
+        QuestionUserHelper::createMemorizedQuestionsForUser($mainUser);
+        QuestionUserHelper::createMemorizedQuestionsForUser($mainUser);
         QuestionUserHelper::createMemorizedQuestionsForUser($mainUser);
     }
 }

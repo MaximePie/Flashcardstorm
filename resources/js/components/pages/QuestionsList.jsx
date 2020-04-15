@@ -21,7 +21,6 @@ export default function QuestionsList(props) {
   React.useEffect(() => {
     document.getElementById('App').style.background = 'content-box no-repeat url("../images/registerbackground.jpeg")';
     document.getElementById('App').style.backgroundSize = 'cover';
-    console.log(document.getElementById('App').style)
   }, [])
 
   React.useEffect(() => {

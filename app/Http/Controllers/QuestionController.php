@@ -110,6 +110,34 @@ class QuestionController extends Controller
     }
 
     /**
+     * Returns all daily questions to the user so he can immediately answer
+     * the ones he already knows
+     * @return JsonResponse
+     */
+    public function allDailyQuestions(): JsonResponse
+    {
+        /** @var User $user */
+        $user = Auth::user();
+        if ($user) {
+            $questions = $user->dailyQuestions();
+            if ($questions) {
+                $questions->each(static function (QUESTION $question) {
+                    $question->preparedForView();
+                });
+            }
+
+            return response()->json([
+               'questions' => $questions->get() ?? []
+            ]);
+        }
+        else {
+            return response()->json([
+                'error' => 'Vous ne pouvez pas continuer car vous n\'êtes pas connecté.'
+            ]);
+        }
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param Request $request

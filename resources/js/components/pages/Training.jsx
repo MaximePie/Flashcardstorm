@@ -2,7 +2,6 @@ import React from 'react';
 import { useSnackbar } from 'notistack';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Cookies from 'js-cookie';
 import Switch from '@material-ui/core/Switch';
 import server from '../../server';
 import QuestionCard from '../QuestionCard';
@@ -25,7 +24,7 @@ export default function Training(props) {
     server.get('update_progress')
       .then((response) => {
         const { userProgress: userProgressData } = response.data;
-        setUserProgress(userProgressData)
+        setUserProgress(userProgressData);
         updateQuestionsList();
       });
   }, []);
@@ -107,8 +106,8 @@ export default function Training(props) {
             variant: response.data.status === 200 ? 'success' : 'warning',
           },
         );
-        setUserProgress(response.data.userProgress)
-        props.updateUserScore()
+        setUserProgress(response.data.userProgress);
+        props.updateUserScore();
       });
   }
 

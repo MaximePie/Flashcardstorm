@@ -37,8 +37,8 @@ export default function Profile() {
               <CartesianGrid stroke="#ccc" />
             </LineChart>
           </div>
+          <h3>Questions mémorisées</h3>
           <div className="Profile__memorized-questions">
-            <h3>Questions mémorisées</h3>
             {memorizedQuestions.map((question) => (
               <Paper className="Profile__memorized-question">
                 <h4>
@@ -56,18 +56,24 @@ export default function Profile() {
   );
 
   function fetchUserInfo() {
-    axios.get(`api/me?api_token=${Cookies.get('Bearer')}`).then((response) => {
-      const { user: userData, statistics: statisticsData, memorizedQuestions: memorizedQuestionsData } = response.data;
-      const formatedStatistics = statisticsData.map((statistic) => ({
-        // name: 'JAJA',
-        name: moment(statistic.created_at).format('MMM Do YY'),
-        uv: statistic.memorized_questions,
-        pv: 2400,
-        amt: 2400,
-      }));
-      setUser(userData);
-      setStatistics(formatedStatistics);
-      setMemorizedQuestions(memorizedQuestionsData);
-    });
+    axios.get(`api/me?api_token=${Cookies.get('Bearer')}`)
+      .then((response) => {
+        const {
+          user: userData,
+          statistics: statisticsData,
+          memorizedQuestions: memorizedQuestionsData,
+        } = response.data;
+        const formatedStatistics = statisticsData.map((statistic) => ({
+          // name: 'JAJA',
+          name: moment(statistic.created_at)
+            .format('MMM Do YY'),
+          uv: statistic.memorized_questions,
+          pv: 2400,
+          amt: 2400,
+        }));
+        setUser(userData);
+        setStatistics(formatedStatistics);
+        setMemorizedQuestions(memorizedQuestionsData);
+      });
   }
 }

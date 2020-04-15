@@ -5,6 +5,8 @@
   }
 
   &__memorized-questions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
 
     .Profile__memorized-question {
       margin: 16px;

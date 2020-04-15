@@ -1,0 +1,13 @@
+.QuestionRow {
+  padding: 4px;
+
+  &--success {
+    background-color: lightgreen;
+    pointer-events: none;
+  }
+
+  &--failed {
+    background-color: palevioletred;
+    pointer-events: none;
+  }
+}

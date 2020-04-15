@@ -16,8 +16,8 @@ import { isMobile } from '../helper';
 
 export default function Navbar(props) {
 
-  const number_of_new_questions = props.user?.numberOfQuestions
-  const numberOfNewChangelogs = props.user?.numberOfNewChangelogs
+  const number_of_new_questions = props.user?.numberOfQuestions;
+  const numberOfNewChangelogs = props.user?.numberOfNewChangelogs;
 
   const [isOpen, setOpen] = React.useState(false);
 
@@ -40,33 +40,43 @@ export default function Navbar(props) {
       <List className="navbar-nav mr-auto Navbar__list">
         <ListItem button component="a" href="/home" className="Navbar__item">
           <ListItemIcon>
-            <i className="fas fa-cloud-meatball" />
+            <i className="fas fa-cloud-meatball"/>
           </ListItemIcon>
           <ListItemText>
             Mode tempête
           </ListItemText>
         </ListItem>
         {props.is_connected && (
-          <ListItem button component="a" href="/soft_training" className="Navbar__item">
-            <ListItemIcon>
-              {number_of_new_questions && number_of_new_questions > 0 ? (
-                <Badge color="secondary" badgeContent={number_of_new_questions}>
-                  <i className="fas fa-calendar-alt" />
-                </Badge>
-              ) : (
-                <>
-                  <i className="fas fa-calendar-alt" />
-                </>
-              )}
-            </ListItemIcon>
-            <ListItemText>
-              Mode entraînement planifié
-            </ListItemText>
-          </ListItem>
+          <>
+            <ListItem button component="a" href="/soft_training" className="Navbar__item">
+              <ListItemIcon>
+                {number_of_new_questions && number_of_new_questions > 0 ? (
+                  <Badge color="secondary" badgeContent={number_of_new_questions}>
+                    <i className="fas fa-calendar-alt"/>
+                  </Badge>
+                ) : (
+                  <>
+                    <i className="fas fa-calendar-alt"/>
+                  </>
+                )}
+              </ListItemIcon>
+              <ListItemText>
+                Mode entraînement planifié
+              </ListItemText>
+            </ListItem>
+            <ListItem button component="a" href="/rough_training" className="Navbar__item">
+              <ListItemIcon>
+                <i className="fas fa-fire"/>
+              </ListItemIcon>
+              <ListItemText>
+                Toutes les questions
+              </ListItemText>
+            </ListItem>
+          </>
         )}
         <ListItem button component="a" href="/questions" className="Navbar__item">
           <ListItemIcon>
-            <i className="fas fa-list" />
+            <i className="fas fa-list"/>
           </ListItemIcon>
           <ListItemText>
             Questions
@@ -74,7 +84,7 @@ export default function Navbar(props) {
         </ListItem>
         <ListItem button component="a" href="/add" className="Navbar__item">
           <ListItemIcon>
-            <i className="fas fa-folder-plus" />
+            <i className="fas fa-folder-plus"/>
           </ListItemIcon>
           <ListItemText>
             Ajouter des questions
@@ -84,7 +94,7 @@ export default function Navbar(props) {
           <>
             <ListItem button component="a" href="/register" className="Navbar__item">
               <ListItemIcon>
-                <i className="fas fa-user-plus" />
+                <i className="fas fa-user-plus"/>
               </ListItemIcon>
               <ListItemText>
                 S'enregistrer
@@ -92,7 +102,7 @@ export default function Navbar(props) {
             </ListItem>
             <ListItem button component="a" href="/login" className="Navbar__item">
               <ListItemIcon>
-                <i className="fas fa-sign-in-alt" />
+                <i className="fas fa-sign-in-alt"/>
               </ListItemIcon>
               <ListItemText>
                 Se connecter
@@ -104,7 +114,7 @@ export default function Navbar(props) {
           <>
             <ListItem button component="a" href="/add_category" className="Navbar__item">
               <ListItemIcon>
-                <i className="fas fa-folder-plus" />
+                <i className="fas fa-folder-plus"/>
               </ListItemIcon>
               <ListItemText>
                 Ajouter des categories
@@ -112,7 +122,7 @@ export default function Navbar(props) {
             </ListItem>
             <ListItem button component="a" href="/users" className="Navbar__item">
               <ListItemIcon>
-                <i className="fas fa-users" />
+                <i className="fas fa-users"/>
               </ListItemIcon>
               <ListItemText>
                 Utilisateurs
@@ -120,7 +130,7 @@ export default function Navbar(props) {
             </ListItem>
             <ListItem button component="a" onClick={logout} className="Navbar__item">
               <ListItemIcon>
-                <i className="fas fa-sign-out-alt" />
+                <i className="fas fa-sign-out-alt"/>
               </ListItemIcon>
               <ListItemText>
                 Se déconnecter
@@ -132,11 +142,11 @@ export default function Navbar(props) {
           <ListItemIcon>
             {numberOfNewChangelogs && numberOfNewChangelogs > 0 ? (
               <Badge color="secondary" badgeContent={numberOfNewChangelogs}>
-                <i className="fas fa-question-circle" />
+                <i className="fas fa-question-circle"/>
               </Badge>
             ) : (
               <>
-                <i className="fas fa-question-circle" />
+                <i className="fas fa-question-circle"/>
               </>
             )}
           </ListItemIcon>
@@ -161,7 +171,7 @@ export default function Navbar(props) {
           aria-label="Toggle navigation"
           onClick={() => setOpen(true)}
         >
-          <Icon name="bars" className="Navbar__drawer-icon" />
+          <Icon name="bars" className="Navbar__drawer-icon"/>
         </button>
         <button
           className="Navbar__toggler-wide"
@@ -176,12 +186,12 @@ export default function Navbar(props) {
             || (number_of_new_questions && number_of_new_questions > 0)
               ? (
                 <Badge color="secondary" variant="dot">
-                  <Icon name="bars" className="Navbar__drawer-icon" />
+                  <Icon name="bars" className="Navbar__drawer-icon"/>
                 </Badge>
               ) : (
-                <Icon name="bars" className="Navbar__drawer-icon" />
+                <Icon name="bars" className="Navbar__drawer-icon"/>
               )
-}
+          }
         </button>
         <Drawer open={isOpen} onClose={toggleDrawer(false)}>
           {sideList('left')}
@@ -189,7 +199,7 @@ export default function Navbar(props) {
         <div className="Navbar__item-profile">
           {!isMobile() && (
             <a className="navbar-brand Navbar__home-link" href="/">
-              <Avatar className="Navbar__logo" alt="GIPSI Logo" src="/images/logo.png" />
+              <Avatar className="Navbar__logo" alt="GIPSI Logo" src="/images/logo.png"/>
               <div className="Navbar__logo-text">
                 FlashcardStorm
               </div>
@@ -198,7 +208,7 @@ export default function Navbar(props) {
           {props.is_connected && (
             <div className="Navbar__item-profile-container">
               <a href="/profile" className="Navbar__item-profile-icon-link">
-                <i className="Navbar__item-profile-icon fas fa-user-circle" />
+                <i className="Navbar__item-profile-icon fas fa-user-circle"/>
               </a>
               {props.user && (
                 <span className="Navbar__item-profile-score">
@@ -218,10 +228,11 @@ export default function Navbar(props) {
     </div>
   );
 
-  function logout() {
-    axios.get('/logout').then((response) => {
-      Cookies.remove('Bearer');
-      document.location = '/home';
-    });
+  function logout() {
+    axios.get('/logout')
+      .then((response) => {
+        Cookies.remove('Bearer');
+        document.location = '/home';
+      });
   }
 }

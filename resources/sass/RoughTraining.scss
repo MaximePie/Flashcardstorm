@@ -1,0 +1,13 @@
+.RoughTraining {
+  height: 100vh;
+  padding-top: 5em;
+
+  &__questions {
+    height: 100%;
+    overflow-y: auto;
+
+    display: grid;
+    grid-template-rows: 160px;
+    grid-row-gap: 8px;
+  }
+}
