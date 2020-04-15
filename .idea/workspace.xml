@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/molecule/QuestionRow.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/pages/RoughTraining.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/QuestionRow.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/RoughTraining.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Flashcardstorm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Flashcardstorm.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/QuestionCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/QuestionCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Training.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Training.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/Profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Profile.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,7 +280,7 @@
       <workItem from="1586849033623" duration="8393000" />
       <workItem from="1586889050584" duration="2072000" />
       <workItem from="1586930368684" duration="2177000" />
-      <workItem from="1586937072018" duration="14924000" />
+      <workItem from="1586937072018" duration="15278000" />
     </task>
     <servers />
   </component>

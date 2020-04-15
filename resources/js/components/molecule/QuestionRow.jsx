@@ -35,9 +35,6 @@ export default function QuestionRow(props) {
         onChange={(e) => setAnswer(e.target.value)}
         value={answer}
       />
-      <div className="QuestionRow__actions">
-        <Button variant="small" onClick={() => props.onSubmit(answer)} text="Envoyer" />
-      </div>
     </form>
   );
 
