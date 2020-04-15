@@ -76,19 +76,8 @@ class Question_user extends Model
                 throw new Exception("Cannot set memorized attribute while full score is under threshold");
             }
 
-            $userStatistics = UserStatistics::query()
-                ->where('user_id', $this->user_id)
-                ->whereDate('created_at', '=', Carbon::today()->toDateString())
-                ->first();
-
-            if ($userStatistics) {
-                ++$userStatistics->memorized_questions;
-            } else {
-                $userStatistics = new UserStatistics();
-                $userStatistics->user_id = $this->user_id;
-                $userStatistics->memorized_questions = 1;
-                $userStatistics->save();
-            }
+            $user = User::find($this->user_id);
+            UserStatistics::incrementForUser($user->id, $user->memorizedQuestions()->count());
 
             $this->next_question_at = null;
         }

@@ -98,6 +98,15 @@ class User extends Authenticable
     }
 
     /**
+     * Returns all memorized questions
+     */
+    public function memorizedQuestions(): BelongsToMany
+    {
+        return $this->BelongsToMany(Question::class, 'question_users')
+            ->where('isMemorized', true);
+    }
+
+    /**
      * @return HasMany
      */
     public function statistics(): HasMany
