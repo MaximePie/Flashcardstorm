@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Answer;
+use App\Helpers\QuestionHelper;
 use App\Question;
 use App\Question_user;
 use DateTime;
@@ -22,13 +23,26 @@ class QuestionTest extends TestCase
     {
         return [
             ['la raclette'],
+            ['le raclette'],
+            ['les raclette'],
+            ['l\'raclette'],
             ['raclette'],
             ['RacLette'],
-            ['Raclette LA'],
             ['Rac  lette'],
+            ['Rac-lette'],
+            ['To Raclette'],
+            ['The Raclette'],
+            ['A Raclette'],
+            ['An Raclette'],
+            ['racletté'],
+            ['raclettè'],
+            ['raclettê'],
+            ['raclettë'],
+            ['räclette'],
+            ['râclette'],
+            ['raclêtte'],
         ];
     }
-
     /**
      * Returns an array of invalid answers for a question
      * (The original answer is "raclette").
@@ -57,11 +71,12 @@ class QuestionTest extends TestCase
      */
     public function test_is_valid_for($valid_answer): void
     {
-        $this->question = Question::query()->first();
+        $question = QuestionHelper::newQuestion();
+
         $correct_answer = Answer::create(['wording' => 'la raclette']);
-        $this->question->answer_id = $correct_answer->id;
-        $this->question->save();
-        self::assertTrue($this->question->isValidWith($valid_answer));
+        $question->answer_id = $correct_answer->id;
+        $question->save();
+        parent::assertTrue($question->isValidWith($valid_answer));
     }
 
     /**
@@ -72,11 +87,12 @@ class QuestionTest extends TestCase
      */
     public function test_is_invalid_for($invalid_answer): void
     {
-        $this->question = Question::query()->first();
+        $question = QuestionHelper::newQuestion();
+
         $correct_answer = Answer::create(['wording' => 'la raclette']);
-        $this->question->answer_id = $correct_answer->id;
-        $this->question->save();
-        self::assertFalse($this->question->isValidWith($invalid_answer));
+        $question->answer_id = $correct_answer->id;
+        $question->save();
+        self::assertFalse($question->isValidWith($invalid_answer));
     }
 
     /**
@@ -86,11 +102,12 @@ class QuestionTest extends TestCase
      */
     public function test_create_reverted_question(): void
     {
-        $reverted_question = $this->question->createReverseQuestion();
-        self::assertTrue($this->question->isValidWith($reverted_question->wording));
-        self::assertTrue($reverted_question->isValidWith($this->question->wording));
-        self::assertSame($reverted_question->reverse_question_id, $this->question->id);
-        self::assertSame($reverted_question->category_id, $this->question->category_id);
+        $question = QuestionHelper::newQuestion();
+        $reverted_question = $question->createReverseQuestion();
+        self::assertTrue($question->isValidWith($reverted_question->wording));
+        self::assertTrue($reverted_question->isValidWith($question->wording));
+        self::assertSame($reverted_question->reverse_question_id, $question->id);
+        self::assertSame($reverted_question->category_id, $question->category_id);
     }
 
 
@@ -98,6 +115,5 @@ class QuestionTest extends TestCase
     {
         parent::setUp();
         QUESTION::query()->forceDelete();
-        $this->question = $this->question();
     }
 }

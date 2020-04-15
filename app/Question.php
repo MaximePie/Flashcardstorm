@@ -78,6 +78,64 @@ class Question extends Model
     ];
 
     /**
+     * Analyse the given string and replaces specific characters by a more generic character
+     * Removes forbidden words
+     * @param string $answer The answer we want to filter
+     * @return string|string[]|null
+     */
+    private static function filterAnswer(string $answer)
+    {
+
+        /** @var array $matchingPattern replace all the values by the index
+         * Index : Absorbing characters
+         * Values : Morphed characters
+         */
+        $matchingPattern = [
+            'a' => ['ä', 'â', 'à'],
+            'e' => ['ë', 'ê', 'è', 'é'],
+            'u' => ['ù', 'ü', 'û'],
+            'i' => ['î', 'ï'],
+            'o' => ['ô', 'ö'],
+            '' => [
+                'la',
+                'les',
+                'le',
+                'un',
+                'une',
+                'des',
+                'a',
+                'an',
+                'to',
+                'the',
+                ' ',
+            ],
+            'remove' => [
+                "l'",
+                '-',
+            ]
+        ];
+
+        $answer = strtolower($answer);
+
+        foreach ($matchingPattern as $target => $wanted) {
+            $pattern = '';
+
+            foreach ($wanted as $removedCharacter) {
+                $pattern .= '(' . $removedCharacter . ($target === '' ? '\s)|' : ')|');
+            }
+
+            $pattern = rtrim($pattern, "|");
+            $answer = preg_replace(
+                '/' . $pattern . '/i',
+                $target === 'remove' ? '' : $target,
+                $answer
+            );
+        }
+
+        return $answer;
+    }
+
+    /**
      * @return BelongsTo
      */
     public function answer(): BelongsTo
@@ -152,6 +210,7 @@ class Question extends Model
      */
     public function isValidWith(string $submitted_answer): bool
     {
+
         $correct_answer = $this->answer()->first()->wording;
 
         if ($this->is_reverse) {
@@ -162,11 +221,8 @@ class Question extends Model
             return true;
         }
 
-        $purged_answer = strtolower($submitted_answer);
-        $purged_answer = preg_replace('/(\bla|les|le|une|des|un\b)|\s*/', '', $purged_answer);
-
-        $correct_answer = strtolower($correct_answer);
-        $correct_answer = preg_replace('/(\bla|les|le|une|des|un\b)|\s*/', '', $correct_answer);
+        $purged_answer = self::filterAnswer($submitted_answer);
+        $correct_answer = self::filterAnswer($correct_answer);
 
         return $correct_answer === $purged_answer;
     }

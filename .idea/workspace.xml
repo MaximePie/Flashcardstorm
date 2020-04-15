@@ -2,12 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Question_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Question_user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_provision" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_provision" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/box_meta" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/box_meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/creator_uid" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/creator_uid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/id" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/id" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/index_uuid" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/index_uuid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/private_key" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/private_key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/synced_folders" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/synced_folders" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/vagrant_cwd" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/vagrant_cwd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/rgloader/loader.rb" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/rgloader/loader.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Question.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/QuestionFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/QuestionFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-evidence.md" beforeDir="false" afterPath="$PROJECT_DIR$/test-evidence.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Model/QuestionUserTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Model/QuestionUserTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/Model/UserTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Model/UserTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/Model/QuestionTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Model/QuestionTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,24 +200,24 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/.env" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Helpers" />
+    <property name="database.data.extractors.current.id" value="HTML Table" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.splitter.proportion" value="0.27808675" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Helpers" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Helpers" />
       <recent name="$PROJECT_DIR$/app" />
@@ -212,12 +225,28 @@
       <recent name="$PROJECT_DIR$/database" />
       <recent name="$PROJECT_DIR$" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programmation\Flashcardstorm" />
+      <recent name="$PROJECT_DIR$/app/Helpers" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration>$USER_HOME$/.subversion</configuration>
@@ -254,6 +283,11 @@
       <workItem from="1585841129064" duration="2210000" />
       <workItem from="1585927536231" duration="4518000" />
       <workItem from="1586017497081" duration="9506000" />
+      <workItem from="1586848269107" duration="749000" />
+      <workItem from="1586849033623" duration="8393000" />
+      <workItem from="1586889050584" duration="2072000" />
+      <workItem from="1586930368684" duration="2177000" />
+      <workItem from="1586937072018" duration="1327000" />
     </task>
     <servers />
   </component>
@@ -266,33 +300,61 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
+    <state x="0" y="58" key="#Live_Templates" timestamp="1586938319710">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="0" y="58" key="#Live_Templates/0.0.1440.860@0.0.1440.860" timestamp="1586938319710" />
     <state x="555" y="177" width="800" height="684" key="#Notifications" timestamp="1585841334113">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="555" y="177" width="800" height="684" key="#Notifications/0.0.1920.1032@0.0.1920.1032" timestamp="1585841334113" />
-    <state x="669" y="141" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585930271821">
-      <screen x="0" y="0" width="1920" height="1032" />
+    <state x="502" y="118" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586867401022">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state x="502" y="118" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.860@0.0.1440.860" timestamp="1586867401022" />
     <state x="669" y="141" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1585930271821" />
-    <state x="693" y="274" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585815485878">
-      <screen x="0" y="0" width="1920" height="1032" />
+    <state x="520" y="228" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1586868804336">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state x="520" y="228" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.860@0.0.1440.860" timestamp="1586868804336" />
     <state x="693" y="274" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1585815485878" />
+    <state width="957" height="39" key="GridCell.Tab.0.bottom" timestamp="1586937801686">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="957" height="39" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1586937801686" />
+    <state width="957" height="39" key="GridCell.Tab.0.center" timestamp="1586937801685">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="957" height="39" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1586937801685" />
+    <state width="957" height="39" key="GridCell.Tab.0.left" timestamp="1586937801685">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="957" height="39" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1586937801685" />
+    <state width="957" height="39" key="GridCell.Tab.0.right" timestamp="1586937801685">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="957" height="39" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1586937801685" />
+    <state width="273" height="457" key="HiddenNamespacesPopup" timestamp="1586868320548">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="273" height="457" key="HiddenNamespacesPopup/0.0.1440.860@0.0.1440.860" timestamp="1586868320548" />
     <state x="655" y="327" width="639" height="385" key="NewPhpClassDialog" timestamp="1586020545641">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="655" y="327" width="639" height="385" key="NewPhpClassDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1586020545641" />
-    <state x="541" y="141" width="1022" height="737" key="SettingsEditor" timestamp="1586017481346">
-      <screen x="0" y="0" width="1920" height="1032" />
+    <state x="406" y="118" width="916" height="708" key="SettingsEditor" timestamp="1586938391864">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state x="406" y="118" width="916" height="708" key="SettingsEditor/0.0.1440.860@0.0.1440.860" timestamp="1586938391864" />
     <state x="541" y="141" width="1022" height="737" key="SettingsEditor/0.0.1920.1032@0.0.1920.1032" timestamp="1586017481346" />
     <state width="528" height="446" key="SwitcherDM" timestamp="1586076359428">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state width="528" height="446" key="SwitcherDM/0.0.1920.1032@0.0.1920.1032" timestamp="1586076359428" />
-    <state x="620" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1586017497908">
-      <screen x="0" y="0" width="1920" height="1032" />
+    <state x="465" y="286" key="com.intellij.ide.util.TipDialog" timestamp="1586930418063">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state x="465" y="286" key="com.intellij.ide.util.TipDialog/0.0.1440.860@0.0.1440.860" timestamp="1586930418063" />
     <state x="620" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1586017497908" />
     <state x="683" y="158" width="543" height="722" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1585841868830">
       <screen x="0" y="0" width="1920" height="1032" />
@@ -302,9 +364,10 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="645" y="213" width="619" height="613" key="com.jetbrains.php.test.PhpNewTestDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1586078716165" />
-    <state x="608" y="247" width="857" height="608" key="find.popup" timestamp="1586077719725">
-      <screen x="0" y="0" width="1920" height="1032" />
+    <state x="456" y="206" width="643" height="536" key="find.popup" timestamp="1586938211598">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state x="456" y="206" width="643" height="536" key="find.popup/0.0.1440.860@0.0.1440.860" timestamp="1586938211598" />
     <state x="608" y="247" width="857" height="608" key="find.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1586077719725" />
     <state x="678" y="158" width="554" height="723" key="refactoring.ChangeSignatureDialog" timestamp="1586068726430">
       <screen x="0" y="0" width="1920" height="1032" />
@@ -314,9 +377,10 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="624" y="233" key="run.anything.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1586077446073" />
-    <state x="624" y="158" width="672" height="676" key="search.everywhere.popup" timestamp="1586080155157">
-      <screen x="0" y="0" width="1920" height="1032" />
+    <state x="468" y="132" width="672" height="564" key="search.everywhere.popup" timestamp="1586938428446">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state x="468" y="132" width="672" height="564" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1586938428446" />
     <state x="624" y="158" width="672" height="676" key="search.everywhere.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1586080155157" />
   </component>
 </project>

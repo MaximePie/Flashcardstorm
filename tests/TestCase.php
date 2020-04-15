@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\Answer;
+use App\Helpers\QuestionHelper;
 use App\Question;
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
