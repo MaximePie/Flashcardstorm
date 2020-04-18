@@ -173,7 +173,7 @@ class QuestionController extends Controller
         $question->save();
 
         if ($request->shouldHaveReverseQuestion) {
-            $question->createReverseQuestion();
+            $reverseQuestion = $question->createReverseQuestion();
         }
 
         $user = Auth::user();
@@ -189,12 +189,13 @@ class QuestionController extends Controller
      *
      * @param Request $request
      * @return JsonResponse
+     * @throws Exception
      */
     public function import(Request $request)
     {
         $user = Auth::user();
         $added_questions = 0;
-        foreach ($request->questions as $question) {
+        foreach ($request->get('questions') as $question) {
             $question = $question[0];
             $answer = Answer::create([
                 'wording' => explode(';', $question)[1],
@@ -204,6 +205,8 @@ class QuestionController extends Controller
                 'wording' => explode(';', $question)[0],
                 'answer_id' => $answer->id,
             ]);
+
+            $reverseQuestion = $question->createReverseQuestion();
 
             if ($user) {
                 Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);

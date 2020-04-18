@@ -26,13 +26,14 @@
         display: flex;
         justify-content: center;
         flex-direction: row !important;
+        max-height: 6em;
+        overflow: auto;
     }
 
     &__import-drop-zone {
         border: dashed 2px #685a20;
         cursor: pointer;
         max-width: 500px;
-        margin: auto;
     }
 
     &__questions-group {

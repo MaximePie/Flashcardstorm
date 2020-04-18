@@ -58,9 +58,12 @@ export default function AddKnowledge(props) {
   const onDrop = useCallback((acceptedFiles) => {
     const reader = new FileReader();
     reader.onload = () => {
+      console.log(reader.result)
       csv.parse(reader.result, (err, data) => {
         if (err) {
           // eslint-disable-next-line max-len
+          console.log(err);
+          console.log(data);
           enqueueSnackbar('Aïe aïe aïe ! Il y a eu une erreur lors de l\'import ! Appuyez sur F12 et consultez la console pour en savoir plus !',
             {
               anchorOrigin: {
@@ -77,25 +80,21 @@ export default function AddKnowledge(props) {
 
     reader.readAsText(acceptedFiles[0]);
   }, []);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps } = useDropzone({ onDrop });
 
   return (
     <div className="Addknowledge">
       <div className="Addknowledge__title">
         <h1>Ajouter une question</h1>
-        {isConnected && !isMobile() && (
-          <div {...getRootProps()} className="Addknowledge__import-drop-zone">
-            {
-              isDragActive
-                ? <p>Déposez votre CSV ici</p>
-                : <p>Déposez votre CSV ici, ou parcourez les fichiers</p>
-            }
-          </div>
-        )}
       </div>
       <div className="row justify-content-center">
         <form onSubmit={submitValues} className="Addknowledge__form card">
           <Button onClick={addField} text="+" />
+          {isConnected && !isMobile() && (
+            <div {...getRootProps()} className="Addknowledge__import-drop-zone">
+              <p>Déposez votre CSV ici, ou parcourez les fichiers</p>
+            </div>
+          )}
           <div className="Addknowledge__questions-group">
             <TextField
               value={form.question}
