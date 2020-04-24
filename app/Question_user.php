@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $last_answered_at
  * @property string|null $next_question_at
  * @property bool $isMemorized
+ * @property bool isInitiated
  * @method static Builder|Question_user newModelQuery()
  * @method static Builder|Question_user newQuery()
  * @method static Builder|Question_user query()

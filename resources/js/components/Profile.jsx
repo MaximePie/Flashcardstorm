@@ -7,6 +7,7 @@ import {
 } from 'recharts';
 import Cookies from 'js-cookie';
 import Paper from '@material-ui/core/Paper';
+import { isMobile } from '../helper';
 
 
 export default function Profile() {
@@ -30,7 +31,7 @@ export default function Profile() {
           </div>
           <div className="Profile__chart-zone">
             <h3>Progression des questions mémorisées</h3>
-            <LineChart width={400} height={400} data={statistics}>
+            <LineChart width={lineChartSize()} height={lineChartSize()} data={statistics}>
               <Line type="monotone" dataKey="uv" stroke="#8884d8" />
               <XAxis dataKey="name" />
               <YAxis />
@@ -64,7 +65,6 @@ export default function Profile() {
           memorizedQuestions: memorizedQuestionsData,
         } = response.data;
         const formatedStatistics = statisticsData.map((statistic) => ({
-          // name: 'JAJA',
           name: moment(statistic.created_at)
             .format('MMM Do YY'),
           uv: statistic.memorized_questions,
@@ -75,5 +75,17 @@ export default function Profile() {
         setStatistics(formatedStatistics);
         setMemorizedQuestions(memorizedQuestionsData);
       });
+  }
+
+  /**
+   * Calculates the size of the chart component according to its viewport type
+   * @returns {number}
+   */
+  function lineChartSize() {
+    if (isMobile()) {
+      return 280;
+    }
+
+    return 400;
   }
 }

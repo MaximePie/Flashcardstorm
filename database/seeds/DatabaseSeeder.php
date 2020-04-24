@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      *
      * @return void
+     * @throws Exception
      */
     public function run()
     {
@@ -41,22 +42,24 @@ class DatabaseSeeder extends Seeder
 
     /** Create questions for the given user
      * @param User $mainUser
+     * @throws Exception
      */
     private function createQuestionForUser($mainUser)
     {
+        for ($questionIndex = 0; $questionIndex < random_int(1, 20); $questionIndex += 1) {
+            QuestionUserHelper::createIncomingQuestionForUser($mainUser);
+        }
 
-        QuestionUserHelper::createIncomingQuestionForUser($mainUser);
-        QuestionUserHelper::createIncomingQuestionForUser($mainUser);
-        QuestionUserHelper::createIncomingQuestionForUser($mainUser);
-        QuestionUserHelper::createIncomingQuestionForUser($mainUser);
+        for ($questionIndex = 0; $questionIndex < random_int(1, 20); $questionIndex += 1) {
+            QuestionUserHelper::createScheduledQuestionForUser($mainUser);
+        }
 
-        QuestionUserHelper::createScheduledQuestionForUser($mainUser);
-        QuestionUserHelper::createScheduledQuestionForUser($mainUser);
-        QuestionUserHelper::createScheduledQuestionForUser($mainUser);
-        QuestionUserHelper::createScheduledQuestionForUser($mainUser);
+        for ($questionIndex = 0; $questionIndex < random_int(1, 20); $questionIndex += 1) {
+            QuestionUserHelper::createMemorizedQuestionsForUser($mainUser);
+        }
 
-        QuestionUserHelper::createMemorizedQuestionsForUser($mainUser);
-        QuestionUserHelper::createMemorizedQuestionsForUser($mainUser);
-        QuestionUserHelper::createMemorizedQuestionsForUser($mainUser);
+        for ($questionIndex = 0; $questionIndex < random_int(1, 20); $questionIndex += 1) {
+            QuestionUserHelper::createNotInitiatedQuestionForUser($mainUser);
+        }
     }
 }

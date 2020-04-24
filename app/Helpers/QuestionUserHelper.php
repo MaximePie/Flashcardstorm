@@ -29,13 +29,13 @@ class QuestionUserHelper
      */
     public static function createIncomingQuestionForUser(User $user): Question_user
     {
-        $incomingQuestion = $user->addQuestion(self::newQuestion());
-        $incomingQuestion->current_delay = 3;
-        $incomingQuestion->next_question_at = Carbon::now()->addDays(3);
+        $question = $user->addQuestion(self::newQuestion());
+        $question->current_delay = 3;
+        $question->next_question_at = Carbon::now()->addDays(3);
 
-        $incomingQuestion->save();
+        $question->save();
 
-        return $incomingQuestion;
+        return $question;
     }
 
 
@@ -59,14 +59,28 @@ class QuestionUserHelper
      */
     public static function createMemorizedQuestionsForUser(User $user): Question_user
     {
-        $memorizedQuestion = $user->addQuestion(self::newQuestion());
-        $memorizedQuestion->current_delay = 10;
-        $memorizedQuestion->full_score = 100;
-        $memorizedQuestion->isMemorized = true;
-        $memorizedQuestion->last_answered_at = Carbon::now()->subDays(1);
-        $memorizedQuestion->save();
+        $question = $user->addQuestion(self::newQuestion());
+        $question->current_delay = 10;
+        $question->full_score = 100;
+        $question->isMemorized = true;
+        $question->last_answered_at = Carbon::now()->subDays(1);
+        $question->isInitiated = true;
+        $question->save();
 
-        return $memorizedQuestion;
+        return $question;
+    }
+
+    /**
+     * Creates an uninitiated question for the given user
+     * @param User $user
+     * @return Question_user
+     */
+    public static function createNotInitiatedQuestionForUser(User $user)
+    {
+        $question = $user->addQuestion(self::newQuestion());
+        $question->isInitiated = false;
+        $question->save();
+        return $question;
     }
 
     /**
@@ -76,8 +90,8 @@ class QuestionUserHelper
      */
     public static function removeAllQuestionsForUser(User $user)
     {
-        $deletedQuestions = $user->questions()->forceDelete();
+        $question = $user->questions()->forceDelete();
         $user->save();
-        return $deletedQuestions;
+        return $question;
     }
 }

@@ -1,163 +1,163 @@
 .App {
-    background: content-box no-repeat url("../images/soft.jpg");
-    width: 100vw;
+  background: content-box no-repeat url("../images/soft.jpg");
+  width: 100vw;
 }
 
 .Home {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  overflow: auto;
+
+  &--no-question {
+    color: white;
+  }
+
+  &__snackbar {
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
-    overflow: auto;
+    justify-content: space-between;
+    width: 100%;
+  }
 
-    &--no-question {
-        color: white;
-    }
+  &__title {
+    text-align: center;
+    color: white;
+    width: 100%;
+  }
 
-    &__snackbar {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
+  &__QuestionCard-row {
+    padding: 16px;
 
-    &__title {
-        text-align: center;
-        color: white;
-        width: 100%;
-    }
+    opacity: 0;
+    transform: scale(1.15);
+    animation: appear 0.25s 0.5s forwards;
+  }
 
-    &__QuestionCard-row {
-        padding: 16px;
-
-        opacity: 0;
-        transform: scale(1.15);
-        animation: appear 0.25s 0.5s forwards;
-    }
-
-    .daily_progress {
-        max-width: 300px;
-        margin: auto;
-    }
+  .daily_progress {
+    max-width: 300px;
+    margin: auto;
+  }
 }
 
 .container {
-    margin: 60px 0 0;
-    padding: 0;
+  margin: 60px 0 0;
+  padding: 0;
 }
 
 .MuiSnackbarContent-message {
-    width: 100%;
+  width: 100%;
 }
 
 .jumbotron {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
-    padding: 1rem 1rem;
-    margin-bottom: 1rem;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
 }
 
 .pagination {
-    display: flex;
-    justify-content: center;
-    margin: 16px 0;
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
 }
 
 .Title {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .jumbotron {
-    background-color: #686868;
-    color: white;
+  background-color: #686868;
+  color: white;
 }
 
 @media screen and (min-width: 768px) {
-    .hide_on_medium {
-        display: none;
-    }
+  .hide_on_medium {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 767px) {
 
-    html, body {
-        height: 100%;
+  html, body {
+    height: 100%;
+  }
+
+  .App {
+    height: 100%;
+    background-size: cover;
+  }
+
+  .container {
+    max-width: 768px;
+  }
+
+  /**
+      SOFT TRAINING
+   */
+  .daily_progress {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+
+    .daily-progress__counter {
+      text-align: center;
+      margin-bottom: 0.2rem;
+      color: white;
     }
+  }
 
-    .App {
-        height: 100%;
-        background-size: cover;
-    }
+  /**
+  GENERAL PROPERTIES
+   */
 
-    .container {
-        max-width: 768px;
-    }
+  .row {
+    margin: 0;
+  }
 
-    /**
-        SOFT TRAINING
-     */
-    .daily_progress {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        margin: auto;
+  .hide_on_small {
+    display: none;
+  }
 
-        .daily-progress__counter {
-            text-align: center;
-            margin-bottom: 0.2rem;
-            color: white;
-        }
-    }
+  .Home__title {
+    margin:  initial;
+  }
 
-    /**
-    GENERAL PROPERTIES
-     */
-
-    .row {
-        margin: 0;
-    }
-
-    .hide_on_small {
-        display: none;
-    }
-
-    .Home__title {
-        margin:  initial;
-    }
-
-    .Welcome__title {
-        h1 {
-            text-align: center;
-        }
-    }
-
+  .Welcome__title {
     h1 {
-        font-size: 1.5em;
+      text-align: center;
     }
+  }
 
-    h2 {
-        font-size: 1.25em;
-    }
+  h1 {
+    font-size: 1.5em;
+  }
 
-    h3 {
-        font-size: 1.12em;
-    }
+  h2 {
+    font-size: 1.25em;
+  }
 
-    .jumbotron {
-        padding: 0.7rem 0.7rem;
-    }
+  h3 {
+    font-size: 1.12em;
+  }
+
+  .jumbotron {
+    padding: 0.7rem 0.7rem;
+  }
 }
 
 
 @keyframes appear {
-    from {
-        transform: scale(1.15);
-        opacity: 0;
-    }
+  from {
+    transform: scale(1.15);
+    opacity: 0;
+  }
 
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
