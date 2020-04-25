@@ -10,7 +10,7 @@ use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Question::class, static function (Faker $faker) {
-    $answer = ANSWER::query()->inRandomOrder()->firstOrCreate(['wording' => 'raclette']);
+    $answer = AnswerHelper::newAnswer();
     $category = Category::query()->inRandomOrder()->first();
     $question = [
         'wording' => implode(' ', $faker->words),

@@ -69,7 +69,15 @@ export default function Navbar(props) {
                 <i className="fas fa-fire"/>
               </ListItemIcon>
               <ListItemText>
-                Toutes les questions
+                Toutes mes questions
+              </ListItemText>
+            </ListItem>
+            <ListItem button component="a" href="/initiate" className="Navbar__item">
+              <ListItemIcon>
+                <i className="fas fa-fire"/>
+              </ListItemIcon>
+              <ListItemText>
+                Débuter sur les questions
               </ListItemText>
             </ListItem>
           </>

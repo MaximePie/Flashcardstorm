@@ -21,6 +21,7 @@ import Profile from './components/Profile';
 import server from './server';
 import Training from './components/pages/Training';
 import RoughTraining from './components/pages/RoughTraining';
+import Initiate from './components/pages/Initiate';
 import Users from './components/Users';
 import Welcome from './components/pages/Welcome';
 import Changelogs from './components/pages/Changelogs';
@@ -38,6 +39,7 @@ require('../sass/Addknowledge.scss');
 require('../sass/Changelogs.scss');
 require('../sass/Home.scss');
 require('../sass/Icon.scss');
+require('../sass/Initiate.scss');
 require('../sass/Login.scss');
 require('../sass/Navbar.scss');
 require('../sass/Profile.scss');
@@ -108,6 +110,9 @@ export default function App() {
             </Route>
             <Route path="/rough_training">
               <RoughTraining />
+            </Route>
+            <Route path="/initiate">
+              <Initiate />
             </Route>
             <Route path="/logout">
               <Training updateUserScore={updateUser} is_connected={isConnected} />

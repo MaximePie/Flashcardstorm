@@ -124,6 +124,17 @@ class User extends Authenticable
         ->whereDate('question_users.next_question_at', '<=', now());
     }
 
+
+    /**
+     * @return BelongsToMany
+     */
+    public function notInitiatedQuestions(): BelongsToMany
+    {
+        return $this->BelongsToMany(Question::class, 'question_users')
+        ->where('question_users.isMemorized', false)
+        ->where('question_users.isInitiated', false);
+    }
+
     public function dailyProgress(): array
     {
         $user_progress = [];

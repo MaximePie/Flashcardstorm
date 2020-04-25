@@ -110,6 +110,36 @@ class QuestionController extends Controller
     }
 
     /**
+     * Returns a random question for the user.
+     *
+     * @return JsonResponse
+     */
+    public function notInitiatedQuestion(): JsonResponse
+    {
+        /** @var User $user */
+        $user = Auth::user();
+        if ($user) {
+            $questions = $user->notInitiatedQuestions()->inRandomOrder()->limit(Question_user::initiationSize);
+            $answers = collect();
+            if ($questions) {
+                $questions->each(static function (QUESTION $question) use ($answers) {
+                    $question->preparedForView();
+                    $answers->add($question->answer()->first());
+                    $answers['category'] = $question->category()->first();
+                });
+            }
+
+            return response()->json([
+                'questions' => $questions->get()->shuffle() ?? [],
+                'answers' => $answers->shuffle() ?? [],
+            ]);
+        }
+        else {
+            return response()->json(['error' => 'Vous ne pouvez pas continuer car vous n\'êtes pas connecté.']);
+        }
+    }
+
+    /**
      * Returns all daily questions to the user so he can immediately answer
      * the ones he already knows
      * @return JsonResponse
@@ -126,14 +156,10 @@ class QuestionController extends Controller
                 });
             }
 
-            return response()->json([
-               'questions' => $questions->get()->shuffle() ?? []
-            ]);
+            return response()->json(['questions' => $questions->get()->shuffle() ?? []]);
         }
         else {
-            return response()->json([
-                'error' => 'Vous ne pouvez pas continuer car vous n\'êtes pas connecté.'
-            ]);
+            return response()->json(['error' => 'Vous ne pouvez pas continuer car vous n\'êtes pas connecté.']);
         }
     }
 
@@ -218,14 +244,26 @@ class QuestionController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Try to initiate a question based on the given tuple
      *
-     * @param Question $question
-     * @return Response
+     * @param Request $request
+     * @return int
      */
-    public function show(Question $question)
+    public function tryInitiate(Request $request)
     {
-        //
+        $question = Question::findOrFail($request->question);
+        $answer = Answer::findOrFail($request->answer);
+
+        if ($question->isValidWith($answer->wording)) {
+            /** @var Question_user $question_user */
+            $question_user = Question_user::findFromTuple($question->id, Auth::user()->id)->first();
+            $question_user->isInitiated = true;
+            $question_user->save();
+            return 200;
+        }
+        else {
+            return 500;
+        }
     }
 
     /**

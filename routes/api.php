@@ -27,6 +27,7 @@ Route::name('api.')->group(static function () {
         Route::prefix('authenticated')->group(static function () {
             Route::get('question/{mode}/{already_in_bag_questions}', 'QuestionController@randomQuestion');
             Route::get('allDailyQuestions', 'QuestionController@allDailyQuestions');
+            Route::get('nonInitiatedQuestions', 'QuestionController@notInitiatedQuestion');
             Route::get('me/score', 'UserController@score');
             Route::get('users', 'UserController@index');
             Route::get('vote/{changelog}', 'UservoteController@toggle');
@@ -41,6 +42,7 @@ Route::name('api.')->group(static function () {
             Route::post('category', 'CategoryController@store');
             Route::post('question/toggle', 'QuestionController@toggleQuestionForUser');
             Route::post('question/submit_answer', 'QuestionController@submitAnswer');
+            Route::post('question/initiate', 'QuestionController@tryInitiate');
             Route::post('question', 'QuestionController@store');
             Route::post('question_import', 'QuestionController@import');
         });

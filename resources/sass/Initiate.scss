@@ -1,0 +1,22 @@
+.Initiate {
+  height: 100vh;
+  padding: 6em 8px 8px;
+
+  &__questions-container {
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    height: 90%;
+  }
+
+  &__question {
+    background: white;
+    position: relative;
+    padding: 8px;
+    margin: 8px;
+
+    &--selected {
+      background-color: orange;
+    }
+  }
+}
