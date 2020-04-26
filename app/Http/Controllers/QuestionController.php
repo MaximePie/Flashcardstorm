@@ -119,18 +119,19 @@ class QuestionController extends Controller
         /** @var User $user */
         $user = Auth::user();
         if ($user) {
-            $questions = $user->notInitiatedQuestions()->inRandomOrder()->limit(Question_user::initiationSize);
+            $questions = $user->notInitiatedQuestions()->inRandomOrder()->limit(Question_user::initiationSize)->get();
             $answers = collect();
             if ($questions) {
                 $questions->each(static function (QUESTION $question) use ($answers) {
                     $question->preparedForView();
                     $answers->add($question->answer()->first());
-                    $answers['category'] = $question->category()->first();
+                    $question['answer'] = $question->answer()->first();
+//                    $answers['category'] = $question->category()->first();
                 });
             }
 
             return response()->json([
-                'questions' => $questions->get()->shuffle() ?? [],
+                'questions' => $questions->shuffle() ?? [],
                 'answers' => $answers->shuffle() ?? [],
             ]);
         }

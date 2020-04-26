@@ -5,8 +5,9 @@
   &__questions-container {
     overflow-y: auto;
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(5, 1fr);
     height: 90%;
+    grid-template-rows: repeat(5, 1fr);
   }
 
   &__question {
@@ -14,6 +15,10 @@
     position: relative;
     padding: 8px;
     margin: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25em;
 
     &--selected {
       background-color: orange;

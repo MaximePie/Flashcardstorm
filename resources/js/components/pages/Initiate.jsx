@@ -8,8 +8,10 @@ export default function Component() {
   const [selectedAnswer, setSelectedAnswer] = React.useState(undefined);
 
   React.useEffect(() => {
-    updateQuestionsBag();
-  }, []);
+    if (questions.length === 0 && answers.length === 0) {
+      updateQuestionsBag();
+    }
+  }, [questions, answers]);
 
   React.useEffect(() => {
     if (selectedQuestion && selectedAnswer) {
@@ -22,16 +24,17 @@ export default function Component() {
       <div className="Initiate__questions-container">
         {questions.map((question) => (
           <div
-            className={`Initiate__question${isSelected(question.id) ? ' Initiate__question--selected' : ''}`}
+            className={
+              `Initiate__question${isSelected(question.id, 'question') ? ' Initiate__question--selected' : ''}`
+            }
             onClick={() => setSelectedQuestion(question.id)}
           >
             {question.wording}
           </div>
         ))}
-        <h1>Réponses</h1>
         {answers.map((answer) => (
           <div
-            className={`Initiate__question${isSelected(answer.id) ? ' Initiate__question--selected' : ''}`}
+            className={`Initiate__question${isSelected(answer.id, 'answer') ? ' Initiate__question--selected' : ''}`}
             onClick={() => setSelectedAnswer(answer.id)}
           >
             {answer.wording}
@@ -47,16 +50,23 @@ export default function Component() {
   function updateQuestionsBag() {
     server.get('nonInitiatedQuestions')
       .then((response) => {
-        updateQuestions(response.data.questions);
-        updateAnswers(response.data.answers);
+        if (response.data.questions.length && response.data.answers.length) {
+          updateQuestions(response.data.questions);
+          updateAnswers(response.data.answers);
+        } else {
+          alert("Vous avez initialisé toutes vos questions, c'est l'heure de passer à la vitesse supérieure !");
+        }
       });
   }
 
   /**
    * Check if the question is selected or not
    */
-  function isSelected(cardId) {
-    return cardId === selectedQuestion || cardId === selectedAnswer;
+  function isSelected(cardId, type) {
+    if (type === 'question') {
+      return cardId === selectedQuestion;
+    }
+    return cardId === selectedAnswer;
   }
 
   /**
@@ -72,12 +82,12 @@ export default function Component() {
           (question) => (question.id !== selectedQuestion ? question : undefined),
         );
         updateQuestions([...updatedQuestions]);
-        const updatedAnswers = questions.filter(
-          (answer) => (answer.id !== selectedQuestion ? answer : undefined),
+        const updatedAnswers = answers.filter(
+          (answer) => (answer.id !== selectedAnswer ? answer : undefined),
         );
         updateAnswers([...updatedAnswers]);
 
-        if (questions.length === 0 && answers.length === 0) {
+        if (updatedQuestions.length === 0 && updatedAnswers.length === 0) {
           updateQuestionsBag();
         }
       }

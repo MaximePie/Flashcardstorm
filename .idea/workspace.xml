@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/pages/Initiate.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/Initiate.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Question_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Question_user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/QuestionFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/QuestionFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Initiate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Initiate.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/Initiate.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Initiate.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,18 +33,18 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="Homestead" type="feb32156:DbDataSourceImpl" />
+        <item name="heroku_d9e51ae94c19231@eu-cdbr-west-02.cleardb.net" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="Homestead" type="feb32156:DbDataSourceImpl" />
+        <item name="heroku_d9e51ae94c19231@eu-cdbr-west-02.cleardb.net" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="Homestead" type="feb32156:DbDataSourceImpl" />
+        <item name="heroku_d9e51ae94c19231@eu-cdbr-west-02.cleardb.net" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="homestead: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="heroku_d9e51ae94c19231: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
     </expand>
     <select />
@@ -246,17 +238,7 @@
       <list>
         <serviceView>
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:Homestead" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:Homestead" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@22661725" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -313,7 +295,8 @@
       <workItem from="1587365768134" duration="1253000" />
       <workItem from="1587385641128" duration="182000" />
       <workItem from="1587711035664" duration="14914000" />
-      <workItem from="1587796994042" duration="2824000" />
+      <workItem from="1587796994042" duration="3072000" />
+      <workItem from="1587839527909" duration="5362000" />
     </task>
     <servers />
   </component>
@@ -364,22 +347,22 @@
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="463" y="280" key="#com.jetbrains.php.refactoring.move.member.instance.PhpMoveInstanceMethodDialog#/0.0.1440.860@0.0.1440.860" timestamp="1586947383800" />
-    <state width="957" height="39" key="GridCell.Tab.0.bottom" timestamp="1587284871494">
+    <state width="957" height="414" key="GridCell.Tab.0.bottom" timestamp="1587893031733">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="957" height="39" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1587284871494" />
-    <state width="957" height="39" key="GridCell.Tab.0.center" timestamp="1587284871494">
+    <state width="957" height="414" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1587893031733" />
+    <state width="957" height="414" key="GridCell.Tab.0.center" timestamp="1587893031732">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="957" height="39" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1587284871494" />
-    <state width="957" height="39" key="GridCell.Tab.0.left" timestamp="1587284871493">
+    <state width="957" height="414" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1587893031732" />
+    <state width="957" height="414" key="GridCell.Tab.0.left" timestamp="1587893031732">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="957" height="39" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1587284871493" />
-    <state width="957" height="39" key="GridCell.Tab.0.right" timestamp="1587284871494">
+    <state width="957" height="414" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1587893031732" />
+    <state width="957" height="414" key="GridCell.Tab.0.right" timestamp="1587893031733">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="957" height="39" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1587284871494" />
+    <state width="957" height="414" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1587893031733" />
     <state width="273" height="457" key="HiddenNamespacesPopup" timestamp="1586868320548">
       <screen x="0" y="0" width="1440" height="860" />
     </state>

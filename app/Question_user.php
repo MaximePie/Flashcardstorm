@@ -48,7 +48,7 @@ class Question_user extends Model
     /** @var int Minimal score to reach for going memorized */
     const FULL_SCORE_TRESHOLD = 100;
     const DEFAULT_BAG_LIMIT = 5;
-    const initiationSize = 20;
+    const initiationSize = 10;
 
     /**
      * @var array
