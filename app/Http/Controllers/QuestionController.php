@@ -331,6 +331,12 @@ class QuestionController extends Controller
                 'userProgress' => $user ? $user->dailyProgress() : null,
             ]);
         }
+        else if ($user && $question->isSetForUser($user)) {
+            /** @var Question_user $question_user */
+            $question_user = Question_user::findFromTuple($question->id, $user->id)->first();
+            $question_user->isInitiated = false;
+            $question_user->save();
+        }
 
         return response()->json([
             'text' => 'Oups, ce n\'est pas ça, réessayons !',
