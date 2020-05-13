@@ -2,6 +2,12 @@
   height: 100vh;
   padding: 6em 8px 8px;
 
+  &__remaining {
+    text-align: center;
+    color: white;
+    font-size: 1.5em;
+  }
+
   &__questions-container {
     overflow-y: auto;
     display: grid;

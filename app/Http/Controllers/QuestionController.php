@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Psy\Util\Json;
 use RuntimeException;
 
 class QuestionController extends Controller
@@ -126,7 +127,6 @@ class QuestionController extends Controller
                     $question->preparedForView();
                     $answers->add($question->answer()->first());
                     $question['answer'] = $question->answer()->first();
-//                    $answers['category'] = $question->category()->first();
                 });
             }
 
@@ -138,6 +138,16 @@ class QuestionController extends Controller
         else {
             return response()->json(['error' => 'Vous ne pouvez pas continuer car vous n\'êtes pas connecté.']);
         }
+    }
+
+    /**
+     * Returns the user's not Initiated questions count
+     * @return int
+     */
+    public function notInitiatedQuestionsCount(): int
+    {
+        $user = Auth::user();
+        return $user->notInitiatedQuestions()->count();
     }
 
     /**

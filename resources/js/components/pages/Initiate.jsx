@@ -3,6 +3,7 @@ import server from '../../server';
 
 export default function Component() {
   const [questions, updateQuestions] = React.useState([]);
+  const [remainingQuestionsCount, setRemainingQuestionsCount] = React.useState([]);
   const [answers, updateAnswers] = React.useState([]);
   const [selectedQuestion, setSelectedQuestion] = React.useState(undefined);
   const [selectedAnswer, setSelectedAnswer] = React.useState(undefined);
@@ -10,6 +11,7 @@ export default function Component() {
   React.useEffect(() => {
     if (questions.length === 0 && answers.length === 0) {
       updateQuestionsBag();
+      updateRemainingCount();
     }
   }, [questions, answers]);
 
@@ -21,6 +23,10 @@ export default function Component() {
 
   return (
     <div className="Initiate">
+      <div className="Initiate__remaining">
+        Restant :
+        {remainingQuestionsCount}
+      </div>
       <div className="Initiate__questions-container">
         {questions.map((question) => (
           <div
@@ -54,7 +60,7 @@ export default function Component() {
           updateQuestions(response.data.questions);
           updateAnswers(response.data.answers);
         } else {
-          alert("Vous avez initialisé toutes vos questions, c'est l'heure de passer à la vitesse supérieure !");
+          alert('Vous avez initialisé toutes vos questions, c\'est l\'heure de passer à la vitesse supérieure !');
         }
       });
   }
@@ -70,29 +76,41 @@ export default function Component() {
   }
 
   /**
+   * Fetches the remaining count of non initiated questions
+   */
+  function updateRemainingCount() {
+    server.get('nonInitiatedQuestionsCount')
+      .then((questionsCountResponse) => {
+        setRemainingQuestionsCount(questionsCountResponse.data);
+      });
+  }
+
+  /**
    * Sends the two selected Ids to check if the duo is correct
    */
   function submitTuple() {
     server.post('question/initiate', {
       question: selectedQuestion,
       answer: selectedAnswer,
-    }).then((response) => {
-      if (response.data === 200) {
-        const updatedQuestions = questions.filter(
-          (question) => (question.id !== selectedQuestion ? question : undefined),
-        );
-        updateQuestions([...updatedQuestions]);
-        const updatedAnswers = answers.filter(
-          (answer) => (answer.id !== selectedAnswer ? answer : undefined),
-        );
-        updateAnswers([...updatedAnswers]);
+    })
+      .then((response) => {
+        if (response.data === 200) {
+          const updatedQuestions = questions.filter(
+            (question) => (question.id !== selectedQuestion ? question : undefined),
+          );
+          updateQuestions([...updatedQuestions]);
+          const updatedAnswers = answers.filter(
+            (answer) => (answer.id !== selectedAnswer ? answer : undefined),
+          );
+          updateAnswers([...updatedAnswers]);
+          updateRemainingCount();
 
-        if (updatedQuestions.length === 0 && updatedAnswers.length === 0) {
-          updateQuestionsBag();
+          if (updatedQuestions.length === 0 && updatedAnswers.length === 0) {
+            updateQuestionsBag();
+          }
         }
-      }
-      setSelectedQuestion(undefined);
-      setSelectedAnswer(undefined);
-    });
+        setSelectedQuestion(undefined);
+        setSelectedAnswer(undefined);
+      });
   }
 }
