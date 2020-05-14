@@ -115,7 +115,7 @@ class Question extends Model
             ]
         ];
 
-        $answer = strtolower($answer);
+        $answer = mb_strtolower($answer);
 
         foreach ($matchingPattern as $target => $wanted) {
             $pattern = '';
