@@ -19,6 +19,9 @@ use Illuminate\Database\Eloquent\Factory;
 |
 */
 
+/**
+ * Important : Call User factory and Question factory before, or this might fail !
+ */
 $factory->define(Question_user::class, static function (Faker $faker) {
     return [
         'question_id' => Question::query()->inRandomOrder()->first()->id,

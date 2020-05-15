@@ -2,6 +2,7 @@
 
 use App\Answer;
 use App\Category;
+use App\Mnemonic;
 use App\Question;
 use App\Question_user;
 use App\User;
@@ -18,11 +19,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(Category::class)->times(10)->create();
-        factory(Answer::class)->times(10)->create();
-        factory(Question::class)->times(10)->create();
-        factory(User::class)->times(5)->create();
-        factory(Question_user::class)->times(5)->create();
+        factory(Category::class)->times(random_int(5, 20))->create();
+        factory(Answer::class)->times(random_int(5, 20))->create();
+        factory(Question::class)->times(random_int(5, 20))->create();
+        factory(User::class)->times(random_int(5, 15))->create();
+        factory(Question_user::class)->times(random_int(5, 15))->create();
+        factory(Mnemonic::class)->times(random_int(5, 15))->create();
 
         $mainUser = User::query()->where('email', 'maxime.pie@group-hpi.com')->first();
         if (!$mainUser) {
