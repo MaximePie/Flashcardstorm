@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Mnemonic;
 use App\Question;
 use App\Question_user;
 use App\User;
@@ -210,7 +211,7 @@ class QuestionController extends Controller
         $question->save();
 
         if ($request->shouldHaveReverseQuestion) {
-            $reverseQuestion = $question->createReverseQuestion();
+            $question->createReverseQuestion();
         }
 
         $user = Auth::user();
@@ -218,7 +219,7 @@ class QuestionController extends Controller
             Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
         }
 
-        return response()->json(['Question' => $question, 'Resquest Category' => $request->category]);
+        return response()->json(['Question' => $question]);
     }
 
     /**
@@ -281,11 +282,12 @@ class QuestionController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Question $question
-     * @return void
+     * @return Question
      */
-    public function edit(Question $question)
+    public function show(Question $question)
     {
-        //
+        $question->preparedForView();
+        return $question;
     }
 
     /**
@@ -346,14 +348,19 @@ class QuestionController extends Controller
             $question_user = Question_user::findFromTuple($question->id, $user->id)->first();
             $question_user->isInitiated = false;
             $question_user->save();
+
+            /** @var Mnemonic $hint */
+            $hint = $question_user->mnemonics()->inRandomOrder()->first();
         }
 
         return response()->json([
-            'text' => 'Oups, ce n\'est pas ça, réessayons !',
+            'text' => 'Oups !',
             'status' => 500,
             'earned_points' => $earned_points,
             'correct_answer' => $question->is_reverse ? $question->wording : $question->answer()->first()->wording,
             'userProgress' => $user ? $user->dailyProgress() : null,
+            'questionId' => $question->id,
+            'hint' => isset($hint) && $hint ? $hint->wording : null,
         ]);
     }
 }

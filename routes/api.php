@@ -35,6 +35,7 @@ Route::name('api.')->group(static function () {
             Route::get('update_progress', 'UserController@updateProgress');
 
             Route::get('question/delete/{question}', 'QuestionController@destroy');
+            Route::get('showQuestion/{question}', 'QuestionController@show');
             Route::get('question/{mode}', 'QuestionController@randomQuestion');
             Route::get('questions_list/{visibility?}', 'QuestionController@index');
             Route::get('categories', 'CategoryController@index');
@@ -45,6 +46,7 @@ Route::name('api.')->group(static function () {
             Route::post('question/submit_answer', 'QuestionController@submitAnswer');
             Route::post('question/initiate', 'QuestionController@tryInitiate');
             Route::post('question', 'QuestionController@store');
+            Route::post('mnemonics', 'MnemonicController@store');
             Route::post('question_import', 'QuestionController@import');
         });
     });

@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Mnemonic;
 use App\Question;
 use App\Question_user;
 use App\User;
@@ -93,5 +94,20 @@ class QuestionUserHelper
         $question = $user->questions()->forceDelete();
         $user->save();
         return $question;
+    }
+
+    /**
+     * Create a mnemonic for Question User
+     * @param Question_user $questionUser
+     * @return Mnemonic
+     */
+    public static function createMnemonicForQuestionUser(Question_user $questionUser)
+    {
+        /** @var Mnemonic $mnemonic */
+        $mnemonic = factory(Mnemonic::class)->create();
+        $mnemonic->question_user_id = $questionUser->id;
+        $mnemonic->save();
+
+        return $mnemonic;
     }
 }

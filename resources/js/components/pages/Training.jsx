@@ -3,9 +3,22 @@ import { useSnackbar } from 'notistack';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import { PropTypes } from 'prop-types';
 import server from '../../server';
-import QuestionCard from '../QuestionCard';
+import HintDialog from '../molecule/HintDialog';
+import QuestionCard from '../molecule/QuestionCard';
 import { isMobile } from '../../helper';
+
+Training.propTypes = {
+  mode: PropTypes.string,
+  is_connected: PropTypes.bool,
+  updateUserScore: PropTypes.func.isRequired,
+};
+
+Training.defaultProps = {
+  mode: 'soft',
+  is_connected: false,
+};
 
 export default function Training(props) {
   const [questionsBag, updateQuestionsBag] = React.useState({
@@ -15,10 +28,13 @@ export default function Training(props) {
   });
 
   const [userProgress, setUserProgress] = React.useState(undefined);
+  const [hintModalState, setHintModalState] = React.useState({ questionId: undefined, isOpen: false });
 
   const [serverSwitch, setServerSwitch] = React.useState(false);
 
   const { enqueueSnackbar } = useSnackbar();
+
+  const { is_connected: isConnected, updateUserScore, mode } = props;
 
   React.useEffect(() => {
     server.get('update_progress')
@@ -38,6 +54,12 @@ export default function Training(props) {
   return (
     <div className="Home">
       {pageHeader()}
+      {hintModalState.isOpen && (
+        <HintDialog
+          questionId={hintModalState.questionId}
+          onClose={() => setHintModalState({ ...hintModalState, isOpen: false })}
+        />
+      )}
       {questions[0] && (
         <div className="Home__QuestionCard-row">
           <QuestionCard
@@ -79,7 +101,10 @@ export default function Training(props) {
       .then((response) => {
         let snackbarText = response.data.text;
         if (response.data.status !== 200) {
-          snackbarText += ` Réponses correctes : ${response.data.correct_answer}`;
+          snackbarText += ` Réponse : ${response.data.correct_answer} `;
+          if (response.data.hint) {
+            snackbarText += ` Mémo : ${response.data.hint}`;
+          }
         }
 
         const score = response.data.status === 200
@@ -97,6 +122,15 @@ export default function Training(props) {
                 {score}
               </span>
             )}
+            {!score && (
+              <i
+                className="fas fa-bolt Home__snackbar-icon"
+                onClick={() => setHintModalState({
+                  questionId: response.data.questionId,
+                  isOpen: true,
+                })}
+              />
+            )}
           </div>,
           {
             anchorOrigin: {
@@ -107,7 +141,7 @@ export default function Training(props) {
           },
         );
         setUserProgress(response.data.userProgress);
-        props.updateUserScore();
+        updateUserScore();
       });
   }
 
@@ -125,7 +159,7 @@ export default function Training(props) {
 
     const currentQuestions = [...questions];
 
-    server.get(`question/${props.mode}${questionsInList}`)
+    server.get(`question/${mode}${questionsInList}`)
       .then((response) => {
         const { message, questions: questionsData } = response.data;
         const updatedQuestions = currentQuestions.concat(questionsData);
@@ -175,13 +209,13 @@ export default function Training(props) {
       </div>
     );
 
-    return props.mode === 'soft' ? (
+    return mode === 'soft' ? (
       <>
         {!isMobile() && (
         <div className="Home__title">
           <h1>Mode consolidation</h1>
           <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
-          <p>Seules les questions auxquelles vous n'avez pas répondu depuis assez longtemps apparaîtront</p>
+          <p>Seules les questions auxquelles vous n&apos;avez pas répondu depuis assez longtemps apparaîtront</p>
           <div>
             {userProgressComponent}
           </div>
@@ -202,12 +236,12 @@ export default function Training(props) {
           {!isMobile() && (
             <div className="Home__title">
               <h1>Mode tempête !</h1>
-              <p>Répondez à un maximum de question toutes catégories confondues sans limite de temps ni d'essai</p>
+              <p>Répondez à un maximum de question toutes catégories confondues sans limite de temps ni d&apos;essai</p>
               <p>Attention, en mode tempête les questions ne rapportent que 10 points chacunes !</p>
-              {props.is_connected && (
+              {isConnected && (
                 <FormControlLabel
                   control={
-                    <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)} />
+                    <Switch checked={serverSwitch} onChange={() => setServerSwitch(!serverSwitch)} />
                   }
                   label="Afficher seulement mes questions"
                 />

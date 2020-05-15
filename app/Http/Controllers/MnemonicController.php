@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Mnemonic;
+use App\Question_user;
+use Auth;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class MnemonicController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -20,7 +24,7 @@ class MnemonicController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -30,19 +34,26 @@ class MnemonicController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Mnemonic
      */
     public function store(Request $request)
     {
-        //
+        $questionUser = Question_user::findFromTuple($request->questionId, Auth::user()->id)->first();
+        /** @var Mnemonic $mnemonic */
+        $mnemonic = Mnemonic::create([
+            'question_user_id' => $questionUser->id,
+            'wording' => $request->wording
+        ]);
+
+        return $mnemonic;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Mnemonic  $mnemonic
-     * @return \Illuminate\Http\Response
+     * @param Mnemonic $mnemonic
+     * @return Response
      */
     public function show(Mnemonic $mnemonic)
     {
@@ -52,8 +63,8 @@ class MnemonicController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Mnemonic  $mnemonic
-     * @return \Illuminate\Http\Response
+     * @param Mnemonic $mnemonic
+     * @return Response
      */
     public function edit(Mnemonic $mnemonic)
     {
@@ -63,9 +74,9 @@ class MnemonicController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Mnemonic  $mnemonic
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Mnemonic $mnemonic
+     * @return Response
      */
     public function update(Request $request, Mnemonic $mnemonic)
     {
@@ -75,8 +86,8 @@ class MnemonicController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Mnemonic  $mnemonic
-     * @return \Illuminate\Http\Response
+     * @param Mnemonic $mnemonic
+     * @return Response
      */
     public function destroy(Mnemonic $mnemonic)
     {

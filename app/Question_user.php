@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * App\Question_user.
@@ -104,6 +105,14 @@ class Question_user extends Model
     }
 
     /**
+     * @return HasOne
+     */
+    public function mnemonics()
+    {
+        return $this->hasOne(Mnemonic::class);
+    }
+
+    /**
      * @param $question_id
      * @param $user_id
      * @return Builder|Model|object|null
@@ -147,4 +156,5 @@ class Question_user extends Model
 
         return $earned_points;
     }
+
 }

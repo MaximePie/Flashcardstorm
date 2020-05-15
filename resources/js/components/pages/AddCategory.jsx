@@ -4,7 +4,7 @@ import { useSnackbar } from 'notistack';
 import { SketchPicker } from 'react-color';
 import Button from '../molecule/Button';
 import server from '../../server';
-import QuestionCard from '../QuestionCard';
+import QuestionCard from '../molecule/QuestionCard';
 
 export default function AddChangelog() {
   const [form, setForm] = React.useState({

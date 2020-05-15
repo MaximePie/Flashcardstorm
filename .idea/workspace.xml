@@ -2,11 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/molecule/HintDialog.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/QuestionUserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/QuestionUserFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/QuestionUserHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/QuestionUserHelper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MnemonicController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MnemonicController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mnemonic.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mnemonic.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Question_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Question_user.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/QuestionCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/QuestionCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/AddCategory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/AddCategory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Training.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Training.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,21 +47,18 @@
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="heroku_d9e51ae94c19231@eu-cdbr-west-02.cleardb.net" type="feb32156:DbDataSourceImpl" />
+        <item name="Homestead" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="Homestead" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="heroku_d9e51ae94c19231@eu-cdbr-west-02.cleardb.net" type="feb32156:DbDataSourceImpl" />
+        <item name="Homestead" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="heroku_d9e51ae94c19231: schema" type="76f4a085:MysqlImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="heroku_d9e51ae94c19231@eu-cdbr-west-02.cleardb.net" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="heroku_d9e51ae94c19231: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="questions: table" type="285a2a93:MysqlImplModel$Table" />
+        <item name="homestead: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
     </expand>
     <select />
@@ -222,16 +229,16 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programmation\Flashcardstorm" />
+      <recent name="$PROJECT_DIR$/app/Helpers" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Programmation\Flashcardstorm\resources\js\components\molecule" />
       <recent name="$PROJECT_DIR$/app/Helpers" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/database/seeds" />
       <recent name="$PROJECT_DIR$/database" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Programmation\Flashcardstorm" />
-      <recent name="$PROJECT_DIR$/app/Helpers" />
     </key>
   </component>
   <component name="RunManager">
@@ -318,7 +325,7 @@
       <workItem from="1589183156517" duration="597000" />
       <workItem from="1589186095389" duration="1291000" />
       <workItem from="1589217110891" duration="8601000" />
-      <workItem from="1589453303926" duration="5074000" />
+      <workItem from="1589453303926" duration="12417000" />
     </task>
     <servers />
   </component>
@@ -370,26 +377,26 @@
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="463" y="280" key="#com.jetbrains.php.refactoring.move.member.instance.PhpMoveInstanceMethodDialog#/0.0.1440.860@0.0.1440.860" timestamp="1586947383800" />
-    <state width="1293" height="470" key="GridCell.Tab.0.bottom" timestamp="1589456429969">
+    <state width="1877" height="253" key="GridCell.Tab.0.bottom" timestamp="1589536408144">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="957" height="445" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1589396316636" />
-    <state width="1293" height="470" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589456429969" />
-    <state width="1293" height="470" key="GridCell.Tab.0.center" timestamp="1589456429969">
+    <state width="1877" height="253" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589536408144" />
+    <state width="1877" height="253" key="GridCell.Tab.0.center" timestamp="1589536408144">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="957" height="445" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1589396316636" />
-    <state width="1293" height="470" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589456429969" />
-    <state width="1293" height="470" key="GridCell.Tab.0.left" timestamp="1589456429969">
+    <state width="1877" height="253" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589536408144" />
+    <state width="1877" height="253" key="GridCell.Tab.0.left" timestamp="1589536408144">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="957" height="445" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1589396316636" />
-    <state width="1293" height="470" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589456429969" />
-    <state width="1293" height="470" key="GridCell.Tab.0.right" timestamp="1589456429969">
+    <state width="1877" height="253" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589536408144" />
+    <state width="1877" height="253" key="GridCell.Tab.0.right" timestamp="1589536408144">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="957" height="445" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1589396316636" />
-    <state width="1293" height="470" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589456429969" />
+    <state width="1877" height="253" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589536408144" />
     <state width="273" height="457" key="HiddenNamespacesPopup" timestamp="1586868320548">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
@@ -404,14 +411,19 @@
     </state>
     <state x="406" y="118" width="916" height="708" key="SettingsEditor/0.0.1440.860@0.0.1440.860" timestamp="1586954039752" />
     <state x="541" y="141" width="1022" height="737" key="SettingsEditor/0.0.1920.1032@0.0.1920.1032" timestamp="1586017481346" />
-    <state x="441" y="171" width="540" height="524" key="StructurePopup" timestamp="1587743418759">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state x="588" y="207" width="720" height="634" key="StructurePopup" timestamp="1589538309479">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="441" y="171" width="540" height="524" key="StructurePopup/0.0.1440.860@0.0.1440.860" timestamp="1587743418759" />
+    <state x="588" y="207" width="720" height="634" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1589538309479" />
     <state width="528" height="446" key="SwitcherDM" timestamp="1586076359428">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state width="528" height="446" key="SwitcherDM/0.0.1920.1032@0.0.1920.1032" timestamp="1586076359428" />
+    <state x="690" y="326" key="com.intellij.database.dbimport.ImportUtil.MyDialog" timestamp="1589539070684">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="326" key="com.intellij.database.dbimport.ImportUtil.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589539070684" />
     <state x="465" y="286" key="com.intellij.ide.util.TipDialog" timestamp="1589396212185">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
@@ -425,11 +437,12 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="645" y="213" width="619" height="613" key="com.jetbrains.php.test.PhpNewTestDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1586078716165" />
-    <state x="456" y="206" width="643" height="536" key="find.popup" timestamp="1589226212741">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state x="608" y="236" width="858" height="804" key="find.popup" timestamp="1589537770985">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="456" y="206" width="643" height="536" key="find.popup/0.0.1440.860@0.0.1440.860" timestamp="1589226212741" />
     <state x="608" y="247" width="857" height="608" key="find.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1586077719725" />
+    <state x="608" y="236" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589537770985" />
     <state x="678" y="158" width="554" height="723" key="refactoring.ChangeSignatureDialog" timestamp="1586068726430">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -439,10 +452,11 @@
     </state>
     <state x="468" y="194" width="672" height="677" key="run.anything.popup/0.0.1440.860@0.0.1440.860" timestamp="1587798353032" />
     <state x="624" y="233" key="run.anything.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1586077446073" />
-    <state x="468" y="132" width="672" height="564" key="search.everywhere.popup" timestamp="1589361041730">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1589538603728">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="468" y="132" width="672" height="564" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1589361041730" />
     <state x="624" y="158" width="672" height="676" key="search.everywhere.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1586080155157" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589538603728" />
   </component>
 </project>

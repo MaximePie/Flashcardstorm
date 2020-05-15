@@ -5,6 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property int question_user_id
+ * @property string wording
+ */
 class Mnemonic extends Model
 {
 
@@ -14,7 +18,7 @@ class Mnemonic extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'wording', 'question_id',
+        'question_user_id', 'wording',
     ];
 
 

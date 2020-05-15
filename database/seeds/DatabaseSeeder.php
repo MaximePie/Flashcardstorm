@@ -53,7 +53,8 @@ class DatabaseSeeder extends Seeder
         }
 
         for ($questionIndex = 0; $questionIndex < random_int(1, 20); $questionIndex += 1) {
-            QuestionUserHelper::createScheduledQuestionForUser($mainUser);
+            $questionUser = QuestionUserHelper::createScheduledQuestionForUser($mainUser);
+            QuestionUserHelper::createMnemonicForQuestionUser($questionUser);
         }
 
         for ($questionIndex = 0; $questionIndex < random_int(1, 20); $questionIndex += 1) {
