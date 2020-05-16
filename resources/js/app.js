@@ -37,6 +37,7 @@ require('bootstrap');
 require('../sass/AddCategory.scss');
 require('../sass/Addknowledge.scss');
 require('../sass/Changelogs.scss');
+require('../sass/HintDialog.scss');
 require('../sass/Home.scss');
 require('../sass/Icon.scss');
 require('../sass/Initiate.scss');

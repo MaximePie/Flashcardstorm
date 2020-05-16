@@ -1,0 +1,21 @@
+.HintDialog {
+
+  &__header {
+    h2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+  &__wording {
+    margin: 16px 0;
+  }
+}

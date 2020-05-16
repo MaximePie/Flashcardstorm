@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import { useSnackbar } from 'notistack';
 import Button from './Button';
 import server from '../../server';
+import CloseIcon from '../atom/CloseIcon';
 
 HintDialog.propTypes = {
   questionId: PropTypes.number.isRequired,
@@ -26,16 +27,26 @@ export default function HintDialog(props) {
 
 
   return (
-    <Dialog open onClose={onClose}>
-      <DialogTitle>Ajouter un mémo</DialogTitle>
+    <Dialog open onClose={onClose} className="HintDialog">
+      <DialogTitle className="HintDialog__header">
+        Ajouter un mémo
+        <CloseIcon onClick={onClose} />
+      </DialogTitle>
       {question && (
-        <DialogContent>
-          <h3>{question.wording}</h3>
-          <form action={submitMemo}>
-            <TextField value={memo} onChange={(event) => setMemo(event.target.value)}>{question.wording}</TextField>
+        <DialogContent className="HintDialog__content">
+          <form onSubmit={submitMemo} className="HintDialog__form">
+            <h3 className="HintDialog__wording">{question.wording}</h3>
+            <TextField
+              className="HintDialog__form-field"
+              value={memo}
+              onChange={(event) => setMemo(event.target.value)}
+              label={"Mémo"}
+            >
+              {question.wording}
+            </TextField>
+            <h3 className="HintDialog__wording">{question.answer}</h3>
             <Button variant="small" onClick={submitMemo} text="Envoyer" />
           </form>
-          <h3>{question.answer}</h3>
         </DialogContent>
       )}
     </Dialog>
@@ -46,24 +57,31 @@ export default function HintDialog(props) {
    * Send the memo value to back office to register it as a Mnemonic for this question
    */
   function submitMemo() {
-    server.post('mnemonics', { wording: memo, questionId }).then(() => {
-      enqueueSnackbar('Le mémo a bien été ajoutée !',
-        {
-          anchorOrigin: {
-            vertical: 'top',
-            horizontal: 'center',
-          },
-          variant: 'success',
-        });
-    });
+    server.post('mnemonics', {
+      wording: memo,
+      questionId,
+    })
+      .then(() => {
+        enqueueSnackbar('Le mémo a bien été ajoutée !',
+          {
+            anchorOrigin: {
+              vertical: 'top',
+              horizontal: 'center',
+            },
+            variant: 'success',
+          });
+        setMemo('');
+        onClose();
+      });
   }
 
   /**
    * Fetches the data of the question based on its ID.
    */
   function fetchQuestion() {
-    server.get(`showQuestion/${questionId}`).then((response) => {
-      setQuestion(response.data);
-    });
+    server.get(`showQuestion/${questionId}`)
+      .then((response) => {
+        setQuestion(response.data);
+      });
   }
 }
