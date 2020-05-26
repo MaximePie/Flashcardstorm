@@ -40,7 +40,7 @@ export default function HintDialog(props) {
               className="HintDialog__form-field"
               value={memo}
               onChange={(event) => setMemo(event.target.value)}
-              label={"Mémo"}
+              label="Mémo"
             >
               {question.wording}
             </TextField>

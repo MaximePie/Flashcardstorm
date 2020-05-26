@@ -15,6 +15,7 @@ import { SnackbarProvider } from 'notistack';
 import AddKnowledge from './components/pages/AddKnowledge';
 import Navbar from './components/Navbar';
 import QuestionsList from './components/pages/QuestionsList';
+import Quest from './components/pages/Quest';
 import Register from './components/pages/Register';
 import Login from './components/pages/Login';
 import Profile from './components/Profile';
@@ -44,6 +45,7 @@ require('../sass/Initiate.scss');
 require('../sass/Login.scss');
 require('../sass/Navbar.scss');
 require('../sass/Profile.scss');
+require('../sass/Quest.scss');
 require('../sass/QuestionCard.scss');
 require('../sass/QuestionsList.scss');
 require('../sass/QuestionRow.scss');
@@ -106,12 +108,6 @@ export default function App() {
             <Route path="/login">
               <Login />
             </Route>
-            <Route path="/soft_training">
-              <Training mode="soft" updateUserScore={updateUser} />
-            </Route>
-            <Route path="/rough_training">
-              <RoughTraining />
-            </Route>
             <Route path="/initiate">
               <Initiate />
             </Route>
@@ -135,8 +131,17 @@ export default function App() {
             </Route>
             {isConnected && (
               <>
+                <Route path="/soft_training">
+                  <Training mode="soft" updateUserScore={updateUser} />
+                </Route>
+                <Route path="/rough_training">
+                  <RoughTraining />
+                </Route>
                 <Route path="/profile">
                   <Profile />
+                </Route>
+                <Route path="/quest">
+                  <Quest />
                 </Route>
                 <Route path="/add_changelog">
                   <AddChangelog />
