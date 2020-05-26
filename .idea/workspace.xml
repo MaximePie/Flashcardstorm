@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/atom/CloseIcon.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/HintDialog.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/pages/Quest.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sass/Quest.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/HintDialog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/HintDialog.jsx" afterDir="false" />
@@ -325,7 +327,10 @@
       <workItem from="1589186095389" duration="1291000" />
       <workItem from="1589217110891" duration="8601000" />
       <workItem from="1589453303926" duration="14013000" />
-      <workItem from="1589616641846" duration="2722000" />
+      <workItem from="1589616641846" duration="56915000" />
+      <workItem from="1590386776546" duration="5907000" />
+      <workItem from="1590406688987" duration="1851000" />
+      <workItem from="1590508490286" duration="1279000" />
     </task>
     <servers />
   </component>
@@ -416,19 +421,21 @@
     </state>
     <state x="441" y="171" width="540" height="524" key="StructurePopup/0.0.1440.860@0.0.1440.860" timestamp="1587743418759" />
     <state x="588" y="207" width="720" height="634" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1589538309479" />
-    <state width="528" height="446" key="SwitcherDM" timestamp="1586076359428">
-      <screen x="0" y="0" width="1920" height="1032" />
+    <state width="528" height="450" key="SwitcherDM" timestamp="1590417022831">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="528" height="446" key="SwitcherDM/0.0.1920.1032@0.0.1920.1032" timestamp="1586076359428" />
+    <state width="528" height="450" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1590417022831" />
     <state x="690" y="326" key="com.intellij.database.dbimport.ImportUtil.MyDialog" timestamp="1589539070684">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="326" key="com.intellij.database.dbimport.ImportUtil.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589539070684" />
-    <state x="465" y="286" key="com.intellij.ide.util.TipDialog" timestamp="1589396212185">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1590386817817">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="465" y="286" key="com.intellij.ide.util.TipDialog/0.0.1440.860@0.0.1440.860" timestamp="1589396212185" />
     <state x="620" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1586017497908" />
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590386817817" />
     <state x="683" y="158" width="543" height="722" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1585841868830">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -437,12 +444,12 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="645" y="213" width="619" height="613" key="com.jetbrains.php.test.PhpNewTestDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1586078716165" />
-    <state x="608" y="236" width="858" height="804" key="find.popup" timestamp="1589537770985">
+    <state x="608" y="236" width="858" height="804" key="find.popup" timestamp="1590413080996">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="456" y="206" width="643" height="536" key="find.popup/0.0.1440.860@0.0.1440.860" timestamp="1589226212741" />
     <state x="608" y="247" width="857" height="608" key="find.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1586077719725" />
-    <state x="608" y="236" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589537770985" />
+    <state x="608" y="236" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590413080996" />
     <state x="678" y="158" width="554" height="723" key="refactoring.ChangeSignatureDialog" timestamp="1586068726430">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -452,11 +459,11 @@
     </state>
     <state x="468" y="194" width="672" height="677" key="run.anything.popup/0.0.1440.860@0.0.1440.860" timestamp="1587798353032" />
     <state x="624" y="233" key="run.anything.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1586077446073" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1589558276223">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1590417626266">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="468" y="132" width="672" height="564" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1589361041730" />
     <state x="624" y="158" width="672" height="676" key="search.everywhere.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1586080155157" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589558276223" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590417626266" />
   </component>
 </project>
