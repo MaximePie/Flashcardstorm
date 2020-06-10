@@ -1,7 +1,7 @@
 import React from 'react';
 import { LinearProgress } from '@material-ui/core';
 import heroSprite from '../../../images/quest/owl.png';
-import monsterSprite from './images/quest/monster.png';
+import monsterSprite from '../../../images/quest/monster.png';
 import QuestionCard from '../molecule/QuestionCard';
 import server from '../../server';
 
