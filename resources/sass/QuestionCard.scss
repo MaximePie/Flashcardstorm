@@ -38,6 +38,13 @@
         left: -24px;
     }
 
+    &--quest {
+        padding: 16px;
+        .QuestionCard__content {
+            min-height: 300px;
+        }
+    }
+
     .Icon__container {
         top: -24px;
         border: solid 1px;

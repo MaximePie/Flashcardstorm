@@ -6,12 +6,20 @@ import Radio from '@material-ui/core/Radio';
 import Icon from '../Icon';
 import Button from './Button';
 import { shuffle } from '../../helper';
+import classNames from 'classnames';
 
 export default function QuestionCard(props) {
-  const { question, isDemo} = props;
+  const { question, isDemo, isQuest } = props;
   const [answer, setAnswer] = React.useState('');
   const [selectedAnswerKey, setSelectedAnswerKey] = React.useState(0);
   const [additionalAnswers, setAdditionalAnswers] = React.useState([]);
+
+  const classnames = classNames({
+    QuestionCard: true,
+    card: true,
+    'QuestionCard--golden': question.is_golden_card,
+    'QuestionCard--quest': isQuest,
+  });
 
   const inputRef = useRef();
 
@@ -32,7 +40,7 @@ export default function QuestionCard(props) {
     <form
       key={`QuestionCard-${question.id}`}
       onSubmit={() => props.onSubmit(answer)}
-      className={`QuestionCard card ${question.is_golden_card && 'QuestionCard--golden'}`}
+      className={classnames}
     >
       {icons()}
       <div className="QuestionCard__content">

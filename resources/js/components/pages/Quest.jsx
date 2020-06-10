@@ -8,22 +8,10 @@ import server from '../../server';
 export default function Quest() {
   const [hero, setHero] = React.useState({
     currentLife: 100,
-    setLife: (life) => {
-      setHero({
-        ...hero,
-        currentLife: life,
-      });
-    },
   });
 
   const [monster, setMonster] = React.useState({
     currentLife: 100,
-    setLife: (life) => {
-      setMonster({
-        ...monster,
-        currentLife: life,
-      });
-    },
   });
 
   const [questions, setQuestions] = React.useState([]);
@@ -57,6 +45,7 @@ export default function Quest() {
             question={questions[0] || undefined}
             onSubmit={(answer) => submitAnswer(answer, questions[0])}
             key={`QuestionCard-${questions[0].id}`}
+            isQuest
           />
           <div className="Quest__entity">
             <img src={monsterSprite} alt="Le méchant" className="Quest__meany" />
