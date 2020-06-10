@@ -27,4 +27,13 @@
   &__hero, &__meany {
     height: 400px;
   }
+
+  &__text {
+    border: solid 3px #000000ad;
+    color: white;
+    font-size: 2em;
+    padding: 16px;
+    margin: 16px;
+    height: 100px;
+  }
 }

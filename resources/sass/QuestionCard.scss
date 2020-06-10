@@ -1,89 +1,91 @@
 .QuestionCard {
-    padding: 32px 16px;
-    width: 500px;
-    margin: 16px auto;
+  padding: 32px 16px;
+  width: 500px;
+  margin: 16px auto;
+
+  .QuestionCard__content {
+    padding-top: 40px;
+    min-height: 550px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  position: relative;
+
+  &__question {
+    text-align: center;
+
+    &--is-empty {
+      color: grey;
+    }
+  }
+
+  &--golden__icon {
+    left: 104px;
+  }
+
+  &--new__icon {
+    left: 40px;
+  }
+
+  &--category__icon {
+    right: -24px;
+  }
+
+  &--reverse__icon {
+    left: -24px;
+  }
+
+  &--quest {
+    padding: 16px;
 
     .QuestionCard__content {
-        padding-top: 40px;
-        min-height: 550px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: column;
+      min-height: 300px;
     }
+  }
 
-    position: relative;
+  .Icon__container {
+    top: -24px;
+    border: solid 1px;
+    position: absolute;
+    box-shadow: 0.2rem 0.325rem 0.25rem rgba(0, 0, 0, 0.175) !important;
+    background: white;
+  }
 
-    &__question {
-        text-align: center;
+  &__actions {
+    display: flex;
+  }
 
-        &--is-empty {
-            color: grey;
-        }
+  &__multi-answer-group {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    flex-direction: row !important;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 767px) {
+    height: 65vh;
+    min-height: 250px;
+    padding: 8px;
+    width: initial;
+
+    .QuestionCard__icons {
+      text-align: center;
     }
-
-    &--golden__icon{
-        left: 104px;
+    .QuestionCard__content {
+      min-height: initial;
+      height: 90%;
     }
+    .Icon__badge {
+      margin: 2px;
 
-    &--new__icon {
-        left: 40px;
+      .Icon {
+        margin-right: 4px;
+      }
     }
-
-    &--category__icon {
-        right: -24px;
-    }
-
-    &--reverse__icon {
-        left: -24px;
-    }
-
-    &--quest {
-        padding: 16px;
-        .QuestionCard__content {
-            min-height: 300px;
-        }
-    }
-
-    .Icon__container {
-        top: -24px;
-        border: solid 1px;
-        position: absolute;
-        box-shadow: 0.2rem 0.325rem 0.25rem rgba(0,0,0,0.175)!important;
-        background: white;
-    }
-
-    &__actions {
-        display: flex;
-    }
-
-    &__multi-answer-group {
-        width: 80%;
-        display: flex;
-        flex-wrap: wrap !important;
-        align-items: center !important;
-        flex-direction: row !important;
-        justify-content: center;
-    }
-
-    @media screen and (max-width: 767px) {
-        height: 65vh;
-        min-height: 250px;
-        padding: 8px;
-        width: initial;
-
-        .QuestionCard__icons {
-            text-align: center;
-        }
-        .QuestionCard__content {
-            min-height: initial;
-            height: 90%;
-        }
-        .Icon__badge {
-            margin: 2px;
-            .Icon {
-                margin-right: 4px;
-            }
-        }
-    }
+  }
 }
