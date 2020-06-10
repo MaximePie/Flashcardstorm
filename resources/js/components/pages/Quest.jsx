@@ -16,11 +16,11 @@ export default function Quest() {
 
   const [questions, setQuestions] = React.useState([]);
 
-  const [displayedText, setDisplayedText] = React.useState('');
+  const [displayedText, setDisplayedText] = React.useState([]);
 
   React.useEffect(() => {
     if (hero.current_health <= 0) {
-      alert('Vous êtes mort... Déso !');
+      setDisplayedText([...displayedText, 'Vous êtes mort... Déso !']);
       window.reload();
     }
   }, [hero]);
@@ -28,7 +28,7 @@ export default function Quest() {
 
   React.useEffect(() => {
     if (monster.current_health <= 0) {
-      alert('Vous avez gagné, wouhou !');
+      setDisplayedText([...displayedText, 'Vous avez gagné, wouhou !']);
       window.reload();
     }
   }, [monster]);
@@ -38,6 +38,8 @@ export default function Quest() {
     fetchQuestions();
     fetchEntitiesInfo();
   }, []);
+
+  console.log(displayedText);
 
   return (
     <div className="Quest">
@@ -69,7 +71,7 @@ export default function Quest() {
             </div>
           </div>
           <div className="Quest__text">
-            {displayedText}
+            {displayedText.map((text) => <p>{text}</p>)}
           </div>
         </>
       )}
@@ -128,7 +130,8 @@ export default function Quest() {
             attacker: hero.id,
             victim: monster.id,
           }).then((attackResponse) => {
-            setDisplayedText(`Le monstre perd ${attackResponse.lostHealth} PV`);
+            // displayedText.push(`Le monstre perd ${attackResponse.data.lostHealth} PV`);
+            setDisplayedText([...displayedText, `Le monstre perd ${attackResponse.data.lostHealth} PV`]);
             fetchEntitiesInfo();
           });
         } else if (response.data.status === 500) {
@@ -136,7 +139,7 @@ export default function Quest() {
             attacker: monster.id,
             victim: hero.id,
           }).then((attackResponse) => {
-            setDisplayedText(`Le héros perd ${attackResponse.lostHealth} PV`);
+            setDisplayedText([...displayedText, `Le héros perd ${attackResponse.data.lostHealth} PV`]);
             fetchEntitiesInfo();
           });
         }
