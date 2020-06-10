@@ -1,6 +1,4 @@
 .Quest {
-  display: grid;
-  grid-template-rows: auto auto auto;
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -10,6 +8,7 @@
   &__entities {
     display: grid;
     grid-template-columns: auto auto auto;
+    margin-top: 8em;
   }
 
   &__entity {
@@ -22,7 +21,7 @@
   &__bar {
     margin-top: 16px;
     width: 50%;
-    height: 16px;
+    height: 16px !important;
   }
 
   &__hero, &__meany {
