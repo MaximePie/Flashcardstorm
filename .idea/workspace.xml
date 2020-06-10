@@ -5,8 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Quest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Quest.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/Quest.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Quest.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/QuestionCard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/QuestionCard.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -330,7 +328,7 @@
       <workItem from="1590653150384" duration="63000" />
       <workItem from="1590824094309" duration="1213000" />
       <workItem from="1591202822937" duration="600000" />
-      <workItem from="1591772647663" duration="7587000" />
+      <workItem from="1591772647663" duration="7937000" />
     </task>
     <servers />
   </component>

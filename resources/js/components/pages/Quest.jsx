@@ -20,14 +20,16 @@ export default function Quest() {
 
   React.useEffect(() => {
     if (hero.currentLife <= 0) {
-      setHeroLife(100);
+      alert("Vous êtes mort... Déso !");
+      window.reload();
     }
   }, [hero]);
 
 
   React.useEffect(() => {
     if (monster.currentLife <= 0) {
-      setMonsterLife(100);
+      alert("Vous avez gagné, wouhou !");
+      window.reload();
     }
   }, [monster]);
 
