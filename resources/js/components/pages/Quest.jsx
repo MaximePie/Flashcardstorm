@@ -7,11 +7,11 @@ import server from '../../server';
 
 export default function Quest() {
   const [hero, setHero] = React.useState({
-    currentLife: 100,
+    current_health: 100,
   });
 
   const [monster, setMonster] = React.useState({
-    currentLife: 100,
+    current_health: 100,
   });
 
   const [questions, setQuestions] = React.useState([]);
@@ -19,22 +19,24 @@ export default function Quest() {
   const [displayedText, setDisplayedText] = React.useState('');
 
   React.useEffect(() => {
-    if (hero.currentLife <= 0) {
-      alert("Vous êtes mort... Déso !");
+    if (hero.current_health <= 0) {
+      alert('Vous êtes mort... Déso !');
       window.reload();
     }
   }, [hero]);
 
 
   React.useEffect(() => {
-    if (monster.currentLife <= 0) {
-      alert("Vous avez gagné, wouhou !");
+    if (monster.current_health <= 0) {
+      alert('Vous avez gagné, wouhou !');
       window.reload();
     }
   }, [monster]);
 
   React.useEffect(() => {
+    initializeHero();
     fetchQuestions();
+    fetchEntitiesInfo();
   }, []);
 
   return (
@@ -44,7 +46,11 @@ export default function Quest() {
           <div className="Quest__entities">
             <div className="Quest__entity">
               <img src={heroSprite} alt="Le héros" className="Quest__hero" />
-              <LinearProgress className="Quest__bar" variant="determinate" value={hero.currentLife} />
+              <LinearProgress
+                className="Quest__bar"
+                variant="determinate"
+                value={(hero.current_health / hero.max_health) * 100}
+              />
             </div>
             <QuestionCard
               question={questions[0] || undefined}
@@ -57,7 +63,7 @@ export default function Quest() {
               <LinearProgress
                 className="Quest__bar"
                 variant="determinate"
-                value={monster.currentLife}
+                value={(monster.current_health / monster.max_health) * 100}
                 color="secondary"
               />
             </div>
@@ -82,6 +88,25 @@ export default function Quest() {
   }
 
   /**
+   * Fetch the entities info
+   */
+  function fetchEntitiesInfo() {
+    server.get('quest')
+      .then((response) => {
+        setHero({ ...response.data.hero });
+        setMonster(response.data.monster);
+      });
+  }
+
+
+  /**
+   * Fetch the hero info and set it to initial values
+   */
+  function initializeHero() {
+    server.get('initialQuest');
+  }
+
+  /**
    * Submit the answer to the backoffice
    * @param answer
    * @param question
@@ -99,38 +124,26 @@ export default function Quest() {
     )
       .then((response) => {
         if (response.data.status === 200) {
-          setDisplayedText('Le monstre perd 10 PV');
-          setMonsterLife(monster.currentLife - 10);
+          server.post('quest_attack', {
+            attacker: hero.id,
+            victim: monster.id,
+          }).then((attackResponse) => {
+            setDisplayedText(`Le monstre perd ${attackResponse.lostHealth} PV`);
+            fetchEntitiesInfo();
+          });
         } else if (response.data.status === 500) {
-          setDisplayedText('Le hero perd 10 PV');
-          setHeroLife(hero.currentLife - 10);
+          server.post('quest_attack', {
+            attacker: monster.id,
+            victim: hero.id,
+          }).then((attackResponse) => {
+            setDisplayedText(`Le héros perd ${attackResponse.lostHealth} PV`);
+            fetchEntitiesInfo();
+          });
         }
       });
 
     const questionsList = [...questions];
     questionsList.shift();
     setQuestions(questionsList);
-  }
-
-  /**
-   * Set the hero's current life
-   * @param life the amount of life we want to give the hero
-   */
-  function setHeroLife(life) {
-    setHero({
-      ...hero,
-      currentLife: life,
-    });
-  }
-
-  /**
-   * Set the monster's current life
-   * @param life the amount of life we want to give the hero
-   */
-  function setMonsterLife(life) {
-    setMonster({
-      ...monster,
-      currentLife: life,
-    });
   }
 }

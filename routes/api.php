@@ -40,6 +40,8 @@ Route::name('api.')->group(static function () {
             Route::get('questions_list/{visibility?}', 'QuestionController@index');
             Route::get('categories', 'CategoryController@index');
             Route::get('changelogs', 'ChangelogController@index');
+            Route::get('quest', 'QuestEntityController@index');
+            Route::get('initialQuest', 'QuestEntityController@initialize');
 
             Route::post('category', 'CategoryController@store');
             Route::post('question/toggle', 'QuestionController@toggleQuestionForUser');
@@ -48,6 +50,7 @@ Route::name('api.')->group(static function () {
             Route::post('question', 'QuestionController@store');
             Route::post('mnemonics', 'MnemonicController@store');
             Route::post('question_import', 'QuestionController@import');
+            Route::post('quest_attack', 'QuestEntityController@attack');
         });
     });
 

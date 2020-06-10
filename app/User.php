@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
@@ -133,6 +134,15 @@ class User extends Authenticable
         return $this->BelongsToMany(Question::class, 'question_users')
         ->where('question_users.isMemorized', false)
         ->where('question_users.isInitiated', false);
+    }
+
+    /**
+     * Returns the associated entity if he has one
+     * @return HasOne
+     */
+    public function hero(): hasOne
+    {
+        return $this->hasOne(QuestEntity::class, 'user_id');
     }
 
     public function dailyProgress(): array

@@ -5,6 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property int attack
+ * @property int current_health
+ * @property int max_health
+ */
 class QuestEntity extends Model
 {
 
