@@ -20,7 +20,7 @@ export default function Quest() {
 
   React.useEffect(() => {
     if (hero.current_health <= 0) {
-      setDisplayedText([...displayedText, 'Vous êtes mort... Déso !']);
+      addText('Vous êtes mort... Déso !');
       document.location.reload();
     }
   }, [hero]);
@@ -28,13 +28,18 @@ export default function Quest() {
 
   React.useEffect(() => {
     if (monster.current_health <= 0) {
-      setDisplayedText([...displayedText, 'Vous avez gagné, wouhou !']);
+      addText('Vous avez gagné, wouhou !');
       document.location.reload();
     }
   }, [monster]);
 
   React.useEffect(() => {
-    initializeHero();
+    const questionWording = questions[0].is_reverse ? questions[0].answer : questions[0].wording;
+    addText(`La question est : ${questionWording}`);
+  }, [questions]);
+
+  React.useEffect(() => {
+    initialize();
     fetchQuestions();
     fetchEntitiesInfo();
   }, []);
@@ -45,7 +50,7 @@ export default function Quest() {
         <>
           <div className="Quest__entities">
             <div className="Quest__entity">
-              <img src={heroSprite} alt="Le héros" className="Quest__hero"/>
+              <img src={heroSprite} alt="Le héros" className="Quest__hero" />
               <LinearProgress
                 className="Quest__bar"
                 variant="determinate"
@@ -59,7 +64,7 @@ export default function Quest() {
               isQuest
             />
             <div className="Quest__entity">
-              <img src={monsterSprite} alt="Le méchant" className="Quest__meany"/>
+              <img src={monsterSprite} alt="Le méchant" className="Quest__meany" />
               <LinearProgress
                 className="Quest__bar"
                 variant="determinate"
@@ -102,8 +107,16 @@ export default function Quest() {
   /**
    * Fetch the hero info and set it to initial values
    */
-  function initializeHero() {
+  function initialize() {
     server.get('initialQuest');
+  }
+
+  /**
+   * Add text at the bottom of the displayed text
+   * @param text String, the text we want to add
+   */
+  function addText(text) {
+    setDisplayedText([...displayedText, text]);
   }
 
   /**
@@ -112,6 +125,7 @@ export default function Quest() {
    * @param question
    */
   function submitAnswer(answer, question) {
+    addText(answer);
     server.post(
       'question/submit_answer',
       {
@@ -129,17 +143,17 @@ export default function Quest() {
             victim: monster.id,
           })
             .then((attackResponse) => {
-              // displayedText.push(`Le monstre perd ${attackResponse.data.lostHealth} PV`);
-              setDisplayedText([...displayedText, `Le monstre perd ${attackResponse.data.lostHealth} PV`]);
+              addText(`Le monstre perd ${attackResponse.data.lostHealth} PV`);
               fetchEntitiesInfo();
             });
         } else if (response.data.status === 500) {
+          addText(`Mauvaise réponse ! La réponse était ${response.data.correct_answer}`);
           server.post('quest_attack', {
             attacker: monster.id,
             victim: hero.id,
           })
             .then((attackResponse) => {
-              setDisplayedText([...displayedText, `Le héros perd ${attackResponse.data.lostHealth} PV`]);
+              addText(`Le héros perd ${attackResponse.data.lostHealth} PV`);
               fetchEntitiesInfo();
             });
         }
