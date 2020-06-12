@@ -21,7 +21,7 @@ export default function Quest() {
   React.useEffect(() => {
     if (hero.current_health <= 0) {
       setDisplayedText([...displayedText, 'Vous êtes mort... Déso !']);
-      window.reload();
+      document.location.reload();
     }
   }, [hero]);
 
@@ -29,7 +29,7 @@ export default function Quest() {
   React.useEffect(() => {
     if (monster.current_health <= 0) {
       setDisplayedText([...displayedText, 'Vous avez gagné, wouhou !']);
-      window.reload();
+      document.location.reload();
     }
   }, [monster]);
 
@@ -39,15 +39,13 @@ export default function Quest() {
     fetchEntitiesInfo();
   }, []);
 
-  console.log(displayedText);
-
   return (
     <div className="Quest">
       {questions[0] && (
         <>
           <div className="Quest__entities">
             <div className="Quest__entity">
-              <img src={heroSprite} alt="Le héros" className="Quest__hero" />
+              <img src={heroSprite} alt="Le héros" className="Quest__hero"/>
               <LinearProgress
                 className="Quest__bar"
                 variant="determinate"
@@ -61,7 +59,7 @@ export default function Quest() {
               isQuest
             />
             <div className="Quest__entity">
-              <img src={monsterSprite} alt="Le méchant" className="Quest__meany" />
+              <img src={monsterSprite} alt="Le méchant" className="Quest__meany"/>
               <LinearProgress
                 className="Quest__bar"
                 variant="determinate"
@@ -129,19 +127,21 @@ export default function Quest() {
           server.post('quest_attack', {
             attacker: hero.id,
             victim: monster.id,
-          }).then((attackResponse) => {
-            // displayedText.push(`Le monstre perd ${attackResponse.data.lostHealth} PV`);
-            setDisplayedText([...displayedText, `Le monstre perd ${attackResponse.data.lostHealth} PV`]);
-            fetchEntitiesInfo();
-          });
+          })
+            .then((attackResponse) => {
+              // displayedText.push(`Le monstre perd ${attackResponse.data.lostHealth} PV`);
+              setDisplayedText([...displayedText, `Le monstre perd ${attackResponse.data.lostHealth} PV`]);
+              fetchEntitiesInfo();
+            });
         } else if (response.data.status === 500) {
           server.post('quest_attack', {
             attacker: monster.id,
             victim: hero.id,
-          }).then((attackResponse) => {
-            setDisplayedText([...displayedText, `Le héros perd ${attackResponse.data.lostHealth} PV`]);
-            fetchEntitiesInfo();
-          });
+          })
+            .then((attackResponse) => {
+              setDisplayedText([...displayedText, `Le héros perd ${attackResponse.data.lostHealth} PV`]);
+              fetchEntitiesInfo();
+            });
         }
       });
 

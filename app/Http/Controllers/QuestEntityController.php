@@ -19,21 +19,49 @@ class QuestEntityController extends Controller
     {
         return new JsonResponse([
             'hero' => Auth::user()->hero()->first(),
-            'monster' => QuestEntity::where('name', 'Le gros méchant loup')->first(),
+            'monster' => QuestEntity::query()->whereNull('user_id')->first(),
         ]);
     }
 
     /**
      * Display the initial values of the hero
-     *
-     * @return JsonResponse
      */
     public function initialize()
     {
+        $user = Auth::user();
         /** @var QuestEntity $hero */
-        $hero = Auth::user()->hero()->first();
+        $hero = $user->hero()->first();
+        if (!$hero) {
+            $hero = QuestEntity::create([
+                'user_id' => $user->id,
+                "name" => $user->name,
+                "current_health" => 100,
+                "max_health" => 100,
+                "attack" => 10,
+                "current_experience" => 0,
+                "to_next_level_experience" => 190,
+                "level" => 1,
+            ]);
+        }
+
         $hero->current_health = $hero->max_health;
         $hero->save();
+
+        /** @var QuestEntity $monster */
+        $monster = QuestEntity::query()->whereNull('user_id')->first();
+
+        if (!$monster) {
+            $monster = QuestEntity::create([
+                'name' => 'Le gros méchant loup',
+                'current_health' => 30,
+                'max_health' => 30,
+                'attack' => 8,
+                'current_experience' => 80,
+                'level' => 1,
+            ]);
+        }
+        $monster->current_health = $monster->max_health;
+        $monster->save();
     }
 
     /**

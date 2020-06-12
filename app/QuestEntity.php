@@ -18,6 +18,7 @@ class QuestEntity extends Model
      */
     protected $fillable = [
         "name",
+        "user_id",
         "current_health",
         "max_health",
         "attack",
