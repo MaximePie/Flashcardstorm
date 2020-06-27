@@ -13,8 +13,11 @@ import Drawer from '@material-ui/core/Drawer';
 import Badge from '@material-ui/core/Badge';
 import Icon from './Icon';
 import { isMobile } from '../helper';
+import { AuthenticationContext } from '../Contexts/authentication';
 
 export default function Navbar(props) {
+
+  const isConnected = React.useContext(AuthenticationContext);
 
   const number_of_new_questions = props.user?.numberOfQuestions;
   const numberOfNewChangelogs = props.user?.numberOfNewChangelogs;
@@ -46,7 +49,7 @@ export default function Navbar(props) {
             Mode tempête
           </ListItemText>
         </ListItem>
-        {props.is_connected && (
+        {isConnected && (
           <>
             <ListItem button component="a" href="/soft_training" className="Navbar__item">
               <ListItemIcon>
@@ -98,7 +101,7 @@ export default function Navbar(props) {
             Ajouter des questions
           </ListItemText>
         </ListItem>
-        {!props.is_connected && (
+        {!isConnected && (
           <>
             <ListItem button component="a" href="/register" className="Navbar__item">
               <ListItemIcon>
@@ -118,7 +121,7 @@ export default function Navbar(props) {
             </ListItem>
           </>
         )}
-        {props.is_connected && (
+        {isConnected && (
           <>
             <ListItem button component="a" href="/add_category" className="Navbar__item">
               <ListItemIcon>
@@ -213,7 +216,7 @@ export default function Navbar(props) {
               </div>
             </a>
           )}
-          {props.is_connected && (
+          {isConnected && (
             <div className="Navbar__item-profile-container">
               <a href="/profile" className="Navbar__item-profile-icon-link">
                 <i className="Navbar__item-profile-icon fas fa-user-circle"/>

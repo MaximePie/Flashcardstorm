@@ -2,25 +2,17 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import classNames from 'classnames';
-import { PropTypes } from 'prop-types';
 import { toLocale } from '../../helper';
 import server from '../../server';
 import Icon from '../Icon';
 import Button from '../molecule/Button';
+import { AuthenticationContext } from '../../Contexts/authentication';
 
-Changelogs.propTypes = {
-  isConnected: PropTypes.bool,
-};
-
-Changelogs.defaultProps = {
-  isConnected: false,
-};
-
-export default function Changelogs(props) {
+export default function Changelogs() {
+  const isConnected = React.useContext(AuthenticationContext);
   const [changelogs, setChangelogs] = React.useState([]);
   const [potentialChangelogs, setPotentialChangelogs] = React.useState([]);
   const [activeTab, setActiveTab] = React.useState('potential');
-  const { isConnected } = props;
 
   React.useEffect(() => {
     updateChangelogs();
@@ -136,7 +128,7 @@ export default function Changelogs(props) {
   }
 
   function handleVote(changelogId) {
-    if (props.isConnected) {
+    if (isConnected) {
       server.get(`vote/${changelogId}`)
         .then((response) => {
           const { changelogs, potentialChangelogs } = response.data;

@@ -9,12 +9,13 @@ import { useSnackbar } from 'notistack';
 import Checkbox from '@material-ui/core/Checkbox';
 import QuestionsListItem from '../molecule/QuestionsListItem';
 import { isMobile } from '../../helper';
+import { AuthenticationContext } from '../../Contexts/authentication';
 
-
-export default function QuestionsList(props) {
+export default function QuestionsList() {
+  const isConnected = React.useContext(AuthenticationContext);
 
   const [questions, updateQuestions] = React.useState();
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
   const [switchStatus, setSwitchStatus] = React.useState(false);
 
@@ -36,7 +37,7 @@ export default function QuestionsList(props) {
         {!isMobile() && (
           <>
             <h1>Liste des questions</h1>
-            {props.is_connected && questions?.data && isMobile() && (
+            {isConnected && questions?.data && isMobile() && (
               <>
                 <p>Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection</p>
                 <p>Une question est automatiquement intégrée à votre collection quand vous créez une question ou quand vous
@@ -49,7 +50,7 @@ export default function QuestionsList(props) {
         {isMobile() && (
           <h2 className="QuestionsList__title">Liste des questions</h2>
         )}
-        {props.is_connected && (
+        {isConnected && (
           <>
             <FormControlLabel
               control={
@@ -63,7 +64,7 @@ export default function QuestionsList(props) {
       </div>
       <form className="QuestionsList__form">
         <ul className="QuestionsList__list">
-          {questions?.data?.length && props.is_connected && (
+          {questions?.data?.length && isConnected && (
             <div className="QuestionsList__global-checker">
               <FormControlLabel
                 control={
@@ -90,7 +91,6 @@ export default function QuestionsList(props) {
                   deleteQuestion={deleteQuestion}
                   toggleQuestionForUser={toggleQuestionForUser}
                   key={'question-' + key}
-                  isConnected={props.is_connected}
                 />
               );
             })}
@@ -100,7 +100,7 @@ export default function QuestionsList(props) {
       {questions?.data?.length && (
         <>
           <div className="QuestionsList__actions">
-            {props.is_connected &&
+            {isConnected &&
               <Button text={isMobile() ? "Enregistrer" : "Enregistrer la sélection"} onClick={saveSelection}/>
             }
             {questions.last_page !== 1 && (

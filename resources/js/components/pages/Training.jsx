@@ -8,19 +8,20 @@ import server from '../../server';
 import HintDialog from '../molecule/HintDialog';
 import QuestionCard from '../molecule/QuestionCard';
 import { isMobile } from '../../helper';
+import { AuthenticationContext } from '../../Contexts/authentication';
 
 Training.propTypes = {
   mode: PropTypes.string,
-  is_connected: PropTypes.bool,
   updateUserScore: PropTypes.func.isRequired,
 };
 
 Training.defaultProps = {
   mode: 'soft',
-  is_connected: false,
 };
 
 export default function Training(props) {
+  const isConnected = React.useContext(AuthenticationContext);
+
   const [questionsBag, updateQuestionsBag] = React.useState({
     questions: [],
     unwantedIdsList: [],
@@ -34,7 +35,7 @@ export default function Training(props) {
 
   const { enqueueSnackbar } = useSnackbar();
 
-  const { is_connected: isConnected, updateUserScore, mode } = props;
+  const { updateUserScore, mode } = props;
 
   React.useEffect(() => {
     server.get('update_progress')

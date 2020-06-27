@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Quest.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Quest.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/QuestionsListItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/QuestionsListItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Changelogs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Changelogs.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +70,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JSX File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -330,7 +333,10 @@
       <workItem from="1591772647663" duration="13967000" />
       <workItem from="1591892926832" duration="9000" />
       <workItem from="1591897649515" duration="1425000" />
-      <workItem from="1591944652013" duration="2021000" />
+      <workItem from="1591944652013" duration="2082000" />
+      <workItem from="1592296883663" duration="719000" />
+      <workItem from="1593142793503" duration="743000" />
+      <workItem from="1593237076040" duration="3444000" />
     </task>
     <servers />
   </component>
@@ -431,12 +437,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="326" key="com.intellij.database.dbimport.ImportUtil.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589539070684" />
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1591944963507">
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1593237084140">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="465" y="286" key="com.intellij.ide.util.TipDialog/0.0.1440.860@0.0.1440.860" timestamp="1589396212185" />
     <state x="620" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1586017497908" />
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591944963507" />
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593237084140" />
     <state x="683" y="158" width="543" height="722" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1585841868830">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -445,12 +451,12 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="645" y="213" width="619" height="613" key="com.jetbrains.php.test.PhpNewTestDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1586078716165" />
-    <state x="608" y="236" width="858" height="804" key="find.popup" timestamp="1591799673610">
+    <state x="608" y="236" width="858" height="804" key="find.popup" timestamp="1593240563150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="456" y="206" width="643" height="536" key="find.popup/0.0.1440.860@0.0.1440.860" timestamp="1589226212741" />
     <state x="608" y="247" width="857" height="608" key="find.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1586077719725" />
-    <state x="608" y="236" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591799673610" />
+    <state x="608" y="236" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1593240563150" />
     <state x="678" y="158" width="554" height="723" key="refactoring.ChangeSignatureDialog" timestamp="1586068726430">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>

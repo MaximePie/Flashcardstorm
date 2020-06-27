@@ -4,6 +4,7 @@ import Collapse from '@material-ui/core/Collapse';
 import { PropTypes } from 'prop-types';
 import { isMobile, toLocale } from '../../helper';
 import Icon from '../Icon';
+import { AuthenticationContext } from '../../Contexts/authentication';
 
 QuestionsListItem.propTypes = {
   question: PropTypes.shape({
@@ -23,21 +24,15 @@ QuestionsListItem.propTypes = {
   deleteQuestion: PropTypes.func.isRequired,
   toggleQuestionForUser: PropTypes.func.isRequired,
   questionKey: PropTypes.number.isRequired,
-  isConnected: PropTypes.bool,
 };
-
-QuestionsListItem.defaultProps = {
-  isConnected: false,
-};
-
 
 export default function QuestionsListItem(props) {
+  const isConnected = React.useContext(AuthenticationContext);
   const [expanded, setExpanded] = React.useState(false);
 
   const {
     question,
     questionKey,
-    isConnected,
     toggleQuestionForUser,
     deleteQuestion,
   } = props;

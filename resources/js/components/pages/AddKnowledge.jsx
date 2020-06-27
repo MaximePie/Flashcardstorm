@@ -8,21 +8,12 @@ import { useDropzone } from 'react-dropzone';
 
 import csv from 'csv';
 import { Checkbox } from '@material-ui/core';
-import { PropTypes } from 'prop-types';
 import server from '../../server';
 import Button from '../molecule/Button';
 import { isMobile } from '../../helper';
 
-AddKnowledge.propTypes = {
-  isConnected: PropTypes.bool,
-};
+export default function AddKnowledge() {
 
-AddKnowledge.defaultProps = {
-  isConnected: true,
-};
-
-export default function AddKnowledge(props) {
-  const { isConnected } = props;
   const [form, setForm] = React.useState({
     question: '',
     answer: '',
@@ -61,9 +52,9 @@ export default function AddKnowledge(props) {
       console.log(reader.result)
       csv.parse(reader.result, (err, data) => {
         if (err) {
-          // eslint-disable-next-line max-len
           console.log(err);
           console.log(data);
+          // eslint-disable-next-line max-len
           enqueueSnackbar('Aïe aïe aïe ! Il y a eu une erreur lors de l\'import ! Appuyez sur F12 et consultez la console pour en savoir plus !',
             {
               anchorOrigin: {
@@ -90,7 +81,7 @@ export default function AddKnowledge(props) {
       <div className="row justify-content-center">
         <form onSubmit={submitValues} className="Addknowledge__form card">
           <Button onClick={addField} text="+" />
-          {isConnected && !isMobile() && (
+          {!isMobile() && (
             <div {...getRootProps()} className="Addknowledge__import-drop-zone">
               <p>Déposez votre CSV ici, ou parcourez les fichiers</p>
             </div>

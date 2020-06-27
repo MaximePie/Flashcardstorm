@@ -3,15 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free';
 import React from 'react';
 import Cookies from 'js-cookie';
-import {
-  Switch,
-  Route,
-  BrowserRouter,
-} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 
 import moment from 'moment';
 import { SnackbarProvider } from 'notistack';
+import { AuthenticationContext } from './Contexts/authentication';
 import AddKnowledge from './components/pages/AddKnowledge';
 import Navbar from './components/Navbar';
 import QuestionsList from './components/pages/QuestionsList';
@@ -59,7 +56,6 @@ export default function App() {
   const [countClassName, setCountClassName] = React.useState('');
   const isConnected = Cookies.get('Bearer') !== null && Cookies.get('Bearer') !== undefined;
 
-
   React.useEffect(() => {
     moment.locale('fr_FR');
     if (isConnected) {
@@ -79,105 +75,107 @@ export default function App() {
   };
 
   return (
-    <SnackbarProvider
-      {...snackbarConfig}
-      ref={notistackRef}
-      action={(key) => (
-        <span role="button" onClick={onClickDismiss(key)}>
-          X
-        </span>
-      )}
-    >
-      <BrowserRouter>
-        <div className="App" id="App">
-          <Navbar
-            is_connected={isConnected}
-            user={user}
-            countClassName={countClassName}
-            onCountComplete={() => setCountClassName('')}
-          />
-          {/* A <Switch> looks through its children <Route>s and
-              renders the first one that matches the current URL. */}
-          <Switch>
-            <Route path="/" strict exact>
-              <Welcome />
-            </Route>
-            <Route path="/register">
-              <Register />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/initiate">
-              <Initiate />
-            </Route>
-            <Route path="/logout">
-              <Training updateUserScore={updateUser} is_connected={isConnected} />
-            </Route>
-            <Route path="/home">
-              <Training mode="storm" updateUserScore={updateUser} />
-            </Route>
-            <Route path="/users">
-              <Users />
-            </Route>
-            <Route path="/add">
-              <AddKnowledge isConnected={isConnected} />
-            </Route>
-            <Route path="/questions">
-              <QuestionsList is_connected={isConnected} />
-            </Route>
-            <Route path="/about">
-              <Changelogs isConnected={isConnected} />
-            </Route>
-            {isConnected && (
-              <>
-                <Route path="/soft_training">
-                  <Training mode="soft" updateUserScore={updateUser} />
-                </Route>
-                <Route path="/rough_training">
-                  <RoughTraining />
-                </Route>
-                <Route path="/profile">
-                  <Profile />
-                </Route>
-                <Route path="/quest">
-                  <Quest />
-                </Route>
-                <Route path="/add_changelog">
-                  <AddChangelog />
-                </Route>
-                <Route path="/add_category">
-                  <AddCategory />
-                </Route>
-              </>
-            )}
-          </Switch>
-        </div>
-      </BrowserRouter>
-    </SnackbarProvider>
+    <AuthenticationContext.Provider value={isConnected}>
+      <SnackbarProvider
+        {...snackbarConfig}
+        ref={notistackRef}
+        action={(key) => (
+          <span role="button" onClick={onClickDismiss(key)}>
+            X
+          </span>
+        )}
+      >
+        <BrowserRouter>
+          <div className="App" id="App">
+            <Navbar
+              user={user}
+              countClassName={countClassName}
+              onCountComplete={() => setCountClassName('')}
+            />
+            {/* A <Switch> looks through its children <Route>s and
+                renders the first one that matches the current URL. */}
+            <Switch>
+              <Route path="/" strict exact>
+                <Welcome />
+              </Route>
+              <Route path="/register">
+                <Register />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/initiate">
+                <Initiate />
+              </Route>
+              <Route path="/logout">
+                <Training updateUserScore={updateUser} />
+              </Route>
+              <Route path="/home">
+                <Training mode="storm" updateUserScore={updateUser} />
+              </Route>
+              <Route path="/users">
+                <Users />
+              </Route>
+              <Route path="/questions">
+                <QuestionsList />
+              </Route>
+              <Route path="/about">
+                <Changelogs />
+              </Route>
+              {isConnected && (
+                <>
+                  <Route path="/add">
+                    <AddKnowledge />
+                  </Route>
+                  <Route path="/soft_training">
+                    <Training mode="soft" updateUserScore={updateUser} />
+                  </Route>
+                  <Route path="/rough_training">
+                    <RoughTraining />
+                  </Route>
+                  <Route path="/profile">
+                    <Profile />
+                  </Route>
+                  <Route path="/quest">
+                    <Quest />
+                  </Route>
+                  <Route path="/add_changelog">
+                    <AddChangelog />
+                  </Route>
+                  <Route path="/add_category">
+                    <AddCategory />
+                  </Route>
+                </>
+              )}
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </SnackbarProvider>
+    </AuthenticationContext.Provider>
   );
 
   function updateUser() {
-    server.get('me/score').then((response) => {
-      const { number_of_questions: numberOfQuestions, number_of_new_changelogs: numberOfNewChangelogs } = response.data;
-      const newUser = {};
-      if (!user) {
-        newUser.initial_score = response.data.score;
-        newUser.current_score = response.data.score;
-      } else {
-        setCountClassName('Navbar__counter-rising');
-        newUser.initial_score = user.current_score;
-        newUser.current_score = response.data.score;
-      }
-      if (window.location.pathname !== '/soft_training') {
-        newUser.numberOfQuestions = numberOfQuestions;
-      }
-      if (window.location.pathname !== '/about') {
-        newUser.numberOfNewChangelogs = numberOfNewChangelogs;
-      }
+    server.get('me/score')
+      .then((response) => {
+        const { number_of_questions: numberOfQuestions, number_of_new_changelogs: numberOfNewChangelogs } = response.data;
+        const newUser = {};
+        if (!user) {
+          newUser.initial_score = response.data.score;
+          newUser.current_score = response.data.score;
+        } else {
+          setCountClassName('Navbar__counter-rising');
+          newUser.initial_score = user.current_score;
+          newUser.current_score = response.data.score;
+        }
+        if (window.location.pathname !== '/soft_training') {
+          newUser.numberOfQuestions = numberOfQuestions;
+        }
+        if (window.location.pathname !== '/about') {
+          newUser.numberOfNewChangelogs = numberOfNewChangelogs;
+        }
 
-      setUser(newUser);
-    });
+        setUser(newUser);
+      });
   }
 }
 
