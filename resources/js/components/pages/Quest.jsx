@@ -86,7 +86,7 @@ export default function Quest() {
    * Fetch the users daily questions in the database
    */
   function fetchQuestions() {
-    server.get('allDailyQuestions')
+    server.get('dailyQuestions')
       .then((response) => {
         setQuestions(response.data.questions);
       });

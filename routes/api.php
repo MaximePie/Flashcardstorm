@@ -26,7 +26,7 @@ Route::name('api.')->group(static function () {
     Route::group(['middleware' => ['auth:api']], static function () {
         Route::prefix('authenticated')->group(static function () {
             Route::get('question/{mode}/{already_in_bag_questions}', 'QuestionController@randomQuestion');
-            Route::get('allDailyQuestions', 'QuestionController@allDailyQuestions');
+            Route::get('dailyQuestions', 'QuestionController@dailyQuestions');
             Route::get('nonInitiatedQuestions', 'QuestionController@notInitiatedQuestion');
             Route::get('nonInitiatedQuestionsCount', 'QuestionController@notInitiatedQuestionsCount');
             Route::get('me/score', 'UserController@score');

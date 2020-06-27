@@ -1,6 +1,7 @@
 import React from 'react';
 import server from '../../server';
 import QuestionRow from '../molecule/QuestionRow';
+import Button from '../molecule/Button';
 
 export default function RoughTraining() {
   const [questions, updateQuestions] = React.useState([]);
@@ -26,6 +27,9 @@ export default function RoughTraining() {
             key={`QuestionRow-${questions[0].id}`}
           />
         ))}
+        {questions.length > 0 && (
+          <Button text="Charger d'autres questions" onClick={updateQuestionsBag} />
+        )}
       </div>
     </div>
   );
@@ -53,7 +57,7 @@ export default function RoughTraining() {
   }
 
   function updateQuestionsBag() {
-    server.get('allDailyQuestions')
+    server.get('dailyQuestions')
       .then((response) => {
         updateQuestions(response.data.questions);
       });

@@ -156,19 +156,19 @@ class QuestionController extends Controller
      * the ones he already knows
      * @return JsonResponse
      */
-    public function allDailyQuestions(): JsonResponse
+    public function dailyQuestions(): JsonResponse
     {
         /** @var User $user */
         $user = Auth::user();
         if ($user) {
-            $questions = $user->dailyQuestions()->inRandomOrder();
+            $questions = $user->dailyQuestions()->inRandomOrder()->limit(30)->get();
             if ($questions) {
-                $questions->each(static function (QUESTION $question) {
+                $questions->each(static function (QUESTION &$question) {
                     $question->preparedForView();
                 });
             }
 
-            return response()->json(['questions' => $questions->get()->shuffle() ?? []]);
+            return response()->json(['questions' => $questions->shuffle() ?? []]);
         }
         else {
             return response()->json(['error' => 'Vous ne pouvez pas continuer car vous n\'êtes pas connecté.']);
