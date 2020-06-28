@@ -26,7 +26,6 @@ Route::name('api.')->group(static function () {
     Route::group(['middleware' => ['auth:api']], static function () {
         Route::prefix('authenticated')->group(static function () {
             Route::get('question/{mode}/{already_in_bag_questions}', 'QuestionController@randomQuestion');
-            /** Deprecated  */
             Route::get('dailyQuestions', 'QuestionController@dailyQuestions');
             Route::get('nonInitiatedQuestions', 'QuestionController@notInitiatedQuestion');
             Route::get('nonInitiatedQuestionsCount', 'QuestionController@notInitiatedQuestionsCount');
@@ -49,7 +48,6 @@ Route::name('api.')->group(static function () {
             Route::post('question/submit_answer', 'QuestionController@submitAnswer');
             Route::post('questionUser/save', 'QuestionUserController@updateFromAnswer');
             Route::post('question/initiate', 'QuestionController@tryInitiate');
-            Route::post('dailyQuestionsForUser', 'QuestionController@dailyQuestionsForUser');
             Route::post('question', 'QuestionController@store');
             Route::post('mnemonics', 'MnemonicController@store');
             Route::post('question_import', 'QuestionController@import');
