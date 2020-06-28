@@ -46,6 +46,7 @@ Route::name('api.')->group(static function () {
             Route::post('category', 'CategoryController@store');
             Route::post('question/toggle', 'QuestionController@toggleQuestionForUser');
             Route::post('question/submit_answer', 'QuestionController@submitAnswer');
+            Route::post('questionUser/save', 'QuestionUserController@updateFromAnswer');
             Route::post('question/initiate', 'QuestionController@tryInitiate');
             Route::post('question', 'QuestionController@store');
             Route::post('mnemonics', 'MnemonicController@store');

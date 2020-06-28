@@ -2,6 +2,7 @@ import React from 'react';
 import server from '../../server';
 import QuestionRow from '../molecule/QuestionRow';
 import Button from '../molecule/Button';
+import { areSimilar } from '../../helper';
 
 export default function RoughTraining() {
   const [questions, updateQuestions] = React.useState([]);
@@ -28,33 +29,44 @@ export default function RoughTraining() {
           />
         ))}
         {questions.length > 0 && (
-          <Button text="Charger d'autres questions" onClick={updateQuestionsBag} />
+          <Button text="Charger d'autres questions" onClick={updateQuestionsBag}/>
         )}
       </div>
     </div>
   );
 
   function submitAnswer(answer, question) {
-    server.post(
-      'question/submit_answer',
-      {
-        id: question.id,
-        answer,
-        mode: 'soft',
-        is_golden_card: false,
-        is_reverse_question: question.is_reverse,
-      },
-    ).then((response) => {
-      const questionCard = document.getElementById(`question-${question.id}`);
-      if (response.data.status === 200) {
-        questionCard.classList.add('QuestionRow--success');
-        setSuccess(success + 1);
-      } else if (response.data.status === 500) {
-        setFailed(failed + 1);
-        questionCard.classList.add('QuestionRow--failed');
-      }
-    });
+    const questionCard = document.getElementById(`question-${question.id}`);
+    if (areSimilar(answer, question.answer)) {
+      questionCard.classList.add('QuestionRow--success');
+      setSuccess(success + 1);
+      server.post(
+        'questionUser/save',
+        {
+          id: question.id,
+          isCorrect: true,
+          mode: 'soft',
+          is_golden_card: false,
+          is_reverse_question: question.is_reverse,
+        },
+      );
+    } else {
+      setFailed(failed + 1);
+      questionCard.classList.add('QuestionRow--failed');
+
+      server.post(
+        'questionUser/save',
+        {
+          id: question.id,
+          isCorrect: false,
+          mode: 'soft',
+          is_golden_card: false,
+          is_reverse_question: question.is_reverse,
+        },
+      );
+    }
   }
+
 
   function updateQuestionsBag() {
     server.get('dailyQuestions')

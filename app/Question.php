@@ -34,6 +34,7 @@ use RuntimeException;
  * @property-read Category|null $category
  * @property-read Collection|User[] $users
  * @property-read int|null $users_count
+ * @property bool is_reverse
  * @method static Builder|Question newModelQuery()
  * @method static Builder|Question newQuery()
  * @method static Builder|Question query()

@@ -28,3 +28,36 @@ export function shuffle(a) {
   }
   return a;
 }
+
+/** Compares both strings once they are flatten according to business rules
+ *
+ * @param firstString
+ * @param secondString
+ * */
+export function areSimilar(firstString, secondString) {
+  let flatProvidedAnswer = firstString.toLowerCase();
+  let flatAnswer = secondString.toLowerCase();
+
+  const matchingPattern = {
+    a: ['ä', 'â', 'à'],
+    e: ['ë', 'ê', 'è', 'é'],
+    '': ['la', 'les', 'le', 'un', 'une', 'des', 'a', 'an', 'to', 'the', ' '],
+    remove: ["l'", '-'],
+  };
+
+  Object.entries(matchingPattern).forEach(
+    ([absorbingCharacter, absorbedCharacter]) => {
+      absorbedCharacter.forEach((absorbed) => {
+        const destinationCharacter = absorbingCharacter !== 'remove' ? absorbingCharacter : '';
+
+        flatProvidedAnswer = flatProvidedAnswer.replace(
+          absorbed,
+          destinationCharacter,
+        );
+        flatAnswer = flatAnswer.replace(absorbed, destinationCharacter);
+      });
+    },
+  );
+
+  return flatProvidedAnswer === flatAnswer;
+}
