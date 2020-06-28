@@ -6,11 +6,12 @@ import { areSimilar } from '../../helper';
 
 export default function RoughTraining() {
   const [questions, updateQuestions] = React.useState([]);
+  const [shouldReUpdateQuestions, setShouldReUpdateQuestions] = React.useState(true);
   const [failed, setFailed] = React.useState(0);
   const [success, setSuccess] = React.useState(0);
 
   React.useEffect(() => {
-    updateQuestionsBag();
+      updateQuestionsBag();
   }, []);
 
   return (
@@ -29,7 +30,7 @@ export default function RoughTraining() {
           />
         ))}
         {questions.length > 0 && (
-          <Button text="Charger d'autres questions" onClick={updateQuestionsBag}/>
+          <Button text="Charger d'autres questions" onClick={updateQuestionsBag} />
         )}
       </div>
     </div>
@@ -69,9 +70,13 @@ export default function RoughTraining() {
 
 
   function updateQuestionsBag() {
-    server.get('dailyQuestions')
+    alert("AH")
+    server.post('dailyQuestionsForUser', {
+      questionsId: Object.values(questions)
+        .map((question) => question.id),
+    })
       .then((response) => {
-        updateQuestions(response.data.questions);
+          updateQuestions(questions.concat(response.data.questions));
       });
   }
 }

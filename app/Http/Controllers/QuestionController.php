@@ -155,13 +155,40 @@ class QuestionController extends Controller
      * Returns all daily questions to the user so he can immediately answer
      * the ones he already knows
      * @return JsonResponse
+     * @deprecated
      */
     public function dailyQuestions(): JsonResponse
     {
         /** @var User $user */
         $user = Auth::user();
         if ($user) {
-            $questions = $user->dailyQuestions()->inRandomOrder()->limit(30)->get();
+            $questions = $user->dailyQuestions()->inRandomOrder()->limit(5)->get();
+            if ($questions) {
+                $questions->each(static function (QUESTION &$question) {
+                    $question->preparedForView();
+                });
+            }
+
+            return response()->json(['questions' => $questions->shuffle() ?? []]);
+        }
+        else {
+            return response()->json(['error' => 'Vous ne pouvez pas continuer car vous n\'êtes pas connecté.']);
+        }
+    }
+
+    /**
+     * Returns daily questions for the connected user
+     * the ones he already knows
+     * @param Request $request
+     * @return JsonResponse
+     * @deprecated
+     */
+    public function dailyQuestionsForUser(Request $request): JsonResponse
+    {
+        /** @var User $user */
+        $user = Auth::user();
+        if ($user) {
+            $questions = $user->dailyQuestions()->whereNotIn('questions.id', $request->questionsId)->inRandomOrder()->limit(50)->get();
             if ($questions) {
                 $questions->each(static function (QUESTION &$question) {
                     $question->preparedForView();
