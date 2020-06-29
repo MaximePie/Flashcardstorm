@@ -21,7 +21,7 @@ export default function RoughTraining() {
         <span className="RoughTraining__failed">{failed}</span>
       </h2>
       <div className="RoughTraining__questions">
-        {questions.map((question) => (
+        {questions.length && questions.map((question) => (
           <QuestionRow
             question={question}
             onSubmit={(answer) => submitAnswer(answer, question)}
@@ -29,7 +29,7 @@ export default function RoughTraining() {
           />
         ))}
         {questions.length > 0 && (
-          <Button text="Charger d'autres questions" onClick={updateQuestionsBag}/>
+          <Button text="Charger d'autres questions" onClick={updateQuestionsBag} />
         )}
       </div>
     </div>

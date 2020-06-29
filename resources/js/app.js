@@ -15,6 +15,7 @@ import QuestionsList from './components/pages/QuestionsList';
 import Quest from './components/pages/Quest';
 import Register from './components/pages/Register';
 import Login from './components/pages/Login';
+import ErrorPage from './components/pages/Error';
 import Profile from './components/Profile';
 import server from './server';
 import Training from './components/pages/Training';
@@ -35,6 +36,7 @@ require('bootstrap');
 require('../sass/AddCategory.scss');
 require('../sass/Addknowledge.scss');
 require('../sass/Changelogs.scss');
+require('../sass/Error.scss');
 require('../sass/HintDialog.scss');
 require('../sass/Home.scss');
 require('../sass/Icon.scss');
@@ -122,6 +124,10 @@ export default function App() {
               <Route path="/about">
                 <Changelogs />
               </Route>
+              <Route path="/rough_training">
+                {isConnected && <RoughTraining />}
+                {!isConnected && <ErrorPage code={403} />}
+              </Route>
               {isConnected && (
                 <>
                   <Route path="/add">
@@ -129,9 +135,6 @@ export default function App() {
                   </Route>
                   <Route path="/soft_training">
                     <Training mode="soft" updateUserScore={updateUser} />
-                  </Route>
-                  <Route path="/rough_training">
-                    <RoughTraining />
                   </Route>
                   <Route path="/profile">
                     <Profile />
