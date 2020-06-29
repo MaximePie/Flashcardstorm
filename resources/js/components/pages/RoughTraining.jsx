@@ -14,7 +14,7 @@ export default function RoughTraining() {
   }, []);
 
   return (
-    <div className="RoughTraining">
+    <div className="RoughTraining container">
       <h2 className="RoughTraining__score">
         <span className="RoughTraining__success">{success}</span>
         /
