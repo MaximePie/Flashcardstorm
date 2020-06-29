@@ -128,28 +128,30 @@ export default function App() {
                 {isConnected && <RoughTraining />}
                 {!isConnected && <ErrorPage code={403} />}
               </Route>
-              {isConnected && (
-                <>
-                  <Route path="/add">
-                    <AddKnowledge />
-                  </Route>
-                  <Route path="/soft_training">
-                    <Training mode="soft" updateUserScore={updateUser} />
-                  </Route>
-                  <Route path="/profile">
-                    <Profile />
-                  </Route>
-                  <Route path="/quest">
-                    <Quest />
-                  </Route>
-                  <Route path="/add_changelog">
-                    <AddChangelog />
-                  </Route>
-                  <Route path="/add_category">
-                    <AddCategory />
-                  </Route>
-                </>
-              )}
+              <Route path="/add">
+                {isConnected && <AddKnowledge />}
+                {!isConnected && <ErrorPage code={403} />}
+              </Route>
+              <Route path="/soft_training">
+                {isConnected && <Training mode="soft" updateUserScore={updateUser} />}
+                {!isConnected && <ErrorPage code={403} />}
+              </Route>
+              <Route path="/profile">
+                {isConnected && <Profile />}
+                {!isConnected && <ErrorPage code={403} />}
+              </Route>
+              <Route path="/quest">
+                {isConnected && <Quest />}
+                {!isConnected && <ErrorPage code={403} />}
+              </Route>
+              <Route path="/add_changelog">
+                {isConnected && <AddChangelog />}
+                {!isConnected && <ErrorPage code={403} />}
+              </Route>
+              <Route path="/add_category">
+                {isConnected && <AddCategory />}
+                {!isConnected && <ErrorPage code={403} />}
+              </Route>
             </Switch>
           </div>
         </BrowserRouter>

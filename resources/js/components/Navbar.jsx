@@ -83,6 +83,14 @@ export default function Navbar(props) {
                 Débuter sur les questions
               </ListItemText>
             </ListItem>
+            <ListItem button component="a" href="/add" className="Navbar__item">
+              <ListItemIcon>
+                <i className="fas fa-folder-plus"/>
+              </ListItemIcon>
+              <ListItemText>
+                Ajouter des questions
+              </ListItemText>
+            </ListItem>
           </>
         )}
         <ListItem button component="a" href="/questions" className="Navbar__item">
@@ -91,14 +99,6 @@ export default function Navbar(props) {
           </ListItemIcon>
           <ListItemText>
             Questions
-          </ListItemText>
-        </ListItem>
-        <ListItem button component="a" href="/add" className="Navbar__item">
-          <ListItemIcon>
-            <i className="fas fa-folder-plus"/>
-          </ListItemIcon>
-          <ListItemText>
-            Ajouter des questions
           </ListItemText>
         </ListItem>
         {!isConnected && (
