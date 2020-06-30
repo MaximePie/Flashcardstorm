@@ -3,6 +3,15 @@
   width: 100vw;
 }
 
+
+h1, h2, h3, h4 {
+  font-family: 'Varela', sans-serif;
+}
+
+p, span, a {
+  font-family: 'Nunito', sans-serif;
+}
+
 .Home {
   display: flex;
   align-items: center;

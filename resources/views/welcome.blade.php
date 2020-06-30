@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Varela&display=swap" rel="stylesheet">
         <link href="{{ asset('facss/css/all.css') }}" rel="stylesheet">
         <link rel="icon" type="image/png" href="{{asset('images/favicon.png')}}" />
         <!-- Hotjar Tracking Code for https://flashcardstorm.herokuapp.com/ -->
