@@ -27,8 +27,20 @@
   }
 
   &__easy-learning-section {
-    height: 80vh;
+    background: content-box no-repeat url("../images/easy-learning-background.jpg");
 
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .Welcome__easy-learning-title {
+      opacity: 0;
+      transform: scale(1.25);
+      text-align: center;
+      animation: appear 2s 0.5s forwards;
+    }
   }
 
   &__text {
