@@ -15,7 +15,7 @@ export default function AddChangelog() {
   const { enqueueSnackbar } = useSnackbar();
 
   return (
-    <div className="container AddChangelog">
+    <div className="AddChangelog">
       <form className="AddChangelog__form card" onSubmit={submitValues}>
         <h2>
           Proposez votre idée !
