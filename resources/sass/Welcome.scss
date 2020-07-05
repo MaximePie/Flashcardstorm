@@ -1,6 +1,6 @@
 .Welcome {
   min-height: 100vh;
-  background-color: white;
+  background-color: #2f2f2f;
   color: white;
 
   &__title {
@@ -12,7 +12,8 @@
 
   &__presentation-section {
     background: content-box no-repeat url("../images/pencils.jpg");
-    height: 80vh;
+    height: 90vh;
+    margin-bottom: 3em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +30,7 @@
   &__easy-learning-section {
     background: content-box no-repeat url("../images/easy-learning-background.jpg");
 
-    height: 80vh;
+    height: 110vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,6 +39,7 @@
     .Welcome__easy-learning-title {
       opacity: 0;
       transform: scale(1.25);
+      font-size: 3em;
       text-align: center;
       animation: appear 2s 0.5s forwards;
     }

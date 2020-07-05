@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Varela-Regular.ttf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/Home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Home.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/Welcome.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Welcome.scss" afterDir="false" />
@@ -215,7 +217,7 @@
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="PHP&#10;TEXT" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="database.data.extractors.current.id" value="HTML Table" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../portfolio" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -340,7 +342,10 @@
       <workItem from="1593326146315" duration="3516000" />
       <workItem from="1593340484366" duration="1246000" />
       <workItem from="1593446324885" duration="5742000" />
-      <workItem from="1593498746662" duration="2065000" />
+      <workItem from="1593498746662" duration="2665000" />
+      <workItem from="1593707706092" duration="102000" />
+      <workItem from="1593878035854" duration="618000" />
+      <workItem from="1593912270705" duration="612000" />
     </task>
     <servers />
   </component>
@@ -393,6 +398,10 @@
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="463" y="280" key="#com.jetbrains.php.refactoring.move.member.instance.PhpMoveInstanceMethodDialog#/0.0.1440.860@0.0.1440.860" timestamp="1586947383800" />
+    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1593707806252">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1593707806252" />
     <state width="1293" height="470" key="GridCell.Tab.0.bottom" timestamp="1591203418429">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -442,12 +451,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="326" key="com.intellij.database.dbimport.ImportUtil.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589539070684" />
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1593498949907">
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1593707771989">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="465" y="286" key="com.intellij.ide.util.TipDialog/0.0.1440.860@0.0.1440.860" timestamp="1589396212185" />
     <state x="620" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1586017497908" />
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593498949907" />
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593707771989" />
     <state x="683" y="158" width="543" height="722" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1585841868830">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
@@ -472,11 +481,11 @@
     <state x="468" y="194" width="672" height="677" key="run.anything.popup/0.0.1440.860@0.0.1440.860" timestamp="1587798353032" />
     <state x="624" y="233" key="run.anything.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1586077446073" />
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591203413236" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1593501096983">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1593912724543">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="468" y="132" width="672" height="564" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1589361041730" />
     <state x="624" y="158" width="672" height="676" key="search.everywhere.popup/0.0.1920.1032@0.0.1920.1032" timestamp="1586080155157" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1593501096983" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1593912724543" />
   </component>
 </project>
