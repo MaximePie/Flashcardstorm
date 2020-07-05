@@ -9,11 +9,14 @@
     color: white;
   }
 
-
   &__tabs {
     display: flex;
     justify-content: space-between;
     margin-top: 32px;
+
+    &-actions {
+      padding: 8px;
+    }
   }
 
   &__list {

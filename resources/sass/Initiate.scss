@@ -26,6 +26,10 @@
     justify-content: center;
     font-size: 1.25em;
 
+    &:hover {
+      cursor: pointer;
+    }
+
     &--selected {
       background-color: orange;
     }
