@@ -1,7 +1,3 @@
-.App {
-  background: content-box no-repeat url("../images/soft.jpg");
-}
-
 
 h1, h2, h3, h4 {
   font-family: 'Varela', sans-serif;
@@ -17,6 +13,7 @@ p, span, a {
   flex-direction: column;
   height: 100vh;
   overflow: auto;
+  background: content-box no-repeat url("../images/soft.jpg");
 
   &--no-question {
     color: white;

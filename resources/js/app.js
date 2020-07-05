@@ -4,6 +4,8 @@ import '@fortawesome/fontawesome-free';
 import React from 'react';
 import Cookies from 'js-cookie';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+
 import '../sass/imports.scss';
 
 
@@ -40,6 +42,8 @@ export default function App() {
   const [countClassName, setCountClassName] = React.useState('');
   const isConnected = Cookies.get('Bearer') !== null && Cookies.get('Bearer') !== undefined;
 
+  const browserHistory = createBrowserHistory()
+
   React.useEffect(() => {
     moment.locale('fr_FR');
     if (isConnected) {
@@ -69,7 +73,7 @@ export default function App() {
           </span>
         )}
       >
-        <BrowserRouter>
+        <BrowserRouter history={browserHistory}>
           <div className="App" id="App">
             <Navbar
               user={user}

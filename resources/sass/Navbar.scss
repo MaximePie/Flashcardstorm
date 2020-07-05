@@ -1,5 +1,12 @@
 .Navbar {
 
+  &__link {
+    color: initial;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   &__nav {
     z-index: 1;
     display: flex;

@@ -14,6 +14,7 @@ import Badge from '@material-ui/core/Badge';
 import Icon from './Icon';
 import { isMobile } from '../helper';
 import { AuthenticationContext } from '../Contexts/authentication';
+import { Link } from 'react-router-dom';
 
 export default function Navbar(props) {
 
@@ -41,104 +42,124 @@ export default function Navbar(props) {
       onKeyDown={toggleDrawer(false)}
     >
       <List className="navbar-nav mr-auto Navbar__list">
-        <ListItem button component="a" href="/home" className="Navbar__item">
-          <ListItemIcon>
-            <i className="fas fa-cloud-meatball"/>
-          </ListItemIcon>
-          <ListItemText>
-            Mode tempête
-          </ListItemText>
-        </ListItem>
+        <Link className="Navbar__link" to="/home" className="Navbar__link">
+          <ListItem button component="a" className="Navbar__item">
+            <ListItemIcon>
+              <i className="fas fa-cloud-meatball"/>
+            </ListItemIcon>
+            <ListItemText>
+              Mode tempête
+            </ListItemText>
+          </ListItem>
+        </Link>
         {isConnected && (
           <>
-            <ListItem button component="a" href="/soft_training" className="Navbar__item">
-              <ListItemIcon>
-                {number_of_new_questions && number_of_new_questions > 0 ? (
-                  <Badge color="secondary" badgeContent={number_of_new_questions}>
-                    <i className="fas fa-calendar-alt"/>
-                  </Badge>
-                ) : (
-                  <>
-                    <i className="fas fa-calendar-alt"/>
-                  </>
-                )}
-              </ListItemIcon>
-              <ListItemText>
-                Mode entraînement planifié
-              </ListItemText>
-            </ListItem>
-            <ListItem button component="a" href="/rough_training" className="Navbar__item">
-              <ListItemIcon>
-                <i className="fas fa-fire"/>
-              </ListItemIcon>
-              <ListItemText>
-                Toutes mes questions
-              </ListItemText>
-            </ListItem>
-            <ListItem button component="a" href="/initiate" className="Navbar__item">
-              <ListItemIcon>
-                <i className="fas fa-fire"/>
-              </ListItemIcon>
-              <ListItemText>
-                Débuter sur les questions
-              </ListItemText>
-            </ListItem>
-            <ListItem button component="a" href="/add" className="Navbar__item">
-              <ListItemIcon>
-                <i className="fas fa-folder-plus"/>
-              </ListItemIcon>
-              <ListItemText>
-                Ajouter des questions
-              </ListItemText>
-            </ListItem>
+            <Link className="Navbar__link" to="/soft_training">
+              <ListItem button component="a" className="Navbar__item">
+                <ListItemIcon>
+                  {number_of_new_questions && number_of_new_questions > 0 ? (
+                    <Badge color="secondary" badgeContent={number_of_new_questions}>
+                      <i className="fas fa-calendar-alt"/>
+                    </Badge>
+                  ) : (
+                    <>
+                      <i className="fas fa-calendar-alt"/>
+                    </>
+                  )}
+                </ListItemIcon>
+                <ListItemText>
+                  Mode entraînement planifié
+                </ListItemText>
+              </ListItem>
+            </Link>
+            <Link className="Navbar__link" to="/rough_training">
+              <ListItem button component="a" className="Navbar__item">
+                <ListItemIcon>
+                  <i className="fas fa-fire"/>
+                </ListItemIcon>
+                <ListItemText>
+                  Toutes mes questions
+                </ListItemText>
+              </ListItem>
+            </Link>
+            <Link className="Navbar__link" to="/initiate">
+              <ListItem button component="a" className="Navbar__item">
+                <ListItemIcon>
+                  <i className="fas fa-fire"/>
+                </ListItemIcon>
+                <ListItemText>
+                  Débuter sur les questions
+                </ListItemText>
+              </ListItem>
+            </Link>
+            <Link className="Navbar__link" to="/add">
+              <ListItem button component="a" className="Navbar__item">
+                <ListItemIcon>
+                  <i className="fas fa-folder-plus"/>
+                </ListItemIcon>
+                <ListItemText>
+                  Ajouter des questions
+                </ListItemText>
+              </ListItem>
+            </Link>
           </>
         )}
-        <ListItem button component="a" href="/questions" className="Navbar__item">
-          <ListItemIcon>
-            <i className="fas fa-list"/>
-          </ListItemIcon>
-          <ListItemText>
-            Questions
-          </ListItemText>
-        </ListItem>
+        <Link className="Navbar__link" to="/questions">
+          <ListItem button component="a" className="Navbar__item">
+            <ListItemIcon>
+              <i className="fas fa-list"/>
+            </ListItemIcon>
+            <ListItemText>
+              Questions
+            </ListItemText>
+          </ListItem>
+        </Link>
         {!isConnected && (
           <>
-            <ListItem button component="a" href="/register" className="Navbar__item">
-              <ListItemIcon>
-                <i className="fas fa-user-plus"/>
-              </ListItemIcon>
-              <ListItemText>
-                S'enregistrer
-              </ListItemText>
-            </ListItem>
-            <ListItem button component="a" href="/login" className="Navbar__item">
-              <ListItemIcon>
-                <i className="fas fa-sign-in-alt"/>
-              </ListItemIcon>
-              <ListItemText>
-                Se connecter
-              </ListItemText>
-            </ListItem>
+            <Link className="Navbar__link" to="/register">
+              <ListItem button component="a" className="Navbar__item">
+                <ListItemIcon>
+                  <i className="fas fa-user-plus"/>
+                </ListItemIcon>
+                <ListItemText>
+                  S'enregistrer
+                </ListItemText>
+              </ListItem>
+            </Link>
+            <Link className="Navbar__link" to="/login">
+              <ListItem button component="a" className="Navbar__item">
+                <ListItemIcon>
+                  <i className="fas fa-sign-in-alt"/>
+                </ListItemIcon>
+                <ListItemText>
+                  Se connecter
+                </ListItemText>
+              </ListItem>
+            </Link>
           </>
         )}
         {isConnected && (
           <>
-            <ListItem button component="a" href="/add_category" className="Navbar__item">
-              <ListItemIcon>
-                <i className="fas fa-folder-plus"/>
-              </ListItemIcon>
-              <ListItemText>
-                Ajouter des categories
-              </ListItemText>
-            </ListItem>
-            <ListItem button component="a" href="/users" className="Navbar__item">
-              <ListItemIcon>
-                <i className="fas fa-users"/>
-              </ListItemIcon>
-              <ListItemText>
-                Utilisateurs
-              </ListItemText>
-            </ListItem>
+            <Link className="Navbar__link" to="/add_category">
+              <ListItem button component="a" className="Navbar__item">
+                <ListItemIcon>
+                  <i className="fas fa-folder-plus"/>
+                </ListItemIcon>
+                <ListItemText>
+                  Ajouter des categories
+                </ListItemText>
+              </ListItem>
+            </Link>
+            <Link className="Navbar__link" to="/users">
+              <ListItem button component="a" className="Navbar__item">
+                <ListItemIcon>
+                  <i className="fas fa-users"/>
+                </ListItemIcon>
+                <ListItemText>
+                  Utilisateurs
+                </ListItemText>
+              </ListItem>
+            </Link>
             <ListItem button component="a" onClick={logout} className="Navbar__item">
               <ListItemIcon>
                 <i className="fas fa-sign-out-alt"/>
@@ -149,22 +170,24 @@ export default function Navbar(props) {
             </ListItem>
           </>
         )}
-        <ListItem button component="a" href="/about" className="Navbar__item">
-          <ListItemIcon>
-            {numberOfNewChangelogs && numberOfNewChangelogs > 0 ? (
-              <Badge color="secondary" badgeContent={numberOfNewChangelogs}>
-                <i className="fas fa-question-circle"/>
-              </Badge>
-            ) : (
-              <>
-                <i className="fas fa-question-circle"/>
-              </>
-            )}
-          </ListItemIcon>
-          <ListItemText>
-            à propos
-          </ListItemText>
-        </ListItem>
+        <Link className="Navbar__link" to="/about">
+          <ListItem button component="a" className="Navbar__item">
+            <ListItemIcon>
+              {numberOfNewChangelogs && numberOfNewChangelogs > 0 ? (
+                <Badge color="secondary" badgeContent={numberOfNewChangelogs}>
+                  <i className="fas fa-question-circle"/>
+                </Badge>
+              ) : (
+                <>
+                  <i className="fas fa-question-circle"/>
+                </>
+              )}
+            </ListItemIcon>
+            <ListItemText>
+              à propos
+            </ListItemText>
+          </ListItem>
+        </Link>
       </List>
     </div>
   );
