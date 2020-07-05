@@ -4,6 +4,7 @@ import '@fortawesome/fontawesome-free';
 import React from 'react';
 import Cookies from 'js-cookie';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import '../sass/imports.scss';
 
 
 import moment from 'moment';
@@ -33,25 +34,6 @@ import { isMobile } from './helper';
 const $ = require('jquery');
 require('popper.js');
 require('bootstrap');
-require('../sass/AddCategory.scss');
-require('../sass/Addknowledge.scss');
-require('../sass/Changelogs.scss');
-require('../sass/Error.scss');
-require('../sass/HintDialog.scss');
-require('../sass/Home.scss');
-require('../sass/Icon.scss');
-require('../sass/Initiate.scss');
-require('../sass/Login.scss');
-require('../sass/Navbar.scss');
-require('../sass/Profile.scss');
-require('../sass/Quest.scss');
-require('../sass/QuestionCard.scss');
-require('../sass/QuestionsList.scss');
-require('../sass/QuestionRow.scss');
-require('../sass/Register.scss');
-require('../sass/RoughTraining.scss');
-require('../sass/Snackbar.scss');
-require('../sass/Welcome.scss');
 
 export default function App() {
   const [user, setUser] = React.useState(undefined);

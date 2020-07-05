@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/sass/imports.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Varela-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/Home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Home.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/Welcome.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Welcome.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -345,7 +345,7 @@
       <workItem from="1593498746662" duration="2665000" />
       <workItem from="1593707706092" duration="102000" />
       <workItem from="1593878035854" duration="618000" />
-      <workItem from="1593912270705" duration="612000" />
+      <workItem from="1593912270705" duration="963000" />
     </task>
     <servers />
   </component>
