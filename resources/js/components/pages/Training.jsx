@@ -7,7 +7,7 @@ import { PropTypes } from 'prop-types';
 import server from '../../server';
 import HintDialog from '../molecule/HintDialog';
 import QuestionCard from '../molecule/QuestionCard';
-import { isMobile } from '../../helper';
+import { areSimilar, isMobile } from '../../helper';
 import { AuthenticationContext } from '../../Contexts/authentication';
 
 Training.propTypes = {
@@ -22,14 +22,23 @@ Training.defaultProps = {
 export default function Training(props) {
   const isConnected = React.useContext(AuthenticationContext);
 
+  /**
+   * @deprecated use questionsList instead
+   */
   const [questionsBag, updateQuestionsBag] = React.useState({
     questions: [],
     unwantedIdsList: [],
     questionCardMessage: undefined,
   });
 
+
+  const [questionsList, updateStateQuestionsList] = React.useState([]);
+
   const [userProgress, setUserProgress] = React.useState(undefined);
-  const [hintModalState, setHintModalState] = React.useState({ questionId: undefined, isOpen: false });
+  const [hintModalState, setHintModalState] = React.useState({
+    questionId: undefined,
+    isOpen: false,
+  });
 
   const [serverSwitch, setServerSwitch] = React.useState(false);
 
@@ -42,15 +51,26 @@ export default function Training(props) {
       .then((response) => {
         const { userProgress: userProgressData } = response.data;
         setUserProgress(userProgressData);
-        updateQuestionsList();
       });
   }, []);
 
+  /**
+   * @deprecated
+   */
   React.useEffect(() => {
     updateQuestionsList();
   }, [serverSwitch]);
 
+  React.useEffect(() => {
+    console.log(questionsList);
+    if (!questionsList.length) {
+      fetchQuestions();
+    }
+  }, [questionsList]);
+
   const { questions, questionCardMessage } = questionsBag;
+
+  console.log(questionsList[0]);
 
   return (
     <div className="Home">
@@ -58,21 +78,24 @@ export default function Training(props) {
       {hintModalState.isOpen && (
         <HintDialog
           questionId={hintModalState.questionId}
-          onClose={() => setHintModalState({ ...hintModalState, isOpen: false })}
+          onClose={() => setHintModalState({
+            ...hintModalState,
+            isOpen: false,
+          })}
         />
       )}
-      {questions[0] && (
+      {questionsList[0] && (
         <div className="Home__QuestionCard-row">
           <QuestionCard
-            question={questions[0] || undefined}
+            question={questionsList[0] || undefined}
             onSubmit={submitAnswer}
-            onSkip={goNext}
+            onSkip={displayNextQuestion}
             message={questionCardMessage}
-            key={`QuestionCard-${questions[0].id}`}
+            key={`QuestionCard-${questionsList[0].id}`}
           />
         </div>
       )}
-      {!questions[0] && (
+      {!questionsList[0] && (
         <div className="Home--no-question">
           {questionCardMessage}
         </div>
@@ -85,67 +108,74 @@ export default function Training(props) {
    * @param answer: string the answer we want to submit
    */
   function submitAnswer(answer) {
-    const currentQuestions = [...questions];
+    const currentQuestions = [...questionsList];
     const submittedQuestions = currentQuestions[0];
-    goNext();
+    displayNextQuestion();
+    const { answer: correctAnswer, score, hint } = submittedQuestions;
+    const isCorrect = areSimilar(answer, correctAnswer);
+
+    let snackbarText = '';
+
+    let variant = '';
+
+    if (isCorrect) {
+      snackbarText = 'Bien joué !';
+      variant = 'success';
+    } else {
+      snackbarText = `Oups ! Réponse : ${correctAnswer} `;
+      variant = 'warning';
+      if (hint) {
+        snackbarText += ` Mémo : ${hint.wording}`;
+      }
+    }
+
+    enqueueSnackbar(
+      <div className="Home__snackbar">
+        {snackbarText}
+        {isCorrect && (
+          <span className="Home__snackbar-score">
+              +
+            {score}
+          </span>
+        )}
+        {!isCorrect && (
+          <i
+            className="fas fa-bolt Home__snackbar-icon"
+            onClick={() => setHintModalState({
+              questionId: submittedQuestions.id,
+              isOpen: true,
+            })}
+          />
+        )}
+      </div>,
+      {
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'center',
+        },
+        variant,
+      },
+    );
 
     server.post(
-      'question/submit_answer',
+      'questionUser/save',
       {
         id: submittedQuestions.id,
-        answer,
+        isCorrect,
         mode: 'soft',
-        is_golden_card: submittedQuestions.is_golden_card,
+        is_golden_card: false,
         is_reverse_question: submittedQuestions.is_reverse,
       },
     )
       .then((response) => {
-        let snackbarText = response.data.text;
-        if (response.data.status !== 200) {
-          snackbarText += ` Réponse : ${response.data.correct_answer} `;
-          if (response.data.hint) {
-            snackbarText += ` Mémo : ${response.data.hint}`;
-          }
-        }
-
-        const score = response.data.status === 200
-        && response.data.earned_points > 0
-          ? response.data.earned_points
-          : undefined;
-
-
-        enqueueSnackbar(
-          <div className="Home__snackbar">
-            {snackbarText}
-            {score && (
-              <span className="Home__snackbar-score">
-              +
-                {score}
-              </span>
-            )}
-            {!score && (
-              <i
-                className="fas fa-bolt Home__snackbar-icon"
-                onClick={() => setHintModalState({
-                  questionId: response.data.questionId,
-                  isOpen: true,
-                })}
-              />
-            )}
-          </div>,
-          {
-            anchorOrigin: {
-              vertical: 'top',
-              horizontal: 'center',
-            },
-            variant: response.data.status === 200 ? 'success' : 'warning',
-          },
-        );
         setUserProgress(response.data.userProgress);
         updateUserScore();
       });
   }
 
+  /**
+   * @deprecated
+   */
   function updateQuestionsList() {
     const { unwantedIdsList } = questionsBag;
     let questionsInList = '';
@@ -179,6 +209,30 @@ export default function Training(props) {
       });
   }
 
+  /**
+   * Fills the questions bag
+   */
+  function fetchQuestions() {
+    server.get('dailyQuestions')
+      .then((response) => {
+        updateStateQuestionsList(response.data.questions);
+      });
+  }
+
+
+  /**
+   * Shift the questions list to display the next one.
+   * If the questions list is empty, fills by calling fetchQuestions
+   */
+  function displayNextQuestion() {
+    const currentQuestions = [...questionsList];
+    currentQuestions.shift();
+    updateStateQuestionsList(currentQuestions);
+  }
+
+  /**
+   * @deprecated
+   */
   function goNext() {
     const currentQuestions = [...questions];
     currentQuestions.shift();
@@ -211,27 +265,27 @@ export default function Training(props) {
     );
 
     return mode === 'soft' ? (
-      <>
-        {!isMobile() && (
-        <div className="Home__title">
-          <h1>Mode consolidation</h1>
-          <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
-          <p>Seules les questions auxquelles vous n&apos;avez pas répondu depuis assez longtemps apparaîtront</p>
-          <div>
-            {userProgressComponent}
-          </div>
-        </div>
-        )}
-        {isMobile() && (
-          <>
-            <h2 className="Home__title">Mode consolidation</h2>
-            <div>
-              {userProgressComponent}
+        <>
+          {!isMobile() && (
+            <div className="Home__title">
+              <h1>Mode consolidation</h1>
+              <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
+              <p>Seules les questions auxquelles vous n&apos;avez pas répondu depuis assez longtemps apparaîtront</p>
+              <div>
+                {userProgressComponent}
+              </div>
             </div>
-          </>
-        )}
-      </>
-    )
+          )}
+          {isMobile() && (
+            <>
+              <h2 className="Home__title">Mode consolidation</h2>
+              <div>
+                {userProgressComponent}
+              </div>
+            </>
+          )}
+        </>
+      )
       : (
         <>
           {!isMobile() && (
@@ -242,7 +296,7 @@ export default function Training(props) {
               {isConnected && (
                 <FormControlLabel
                   control={
-                    <Switch checked={serverSwitch} onChange={() => setServerSwitch(!serverSwitch)} />
+                    <Switch checked={serverSwitch} onChange={() => setServerSwitch(!serverSwitch)}/>
                   }
                   label="Afficher seulement mes questions"
                 />

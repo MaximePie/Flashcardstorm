@@ -99,8 +99,8 @@ class QuestionController extends Controller
             $message = User::questionMessage($questions->isEmpty(), $mode, $user);
 
             if ($questions) {
-                $questions->each(static function (QUESTION $question) {
-                    $question->preparedForView();
+                $questions->each(static function (QUESTION $question) use ($user){
+                    $question->preparedForView($user);
                 });
             }
         }
@@ -124,8 +124,8 @@ class QuestionController extends Controller
             $questions = $user->notInitiatedQuestions()->inRandomOrder()->limit(Question_user::initiationSize)->get();
             $answers = collect();
             if ($questions) {
-                $questions->each(static function (QUESTION $question) use ($answers) {
-                    $question->preparedForView();
+                $questions->each(static function (QUESTION $question) use ($answers, $user) {
+                    $question->preparedForView($user);
                     $answers->add($question->answer()->first());
                     $question['answer'] = $question->answer()->first();
                 });
@@ -163,8 +163,8 @@ class QuestionController extends Controller
         if ($user) {
             $questions = $user->dailyQuestions()->inRandomOrder()->limit(30)->get();
             if ($questions) {
-                $questions->each(static function (QUESTION &$question) {
-                    $question->preparedForView();
+                $questions->each(static function (QUESTION &$question) use ($user){
+                    $question->preparedForView($user);
                 });
             }
 

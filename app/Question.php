@@ -290,17 +290,39 @@ class Question extends Model
     /**
      * Prepares to be displayed on front by adding the appropriate fields
      * @param User $user The user that has to answer the question
+     * @param string $mode The mode the user uses (Storm, training, roughtraining, ...)
      * @return $this
      */
-    public function preparedForView(User $user = null): self
+    public function preparedForView(User $user = null, string $mode = 'soft'): self
     {
+        /** @var Question_user $questionUser */
+        $questionUser = Question_user::findFromTuple($this->id, $user->id)->first();
+        if ($user) {
+            $hint = $questionUser->mnemonics()->inRandomOrder()->first();
+        } else {
+            $hint = null;
+        }
+
+        $earnedPoints = $questionUser->full_score;
+
+        if ($mode === 'storm') {
+            $earnedPoints = 10;
+        }
+
         $answer = $this->answer()->first();
 
         $this['answer'] = $answer ? $answer->wording : null;
         $this['is_new'] = ($user && !$this->isSetForUser($user)) ?: false;
         $this['additionalAnswers'] = $answer ? $answer->additional_answers : null;
         $this['category'] = $this->category() ? $this->category()->first() : null;
+        $this['hint'] = $hint;
         $this->tryGoldenCard();
+
+        if ($this['is_golden_card']) {
+            $earnedPoints *= $earnedPoints;
+        }
+
+        $this['score'] = $earnedPoints;
 
         return $this;
     }
