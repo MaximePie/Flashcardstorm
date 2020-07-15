@@ -22,16 +22,6 @@ Training.defaultProps = {
 export default function Training(props) {
   const isConnected = React.useContext(AuthenticationContext);
 
-  /**
-   * @deprecated use questionsList instead
-   */
-  const [questionsBag, updateQuestionsBag] = React.useState({
-    questions: [],
-    unwantedIdsList: [],
-    questionCardMessage: undefined,
-  });
-
-
   const [questionsList, updateStateQuestionsList] = React.useState([]);
 
   const [userProgress, setUserProgress] = React.useState(undefined);
@@ -54,23 +44,12 @@ export default function Training(props) {
       });
   }, []);
 
-  /**
-   * @deprecated
-   */
-  React.useEffect(() => {
-    updateQuestionsList();
-  }, [serverSwitch]);
-
   React.useEffect(() => {
     console.log(questionsList);
     if (!questionsList.length) {
       fetchQuestions();
     }
   }, [questionsList]);
-
-  const { questions, questionCardMessage } = questionsBag;
-
-  console.log(questionsList[0]);
 
   return (
     <div className="Home">
@@ -90,14 +69,13 @@ export default function Training(props) {
             question={questionsList[0] || undefined}
             onSubmit={submitAnswer}
             onSkip={displayNextQuestion}
-            message={questionCardMessage}
             key={`QuestionCard-${questionsList[0].id}`}
           />
         </div>
       )}
       {!questionsList[0] && (
         <div className="Home--no-question">
-          {questionCardMessage}
+          Pas de question pour le moment.
         </div>
       )}
     </div>
@@ -174,42 +152,6 @@ export default function Training(props) {
   }
 
   /**
-   * @deprecated
-   */
-  function updateQuestionsList() {
-    const { unwantedIdsList } = questionsBag;
-    let questionsInList = '';
-    const storedForbiddenIds = [...unwantedIdsList];
-    storedForbiddenIds.shift();
-
-    storedForbiddenIds.forEach((id, index) => {
-      questionsInList += index === 0 ? '/' : '';
-      questionsInList += id;
-      questionsInList += index < unwantedIdsList.length - 1 ? ',' : '';
-    });
-
-    const currentQuestions = [...questions];
-
-    server.get(`question/${mode}${questionsInList}`)
-      .then((response) => {
-        const { message, questions: questionsData } = response.data;
-        const updatedQuestions = currentQuestions.concat(questionsData);
-        const forbiddenIds = [];
-        updatedQuestions.forEach((question) => {
-          if (question) {
-            forbiddenIds.push(question.id);
-          }
-        });
-
-        updateQuestionsBag({
-          questions: updatedQuestions,
-          unwantedIdsList: forbiddenIds,
-          questionCardMessage: message,
-        });
-      });
-  }
-
-  /**
    * Fills the questions bag
    */
   function fetchQuestions() {
@@ -230,23 +172,6 @@ export default function Training(props) {
     updateStateQuestionsList(currentQuestions);
   }
 
-  /**
-   * @deprecated
-   */
-  function goNext() {
-    const currentQuestions = [...questions];
-    currentQuestions.shift();
-
-    const unwantedIds = [...questionsBag.unwantedIdsList];
-    unwantedIds.shift();
-    updateQuestionsBag({
-      ...questionsBag,
-      unwantedIdsList: unwantedIds,
-      questions: currentQuestions,
-    });
-    setServerSwitch(!serverSwitch);
-  }
-
   function pageHeader() {
     const userProgressComponent = userProgress && (
       <div className="daily_progress">
@@ -265,27 +190,27 @@ export default function Training(props) {
     );
 
     return mode === 'soft' ? (
-        <>
-          {!isMobile() && (
-            <div className="Home__title">
-              <h1>Mode consolidation</h1>
-              <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
-              <p>Seules les questions auxquelles vous n&apos;avez pas répondu depuis assez longtemps apparaîtront</p>
-              <div>
-                {userProgressComponent}
-              </div>
+      <>
+        {!isMobile() && (
+        <div className="Home__title">
+          <h1>Mode consolidation</h1>
+          <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
+          <p>Seules les questions auxquelles vous n&apos;avez pas répondu depuis assez longtemps apparaîtront</p>
+          <div>
+            {userProgressComponent}
+          </div>
+        </div>
+        )}
+        {isMobile() && (
+          <>
+            <h2 className="Home__title">Mode consolidation</h2>
+            <div>
+              {userProgressComponent}
             </div>
-          )}
-          {isMobile() && (
-            <>
-              <h2 className="Home__title">Mode consolidation</h2>
-              <div>
-                {userProgressComponent}
-              </div>
-            </>
-          )}
-        </>
-      )
+          </>
+        )}
+      </>
+    )
       : (
         <>
           {!isMobile() && (
@@ -296,7 +221,7 @@ export default function Training(props) {
               {isConnected && (
                 <FormControlLabel
                   control={
-                    <Switch checked={serverSwitch} onChange={() => setServerSwitch(!serverSwitch)}/>
+                    <Switch checked={serverSwitch} onChange={() => setServerSwitch(!serverSwitch)} />
                   }
                   label="Afficher seulement mes questions"
                 />
