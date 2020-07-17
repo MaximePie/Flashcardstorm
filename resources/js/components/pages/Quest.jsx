@@ -34,8 +34,10 @@ export default function Quest() {
   }, [monster]);
 
   React.useEffect(() => {
-    const questionWording = questions[0].is_reverse ? questions[0].answer : questions[0].wording;
-    addText(`La question est : ${questionWording}`);
+    if (questions.length) {
+      const questionWording = questions[0].is_reverse ? questions[0].answer : questions[0].wording;
+      addText(`La question est : ${questionWording}`);
+    }
   }, [questions]);
 
   React.useEffect(() => {
