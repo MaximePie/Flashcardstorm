@@ -20,7 +20,7 @@ export default function Quest() {
 
   React.useEffect(() => {
     if (hero.current_health <= 0) {
-      addText('Vous êtes mort... Déso !');
+      addText(['Vous êtes mort... Déso !']);
       document.location.reload();
     }
   }, [hero]);
@@ -28,7 +28,7 @@ export default function Quest() {
 
   React.useEffect(() => {
     if (monster.current_health <= 0) {
-      addText('Vous avez gagné, wouhou !');
+      addText(['Vous avez gagné, wouhou !']);
       document.location.reload();
     }
   }, [monster]);
@@ -36,7 +36,7 @@ export default function Quest() {
   React.useEffect(() => {
     if (questions.length) {
       const questionWording = questions[0].is_reverse ? questions[0].answer : questions[0].wording;
-      addText(`La question est : ${questionWording}`);
+      addText([`La question est : ${questionWording}`]);
     }
   }, [questions]);
 
@@ -115,10 +115,14 @@ export default function Quest() {
 
   /**
    * Add text at the bottom of the displayed text
-   * @param text String, the text we want to add
+   * @param text array of strings, the text we want to add
    */
   function addText(text) {
-    setDisplayedText([...displayedText, text]);
+    if (text.length) {
+      setDisplayedText([...displayedText, ...text]);
+    } else {
+      alert("Il y a eu une erreur d'affichage suite à un problème de code.");
+    }
   }
 
   /**
@@ -127,7 +131,6 @@ export default function Quest() {
    * @param question
    */
   function submitAnswer(answer, question) {
-    addText(answer);
     server.post(
       'question/submit_answer',
       {
@@ -145,24 +148,29 @@ export default function Quest() {
             victim: monster.id,
           })
             .then((attackResponse) => {
-              addText(`Le monstre perd ${attackResponse.data.lostHealth} PV`);
+              addText([answer, `Le monstre perd ${attackResponse.data.lostHealth} PV`]);
               fetchEntitiesInfo();
+              const questionsList = [...questions];
+              questionsList.shift();
+              setQuestions(questionsList);
             });
         } else if (response.data.status === 500) {
-          addText(`Mauvaise réponse ! La réponse était ${response.data.correct_answer}`);
           server.post('quest_attack', {
             attacker: monster.id,
             victim: hero.id,
           })
             .then((attackResponse) => {
-              addText(`Le héros perd ${attackResponse.data.lostHealth} PV`);
+              addText([
+                answer,
+                `Mauvaise réponse ! La réponse était ${response.data.correct_answer}`,
+                `Le héros perd ${attackResponse.data.lostHealth} PV`,
+              ]);
               fetchEntitiesInfo();
+              const questionsList = [...questions];
+              questionsList.shift();
+              setQuestions(questionsList);
             });
         }
       });
-
-    const questionsList = [...questions];
-    questionsList.shift();
-    setQuestions(questionsList);
   }
 }
