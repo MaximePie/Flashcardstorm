@@ -71,23 +71,38 @@ export default function Profile() {
           )}
         </div>
         <h3 className="Profile__memorized-questions-title">
-          Questions mémorisées
+          Questions
           {memorizedQuestions.length ? ` (${memorizedQuestions.length})` : ''}
         </h3>
         <div className="Profile__memorized-questions">
           {!loading.memorizedQuestions && (
-            <>
+            <Paper className="Profile__memorized-question">
+              <div className="Profile__memorized-question-info">
+                <h4>Question</h4>
+                <span className="Profile__memorized-question-details">Etat</span>
+              </div>
               {memorizedQuestions.map((question) => (
-                <Paper className="Profile__memorized-question">
-                  <h4>
-                    {question.wording}
-                  </h4>
+                <div>
+                  <div className="Profile__memorized-question-info">
+                    <h4>
+                      {question.wording}
+                    </h4>
+                    <span
+                      className={
+                        `Profile__memorized-question-details Profile__memorized-question-details${
+                          question.isMemorized ? '--memorized' : '--not-memorized'
+                        }`
+                      }
+                    >
+                      {question.isMemorized ? 'Mémorisée' : 'En cours'}
+                    </span>
+                  </div>
                   <h5>
                     {question.answer}
                   </h5>
-                </Paper>
+                </div>
               ))}
-            </>
+            </Paper>
           )}
           {loading.memorizedQuestions && <LoadingSpinner />}
         </div>
@@ -124,7 +139,15 @@ export default function Profile() {
     server.get('myMemorizedQuestions')
       .then((response) => {
         const { memorizedQuestions: memorizedQuestionsData } = response.data;
-        setMemorizedQuestions(memorizedQuestionsData);
+        const sortedMemorizedQuestions = [...memorizedQuestionsData];
+        sortedMemorizedQuestions.sort((questionA, questionB) => {
+          if (!questionB.isMemorized) {
+            return -1;
+          }
+
+          return 1;
+        });
+        setMemorizedQuestions(sortedMemorizedQuestions);
         setLoadingState({
           ...loading,
           memorizedQuestions: false,

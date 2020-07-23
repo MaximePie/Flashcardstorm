@@ -326,4 +326,16 @@ class Question extends Model
 
         return $this;
     }
+
+    /**
+     * Tells if the question is memorized for the user
+     * @param User $user
+     * @return bool
+     */
+    public function isMemorizedForUser(User $user)
+    {
+        /** @var Question_user $questionUser */
+        $questionUser = Question_user::findFromTuple($this->id, $user->id)->first();
+        return $questionUser->isMemorized;
+    }
 }
