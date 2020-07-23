@@ -33,18 +33,12 @@ class UserController extends Controller
      */
     protected function showLoggedIn(): JsonResponse
     {
+        /** @var User $user */
         $user = Auth::user();
         if ($user) {
-
-            $memorizedQuestions = $user->memorizedQuestions()->get();
-            foreach($memorizedQuestions as $question) {
-                $question['answer'] = $question->answer()->first()->wording;
-            }
-
             return response()->json([
                 'user' => $user->name,
                 'statistics' => $user->statistics,
-                'memorizedQuestions' => $memorizedQuestions,
             ]);
         }
 
@@ -85,6 +79,25 @@ class UserController extends Controller
             }
 
             return response()->json(['userProgress' => $user->dailyProgress()]);
+        }
+    }
+
+    /**
+     * Get the memorized questions of the connected User
+     * @return JsonResponse
+     */
+    protected function memorizedQuestionsForConnectedUser(): ?JsonResponse
+    {
+        $user = Auth::user();
+        if ($user) {
+            $memorizedQuestions = $user->memorizedQuestions()->get();
+            foreach($memorizedQuestions as $question) {
+                $question['answer'] = $question->answer()->first()->wording;
+            }
+
+            return response()->json([
+                'memorizedQuestions' => $memorizedQuestions,
+            ]);
         }
     }
 }

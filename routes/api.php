@@ -30,6 +30,7 @@ Route::name('api.')->group(static function () {
             Route::get('nonInitiatedQuestions', 'QuestionController@notInitiatedQuestion');
             Route::get('nonInitiatedQuestionsCount', 'QuestionController@notInitiatedQuestionsCount');
             Route::get('me/score', 'UserController@score');
+            Route::get('myMemorizedQuestions', 'UserController@memorizedQuestionsForConnectedUser');
             Route::get('users', 'UserController@index');
             Route::get('vote/{changelog}', 'UservoteController@toggle');
             Route::get('update_progress', 'UserController@updateProgress');

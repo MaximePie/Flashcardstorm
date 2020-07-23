@@ -1,4 +1,10 @@
 .Profile {
+
+  &__title {
+    border-radius: 0;
+    padding: 1.5rem;
+  }
+
   &__chart-zone {
     padding: 12px;
     background-color: #dedede;
@@ -7,6 +13,11 @@
   &__memorized-questions {
       display: grid;
       grid-template-columns: 1fr 1fr;
+
+    &-title {
+      margin-left: 16px;
+      margin-top: 16px;
+    }
 
     .Profile__memorized-question {
       margin: 16px;

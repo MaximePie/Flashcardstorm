@@ -19,7 +19,7 @@ import Quest from './components/pages/Quest';
 import Register from './components/pages/Register';
 import Login from './components/pages/Login';
 import ErrorPage from './components/pages/Error';
-import Profile from './components/Profile';
+import Profile from './components/pages/Profile';
 import server from './server';
 import Training from './components/pages/Training';
 import RoughTraining from './components/pages/RoughTraining';
