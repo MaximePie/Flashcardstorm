@@ -17,15 +17,14 @@ export default function Profile() {
   const [user, setUser] = React.useState(undefined);
   const [loading, setLoadingState] = React.useState({
     user: false,
-    memorizedQuestions: false,
+    questions: false,
   });
   const [statistics, setStatistics] = React.useState(undefined);
-  const [memorizedQuestions, setMemorizedQuestions] = React.useState([]);
+  const [questions, setMemorizedQuestions] = React.useState([]);
 
   React.useEffect(() => {
     fetchUserInfo();
   }, []);
-
 
   return (
     <div className="Profile">
@@ -39,7 +38,7 @@ export default function Profile() {
           <h3>Progression des questions mémorisées</h3>
           {!loading.user && (
             <>
-              {statistics && (
+              {!statistics && (
                 <>
                   <p className="Profile__chart-zone-text">
                     Vous n'avez mémorisé aucune question pour le moment. Pour mémoriser des questions :
@@ -56,7 +55,7 @@ export default function Profile() {
                   </ul>
                 </>
               )}
-              {!statistics && (
+              {statistics && (
                 <LineChart width={lineChartSize('width')} height={lineChartSize('height')} data={statistics}>
                   <Line type="monotone" dataKey="uv" stroke="#8884d8" />
                   <XAxis dataKey="name" />
@@ -70,26 +69,26 @@ export default function Profile() {
             <LoadingSpinner />
           )}
         </div>
-        <h3 className="Profile__memorized-questions-title">
+        <h3 className="Profile__questions-title">
           Questions
-          {memorizedQuestions.length ? ` (${memorizedQuestions.length})` : ''}
+          {questions.length ? ` (${questions.length})` : ''}
         </h3>
-        <div className="Profile__memorized-questions">
-          {!loading.memorizedQuestions && (
-            <Paper className="Profile__memorized-question">
-              <div className="Profile__memorized-question-info">
+        <div className="Profile__questions">
+          {!loading.questions && (
+            <Paper className="Profile__questions-container">
+              <div className={'Profile__question-info Profile__question-info--header'}>
                 <h4>Question</h4>
-                <span className="Profile__memorized-question-details">Etat</span>
+                <span className="Profile__question-details">Etat</span>
               </div>
-              {memorizedQuestions.map((question) => (
-                <div>
-                  <div className="Profile__memorized-question-info">
+              {questions.map((question) => (
+                <div className="Profile__question">
+                  <div className="Profile__question-info">
                     <h4>
                       {question.wording}
                     </h4>
                     <span
                       className={
-                        `Profile__memorized-question-details Profile__memorized-question-details${
+                        `Profile__question-details Profile__question-details${
                           question.isMemorized ? '--memorized' : '--not-memorized'
                         }`
                       }
@@ -104,7 +103,7 @@ export default function Profile() {
               ))}
             </Paper>
           )}
-          {loading.memorizedQuestions && <LoadingSpinner />}
+          {loading.questions && <LoadingSpinner />}
         </div>
       </>
     </div>
@@ -113,7 +112,7 @@ export default function Profile() {
   function fetchUserInfo() {
     setLoadingState({
       user: true,
-      memorizedQuestions: true,
+      questions: true,
     });
     axios.get(`api/me?api_token=${Cookies.get('Bearer')}`)
       .then((response) => {
@@ -150,7 +149,7 @@ export default function Profile() {
         setMemorizedQuestions(sortedMemorizedQuestions);
         setLoadingState({
           ...loading,
-          memorizedQuestions: false,
+          questions: false,
         });
       });
   }

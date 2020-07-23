@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Question.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Profile.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/Profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Profile.scss" afterDir="false" />
@@ -354,7 +352,9 @@
       <workItem from="1594968181311" duration="1192000" />
       <workItem from="1595431908127" duration="966000" />
       <workItem from="1595434960058" duration="3507000" />
-      <workItem from="1595492416227" duration="9024000" />
+      <workItem from="1595492416227" duration="9624000" />
+      <workItem from="1595507683707" duration="10000" />
+      <workItem from="1595519661565" duration="2463000" />
     </task>
     <servers />
   </component>
@@ -384,10 +384,6 @@
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="312" y="89" key="#SCSS/0.0.1440.860@0.0.1440.860" timestamp="1587735734709" />
-    <state x="502" y="118" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586867401022">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state x="502" y="118" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.860@0.0.1440.860" timestamp="1586867401022" />
     <state x="450" y="178" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586953475121">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
@@ -395,7 +391,6 @@
     <state x="693" y="276" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593329339953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="520" y="228" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.860@0.0.1440.860" timestamp="1586868804336" />
     <state x="693" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593329339953" />
     <state x="463" y="280" key="#com.jetbrains.php.refactoring.move.member.instance.PhpMoveInstanceMethodDialog#" timestamp="1586947383800">
       <screen x="0" y="0" width="1440" height="860" />
@@ -429,10 +424,6 @@
     </state>
     <state width="957" height="445" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1589396316636" />
     <state width="1293" height="470" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594015564554" />
-    <state width="273" height="457" key="HiddenNamespacesPopup" timestamp="1586868320548">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state width="273" height="457" key="HiddenNamespacesPopup/0.0.1440.860@0.0.1440.860" timestamp="1586868320548" />
     <state x="491" y="273" width="483" height="369" key="NewPhpClassDialog" timestamp="1586939375675">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
@@ -455,11 +446,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="326" key="com.intellij.database.dbimport.ImportUtil.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589539070684" />
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1595432420829">
+    <state x="11" y="45" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1595520055097">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="11" y="45" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595520055097" />
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1595507685943">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="465" y="286" key="com.intellij.ide.util.TipDialog/0.0.1440.860@0.0.1440.860" timestamp="1589396212185" />
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595432420829" />
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595507685943" />
     <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1594363073754">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

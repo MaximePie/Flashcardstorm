@@ -10,34 +10,43 @@
     background-color: #dedede;
   }
 
-  &__memorized-questions {
-      display: grid;
-      grid-template-columns: 3fr 1fr;
+  &__questions {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
 
     &-title {
       margin-left: 16px;
       margin-top: 16px;
     }
 
-    .Profile__memorized-question {
+    .Profile__questions-container {
       margin: 16px;
       padding: 16px;
 
-      &-details {
-        justify-self: center;
-        &--memorized {
-          color: green;
-        }
+      .Profile__question {
+        border-bottom: solid 2px #cecece;
+        margin: 12px 0;
 
-        &--not-memorized {
-          color: orange;
-        }
-      }
+        &-info {
+          display: grid;
+          grid-template-columns: 300px 1fr;
+          font-weight: 600;
 
-      &-info {
-        display: grid;
-        grid-template-columns: 300px 1fr;
-        font-weight: 600;
+          &--header {
+            border-bottom: solid 2px #cecece;
+          }
+        }
+        &-details {
+          justify-self: center;
+
+          &--memorized {
+            color: green;
+          }
+
+          &--not-memorized {
+            color: orange;
+          }
+        }
       }
     }
   }

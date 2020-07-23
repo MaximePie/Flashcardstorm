@@ -81,7 +81,10 @@ class UserController extends Controller
                 $user->save();
             }
 
-            return response()->json(['userProgress' => $user->dailyProgress()]);
+            return response()->json([
+                'userProgress' => $user->dailyProgress(),
+                'statistics' => $user->statistics,
+            ]);
         }
     }
 
