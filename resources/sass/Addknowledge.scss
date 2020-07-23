@@ -3,6 +3,8 @@
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    background: content-box no-repeat url("../images/add.jpg");
+    background-size: 100% 100%;
 
     &__title {
         text-align: center;

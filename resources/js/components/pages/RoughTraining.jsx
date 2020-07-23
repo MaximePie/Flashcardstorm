@@ -14,23 +14,25 @@ export default function RoughTraining() {
   }, []);
 
   return (
-    <div className="RoughTraining container">
-      <h2 className="RoughTraining__score">
-        <span className="RoughTraining__success">{success}</span>
-        /
-        <span className="RoughTraining__failed">{failed}</span>
-      </h2>
-      <div className="RoughTraining__questions">
-        {questions.length && questions.map((question) => (
-          <QuestionRow
-            question={question}
-            onSubmit={(answer) => submitAnswer(answer, question)}
-            key={`QuestionRow-${questions[0].id}`}
-          />
-        ))}
-        {questions.length > 0 && (
-          <Button text="Charger d'autres questions" onClick={updateQuestionsBag} />
-        )}
+    <div className="RoughTraining">
+      <div className="container RoughTraining__container">
+        <h2 className="RoughTraining__score">
+          <span className="RoughTraining__success">{success}</span>
+          /
+          <span className="RoughTraining__failed">{failed}</span>
+        </h2>
+        <div className="RoughTraining__questions">
+          {questions.length && questions.map((question) => (
+            <QuestionRow
+              question={question}
+              onSubmit={(answer) => submitAnswer(answer, question)}
+              key={`QuestionRow-${questions[0].id}`}
+            />
+          ))}
+          {questions.length > 0 && (
+            <Button text="Charger d'autres questions" onClick={updateQuestionsBag} />
+          )}
+        </div>
       </div>
     </div>
   );

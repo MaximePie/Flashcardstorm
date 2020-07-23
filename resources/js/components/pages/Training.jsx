@@ -45,7 +45,6 @@ export default function Training(props) {
   }, []);
 
   React.useEffect(() => {
-    console.log(questionsList);
     if (!questionsList.length) {
       fetchQuestions();
     }

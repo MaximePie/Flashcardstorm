@@ -1,8 +1,13 @@
 .RoughTraining {
-  height: 100vh;
-  padding-top: 6em;
-  margin: auto;
+  background: content-box no-repeat url("../images/roughtraining.jpg");
+  background-size: 100% 100%;
 
+  &__container {
+    height: 100vh;
+    padding-top: 6em;
+    margin: auto;
+  }
+  
   &__score {
     text-align: center;
 
