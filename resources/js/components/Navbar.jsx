@@ -15,6 +15,7 @@ import Icon from './Icon';
 import { isMobile } from '../helper';
 import { AuthenticationContext } from '../Contexts/authentication';
 import { Link } from 'react-router-dom';
+import Divider from '@material-ui/core/Divider';
 
 export default function Navbar(props) {
 
@@ -42,7 +43,17 @@ export default function Navbar(props) {
       onKeyDown={toggleDrawer(false)}
     >
       <List className="navbar-nav mr-auto Navbar__list">
-        <Link className="Navbar__link" to="/home" className="Navbar__link">
+        <Link className="Navbar__link" to="/home">
+          <ListItem button component="a" className="Navbar__item">
+            <ListItemIcon>
+              <i className="fas fa-home"/>
+            </ListItemIcon>
+            <ListItemText>
+              Accueil
+            </ListItemText>
+          </ListItem>
+        </Link>
+        <Link className="Navbar__link" to="/home">
           <ListItem button component="a" className="Navbar__item">
             <ListItemIcon>
               <i className="fas fa-cloud-meatball"/>
@@ -54,6 +65,16 @@ export default function Navbar(props) {
         </Link>
         {isConnected && (
           <>
+            <Link className="Navbar__link" to="/initiate">
+              <ListItem button component="a" className="Navbar__item">
+                <ListItemIcon>
+                  <i className="fas fa-play"/>
+                </ListItemIcon>
+                <ListItemText>
+                  Mode initiation
+                </ListItemText>
+              </ListItem>
+            </Link>
             <Link className="Navbar__link" to="/soft_training">
               <ListItem button component="a" className="Navbar__item">
                 <ListItemIcon>
@@ -68,7 +89,7 @@ export default function Navbar(props) {
                   )}
                 </ListItemIcon>
                 <ListItemText>
-                  Mode entraînement planifié
+                  Mode révisions
                 </ListItemText>
               </ListItem>
             </Link>
@@ -78,20 +99,11 @@ export default function Navbar(props) {
                   <i className="fas fa-fire"/>
                 </ListItemIcon>
                 <ListItemText>
-                  Toutes mes questions
+                  Mode rapide
                 </ListItemText>
               </ListItem>
             </Link>
-            <Link className="Navbar__link" to="/initiate">
-              <ListItem button component="a" className="Navbar__item">
-                <ListItemIcon>
-                  <i className="fas fa-fire"/>
-                </ListItemIcon>
-                <ListItemText>
-                  Débuter sur les questions
-                </ListItemText>
-              </ListItem>
-            </Link>
+            <Divider />
             <Link className="Navbar__link" to="/add">
               <ListItem button component="a" className="Navbar__item">
                 <ListItemIcon>
@@ -99,6 +111,16 @@ export default function Navbar(props) {
                 </ListItemIcon>
                 <ListItemText>
                   Ajouter des questions
+                </ListItemText>
+              </ListItem>
+            </Link>
+            <Link className="Navbar__link" to="/add_category">
+              <ListItem button component="a" className="Navbar__item">
+                <ListItemIcon>
+                  <i className="fas fa-folder-plus"/>
+                </ListItemIcon>
+                <ListItemText>
+                  Ajouter des categories
                 </ListItemText>
               </ListItem>
             </Link>
@@ -110,10 +132,11 @@ export default function Navbar(props) {
               <i className="fas fa-list"/>
             </ListItemIcon>
             <ListItemText>
-              Questions
+              Afficher toutes les questions
             </ListItemText>
           </ListItem>
         </Link>
+        <Divider />
         {!isConnected && (
           <>
             <Link className="Navbar__link" to="/register">
@@ -140,23 +163,23 @@ export default function Navbar(props) {
         )}
         {isConnected && (
           <>
-            <Link className="Navbar__link" to="/add_category">
-              <ListItem button component="a" className="Navbar__item">
-                <ListItemIcon>
-                  <i className="fas fa-folder-plus"/>
-                </ListItemIcon>
-                <ListItemText>
-                  Ajouter des categories
-                </ListItemText>
-              </ListItem>
-            </Link>
             <Link className="Navbar__link" to="/users">
               <ListItem button component="a" className="Navbar__item">
                 <ListItemIcon>
                   <i className="fas fa-users"/>
                 </ListItemIcon>
                 <ListItemText>
-                  Utilisateurs
+                  Afficher les utilisateurs
+                </ListItemText>
+              </ListItem>
+            </Link>
+            <Link className="Navbar__link" to="/profile">
+              <ListItem button component="a" className="Navbar__item">
+                <ListItemIcon>
+                  <i className="fas fa-user"/>
+                </ListItemIcon>
+                <ListItemText>
+                  Mon profil
                 </ListItemText>
               </ListItem>
             </Link>
@@ -170,6 +193,7 @@ export default function Navbar(props) {
             </ListItem>
           </>
         )}
+        <Divider />
         <Link className="Navbar__link" to="/about">
           <ListItem button component="a" className="Navbar__item">
             <ListItemIcon>
@@ -184,7 +208,7 @@ export default function Navbar(props) {
               )}
             </ListItemIcon>
             <ListItemText>
-              à propos
+              Consulter les mises à jours
             </ListItemText>
           </ListItem>
         </Link>
@@ -231,14 +255,6 @@ export default function Navbar(props) {
           {sideList('left')}
         </Drawer>
         <div className="Navbar__item-profile">
-          {!isMobile() && (
-            <a className="navbar-brand Navbar__home-link" href="/">
-              <Avatar className="Navbar__logo" alt="GIPSI Logo" src="/images/logo.png"/>
-              <div className="Navbar__logo-text">
-                FlashcardStorm
-              </div>
-            </a>
-          )}
           {isConnected && (
             <div className="Navbar__item-profile-container">
               <a href="/profile" className="Navbar__item-profile-icon-link">
