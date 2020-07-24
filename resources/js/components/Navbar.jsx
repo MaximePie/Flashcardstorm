@@ -43,7 +43,7 @@ export default function Navbar(props) {
       onKeyDown={toggleDrawer(false)}
     >
       <List className="navbar-nav mr-auto Navbar__list">
-        <Link className="Navbar__link" to="/home">
+        <Link className="Navbar__link" to="/">
           <ListItem button component="a" className="Navbar__item">
             <ListItemIcon>
               <i className="fas fa-home"/>

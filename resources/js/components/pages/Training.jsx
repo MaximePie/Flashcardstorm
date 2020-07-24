@@ -9,6 +9,7 @@ import HintDialog from '../molecule/HintDialog';
 import QuestionCard from '../molecule/QuestionCard';
 import { areSimilar, isMobile } from '../../helper';
 import { AuthenticationContext } from '../../Contexts/authentication';
+import LoadingSpinner from '../atom/LoadingSpinner';
 
 Training.propTypes = {
   mode: PropTypes.string,
@@ -23,6 +24,7 @@ export default function Training(props) {
   const isConnected = React.useContext(AuthenticationContext);
 
   const [questionsList, updateStateQuestionsList] = React.useState([]);
+  const [isLoading, setLoadingState] = React.useState(false);
 
   const [userProgress, setUserProgress] = React.useState(undefined);
   const [hintModalState, setHintModalState] = React.useState({
@@ -62,19 +64,28 @@ export default function Training(props) {
           })}
         />
       )}
-      {questionsList[0] && (
-        <div className="Home__QuestionCard-row">
-          <QuestionCard
-            question={questionsList[0] || undefined}
-            onSubmit={submitAnswer}
-            onSkip={displayNextQuestion}
-            key={`QuestionCard-${questionsList[0].id}`}
-          />
-        </div>
+      {!isLoading && (
+        <>
+          {questionsList[0] && (
+            <div className="Home__QuestionCard-row">
+              <QuestionCard
+                question={questionsList[0] || undefined}
+                onSubmit={submitAnswer}
+                onSkip={displayNextQuestion}
+                key={`QuestionCard-${questionsList[0].id}`}
+              />
+            </div>
+          )}
+          {!questionsList[0] && (
+            <div className="Home--no-question">
+              Pas de question pour le moment.
+            </div>
+          )}
+        </>
       )}
-      {!questionsList[0] && (
-        <div className="Home--no-question">
-          Pas de question pour le moment.
+      {isLoading && (
+        <div className="Home__QuestionCard--loading">
+          <LoadingSpinner />
         </div>
       )}
     </div>
@@ -154,9 +165,11 @@ export default function Training(props) {
    * Fills the questions bag
    */
   function fetchQuestions() {
+    setLoadingState(true)
     server.get('dailyQuestions')
       .then((response) => {
         updateStateQuestionsList(response.data.questions);
+        setLoadingState(false);
       });
   }
 
