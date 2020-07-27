@@ -303,7 +303,7 @@ class Question extends Model
             $hint = null;
         }
 
-        if (!$questionUser) {
+        if ($questionUser) {
             $earnedPoints = $questionUser->full_score;
         }
         else {
