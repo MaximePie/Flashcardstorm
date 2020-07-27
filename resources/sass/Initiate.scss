@@ -1,13 +1,19 @@
 .Initiate {
   height: 100vh;
-  padding: 6em 8px 8px;
   background: content-box no-repeat url("../images/soft.jpg");
   background-size: 100% 100%;
+  position: fixed;
+  width: 100%;
+
+  @include for-phone-only {
+    overflow-y: auto;
+  }
 
   &__remaining {
     text-align: center;
     color: white;
     font-size: 1.5em;
+    margin-top: 4em;
   }
 
   &__questions-container {
@@ -16,6 +22,12 @@
     grid-template-columns: repeat(5, 1fr);
     height: 90%;
     grid-template-rows: repeat(5, 1fr);
+
+    @include for-phone-only {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      height: initial;
+    }
   }
 
   &__question {
@@ -27,6 +39,12 @@
     align-items: center;
     justify-content: center;
     font-size: 1.25em;
+
+    @include for-phone-only {
+      padding: 4px;
+      margin: 4px;
+      font-size: 1em;
+    }
 
     &:hover {
       cursor: pointer;

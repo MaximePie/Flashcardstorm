@@ -296,14 +296,19 @@ class Question extends Model
     public function preparedForView(User $user = null, string $mode = 'soft'): self
     {
         /** @var Question_user $questionUser */
-        $questionUser = Question_user::findFromTuple($this->id, $user->id)->first();
         if ($user) {
+            $questionUser = Question_user::findFromTuple($this->id, $user->id)->first();
             $hint = $questionUser->mnemonics()->inRandomOrder()->first();
         } else {
             $hint = null;
         }
 
-        $earnedPoints = $questionUser->full_score;
+        if (!$questionUser) {
+            $earnedPoints = $questionUser->full_score;
+        }
+        else {
+            $earnedPoints = 10;
+        }
 
         if ($mode === 'storm') {
             $earnedPoints = 10;

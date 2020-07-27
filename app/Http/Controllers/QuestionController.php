@@ -286,7 +286,7 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        $question->preparedForView();
+        $question->preparedForView(Auth::user());
         return $question;
     }
 
