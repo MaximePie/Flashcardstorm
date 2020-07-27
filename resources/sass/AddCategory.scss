@@ -6,6 +6,11 @@
   background: content-box no-repeat url("../images/addcategory.jpg");
   background-size: 100% 100%;
 
+  @include for-phone-only {
+    height: 200vh;
+    background-size: initial;
+  }
+
   &__form {
     padding: 16px;
     margin: 32px;
