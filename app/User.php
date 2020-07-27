@@ -131,7 +131,7 @@ class User extends Authenticable
      */
     public function notInitiatedQuestions(): BelongsToMany
     {
-        return $this->BelongsToMany(Question::class, 'question_users')
+        return $this->dailyQuestions()
         ->where('question_users.isMemorized', false)
         ->where('question_users.isInitiated', false);
     }
