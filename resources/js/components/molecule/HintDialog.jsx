@@ -5,7 +5,7 @@ import { DialogTitle } from '@material-ui/core';
 import DialogContent from '@material-ui/core/DialogContent';
 import TextField from '@material-ui/core/TextField';
 import { useSnackbar } from 'notistack';
-import Button from './Button';
+import Button from '../atom/Button';
 import server from '../../server';
 import CloseIcon from '../atom/CloseIcon';
 

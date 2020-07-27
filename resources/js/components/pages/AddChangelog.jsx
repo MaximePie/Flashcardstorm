@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { useSnackbar } from 'notistack';
 import { Tooltip } from '@material-ui/core';
-import Button from '../molecule/Button';
+import Button from '../atom/Button';
 import server from '../../server';
 import Icon from '../Icon';
 

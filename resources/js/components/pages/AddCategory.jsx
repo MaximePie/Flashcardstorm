@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { useSnackbar } from 'notistack';
 import { SketchPicker } from 'react-color';
-import Button from '../molecule/Button';
+import Button from '../atom/Button';
 import server from '../../server';
 import QuestionCard from '../molecule/QuestionCard';
 

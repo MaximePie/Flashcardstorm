@@ -4,7 +4,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import Icon from '../Icon';
-import Button from './Button';
+import Button from '../atom/Button';
 import { shuffle } from '../../helper';
 import classNames from 'classnames';
 

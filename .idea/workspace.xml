@@ -2,10 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/molecule/ProfileDataContainer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sass/molecules/ProfileDataContainer.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Training.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Training.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/Button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/atom/Button.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/HintDialog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/HintDialog.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/QuestionCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/QuestionCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/QuestionRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/QuestionRow.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/AddCategory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/AddCategory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/AddChangelog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/AddChangelog.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/AddKnowledge.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/AddKnowledge.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Changelogs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Changelogs.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Error.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Error.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/RoughTraining.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/RoughTraining.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/helper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/Initiate.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Initiate.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/Profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Profile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/imports.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/imports.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stories/1-Button.stories.js" beforeDir="false" afterPath="$PROJECT_DIR$/stories/1-Button.stories.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,21 +244,21 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
     <property name="settings.editor.splitter.proportion" value="0.13508968" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programmation\Flashcardstorm" />
+      <recent name="$PROJECT_DIR$/app/Helpers" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Programmation\Flashcardstorm\resources\js\components\atom" />
       <recent name="D:\Programmation\Flashcardstorm\resources\sass\atoms" />
       <recent name="D:\Programmation\Flashcardstorm\resources\js\components\pages" />
       <recent name="D:\Programmation\Flashcardstorm\resources\images" />
       <recent name="D:\Programmation\Flashcardstorm\public\images\quest" />
-      <recent name="D:\Programmation\Flashcardstorm\resources\images\quest" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Programmation\Flashcardstorm" />
-      <recent name="$PROJECT_DIR$/app/Helpers" />
     </key>
   </component>
   <component name="RunManager">
@@ -354,7 +373,9 @@
       <workItem from="1595434960058" duration="3507000" />
       <workItem from="1595492416227" duration="9624000" />
       <workItem from="1595507683707" duration="10000" />
-      <workItem from="1595519661565" duration="3892000" />
+      <workItem from="1595519661565" duration="6574000" />
+      <workItem from="1595798110814" duration="524000" />
+      <workItem from="1595837612550" duration="6409000" />
     </task>
     <servers />
   </component>
@@ -376,26 +397,14 @@
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="312" y="89" key="#Inspections/0.0.1440.860@0.0.1440.860" timestamp="1587743149057" />
-    <state x="0" y="58" key="#Live_Templates" timestamp="1586954073763">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state x="0" y="58" key="#Live_Templates/0.0.1440.860@0.0.1440.860" timestamp="1586954073763" />
     <state x="312" y="89" key="#SCSS" timestamp="1587735734709">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="312" y="89" key="#SCSS/0.0.1440.860@0.0.1440.860" timestamp="1587735734709" />
-    <state x="450" y="178" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586953475121">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state x="450" y="178" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.860@0.0.1440.860" timestamp="1586953475121" />
     <state x="693" y="276" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593329339953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593329339953" />
-    <state x="463" y="280" key="#com.jetbrains.php.refactoring.move.member.instance.PhpMoveInstanceMethodDialog#" timestamp="1586947383800">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state x="463" y="280" key="#com.jetbrains.php.refactoring.move.member.instance.PhpMoveInstanceMethodDialog#/0.0.1440.860@0.0.1440.860" timestamp="1586947383800" />
     <state x="585" y="117" key="CommitChangelistDialog2" timestamp="1595492832881">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -424,15 +433,10 @@
     </state>
     <state width="957" height="445" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1589396316636" />
     <state width="1293" height="470" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594015564554" />
-    <state x="491" y="273" width="483" height="369" key="NewPhpClassDialog" timestamp="1586939375675">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state x="491" y="273" width="483" height="369" key="NewPhpClassDialog/0.0.1440.860@0.0.1440.860" timestamp="1586939375675" />
-    <state x="21" y="0" width="1800" height="979" key="SettingsEditor" timestamp="1593341451453">
+    <state x="21" y="0" width="1800" height="979" key="SettingsEditor" timestamp="1595576451362">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="406" y="118" width="916" height="708" key="SettingsEditor/0.0.1440.860@0.0.1440.860" timestamp="1586954039752" />
-    <state x="21" y="0" width="1800" height="979" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1593341451453" />
+    <state x="21" y="0" width="1800" height="979" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1595576451362" />
     <state x="588" y="207" width="720" height="634" key="StructurePopup" timestamp="1589538309479">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -450,25 +454,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="11" y="45" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595520055097" />
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1595507685943">
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1595837623726">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="465" y="286" key="com.intellij.ide.util.TipDialog/0.0.1440.860@0.0.1440.860" timestamp="1589396212185" />
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595507685943" />
-    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1594363073754">
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595837623726" />
+    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1595576473373">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="456" y="206" width="643" height="536" key="find.popup/0.0.1440.860@0.0.1440.860" timestamp="1589226212741" />
-    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1594363073754" />
+    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1595576473373" />
     <state x="624" y="235" width="896" height="819" key="run.anything.popup" timestamp="1591203413236">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="468" y="194" width="672" height="677" key="run.anything.popup/0.0.1440.860@0.0.1440.860" timestamp="1587798353032" />
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591203413236" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1595574573256">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1595798131535">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="468" y="132" width="672" height="564" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1589361041730" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1595574573256" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1595798131535" />
   </component>
 </project>

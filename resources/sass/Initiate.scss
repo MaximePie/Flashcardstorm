@@ -1,6 +1,8 @@
 .Initiate {
   height: 100vh;
   padding: 6em 8px 8px;
+  background: content-box no-repeat url("../images/soft.jpg");
+  background-size: 100% 100%;
 
   &__remaining {
     text-align: center;

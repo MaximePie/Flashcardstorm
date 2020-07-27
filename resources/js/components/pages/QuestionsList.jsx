@@ -4,7 +4,7 @@ import server from '../../server';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import { Pagination } from 'react-laravel-paginex';
-import Button from '../molecule/Button';
+import Button from '../atom/Button';
 import { useSnackbar } from 'notistack';
 import Checkbox from '@material-ui/core/Checkbox';
 import QuestionsListItem from '../molecule/QuestionsListItem';

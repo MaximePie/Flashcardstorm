@@ -9,7 +9,7 @@ import { useDropzone } from 'react-dropzone';
 import csv from 'csv';
 import { Checkbox } from '@material-ui/core';
 import server from '../../server';
-import Button from '../molecule/Button';
+import Button from '../atom/Button';
 import { isMobile } from '../../helper';
 
 export default function AddKnowledge() {

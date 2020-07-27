@@ -11,19 +11,16 @@ import { Link } from 'react-router-dom';
 import { isMobile } from '../../helper';
 import server from '../../server';
 import LoadingSpinner from '../atom/LoadingSpinner';
+import ProfileDataContainer from '../molecule/ProfileDataContainer';
 
 
 export default function Profile() {
   const [user, setUser] = React.useState(undefined);
-  const [loading, setLoadingState] = React.useState({
-    user: false,
-    questions: false,
-  });
-  const [statistics, setStatistics] = React.useState(undefined);
+  const [loading, setLoadingState] = React.useState(false);
   const [questions, setMemorizedQuestions] = React.useState([]);
 
   React.useEffect(() => {
-    fetchUserInfo();
+    fetchQuestions();
   }, []);
 
   return (
@@ -34,47 +31,13 @@ export default function Profile() {
             {`Bienvenue, ${user && user}`}
           </h2>
         </div>
-        <div className="Profile__chart-zone">
-          <h3>Progression des questions mémorisées</h3>
-          {!loading.user && (
-            <>
-              {!statistics && (
-                <>
-                  <p className="Profile__chart-zone-text">
-                    Vous n'avez mémorisé aucune question pour le moment. Pour mémoriser des questions :
-                  </p>
-                  <ul>
-                    <li>Vérifiez que vous ayiez bien des questions dans votre kit</li>
-                    <li>
-                      Répondez 10 fois correctement à une question en
-                      <Link to="/training"> mode entraînement </Link>
-                      ou
-                      <Link to="rough_training"> mode rapide </Link>
-                    </li>
-                    <ul />
-                  </ul>
-                </>
-              )}
-              {statistics && (
-                <LineChart width={lineChartSize('width')} height={lineChartSize('height')} data={statistics}>
-                  <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <CartesianGrid stroke="#ccc" />
-                </LineChart>
-              )}
-            </>
-          )}
-          {loading.user && (
-            <LoadingSpinner />
-          )}
-        </div>
+        <ProfileDataContainer />
         <h3 className="Profile__questions-title">
           Questions
           {questions.length ? ` (${questions.length})` : ''}
         </h3>
         <div className="Profile__questions">
-          {!loading.questions && (
+          {!loading && (
             <Paper className="Profile__questions-container">
               <div className={'Profile__question-info Profile__question-info--header'}>
                 <h4>Question</h4>
@@ -103,37 +66,17 @@ export default function Profile() {
               ))}
             </Paper>
           )}
-          {loading.questions && <LoadingSpinner />}
+          {loading && <LoadingSpinner />}
         </div>
       </>
     </div>
   );
 
-  function fetchUserInfo() {
-    setLoadingState({
-      user: true,
-      questions: true,
-    });
-    axios.get(`api/me?api_token=${Cookies.get('Bearer')}`)
-      .then((response) => {
-        const {
-          user: userData,
-          statistics: statisticsData,
-        } = response.data;
-        const formatedStatistics = statisticsData.map((statistic) => ({
-          name: moment(statistic.created_at)
-            .format('MMM Do YY'),
-          uv: statistic.memorized_questions,
-          pv: 2400,
-          amt: 2400,
-        }));
-        setUser(userData);
-        setStatistics(formatedStatistics);
-        setLoadingState({
-          ...loading,
-          user: false,
-        });
-      });
+  /**
+   * Get the user questions info
+   */
+  function fetchQuestions() {
+    setLoadingState(true);
 
     server.get('myMemorizedQuestions')
       .then((response) => {
@@ -147,23 +90,7 @@ export default function Profile() {
           return 1;
         });
         setMemorizedQuestions(sortedMemorizedQuestions);
-        setLoadingState({
-          ...loading,
-          questions: false,
-        });
+        setLoadingState(false);
       });
-  }
-
-  /**
-   * Calculates the size of the chart component according to its viewport type
-   * @param dimension Width or Height we want to size
-   * @returns {number}
-   */
-  function lineChartSize(dimension) {
-    if (isMobile()) {
-      return 280;
-    }
-
-    return dimension === 'width' ? 800 : 400;
   }
 }

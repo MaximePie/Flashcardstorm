@@ -5,7 +5,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Button from '../molecule/Button';
+import Button from '../atom/Button';
 
 Error.propTypes = {
   code: PropTypes.number.isRequired,

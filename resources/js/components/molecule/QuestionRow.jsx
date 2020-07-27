@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { PropTypes } from 'prop-types';
-import Button from './Button';
+import Button from '../atom/Button';
 
 QuestionRow.propTypes = {
   question: PropTypes.shape({

@@ -41,7 +41,7 @@ export function areSimilar(firstString, secondString) {
   const matchingPattern = {
     a: ['ä', 'â', 'à'],
     e: ['ë', 'ê', 'è', 'é'],
-    '': ['la', 'les', 'le', 'un', 'une', 'des', 'a', 'an', 'to', 'the', ' '],
+    '': ['la ', 'les ', 'le ', 'un ', 'une ', 'des ', 'a ', 'an ', 'to ', 'the ', ' '],
     remove: ["l'", '-'],
   };
 
@@ -49,12 +49,16 @@ export function areSimilar(firstString, secondString) {
     ([absorbingCharacter, absorbedCharacter]) => {
       absorbedCharacter.forEach((absorbed) => {
         const destinationCharacter = absorbingCharacter !== 'remove' ? absorbingCharacter : '';
+        while (flatProvidedAnswer.includes(absorbed)) {
+          flatProvidedAnswer = flatProvidedAnswer.replace(
+            absorbed,
+            destinationCharacter,
+          );
+        }
 
-        flatProvidedAnswer = flatProvidedAnswer.replace(
-          absorbed,
-          destinationCharacter,
-        );
-        flatAnswer = flatAnswer.replace(absorbed, destinationCharacter);
+        while (flatAnswer.includes(absorbed)) {
+          flatAnswer = flatAnswer.replace(absorbed, destinationCharacter);
+        }
       });
     },
   );

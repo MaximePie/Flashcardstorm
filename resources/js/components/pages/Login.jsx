@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import { useSnackbar } from 'notistack';
 
 import TextField from '../molecule/TextField';
-import Button from '../molecule/Button';
+import Button from '../atom/Button';
 
 export default function Login() {
   const [form, setForm] = React.useState({

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { toLocale } from '../../helper';
 import server from '../../server';
 import Icon from '../Icon';
-import Button from '../molecule/Button';
+import Button from '../atom/Button';
 import { AuthenticationContext } from '../../Contexts/authentication';
 
 export default function Changelogs() {

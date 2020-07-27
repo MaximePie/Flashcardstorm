@@ -1,7 +1,7 @@
 import React from 'react';
 import server from '../../server';
 import QuestionRow from '../molecule/QuestionRow';
-import Button from '../molecule/Button';
+import Button from '../atom/Button';
 import { areSimilar } from '../../helper';
 
 export default function RoughTraining() {

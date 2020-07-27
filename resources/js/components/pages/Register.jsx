@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 
-import Button from '../molecule/Button';
+import Button from '../atom/Button';
 import TextField from '../molecule/TextField';
 
 export default function Register(props) {
