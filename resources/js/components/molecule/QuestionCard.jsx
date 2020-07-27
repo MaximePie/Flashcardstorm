@@ -73,10 +73,12 @@ export default function QuestionCard(props) {
             ))}
           </RadioGroup>
         )}
-        <div className="QuestionCard__actions">
-          <a type="button" className="Button btn Button--secondary Button--small" onClick={handleSkip}>Passer</a>
-          <Button variant="small" onClick={() => props.onSubmit(answer)} text="Envoyer"/>
-        </div>
+        {!isDemo && (
+          <div className="QuestionCard__actions">
+            <a type="button" className="Button btn Button--secondary Button--small" onClick={handleSkip}>Passer</a>
+            <Button variant="small" onClick={() => props.onSubmit(answer)} text="Envoyer"/>
+          </div>
+        )}
       </div>
     </form>
   );

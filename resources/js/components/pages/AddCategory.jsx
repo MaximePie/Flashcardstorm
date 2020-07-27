@@ -17,7 +17,7 @@ export default function AddChangelog() {
   const isFormValid = !!form.color.length && !!form.icon.length && !!form.name.length;
 
   return (
-    <div className="container AddCategory">
+    <div className="AddCategory">
       <form className="AddCategory__form card" onSubmit={submitValues}>
         <TextField
           value={form.name}
