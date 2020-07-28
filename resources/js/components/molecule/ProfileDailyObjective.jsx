@@ -1,50 +1,45 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import server from '../../server';
+import dailyObjectiveIllustration from '../../../images/dailyObjective.svg';
 
 export default function ProfileDailyObjective() {
-  const [dailyObjectives, setDailyObjectives] = React.useState([]);
+  const [dailyObjective, setDailyObjective] = React.useState({});
 
   useEffect(() => {
-    fetchUsersDailyObjective();
+    fetchDailyObjective();
   }, []);
 
   return (
     <div className="ProfileDailyObjective">
-      <h3 className="ProfileDailyObjective__header">Succès</h3>
-      <div className="ProfileDailyObjective__body">
-        <div className="ProfileDailyObjective__progress">
-          {dailyObjectives.map((objective) => (
-            <div
-              className={
-              `ProfileDailyObjective__progress-step ProfileDailyObjective__progress-step--${objective.state}`
-            }
-              key={objective.wording}
-            >
-              <div className="ProfileDailyObjective__progress-step-circle" />
-              <span className="ProfileDailyObjective__progress-step-wording">{objective.wording}</span>
-              <Link
-                className="ProfileDailyObjective__progress-wording-action Button btn btn-primary"
-                to={objective.link}
-              >
-                {objective.buttonWording}
-              </Link>
-            </div>
-          ))}
+      <h3 className="ProfileDailyObjective__header">Objectif du jour</h3>
+      {dailyObjective && (
+        <div className="ProfileDailyObjective__body">
+          <img
+            src={dailyObjectiveIllustration}
+            alt="Objectif journalier"
+            className="ProfileDailyObjective__illustration"
+          />
+          <span className="ProfileDailyObjective__body-text">
+            {dailyObjective.numberOfQuestions && `${dailyObjective.numberOfQuestions} questions à répondre`}
+          </span>
+          <Link className="ProfileDailyObjective__body-action Button btn-primary btn" to="/soft_training">
+            S'entraîner
+          </Link>
         </div>
-      </div>
+      )}
     </div>
   );
 
   /**
-   * Fetch the users Daily Objective and set it
+   * Fetch the DailyObjective and set it
    */
-  function fetchUsersDailyObjective() {
-    server.get('me/dailyObjectives')
+  function fetchDailyObjective() {
+    server.get('me/dailyObjective')
       .then((response) => {
-        const { objectives } = response.data;
-        if (objectives) {
-          setDailyObjectives(objectives);
+        const { dailyObjectiveData } = response.data;
+        if (dailyObjectiveData) {
+          setDailyObjective({ numberOfQuestions: dailyObjectiveData });
         }
       });
   }

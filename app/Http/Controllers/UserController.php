@@ -49,18 +49,39 @@ class UserController extends Controller
     }
 
     /**
-     * Show user dailyObjective
+     * Show user achievements
      *
      * @return JsonResponse
      */
-    protected function showDailyObjectives(): JsonResponse
+    protected function showAchievements(): JsonResponse
     {
         /** @var User $user */
         $user = Auth::user();
         if ($user) {
 
             return response()->json([
-                'objectives' => $user->dailyObjectives(),
+                'objectives' => $user->achievements(),
+            ]);
+        }
+
+        return response()->json([
+            'error' => "L'utilisateur n'est pas connecté."
+        ]);
+    }
+
+
+    /**
+     * Show user dailyObjective
+     *
+     * @return JsonResponse
+     */
+    protected function showDailyObjective(): JsonResponse
+    {
+        /** @var User $user */
+        $user = Auth::user();
+        if ($user) {
+            return response()->json([
+                'dailyObjectiveData' => $user->dailyQuestions()->count(),
             ]);
         }
 

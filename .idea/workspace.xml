@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/molecule/ProfileAchievements.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sass/molecules/ProfileAchievements.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/ProfileDailyObjective.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/ProfileDailyObjective.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/Profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Profile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/imports.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/imports.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/molecules/ProfileDailyObjective.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/molecules/ProfileDailyObjective.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
@@ -230,22 +233,22 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
     <property name="settings.editor.splitter.proportion" value="0.13508968" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Programmation\Flashcardstorm\resources\sass" />
-      <recent name="D:\Programmation\Flashcardstorm" />
-      <recent name="$PROJECT_DIR$/app/Helpers" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Programmation\Flashcardstorm\resources\js\components\molecule" />
       <recent name="D:\Programmation\Flashcardstorm\resources\js\components\atom" />
       <recent name="D:\Programmation\Flashcardstorm\resources\sass\atoms" />
       <recent name="D:\Programmation\Flashcardstorm\resources\js\components\pages" />
       <recent name="D:\Programmation\Flashcardstorm\resources\images" />
-      <recent name="D:\Programmation\Flashcardstorm\public\images\quest" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programmation\Flashcardstorm\resources\sass" />
+      <recent name="D:\Programmation\Flashcardstorm" />
+      <recent name="$PROJECT_DIR$/app/Helpers" />
     </key>
   </component>
   <component name="RunManager">
@@ -364,7 +367,7 @@
       <workItem from="1595798110814" duration="524000" />
       <workItem from="1595837612550" duration="11868000" />
       <workItem from="1595871916250" duration="8697000" />
-      <workItem from="1595931352782" duration="3560000" />
+      <workItem from="1595931352782" duration="7372000" />
     </task>
     <servers />
   </component>
@@ -426,10 +429,10 @@
     </state>
     <state width="957" height="445" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1589396316636" />
     <state width="1293" height="470" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594015564554" />
-    <state x="21" y="0" width="1800" height="979" key="SettingsEditor" timestamp="1595916732228">
+    <state x="21" y="0" width="1800" height="979" key="SettingsEditor" timestamp="1595950968254">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="21" y="0" width="1800" height="979" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1595916732228" />
+    <state x="21" y="0" width="1800" height="979" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1595950968254" />
     <state x="588" y="207" width="720" height="634" key="StructurePopup" timestamp="1589538309479">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -462,10 +465,10 @@
     </state>
     <state x="468" y="194" width="672" height="677" key="run.anything.popup/0.0.1440.860@0.0.1440.860" timestamp="1587798353032" />
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591203413236" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1595919823809">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1595951331369">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="468" y="132" width="672" height="564" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1589361041730" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1595919823809" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1595951331369" />
   </component>
 </project>

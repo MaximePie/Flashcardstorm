@@ -1,0 +1,37 @@
+.ProfileAchievements {
+  border-radius: 8px;
+  padding: 8px;
+
+  box-shadow: $card-box-shadow;
+  text-align: center;
+  background-color: white;
+
+  &__progress {
+    &-step {
+      display: grid;
+      grid-template-columns: auto 1fr 1fr;
+      margin: 64px 16px;
+      height: 32px;
+      align-items: center;
+
+      &--current {
+        .ProfileAchievements__progress-step-circle {
+          border: solid orange;
+        }
+      }
+
+      &--achieved {
+        .ProfileAchievements__progress-step-circle {
+          border: solid limegreen;
+        }
+      }
+
+      &-circle {
+        border: solid grey;
+        border-radius: 100px;
+        width: 60px;
+        height: 60px;
+      }
+    }
+  }
+}

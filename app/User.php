@@ -261,9 +261,9 @@ class User extends Authenticable
     }
 
     /**
-     * Returns the array of the objectives progress for the user
+     * Returns the array of the achievements progress for the user
      */
-    public function dailyObjectives(): array
+    public function achievements(): array
     {
         $objectives = array();
 

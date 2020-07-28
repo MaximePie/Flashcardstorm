@@ -5,33 +5,33 @@
   box-shadow: $card-box-shadow;
   text-align: center;
   background-color: white;
+  position: relative;
 
-  &__progress {
-    &-step {
-      display: grid;
-      grid-template-columns: auto 1fr 1fr;
-      margin: 64px 16px;
-      height: 32px;
-      align-items: center;
+  &__body {
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
-      &--current {
-        .ProfileDailyObjective__progress-step-circle {
-          border: solid orange;
-        }
-      }
-
-      &--achieved {
-        .ProfileDailyObjective__progress-step-circle {
-          border: solid limegreen;
-        }
-      }
-
-      &-circle {
-        border: solid grey;
-        border-radius: 100px;
-        width: 60px;
-        height: 60px;
-      }
+    &-text {
+      z-index: 2;
+      font-size: 1.5em;
+      font-weight: 600;
     }
+
+    &-action {
+      z-index: 2;
+    }
+  }
+
+  &__illustration {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.3;
+    width: 100%;
+    z-index: 1;
   }
 }
