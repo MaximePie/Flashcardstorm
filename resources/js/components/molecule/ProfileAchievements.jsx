@@ -22,12 +22,14 @@ export default function ProfileAchievements() {
           >
             <div className="ProfileAchievements__progress-step-circle" />
             <span className="ProfileAchievements__progress-step-wording">{objective.wording}</span>
-            <Link
-              className="ProfileAchievements__progress-wording-action Button btn btn-primary"
-              to={objective.link}
-            >
-              {objective.buttonWording}
-            </Link>
+            {objective.state === 'current' && (
+              <Link
+                className="ProfileAchievements__progress-wording-action Button btn btn-primary"
+                to={objective.link}
+              >
+                {objective.buttonWording}
+              </Link>
+            )}
           </div>
         ))}
       </div>
