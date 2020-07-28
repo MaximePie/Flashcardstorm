@@ -41,7 +41,7 @@ export default function Profile() {
                 <span className="Profile__question-details">Etat</span>
               </div>
               {questions.map((question) => (
-                <div className="Profile__question">
+                <div className="Profile__question" key={`Question-${question.id}`}>
                   <div className="Profile__question-info">
                     <h4>
                       {question.wording}

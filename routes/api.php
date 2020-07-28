@@ -30,6 +30,7 @@ Route::name('api.')->group(static function () {
             Route::get('me/score', 'UserController@score');
             Route::get('me', 'UserController@me');
             Route::get('me/statistics', 'UserController@showStatistics');
+            Route::get('me/dailyObjectives', 'UserController@showDailyObjectives');
             Route::get('myMemorizedQuestions', 'UserController@memorizedQuestionsForConnectedUser');
             Route::get('users', 'UserController@index');
             Route::get('vote/{changelog}', 'UservoteController@toggle');

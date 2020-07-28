@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Question;
 use App\Question_user;
 use App\User;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,6 +40,27 @@ class UserController extends Controller
         if ($user) {
             return response()->json([
                 'statistics' => $user->statistics,
+            ]);
+        }
+
+        return response()->json([
+            'error' => "L'utilisateur n'est pas connecté."
+        ]);
+    }
+
+    /**
+     * Show user dailyObjective
+     *
+     * @return JsonResponse
+     */
+    protected function showDailyObjectives(): JsonResponse
+    {
+        /** @var User $user */
+        $user = Auth::user();
+        if ($user) {
+
+            return response()->json([
+                'objectives' => $user->dailyObjectives(),
             ]);
         }
 
@@ -109,7 +129,7 @@ class UserController extends Controller
         if ($user) {
             /** @var Question[] $memorizedQuestions */
             $memorizedQuestions = $user->questions()->get();
-            foreach($memorizedQuestions as $question) {
+            foreach ($memorizedQuestions as $question) {
                 $question['answer'] = $question->answer()->first()->wording;
                 $question['isMemorized'] = $question->isMemorizedForUser($user);
                 $question['questionUser'] = Question_user::findFromTuple($question->id, $user->id);

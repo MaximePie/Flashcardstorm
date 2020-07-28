@@ -121,8 +121,8 @@ class User extends Authenticable
     public function dailyQuestions(): BelongsToMany
     {
         return $this->BelongsToMany(Question::class, 'question_users')
-        ->where('question_users.isMemorized', false)
-        ->whereDate('question_users.next_question_at', '<=', now());
+            ->where('question_users.isMemorized', false)
+            ->whereDate('question_users.next_question_at', '<=', now());
     }
 
 
@@ -132,8 +132,8 @@ class User extends Authenticable
     public function notInitiatedQuestions(): BelongsToMany
     {
         return $this->dailyQuestions()
-        ->where('question_users.isMemorized', false)
-        ->where('question_users.isInitiated', false);
+            ->where('question_users.isMemorized', false)
+            ->where('question_users.isInitiated', false);
     }
 
     /**
@@ -214,8 +214,7 @@ class User extends Authenticable
     public function randomUserQuestion(
         string $mode = 'storm',
         array $alreadyLoadedQuestionIds = [],
-        int $limit = Question_user::DEFAULT_BAG_LIMIT)
-    : Collection
+        int $limit = Question_user::DEFAULT_BAG_LIMIT): Collection
     {
         $queryBuilder = Question::query();
 
@@ -259,5 +258,50 @@ class User extends Authenticable
             return self::RANDOM_QUESTION_MESSAGE_NOT_FOUND;
         }
         return null;
+    }
+
+    /**
+     * Returns the array of the objectives progress for the user
+     */
+    public function dailyObjectives(): array
+    {
+        $objectives = array();
+
+        $firstBadge = [
+            'wording' => 'Saisir les questions',
+            'state' => $this->questions()->count() > 0 ? 'achieved' : 'current',
+            'link' => '/add_question',
+            'buttonWording' => 'Ajouter des questions',
+        ];
+
+        $secondBadgeState = $this->memorizedQuestions()->count() > 0 ? 'achieved' : 'current';
+        if ($firstBadge['state'] === 'current') {
+            $secondBadgeState = 'incoming';
+        }
+
+        $secondBadge = [
+            'wording' => 'Mémoriser sa première question',
+            'state' => $secondBadgeState,
+            'link' => '/soft_training',
+            'buttonWording' => "C'est parti !",
+        ];
+
+        $thirdBadgeState = $this->memorizedQuestions()->count() > 99 ? 'achieved' : 'current';
+        if ($secondBadge['state'] === 'current') {
+            $thirdBadgeState = 'incoming';
+        }
+
+        $thirdBadge = [
+            'wording' => '100 questions mémorisées',
+            'state' => $thirdBadgeState,
+            'link' => '/soft_training',
+            'buttonWording' => 'S\'entraîner',
+        ];
+
+        array_push($objectives, $firstBadge);
+        array_push($objectives, $secondBadge);
+        array_push($objectives, $thirdBadge);
+
+        return $objectives;
     }
 }
