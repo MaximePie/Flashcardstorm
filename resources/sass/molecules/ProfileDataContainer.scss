@@ -5,11 +5,20 @@
   align-items: center;
   grid-template-columns: 1fr 1fr;
 
+  @include for-phone-only {
+    display: initial;
+    margin: 8px;
+  }
+
   &__zone {
     border-radius: 8px;
     padding: 8px;
 
     box-shadow: $card-box-shadow;
     text-align: center;
+
+    @include for-phone-only {
+      margin: 8px;
+    }
   }
 }

@@ -6,6 +6,7 @@ import LoadingSpinner from '../atom/LoadingSpinner';
 import ProfileDataContainer from '../molecule/ProfileDataContainer';
 import ProfileDailyObjective from '../molecule/ProfileDailyObjective';
 import ProfileAchievements from '../molecule/ProfileAchievements';
+import { isMobile } from '../../helper';
 
 
 export default function Profile() {
@@ -47,7 +48,7 @@ export default function Profile() {
               {questions.map((question) => (
                 <div className="Profile__question" key={`Question-${question.id}`}>
                   <div className="Profile__question-info">
-                    <h4>
+                    <h4 className="Profile__question-info-wording">
                       {question.wording}
                     </h4>
                     <span
@@ -57,10 +58,13 @@ export default function Profile() {
                         }`
                       }
                     >
-                      {question.isMemorized ? 'Mémorisée' : 'En cours'}
+                      {!isMobile() && (question.isMemorized ? 'Mémorisée' : 'En cours')}
+                      {isMobile() && (
+                        question.isMemorized ? <i className="fas fa-check" /> : <i className="fas fa-clock" />
+                      )}
                     </span>
                   </div>
-                  <h5>
+                  <h5 className="Profile__question-info-answer">
                     {question.answer}
                   </h5>
                 </div>

@@ -7,6 +7,17 @@
   background-color: white;
   position: relative;
 
+  @include for-phone-only {
+    height: 240px;
+    margin: 8px;
+  }
+
+  &__header {
+    @include for-phone-only {
+      font-size: 1.5em;
+    }
+  }
+
   &__body {
     height: 90%;
     display: flex;
@@ -18,6 +29,11 @@
       z-index: 2;
       font-size: 1.5em;
       font-weight: 600;
+
+      @include for-phone-only {
+        font-size: 1em;
+
+      }
     }
 
     &-action {
