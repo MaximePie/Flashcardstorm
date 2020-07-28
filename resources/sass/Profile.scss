@@ -5,6 +5,13 @@
     padding: 1.5rem;
   }
 
+  &__heading-row {
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 16px;
+  }
+
   &__questions {
     display: grid;
     grid-template-columns: 3fr 1fr;

@@ -23,4 +23,9 @@ Import scss basics
 @import 'RoughTraining';
 @import 'Snackbar';
 @import 'atoms/LoadingSpinner';
+
+/**
+Importing molecules
+ */
 @import 'molecules/ProfileDataContainer';
+@import 'molecules/ProfileDailyObjective';

@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import server from '../../server';
 import LoadingSpinner from '../atom/LoadingSpinner';
 import ProfileDataContainer from '../molecule/ProfileDataContainer';
+import ProfileDailyObjective from '../molecule/ProfileDailyObjective';
 
 
 export default function Profile() {
@@ -24,7 +25,10 @@ export default function Profile() {
             {`Bienvenue, ${user || 'héros'}`}
           </h2>
         </div>
-        <ProfileDataContainer />
+        <div className="Profile__heading-row">
+          <ProfileDailyObjective />
+          <ProfileDataContainer />
+        </div>
         <h3 className="Profile__questions-title">
           Questions
           {questions.length ? ` (${questions.length})` : ''}

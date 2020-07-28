@@ -1,18 +1,13 @@
 .ProfileDataContainer {
   background-color: #ffffff;
-  margin: 16px;
-  padding: 16px;
-
   display: grid;
   justify-content: center;
   align-items: center;
   grid-template-columns: 1fr 1fr;
 
-
   &__zone {
-    margin: 16px;
-    padding: 16px;
     border-radius: 8px;
+    padding: 8px;
 
     box-shadow: $card-box-shadow;
     text-align: center;
