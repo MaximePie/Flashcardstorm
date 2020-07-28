@@ -112,7 +112,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Returns a random question for the user.
+     * Returns question/answer pairs to the user
      *
      * @return JsonResponse
      */

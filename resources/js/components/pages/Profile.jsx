@@ -1,14 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import axios from 'axios';
-import moment from 'moment';
-import {
-  CartesianGrid, Line, LineChart, XAxis, YAxis,
-} from 'recharts';
-import Cookies from 'js-cookie';
 import Paper from '@material-ui/core/Paper';
-import { Link } from 'react-router-dom';
-import { isMobile } from '../../helper';
 import server from '../../server';
 import LoadingSpinner from '../atom/LoadingSpinner';
 import ProfileDataContainer from '../molecule/ProfileDataContainer';
@@ -21,6 +13,7 @@ export default function Profile() {
 
   React.useEffect(() => {
     fetchQuestions();
+    fetchUserName();
   }, []);
 
   return (
@@ -28,7 +21,7 @@ export default function Profile() {
       <>
         <div className="jumbotron Profile__title">
           <h2>
-            {`Bienvenue, ${user && user}`}
+            {`Bienvenue, ${user || 'héros'}`}
           </h2>
         </div>
         <ProfileDataContainer />
@@ -39,7 +32,7 @@ export default function Profile() {
         <div className="Profile__questions">
           {!loading && (
             <Paper className="Profile__questions-container">
-              <div className={'Profile__question-info Profile__question-info--header'}>
+              <div className="Profile__question-info Profile__question-info--header">
                 <h4>Question</h4>
                 <span className="Profile__question-details">Etat</span>
               </div>
@@ -92,5 +85,17 @@ export default function Profile() {
         setMemorizedQuestions(sortedMemorizedQuestions);
         setLoadingState(false);
       });
+  }
+
+  /**
+   * Fetch the user name and set it in the user hook
+   */
+  function fetchUserName() {
+    server.get('me').then((response) => {
+      const userProfile = response.data.user;
+      if (userProfile) {
+        setUser(userProfile.name);
+      }
+    });
   }
 }

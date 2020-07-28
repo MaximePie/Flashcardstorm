@@ -30,22 +30,33 @@ class UserController extends Controller
     }
 
     /**
-     * Show user
+     * Show user statistics
      *
      * @return JsonResponse
      */
-    protected function showLoggedIn(): JsonResponse
+    protected function showStatistics(): JsonResponse
     {
         /** @var User $user */
         $user = Auth::user();
         if ($user) {
             return response()->json([
-                'user' => $user->name,
                 'statistics' => $user->statistics,
             ]);
         }
 
-        return response()->json();
+        return response()->json([
+            'error' => "L'utilisateur n'est pas connecté."
+        ]);
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    protected function me(): JsonResponse
+    {
+        return response()->json([
+            'user' => Auth::user(),
+        ]);
     }
 
     /**

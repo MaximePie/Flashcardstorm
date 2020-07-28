@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Auth;
 */
 Route::middleware('auth:api')->post('/authenticated/changelog', 'ChangelogController@store');
 
-Route::middleware('auth:api')->get('/me', 'UserController@showLoggedIn');
-
 Route::name('api.')->group(static function () {
 
     /**************************
@@ -30,6 +28,8 @@ Route::name('api.')->group(static function () {
             Route::get('nonInitiatedQuestions', 'QuestionController@notInitiatedQuestion');
             Route::get('nonInitiatedQuestionsCount', 'QuestionController@notInitiatedQuestionsCount');
             Route::get('me/score', 'UserController@score');
+            Route::get('me', 'UserController@me');
+            Route::get('me/statistics', 'UserController@showStatistics');
             Route::get('myMemorizedQuestions', 'UserController@memorizedQuestionsForConnectedUser');
             Route::get('users', 'UserController@index');
             Route::get('vote/{changelog}', 'UservoteController@toggle');

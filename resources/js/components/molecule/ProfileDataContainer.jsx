@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
-import LoadingSpinner from '../atom/LoadingSpinner';
-import axios from 'axios';
-import Cookies from 'js-cookie';
+import {
+  CartesianGrid, Line, LineChart, XAxis, YAxis,
+} from 'recharts';
 import moment from 'moment';
+import LoadingSpinner from '../atom/LoadingSpinner';
 import { isMobile } from '../../helper';
+import server from '../../server';
 
 export default function ProfileDataContainer() {
   const [isLoading, setLoadingState] = React.useState(false);
@@ -19,9 +20,9 @@ export default function ProfileDataContainer() {
     <div className="ProfileDataContainer">
       <div className="ProfileDataContainer__zone">
         <h3 className="ProfileDataContainer__zone-title">Progression des questions mémorisées</h3>
-        {!isLoading.user && (
+        {!isLoading && (
           <>
-            {statistics && (
+            {!statistics && (
               <>
                 <p className="ProfileDataContainer__zone-text">
                   Vous n'avez mémorisé aucune question pour le moment. Pour mémoriser des questions :
@@ -37,18 +38,18 @@ export default function ProfileDataContainer() {
                 </ul>
               </>
             )}
-            {!statistics && (
+            {statistics && (
               <LineChart width={lineChartSize('width')} height={lineChartSize('height')} data={statistics}>
-                <Line type="monotone" dataKey="uv" stroke="#8884d8"/>
-                <XAxis dataKey="name"/>
-                <YAxis/>
-                <CartesianGrid stroke="#ccc"/>
+                <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <CartesianGrid stroke="#ccc" />
               </LineChart>
             )}
           </>
         )}
-        {isLoading.user && (
-          <LoadingSpinner/>
+        {isLoading && (
+          <LoadingSpinner />
         )}
       </div>
     </div>
@@ -58,8 +59,8 @@ export default function ProfileDataContainer() {
    * Fetch user statistics
    */
   function fetchStatistics() {
-    setLoadingState(false);
-    axios.get(`api/me?api_token=${Cookies.get('Bearer')}`)
+    setLoadingState(true);
+    server.get('me/statistics')
       .then((response) => {
         const { statistics: statisticsData } = response.data;
         const formatedStatistics = statisticsData.map((statistic) => ({
