@@ -57,7 +57,7 @@ export default function Profile() {
             <Paper className="Profile__questions-container">
               <div className="Profile__question-info Profile__question-info--header">
                 <h4>Question</h4>
-                <span className="Profile__question-details">Etat</span>
+                <span className="Profile__question-details">Progression</span>
               </div>
               {filteredQuestions().map((question) => (
                 <div className="Profile__question" key={`Question-${question.id}`}>

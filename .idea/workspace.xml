@@ -359,7 +359,8 @@
       <workItem from="1595871916250" duration="8697000" />
       <workItem from="1595931352782" duration="11840000" />
       <workItem from="1595996149088" duration="4945000" />
-      <workItem from="1596033589834" duration="20000" />
+      <workItem from="1596033589834" duration="417000" />
+      <workItem from="1596034179646" duration="1298000" />
     </task>
     <servers />
   </component>
@@ -442,11 +443,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="11" y="45" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595520055097" />
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1596033596506">
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1596034570157">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="465" y="286" key="com.intellij.ide.util.TipDialog/0.0.1440.860@0.0.1440.860" timestamp="1589396212185" />
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596033596506" />
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596034570157" />
     <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1595862710536">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
