@@ -33,9 +33,22 @@
       grid-template-columns: unset;
     }
 
-    &-title {
+    &-header-row {
+      display: grid;
+      grid-template-columns: 200px 250px;
       margin-left: 16px;
-      margin-top: 16px;
+    }
+
+    &-input-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    &-input {
+      height: 20px;
+      width: 20px;
     }
 
     .Profile__questions-container {

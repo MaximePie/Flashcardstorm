@@ -42,7 +42,7 @@ export default function App() {
   const [countClassName, setCountClassName] = React.useState('');
   const isConnected = Cookies.get('Bearer') !== null && Cookies.get('Bearer') !== undefined;
 
-  const browserHistory = createBrowserHistory()
+  const browserHistory = createBrowserHistory();
 
   React.useEffect(() => {
     moment.locale('fr_FR');
@@ -80,8 +80,6 @@ export default function App() {
               countClassName={countClassName}
               onCountComplete={() => setCountClassName('')}
             />
-            {/* A <Switch> looks through its children <Route>s and
-                renders the first one that matches the current URL. */}
             <Switch>
               <Route path="/" strict exact>
                 <Welcome />

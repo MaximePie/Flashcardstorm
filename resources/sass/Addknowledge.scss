@@ -10,6 +10,18 @@
         text-align: center;
         margin-bottom: 16px;
         color: white;
+
+        @include for-phone-only {
+            margin-top: 16px;
+            margin-bottom: initial;
+            font-size: 0.8em;
+        }
+    }
+
+    &__body {
+        @include for-phone-only {
+            margin-top: 16px !important;
+        }
     }
 
     &__form {
@@ -47,8 +59,6 @@
     }
 
     @media screen and (max-width: 767px) {
-
-        padding: 16px 24px;
 
         &__form {
             min-width: initial;

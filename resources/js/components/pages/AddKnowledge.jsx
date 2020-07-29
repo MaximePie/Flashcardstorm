@@ -78,7 +78,7 @@ export default function AddKnowledge() {
       <div className="Addknowledge__title">
         <h1>Ajouter une question</h1>
       </div>
-      <div className="row justify-content-center">
+      <div className="row justify-content-center Addknowledge__body">
         <form onSubmit={submitValues} className="Addknowledge__form card">
           <Button onClick={addField} text="+" />
           {!isMobile() && (

@@ -13,6 +13,7 @@ export default function Profile() {
   const [user, setUser] = React.useState(undefined);
   const [loading, setLoadingState] = React.useState(false);
   const [questions, setMemorizedQuestions] = React.useState([]);
+  const [allQuestionsDisplay, setAllQuestionsDisplay] = React.useState(false);
 
   React.useEffect(() => {
     fetchQuestions();
@@ -34,10 +35,23 @@ export default function Profile() {
         <div className="Profile__achievements-row">
           <ProfileAchievements />
         </div>
-        <h3 className="Profile__questions-title">
-          Questions
-          {questions.length ? ` (${questions.length})` : ''}
-        </h3>
+        <div className="Profile__questions-header-row">
+          <h3 className="Profile__questions-title">
+            Questions
+            {filteredQuestions().length ? ` (${filteredQuestions().length})` : ''}
+          </h3>
+          <div className="Profile__questions-input-container">
+            <label className="Profile__questions-input-label">
+              Afficher les questions inverses
+            </label>
+            <input
+              type="checkbox"
+              className="Profile__questions-input"
+              onChange={() => { setAllQuestionsDisplay(!allQuestionsDisplay); }}
+              value={allQuestionsDisplay}
+            />
+          </div>
+        </div>
         <div className="Profile__questions">
           {!loading && (
             <Paper className="Profile__questions-container">
@@ -45,7 +59,7 @@ export default function Profile() {
                 <h4>Question</h4>
                 <span className="Profile__question-details">Etat</span>
               </div>
-              {questions.map((question) => (
+              {filteredQuestions().map((question) => (
                 <div className="Profile__question" key={`Question-${question.id}`}>
                   <div className="Profile__question-info">
                     <h4 className="Profile__question-info-wording">
@@ -108,6 +122,19 @@ export default function Profile() {
       if (userProfile) {
         setUser(userProfile.name);
       }
+    });
+  }
+
+  /**
+   * Filter the questions according to active filters
+   * @returns {*[]}
+   */
+  function filteredQuestions() {
+    return questions.filter((question) => {
+      if (allQuestionsDisplay) {
+        return question;
+      }
+      return !question.reverse_question_id ? question : undefined;
     });
   }
 }
