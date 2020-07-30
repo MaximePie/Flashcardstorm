@@ -23,6 +23,7 @@ Route::name('api.')->group(static function () {
      */
     Route::group(['middleware' => ['auth:api']], static function () {
         Route::prefix('authenticated')->group(static function () {
+            Route::get('question/delete/{question}', 'QuestionController@destroy');
             Route::get('question/{mode}/{already_in_bag_questions}', 'QuestionController@randomQuestion');
             Route::get('dailyQuestions', 'QuestionController@dailyQuestions');
             Route::get('nonInitiatedQuestions', 'QuestionController@notInitiatedQuestion');
@@ -37,7 +38,6 @@ Route::name('api.')->group(static function () {
             Route::get('vote/{changelog}', 'UservoteController@toggle');
             Route::get('update_progress', 'UserController@updateProgress');
 
-            Route::get('question/delete/{question}', 'QuestionController@destroy');
             Route::get('showQuestion/{question}', 'QuestionController@show');
             Route::get('question/{mode}', 'QuestionController@randomQuestion');
             Route::get('questions_list/{visibility?}', 'QuestionController@index');
@@ -68,7 +68,6 @@ Route::name('api.')->group(static function () {
         Route::get('changelogs', 'ChangelogController@index');
         Route::get('question/{mode}', 'QuestionController@randomQuestion');
         Route::get('question/{mode}/{already_in_bag_questions}', 'QuestionController@randomQuestion');
-        Route::get('question/delete/{question}', 'QuestionController@destroy');
         Route::get('questions_list/{visibility?}', 'QuestionController@index');
         Route::get('categories', 'CategoryController@index');
         Route::post('question', 'QuestionController@store');
