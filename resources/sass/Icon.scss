@@ -1,25 +1,30 @@
 
 .Icon__container {
-    position: relative;
-    border-radius: 50%;
-    padding: 12px;
+  position: relative;
+  border-radius: 50%;
+  padding: 12px;
 
-    .Icon {
-        font-size: 36px;
-    }
+  .Icon {
+    font-size: 36px;
+  }
 
-    .Icon__badge {
-        position: absolute;
-        bottom: -8px;
-        left: 10px;
-    }
+  .Icon__badge {
+    position: absolute;
+    bottom: -8px;
+    left: 10px;
+  }
 }
 
 .Icon--hint {
-    color: #636b6f;
+  color: #636b6f;
 
-    .Icon {
-        font-size: 16px;
-        cursor: pointer;
-    }
+  .Icon {
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
+
+
+.Icon--small {
+  margin-right: 4px;
 }

@@ -32,49 +32,44 @@
   }
 
   &__questions-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    background-color: white;
+    padding: 0 8px;
+    overflow-y: scroll;
+    position: relative;
+    max-height: 70vh;
   }
 
   &__question {
-    opacity: 0;
-    animation: appear 0.25s forwards;
     display: grid;
-    grid-template-columns: 70px 8fr 128px;
+    grid-template-columns: 1fr 1fr 150px 150px 150px 150px 150px;
+    grid-column-gap: 8px;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
 
-    margin: 16px;
-    padding: 32px;
-  }
-
-  .Icon__badge {
-    position: initial;
-  }
-
-  &__question-wording {
-    margin: 0 4px;
-  }
-
-  &__question-answer {
-    margin: 0 4px;
+    &--header {
+      border-bottom: solid;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
   }
 
   .QuestionsListItem {
+
     &__delete-button {
-      background-color: #c13c2b !important;
-      margin: 0 8px !important;
+      margin: 0 8px;
       padding: 4px;
-      width: 48px;
-      height: 48px;
+      color: black;
+      font-size: 20px;
+      cursor: pointer;
     }
 
     &__toggle-button {
       padding: 4px;
-      width: 48px;
-      height: 48px;
-    }
-
-    &__delete-icon {
-      color: white;
+      width: 20px;
+      height: 20px;
     }
   }
 
@@ -84,7 +79,6 @@
     align-items: center;
     flex-direction: column;
   }
-
 
   .QuestionsListItem__actions {
     display: flex;
@@ -148,41 +142,11 @@
       padding: 8px 0;
     }
 
-    .Icon__badge {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: -8px;
-    }
-
     &__collapsible-trigger {
       text-align: center;
       cursor: pointer;
       display: inline-block;
       font-size: 1.3em;
     }
-
-    &__question-wording, &__question-answer {
-      margin-left: 0;
-    }
-
-    &__question-score, &__question-next, &__has-reverse-text {
-      color: grey;
-      font-size: 11px;
-    }
-  }
-}
-
-
-
-@keyframes appear {
-  from {
-    transform: scale(1.15);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
   }
 }

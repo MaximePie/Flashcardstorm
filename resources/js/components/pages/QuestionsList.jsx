@@ -19,10 +19,10 @@ export default function QuestionsList() {
 
   const [switchStatus, setSwitchStatus] = React.useState(false);
 
-  React.useEffect(() => {
+  React.useEffect(() => {
     document.getElementById('App').style.background = 'content-box no-repeat url("../images/registerbackground.jpeg")';
     document.getElementById('App').style.backgroundSize = 'cover';
-  }, [])
+  }, []);
 
   React.useEffect(() => {
     updateQuestionsBag();
@@ -34,55 +34,46 @@ export default function QuestionsList() {
   return (
     <div className="QuestionsList">
       <div className="QuestionsList__title">
-        {!isMobile() && (
-          <>
-            <h1>Liste des questions</h1>
-            {isConnected && questions?.data && isMobile() && (
-              <>
-                <p>Cliquez sur la Checkmark pour ajouter ou retirer une question de votre collection</p>
-                <p>Une question est automatiquement intégrée à votre collection quand vous créez une question ou quand vous
-                  y répondez depuis le mode Tempête</p>
-                <Button text="Enregistrer la sélection" onClick={saveSelection}/>
-              </>
-            )}
-          </>
-        )}
+        {!isMobile() && (<h1>Liste des questions</h1>)}
         {isMobile() && (
           <h2 className="QuestionsList__title">Liste des questions</h2>
         )}
         {isConnected && (
           <>
             <FormControlLabel
-              control={
-                <Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>
-              }
+              control={<Switch checked={switchStatus} onChange={() => setSwitchStatus(!switchStatus)}/>}
               label="Afficher seulement mes questions"
             />
-
           </>
         )}
       </div>
       <form className="QuestionsList__form">
-        <ul className="QuestionsList__list">
-          {questions?.data?.length && isConnected && (
-            <div className="QuestionsList__global-checker">
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    onChange={toggleAllQuestions}
-                    value="toggleAll"
-                    color="primary"
-                    inputProps={{
-                      'aria-label': 'secondary checkbox',
-                    }}
-                  />
-                }
-                label={'Cocher toutes les questions'}
-              />
-            </div>
-          )}
-
+        <div className="QuestionsList__list">
           <div className="QuestionsList__questions-container">
+
+            <div
+              key={`question-Header`}
+              className="QuestionsList__question list-group-item card QuestionsList__question--header"
+            >
+              <span>Question</span>
+              <span>Réponse</span>
+              <span>Prochain gain</span>
+              <span>Prochaine question</span>
+              <span>Catégorie</span>
+              <span>Question inversée</span>
+              <span>
+                Actions
+                <Checkbox
+                  onChange={toggleAllQuestions}
+                  value="toggleAll"
+                  color="primary"
+                  inputProps={{
+                    'aria-label': 'secondary checkbox',
+                  }}
+                />
+              </span>
+            </div>
+
             {questions?.data?.map(function (question, key) {
               return (
                 <QuestionsListItem
@@ -95,13 +86,13 @@ export default function QuestionsList() {
               );
             })}
           </div>
-        </ul>
+        </div>
       </form>
       {questions?.data?.length && (
         <>
           <div className="QuestionsList__actions">
             {isConnected &&
-              <Button text={isMobile() ? "Enregistrer" : "Enregistrer la sélection"} onClick={saveSelection}/>
+            <Button text={isMobile() ? 'Enregistrer' : 'Enregistrer la sélection'} onClick={saveSelection}/>
             }
             {questions.last_page !== 1 && (
               <Pagination changePage={updateQuestionsBag} data={questions}/>
@@ -134,10 +125,10 @@ export default function QuestionsList() {
   }
 
   function toggleQuestionForUser(event, id, key) {
-    console.log(id, key)
+    console.log(id, key);
     let questionsData = Object.assign({}, questions.data);
     questionsData[key].isSetForUser = event.target.checked;
-    console.log(questionsData)
+    console.log(questionsData);
     updateQuestions({
       ...questions,
       questionsData

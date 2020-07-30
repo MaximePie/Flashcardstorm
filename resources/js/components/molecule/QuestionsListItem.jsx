@@ -1,8 +1,7 @@
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
-import Collapse from '@material-ui/core/Collapse';
 import { PropTypes } from 'prop-types';
-import { isMobile, toLocale } from '../../helper';
+import { toLocale } from '../../helper';
 import Icon from '../Icon';
 import { AuthenticationContext } from '../../Contexts/authentication';
 
@@ -37,40 +36,18 @@ export default function QuestionsListItem(props) {
     deleteQuestion,
   } = props;
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
   return (
-    <li key={`question${question.id}`} className="QuestionsList__question list-group-item card">
-      {questionIcon(question)}
-      <div className="QuestionsList__question-content">
-        <h3 className="QuestionsList__question-wording">{question.wording}</h3>
-        <div className="QuestionsList__question-answer">{question.answer}</div>
-        {isConnected && (
-          <>
-            {question.score && (
-              <div className="QuestionsList__question-score">
-                Prochain gain : +
-                {question.score}
-              </div>
-            )}
-            {question.next_question_at && (
-              <div className="QuestionsList__question-next">
-                Prochaine question le
-                {` ${toLocale(question.next_question_at)}`}
-              </div>
-            )}
-            {question.has_reverse && (
-              <div className="QuestionsList__has-reverse-text">
-                Cette question a une version inversée
-              </div>
-            )}
-          </>
-        )}
-      </div>
-      {questionActions()}
-    </li>
+    <div key={`question${question.id}`} className="QuestionsList__question list-group-item card">
+      <span>{question.wording}</span>
+      <span>{question.answer}</span>
+      <span>{isConnected && question.score && `+${question.score}`}</span>
+      <span>
+        {isConnected && question.next_question_at && `${toLocale(question.next_question_at)}`}
+      </span>
+      <span>{questionIcon(question)}</span>
+      <span>{isConnected && question.has_reverse && 'Cette question a une version inversée'}</span>
+      <span>{questionActions()}</span>
+    </div>
   );
 
   function questionIcon() {
@@ -78,18 +55,18 @@ export default function QuestionsListItem(props) {
       <>
         {question.category && (
           <Icon
-            className="QuestionsList__category-icon"
             name={question.category.icon}
             badge={question.category.name}
             color={question.category.color}
+            isSmall
           />
         )}
         {!question.category && (
           <Icon
-            className="QuestionsList__category-icon"
             name="question"
             badge="divers"
             color="grey"
+            isSmall
           />
         )}
       </>
@@ -108,48 +85,15 @@ export default function QuestionsListItem(props) {
               onChange={(event) => toggleQuestionForUser(event, question.id, questionKey)}
               className="QuestionsListItem__toggle-button"
             />
-            <IconButton
-              aria-label="delete"
-              color="primary"
+            <span
               className="QuestionsListItem__delete-button"
               onClick={() => deleteQuestion(question.id)}
             >
               <i className="far fa-trash-alt QuestionsListItem__delete-icon" />
-            </IconButton>
+            </span>
           </>
         )}
       </div>
-    );
-  }
-
-  function collapsibleForDetails() {
-    return (
-      <>
-        <div className="QuestionsList__collapsible-trigger" onClick={handleExpandClick}>
-          <Icon
-            name={expanded ? 'angle-up' : 'angle-down'}
-          />
-        </div>
-        <Collapse in={expanded}>
-          {isConnected && isMobile() && (
-            <>
-              {question.score
-                  && (
-                  <div className="QuestionsList__question-score">
-                      Prochain gain : +
-                    {question.score}
-                  </div>
-                  )}
-              {question.next_question_at && (
-                <div className="QuestionsList__question-next">
-                    Prochaine question le
-                  {toLocale(question.next_question_at)}
-                </div>
-              )}
-            </>
-          )}
-        </Collapse>
-      </>
     );
   }
 }
