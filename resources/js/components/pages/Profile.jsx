@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import server from '../../server';
 import LoadingSpinner from '../atom/LoadingSpinner';
 import ProfileDataContainer from '../molecule/ProfileDataContainer';
@@ -72,7 +73,12 @@ export default function Profile() {
                         }`
                       }
                     >
-                      {!isMobile() && (question.isMemorized ? 'Mémorisée' : 'En cours')}
+                      {!isMobile() && (
+                        <div>
+                          {question.isMemorized ? 'Mémorisée' : 'En cours'}
+                          <LinearProgress value={question.current_delay * 10} variant="determinate" />
+                        </div>
+                      )}
                       {isMobile() && (
                         question.isMemorized ? <i className="fas fa-check" /> : <i className="fas fa-clock" />
                       )}

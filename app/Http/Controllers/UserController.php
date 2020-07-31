@@ -153,7 +153,8 @@ class UserController extends Controller
             foreach ($memorizedQuestions as $question) {
                 $question['answer'] = $question->answer()->first()->wording;
                 $question['isMemorized'] = $question->isMemorizedForUser($user);
-                $question['questionUser'] = Question_user::findFromTuple($question->id, $user->id);
+                $question['questionUser'] = Question_user::findFromTuple($question->id, $user->id)->first();
+                $question['current_delay'] = $question['questionUser']->current_delay;
             }
 
             return response()->json([
