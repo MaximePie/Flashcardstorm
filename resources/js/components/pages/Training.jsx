@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSnackbar } from 'notistack';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import { PropTypes } from 'prop-types';
+import Collapse from '@material-ui/core/Collapse';
 import server from '../../server';
 import HintDialog from '../molecule/HintDialog';
 import QuestionCard from '../molecule/QuestionCard';
 import { areSimilar, isMobile } from '../../helper';
 import { AuthenticationContext } from '../../Contexts/authentication';
 import LoadingSpinner from '../atom/LoadingSpinner';
+import Icon from '../Icon';
 
 Training.propTypes = {
   mode: PropTypes.string,
@@ -23,6 +25,8 @@ Training.defaultProps = {
 export default function Training(props) {
   const isConnected = React.useContext(AuthenticationContext);
 
+  const [areFiltersDisplayed, setFiltersDisplayState] = React.useState(false);
+  const [categories, setCategories] = React.useState([]);
   const [questionsList, updateStateQuestionsList] = React.useState([]);
   const [isLoading, setLoadingState] = React.useState(false);
 
@@ -44,6 +48,8 @@ export default function Training(props) {
         const { userProgress: userProgressData } = response.data;
         setUserProgress(userProgressData);
       });
+
+    fetchCategories();
   }, []);
 
   React.useEffect(() => {
@@ -51,6 +57,10 @@ export default function Training(props) {
       fetchQuestions();
     }
   }, [questionsList]);
+
+  useEffect(() => {
+    // fetchQuestions();
+  }, [categories]);
 
   return (
     <div className="Home">
@@ -166,7 +176,13 @@ export default function Training(props) {
    */
   function fetchQuestions() {
     setLoadingState(true);
-    server.get('dailyQuestions')
+    let categoryIds = '';
+    categories.forEach((category) => {
+      if (category.isSelected) {
+        categoryIds += `${category.id},`;
+      }
+    });
+    server.get(`dailyQuestions/${categoryIds}`)
       .then((response) => {
         updateStateQuestionsList(response.data.questions);
         setLoadingState(false);
@@ -206,10 +222,44 @@ export default function Training(props) {
         {!isMobile() && (
         <div className="Home__title">
           <h1>Mode consolidation</h1>
-          <p>Répondez aux questions en fonction du temps passé pour consolider vos mémorisations</p>
-          <p>Seules les questions auxquelles vous n&apos;avez pas répondu depuis assez longtemps apparaîtront</p>
           <div>
             {userProgressComponent}
+            <div className="Home__filters-container">
+              <span
+                className="Home__filters-collapsible-trigger"
+                onClick={() => setFiltersDisplayState(!areFiltersDisplayed)}
+              >
+                <Icon className="Home__filters-collapsible-trigger" name="filter" />
+              </span>
+              <span
+                className="Home__filters-search-action"
+                onClick={fetchQuestions}
+              >
+                <Icon className="Home__filters-search-action" name="search" />
+              </span>
+            </div>
+            <div className="Home__filters">
+              <Collapse in={areFiltersDisplayed}>
+                {categories.map((category) => (
+                  <span
+                    className={
+                          `Home__filters-filter ${category.isSelected ? 'Home__filters-filter--is-selected' : ''}`
+                        }
+                    onClick={() => {
+                      handleFilterClick(category);
+                    }}
+                  >
+                    <Icon
+                      name={category.icon}
+                      badge={category.name}
+                      color={category.isSelected ? category.color : 'grey'}
+                      isSmall
+                    />
+                  </span>
+                ))}
+              </Collapse>
+
+            </div>
           </div>
         </div>
         )}
@@ -245,5 +295,34 @@ export default function Training(props) {
           )}
         </>
       );
+  }
+
+  /**
+   * Get the categories list
+   */
+  function fetchCategories() {
+    server.get('categories', true)
+      .then((response) => {
+        const formatedCategories = [];
+        response.data.categories.forEach((category) => {
+          formatedCategories.push({
+            icon: category.icon,
+            name: category.name,
+            isSelected: true,
+            id: category.id,
+            color: category.color,
+          });
+        });
+        setCategories(formatedCategories);
+      });
+  }
+
+  /**
+   * Handle the selection of a filter
+   */
+  function handleFilterClick(clickedCategory) {
+    const updatedCategories = categories;
+    updatedCategories.find((category) => category.id === clickedCategory.id).isSelected = !clickedCategory.isSelected;
+    setCategories([...updatedCategories]);
   }
 }

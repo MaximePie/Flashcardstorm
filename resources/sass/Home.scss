@@ -31,6 +31,59 @@ p, span, a {
     width: 100%;
   }
 
+  &__filters-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    margin: auto;
+  }
+
+  &__filters {
+    max-height: 80px;
+    overflow-y: hidden;
+    max-width: 500px;
+    margin: auto;
+    padding: 4px;
+
+    cursor: pointer;
+
+    &-filter {
+      padding: 4px;
+      margin: 4px;
+      border-radius: 100px;
+    }
+
+    &-collapsible-trigger, &-search-action {
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      margin: 8px auto;
+      border-radius: 200px;
+
+      box-shadow: $floating-action-button-shadow;
+      cursor: pointer;
+      font-size: 20px !important;
+
+      .Icon {
+        margin-right: 0;
+        font-size: 22px !important;
+      }
+    }
+
+    &-search-action {
+      color: white;
+      background-color: $primaryBlue;
+    }
+
+    &-collapsible-trigger {
+      color: $primaryBlue;
+      background-color: white;
+    }
+  }
+
   &__QuestionCard-row {
     padding: 16px;
 
@@ -43,6 +96,8 @@ p, span, a {
     max-width: 300px;
     margin: auto;
   }
+
+
 }
 
 .container {

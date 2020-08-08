@@ -154,21 +154,40 @@ class QuestionController extends Controller
     /**
      * Returns all daily questions to the user so he can immediately answer
      * the ones he already knows
+     * @param string|null $filterCategories If we need to filter on specific categories
      * @return JsonResponse
      */
-    public function dailyQuestions(): JsonResponse
+    public function dailyQuestions(string $filterCategories = ''): JsonResponse
     {
+        $categories = $filterCategories !== '' ? explode(',', $filterCategories) : null;
+
         /** @var User $user */
         $user = Auth::user();
         if ($user) {
-            $questions = $user->dailyQuestions()->inRandomOrder()->limit(30)->get();
+            $questions = $user->dailyQuestions();
+
+            if ($categories) {
+                $questions = $questions->whereIn('questions.category_id', $categories);
+                $blah = "blah";
+            }
+
+            $questions = $questions
+                ->orderBy('reverse_question_id')
+                ->inRandomOrder()
+                ->limit(30)
+                ->get();
             if ($questions) {
                 $questions->each(static function (QUESTION &$question) use ($user){
                     $question->preparedForView($user);
                 });
             }
 
-            return response()->json(['questions' => $questions->shuffle() ?? []]);
+            return response()->json([
+                'questions' => $questions->shuffle() ?? [],
+                $categories,
+                $blah ?? null,
+                $filterCategories ?? null,
+            ]);
         }
         else {
             return response()->json(['error' => 'Vous ne pouvez pas continuer car vous n\'êtes pas connecté.']);

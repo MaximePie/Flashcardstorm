@@ -24,7 +24,7 @@ Route::name('api.')->group(static function () {
         Route::prefix('authenticated')->group(static function () {
             Route::get('question/delete/{question}', 'QuestionController@destroy');
             Route::get('question/{mode}/{already_in_bag_questions}', 'QuestionController@randomQuestion');
-            Route::get('dailyQuestions', 'QuestionController@dailyQuestions');
+            Route::get('dailyQuestions/{filterCategories?}', 'QuestionController@dailyQuestions');
             Route::get('nonInitiatedQuestions', 'QuestionController@notInitiatedQuestion');
             Route::get('nonInitiatedQuestionsCount', 'QuestionController@notInitiatedQuestionsCount');
             Route::get('me/score', 'UserController@score');
@@ -39,11 +39,14 @@ Route::name('api.')->group(static function () {
 
             Route::get('showQuestion/{question}', 'QuestionController@show');
             Route::get('question/{mode}', 'QuestionController@randomQuestion');
-            Route::get('questions_list/{visibility?}', 'QuestionController@index');
+            Route::get('questions_list/{visibility?}', '
+            @index');
             Route::get('categories', 'CategoryController@index');
             Route::get('changelogs', 'ChangelogController@index');
             Route::get('quest', 'QuestEntityController@index');
             Route::get('initialQuest', 'QuestEntityController@initialize');
+            Route::get('categories/{mode}', 'CategoryController@index');
+
 
             Route::post('category', 'CategoryController@store');
             Route::post('changelog', 'ChangelogController@store');
