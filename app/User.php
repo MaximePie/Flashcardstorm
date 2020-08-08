@@ -220,7 +220,7 @@ class User extends Authenticable
         $queryBuilder = Question::query();
 
         if ($mode === 'soft') {
-            $queryBuilder = $this->dailyQuestions();
+            $queryBuilder = $this->dailyQuestions()->orderBy('reverse_question_id');
         }
 
         if ($mode === 'for_user') {
