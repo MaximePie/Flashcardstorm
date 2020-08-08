@@ -53,16 +53,6 @@ export default function Navbar(props) {
             </ListItemText>
           </ListItem>
         </Link>
-        <Link className="Navbar__link" to="/home">
-          <ListItem button component="a" className="Navbar__item">
-            <ListItemIcon>
-              <i className="fas fa-cloud-meatball"/>
-            </ListItemIcon>
-            <ListItemText>
-              Mode tempête
-            </ListItemText>
-          </ListItem>
-        </Link>
         {isConnected && (
           <>
             <Link className="Navbar__link" to="/initiate">
@@ -208,7 +198,7 @@ export default function Navbar(props) {
               )}
             </ListItemIcon>
             <ListItemText>
-              Mises à jours
+              Mises à jour
             </ListItemText>
           </ListItem>
         </Link>

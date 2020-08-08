@@ -96,9 +96,6 @@ export default function App() {
               <Route path="/logout">
                 <Training updateUserScore={updateUser} />
               </Route>
-              <Route path="/home">
-                <Training mode="storm" updateUserScore={updateUser} />
-              </Route>
               <Route path="/users">
                 <Users />
               </Route>
