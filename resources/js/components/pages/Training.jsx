@@ -182,7 +182,8 @@ export default function Training(props) {
         categoryIds += `${category.id},`;
       }
     });
-    server.get(`dailyQuestions/${categoryIds}`)
+
+    server.get(`dailyQuestions${categoryIds ? `/${categoryIds}` : ''}`)
       .then((response) => {
         updateStateQuestionsList(response.data.questions);
         setLoadingState(false);

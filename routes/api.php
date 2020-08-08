@@ -39,8 +39,7 @@ Route::name('api.')->group(static function () {
 
             Route::get('showQuestion/{question}', 'QuestionController@show');
             Route::get('question/{mode}', 'QuestionController@randomQuestion');
-            Route::get('questions_list/{visibility?}', '
-            @index');
+            Route::get('questions_list/{visibility?}', 'QuestionController@index');
             Route::get('categories', 'CategoryController@index');
             Route::get('changelogs', 'ChangelogController@index');
             Route::get('quest', 'QuestEntityController@index');

@@ -168,7 +168,6 @@ class QuestionController extends Controller
 
             if ($categories) {
                 $questions = $questions->whereIn('questions.category_id', $categories);
-                $blah = "blah";
             }
 
             $questions = $questions
@@ -184,9 +183,6 @@ class QuestionController extends Controller
 
             return response()->json([
                 'questions' => $questions->shuffle() ?? [],
-                $categories,
-                $blah ?? null,
-                $filterCategories ?? null,
             ]);
         }
         else {
