@@ -264,18 +264,11 @@ class QuestionController extends Controller
     public function tryInitiate(Request $request)
     {
         $question = Question::findOrFail($request->question);
-        $answer = Answer::findOrFail($request->answer);
-
-        if ($question->isValidWith($answer->wording)) {
-            /** @var Question_user $question_user */
-            $question_user = Question_user::findFromTuple($question->id, Auth::user()->id)->first();
-            $question_user->isInitiated = true;
-            $question_user->save();
-            return 200;
-        }
-        else {
-            return 500;
-        }
+        /** @var Question_user $question_user */
+        $question_user = Question_user::findFromTuple($question->id, Auth::user()->id)->first();
+        $question_user->isInitiated = true;
+        $question_user->save();
+        return 200;
     }
 
     /**

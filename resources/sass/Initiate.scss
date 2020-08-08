@@ -7,6 +7,8 @@
 
   @include for-phone-only {
     overflow-y: auto;
+    background-position: top;
+    background-size: initial;
   }
 
   &__remaining {
@@ -14,6 +16,10 @@
     color: white;
     font-size: 1.5em;
     margin-top: 4em;
+
+    @include for-phone-only {
+      margin-top: 2em;
+    }
   }
 
   &__questions-container {
@@ -25,7 +31,7 @@
 
     @include for-phone-only {
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(3, 1fr);
+      grid-template-rows: repeat(6, 1fr);
       height: initial;
     }
   }
@@ -39,6 +45,8 @@
     align-items: center;
     justify-content: center;
     font-size: 1.25em;
+    transition: background-color 150ms;
+
 
     @include for-phone-only {
       padding: 4px;
@@ -51,6 +59,7 @@
     }
 
     &--selected {
+      transition: background-color 150ms;
       background-color: orange;
     }
   }

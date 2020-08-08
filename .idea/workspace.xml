@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/Profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Profile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Initiate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Initiate.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Training.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Training.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/Initiate.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Initiate.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,17 +257,7 @@
       <list>
         <serviceView>
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:Homestead" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:Homestead" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@34306324" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -391,20 +382,11 @@
     <state x="416" y="108" key="#ESLint" timestamp="1593341264765">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="312" y="89" key="#ESLint/0.0.1440.860@0.0.1440.860" timestamp="1587743144943" />
     <state x="416" y="108" key="#ESLint/0.0.1920.1040@0.0.1920.1040" timestamp="1593341264765" />
-    <state x="312" y="89" key="#Inspections" timestamp="1587743149057">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state x="312" y="89" key="#Inspections/0.0.1440.860@0.0.1440.860" timestamp="1587743149057" />
     <state x="127" y="74" width="1538" height="863" key="#Live_Templates" timestamp="1595916976765">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="127" y="74" width="1538" height="863" key="#Live_Templates/0.0.1920.1040@0.0.1920.1040" timestamp="1595916976765" />
-    <state x="312" y="89" key="#SCSS" timestamp="1587735734709">
-      <screen x="0" y="0" width="1440" height="860" />
-    </state>
-    <state x="312" y="89" key="#SCSS/0.0.1440.860@0.0.1440.860" timestamp="1587735734709" />
     <state x="693" y="276" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593329339953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -444,7 +426,6 @@
     <state x="588" y="207" width="720" height="634" key="StructurePopup" timestamp="1589538309479">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="441" y="171" width="540" height="524" key="StructurePopup/0.0.1440.860@0.0.1440.860" timestamp="1587743418759" />
     <state x="588" y="207" width="720" height="634" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1589538309479" />
     <state width="528" height="450" key="SwitcherDM" timestamp="1590417022831">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -463,11 +444,11 @@
     </state>
     <state x="465" y="286" key="com.intellij.ide.util.TipDialog/0.0.1440.860@0.0.1440.860" timestamp="1589396212185" />
     <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596202850749" />
-    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1596203516565">
+    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1596873338666">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="456" y="206" width="643" height="536" key="find.popup/0.0.1440.860@0.0.1440.860" timestamp="1589226212741" />
-    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596203516565" />
+    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596873338666" />
     <state x="601" y="246" width="700" height="530" key="recent.locations.popup" timestamp="1596103847543">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -475,12 +456,11 @@
     <state x="624" y="235" width="896" height="819" key="run.anything.popup" timestamp="1596104000265">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="468" y="194" width="672" height="677" key="run.anything.popup/0.0.1440.860@0.0.1440.860" timestamp="1587798353032" />
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596104000265" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1596203823345">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1596874309078">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="468" y="132" width="672" height="564" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1589361041730" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596203823345" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596874309078" />
   </component>
 </project>

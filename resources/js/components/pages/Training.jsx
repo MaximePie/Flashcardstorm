@@ -165,7 +165,7 @@ export default function Training(props) {
    * Fills the questions bag
    */
   function fetchQuestions() {
-    setLoadingState(true)
+    setLoadingState(true);
     server.get('dailyQuestions')
       .then((response) => {
         updateStateQuestionsList(response.data.questions);

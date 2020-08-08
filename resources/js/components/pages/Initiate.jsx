@@ -3,10 +3,10 @@ import server from '../../server';
 
 export default function Component() {
   const [questions, updateQuestions] = React.useState([]);
-  const [remainingQuestionsCount, setRemainingQuestionsCount] = React.useState([]);
+  const [remainingQuestionsCount, setRemainingQuestionsCount] = React.useState(0);
   const [answers, updateAnswers] = React.useState([]);
-  const [selectedQuestion, setSelectedQuestion] = React.useState(undefined);
-  const [selectedAnswer, setSelectedAnswer] = React.useState(undefined);
+  const [selectedQuestionId, setSelectedQuestion] = React.useState(undefined);
+  const [selectedAnswerId, setSelectedAnswer] = React.useState(undefined);
 
   React.useEffect(() => {
     if (questions.length === 0 && answers.length === 0) {
@@ -16,16 +16,16 @@ export default function Component() {
   }, [questions, answers]);
 
   React.useEffect(() => {
-    if (selectedQuestion && selectedAnswer) {
+    if (selectedQuestionId && selectedAnswerId) {
       submitTuple();
     }
-  }, [selectedQuestion, selectedAnswer]);
+  }, [selectedQuestionId, selectedAnswerId]);
 
   return (
     <div className="Initiate">
       <div className="Initiate__remaining">
         Restant :
-        {remainingQuestionsCount}
+        {` ${remainingQuestionsCount}`}
       </div>
       <div className="Initiate__questions-container">
         {questions.map((question) => (
@@ -70,9 +70,9 @@ export default function Component() {
    */
   function isSelected(cardId, type) {
     if (type === 'question') {
-      return cardId === selectedQuestion;
+      return cardId === selectedQuestionId;
     }
-    return cardId === selectedAnswer;
+    return cardId === selectedAnswerId;
   }
 
   /**
@@ -89,28 +89,26 @@ export default function Component() {
    * Sends the two selected Ids to check if the duo is correct
    */
   function submitTuple() {
-    server.post('question/initiate', {
-      question: selectedQuestion,
-      answer: selectedAnswer,
-    })
-      .then((response) => {
-        if (response.data === 200) {
-          const updatedQuestions = questions.filter(
-            (question) => (question.id !== selectedQuestion ? question : undefined),
-          );
-          updateQuestions([...updatedQuestions]);
-          const updatedAnswers = answers.filter(
-            (answer) => (answer.id !== selectedAnswer ? answer : undefined),
-          );
-          updateAnswers([...updatedAnswers]);
-          updateRemainingCount();
+    const selectedQuestion = questions.find((question) => question.id === selectedQuestionId);
 
-          if (updatedQuestions.length === 0 && updatedAnswers.length === 0) {
-            updateQuestionsBag();
-          }
-        }
-        setSelectedQuestion(undefined);
-        setSelectedAnswer(undefined);
+    if (selectedQuestion.answer.id === selectedAnswerId) {
+      const updatedQuestions = questions.filter(
+        (question) => (question.id !== selectedQuestionId ? question : undefined),
+      );
+      updateQuestions([...updatedQuestions]);
+      const updatedAnswers = answers.filter(
+        (answer) => (answer.id !== selectedAnswerId ? answer : undefined),
+      );
+      updateAnswers([...updatedAnswers]);
+      if (updatedQuestions.length === 0 && updatedAnswers.length === 0) {
+        updateQuestionsBag();
+      }
+      setRemainingQuestionsCount(remainingQuestionsCount - 1);
+      server.post('question/initiate', {
+        question: selectedQuestionId,
       });
+    }
+    setSelectedQuestion(undefined);
+    setSelectedAnswer(undefined);
   }
 }
