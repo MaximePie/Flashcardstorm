@@ -21,6 +21,8 @@
 
   &__achievements-row {
     padding: 16px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
 
     @include for-phone-only {
       padding: 8px;

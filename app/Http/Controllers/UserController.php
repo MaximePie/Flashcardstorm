@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Question;
 use App\Question_user;
 use App\User;
@@ -113,6 +114,48 @@ class UserController extends Controller
                 'score' => $user->score,
                 'number_of_new_changelogs' => $user->unreadNotifications()->count(),
                 'number_of_questions' => $user->dailyQuestions()->count(),
+            ]);
+        }
+    }
+
+
+    /**
+     * Returns the distribution of the user based on his categories
+     *
+     * @return JsonResponse
+     */
+    protected function radarDistribution(): JsonResponse
+    {
+        $user = Auth::user();
+        if ($user) {
+            $categories = Category::All()->whereIn('id', $user->questions()->pluck('category_id'));
+            $categoriesData = [];
+            $captions = [];
+
+            foreach ($categories as $category) {
+                $numberOfUserQuestionsInThisCategory = $user
+                    ->questions()
+                    ->where('questions.category_id', $category->id)
+                    ->count();
+                $numberOfMemorizedQuestionsInThisCategory = $user
+                    ->memorizedQuestions()
+                    ->where('questions.category_id', $category->id)
+                    ->count();
+                $numberOfQuestionsInThisCategory = Question::where('category_id', $category->id)
+                    ->count();
+                if ($numberOfUserQuestionsInThisCategory) {
+                    $category['index'] = $numberOfMemorizedQuestionsInThisCategory / $numberOfUserQuestionsInThisCategory;
+                    $categoriesData[$category->name] = $category['index'];
+                    $captions[$category->name] = $category->name;
+                }
+            }
+            $data = [
+            "data" => $categoriesData,
+            "meta" => [ "color" => 'blue' ],
+          ];
+            return response()->json([
+                "radarData" => $data,
+                "captionsData" => $captions,
             ]);
         }
     }

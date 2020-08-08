@@ -7,6 +7,7 @@ import LoadingSpinner from '../atom/LoadingSpinner';
 import ProfileDataContainer from '../molecule/ProfileDataContainer';
 import ProfileDailyObjective from '../molecule/ProfileDailyObjective';
 import ProfileAchievements from '../molecule/ProfileAchievements';
+import ProfileRadar from '../molecule/ProfileRadar';
 import { isMobile } from '../../helper';
 
 
@@ -35,6 +36,7 @@ export default function Profile() {
         </div>
         <div className="Profile__achievements-row">
           <ProfileAchievements />
+          <ProfileRadar />
         </div>
         <div className="Profile__questions-header-row">
           <h3 className="Profile__questions-title">

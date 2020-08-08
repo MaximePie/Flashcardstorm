@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="" />
+    <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/molecule/ProfileRadar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sass/molecules/ProfileRadar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/Profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Profile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/imports.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/imports.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -373,6 +386,7 @@
       <workItem from="1596033589834" duration="417000" />
       <workItem from="1596034179646" duration="10293000" />
       <workItem from="1596202479704" duration="1353000" />
+      <workItem from="1596895975873" duration="3533000" />
     </task>
     <servers />
   </component>
@@ -449,11 +463,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="11" y="45" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595520055097" />
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1596202850749">
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1596895981119">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="465" y="286" key="com.intellij.ide.util.TipDialog/0.0.1440.860@0.0.1440.860" timestamp="1589396212185" />
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596202850749" />
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596895981119" />
     <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1596881514487">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -467,10 +481,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596104000265" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1596891965927">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1596897670238">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="468" y="132" width="672" height="564" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1589361041730" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596891965927" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596897670238" />
   </component>
 </project>
