@@ -2,7 +2,8 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import classNames from 'classnames';
-import { toLocale } from '../../helper';
+import { Link } from 'react-router-dom';
+import { isMobile, toLocale } from '../../helper';
 import server from '../../server';
 import Icon from '../Icon';
 import Button from '../atom/Button';
@@ -85,27 +86,70 @@ export default function Changelogs() {
       </div>
       <div className="Changelogs__tabs">
         <div className="Changelogs__tabs-actions">
-          <Button
-            text="Fonctionnalités potentielles"
-            className="Changelogs__tab-button"
-            variant={activeTab !== 'potential' ? 'inactive' : undefined}
-            onClick={() => setActiveTab('potential')}
-          />
-          <Button
-            text="Mises à jour"
-            className="Changelogs__tab-button"
-            variant={activeTab !== 'changelogs' ? 'inactive' : undefined}
-            onClick={() => setActiveTab('changelogs')}
-          />
+          {!isMobile() && (
+            <>
+              <Button
+                text="Fonctionnalités potentielles"
+                className="Changelogs__tab-button"
+                variant={activeTab !== 'potential' ? 'inactive' : undefined}
+                onClick={() => setActiveTab('potential')}
+              />
+              <Button
+                text="Mises à jour"
+                className="Changelogs__tab-button"
+                variant={activeTab !== 'changelogs' ? 'inactive' : undefined}
+                onClick={() => setActiveTab('changelogs')}
+              />
+              {isConnected && (
+                <Button
+                  text="Proposez une amélioration !"
+                  className="Changelogs__tab-button"
+                  href="/add_changelog"
+                  onClick={() => {
+                    document.location = '/add_changelog';
+                  }}
+                />
+              )}
+            </>
+          )}
+          {isMobile() && (
+            <>
+              <span
+                className={`Changelogs__tab-button 
+                  ${activeTab === 'potential' ? 'Changelogs__tab-button--active' : ''}
+                `}
+                onClick={() => setActiveTab('potential')}
+              >
+                <Icon
+                  name="clock"
+                  className="Changelogs__tab-button-icon"
+                />
+              </span>
+              <span
+                className={`Changelogs__tab-button 
+                  ${activeTab === 'changelogs' ? 'Changelogs__tab-button--active' : ''}
+                `}
+                onClick={() => setActiveTab('changelogs')}
+              >
+                <Icon
+                  name="check"
+                  className="Changelogs__tab-button-icon"
+                />
+              </span>
+              {isConnected && (
+                <Link
+                  className="Changelogs__tab-button Changelogs__tab-button--link"
+                  to="/add_changelog"
+                >
+                  <Icon
+                    name="plus"
+                    className="Changelogs__tab-button-icon"
+                  />
+                </Link>
+              )}
+            </>
+          )}
         </div>
-        {isConnected && (
-          <Button
-            text="Proposez une amélioration !"
-            className="Changelogs__tab-button"
-            href="/add_changelog"
-            onClick={() => { document.location = '/add_changelog'; }}
-          />
-        )}
       </div>
       <div className="Changelogs__list">
         {activeTab === 'potential' && (

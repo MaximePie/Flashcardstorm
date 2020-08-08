@@ -208,7 +208,7 @@ export default function Navbar(props) {
               )}
             </ListItemIcon>
             <ListItemText>
-              Consulter les mises à jours
+              Mises à jours
             </ListItemText>
           </ListItem>
         </Link>

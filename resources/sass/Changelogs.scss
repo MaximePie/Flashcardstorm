@@ -1,12 +1,22 @@
 .Changelogs {
   height: 100vh;
+  width: 100vw;
   background: url("../images/changelogsBackground.jpg") no-repeat center;
-  background-size: 100%;
+  background-size: 100% 100%;
+  position: fixed;
+
+  @include for-phone-only {
+    background-size: initial;
+  }
 
   &__title {
     text-align: center;
     margin-bottom: 16px;
     color: white;
+    @include for-phone-only {
+      margin-top: 3em;
+      margin-bottom: initial;
+    }
   }
 
   &__tabs {
@@ -14,8 +24,51 @@
     justify-content: space-between;
     margin-top: 32px;
 
+    @include for-phone-only {
+      margin-top: 0;
+    }
+
     &-actions {
       padding: 8px;
+
+      @include for-phone-only {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  &__tab-button {
+    @include for-phone-only {
+      color: white;
+      &--link {
+        color: #3490dc;
+        position: fixed;
+        bottom: 8px;
+        right: 8px;
+        border-radius: 200px;
+        background-color: white;
+
+        height: 56px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 56px;
+
+        box-shadow: $floating-action-button-shadow;
+
+        .Icon {
+          margin-right: 0;
+          font-size: 22px !important;
+        }
+      }
+
+      &--active {
+        color: #3490dc;
+        border-bottom: solid;
+        padding-bottom: 4px;
+        transition: color 250ms;
+      }
     }
   }
 
@@ -32,16 +85,31 @@
     grid-template-columns: 75px 1fr;
     grid-column-gap: 8px;
 
+    @include for-phone-only {
+      margin: 4px;
+      padding: 4px;
+      grid-column-gap: 4px;
+      grid-template-columns: 40px 1fr;
+    }
+
     &-like-section {
       display: flex;
       align-items: center;
       justify-content: center;
+
+      @include for-phone-only {
+        flex-direction: column;
+      }
     }
   }
 
   &__like-icon-link {
     margin-right: 4px;
     cursor: pointer;
+
+    @include for-phone-only {
+      margin-right: 0;
+    }
 
     .Changelogs__like-icon {
 
@@ -50,6 +118,10 @@
 
         &:before {
           color: #565961;
+        }
+
+        @include for-phone-only {
+          margin: 0;
         }
       }
     }
@@ -85,6 +157,15 @@
 
 .AddChangelog {
   height: 100vh;
+  width: 100vw;
+  background: url("../images/changelogsBackground.jpg") no-repeat center;
+  background-size: 100% 100%;
+  position: fixed;
+
+  @include for-phone-only {
+    background-size: initial;
+  }
+
   margin: auto;
   display: flex;
   align-items: center;
@@ -97,10 +178,20 @@
 
     padding: 16px;
     min-width: 500px;
+
+    @include for-phone-only {
+      padding: 8px;
+      margin: 8px;
+      min-width: 0;
+    }
   }
 
   &__field {
     min-width: 300px !important;
     min-height: 100px;
+
+    @include for-phone-only {
+      min-width: 260px !important;
+    }
   }
 }

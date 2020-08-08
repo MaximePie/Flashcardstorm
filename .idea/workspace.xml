@@ -3,10 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Changelog.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Changelog.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ChangelogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ChangelogController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Changelogs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Changelogs.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/Changelogs.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Changelogs.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/imports.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/imports.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/variables.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,17 +240,17 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programmation\Flashcardstorm\resources\sass" />
+      <recent name="D:\Programmation\Flashcardstorm" />
+      <recent name="$PROJECT_DIR$/app/Helpers" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Programmation\Flashcardstorm\resources\js\components\molecule" />
       <recent name="D:\Programmation\Flashcardstorm\resources\js\components\atom" />
       <recent name="D:\Programmation\Flashcardstorm\resources\sass\atoms" />
       <recent name="D:\Programmation\Flashcardstorm\resources\js\components\pages" />
       <recent name="D:\Programmation\Flashcardstorm\resources\images" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Programmation\Flashcardstorm\resources\sass" />
-      <recent name="D:\Programmation\Flashcardstorm" />
-      <recent name="$PROJECT_DIR$/app/Helpers" />
     </key>
   </component>
   <component name="RunManager">
@@ -262,22 +264,7 @@
       <list>
         <serviceView>
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:Homestead" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:Homestead" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@6c95ebb7" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:Homestead" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@db114ec" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -464,11 +451,11 @@
     </state>
     <state x="465" y="286" key="com.intellij.ide.util.TipDialog/0.0.1440.860@0.0.1440.860" timestamp="1589396212185" />
     <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596202850749" />
-    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1596873338666">
+    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1596877893285">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="456" y="206" width="643" height="536" key="find.popup/0.0.1440.860@0.0.1440.860" timestamp="1589226212741" />
-    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596873338666" />
+    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596877893285" />
     <state x="601" y="246" width="700" height="530" key="recent.locations.popup" timestamp="1596103847543">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -477,10 +464,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596104000265" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1596874680159">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1596879006806">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="468" y="132" width="672" height="564" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1589361041730" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596874680159" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596879006806" />
   </component>
 </project>
