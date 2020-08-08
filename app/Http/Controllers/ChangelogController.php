@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Changelog;
+use App\User;
 use App\User_vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,10 +37,14 @@ class ChangelogController extends Controller
 
     public function store(Request $request)
     {
+        /** @var User $user */
+        $user = Auth::user();
+
         $changelog = Changelog::create([
             'title' => $request->title,
             'text' => $request->text,
             'nextstep' => $request->nextstep,
+            'is_implemented' => $user->isAdmin()
         ]);
 
         $changelog->save();

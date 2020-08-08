@@ -30,7 +30,7 @@ use Illuminate\Support\Carbon;
  */
 class Changelog extends Model
 {
-    protected $fillable = ['title', 'text', 'nextstep'];
+    protected $fillable = ['title', 'text', 'nextstep', 'is_implemented'];
 
 
     /**

@@ -30,6 +30,7 @@ use Illuminate\Support\Carbon;
  * @property int|null $daily_objective
  * @property int|null $daily_progress
  * @property string|null $last_daily_updated_at
+ * @property string permissions
  * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @method static Builder|User newModelQuery()
@@ -303,5 +304,13 @@ class User extends Authenticable
         array_push($objectives, $thirdBadge);
 
         return $objectives;
+    }
+
+    /**
+     * Tells if the user has sufficient rights to perform specifics actions
+     */
+    public function isAdmin()
+    {
+        return $this->permissions === 'admin';
     }
 }

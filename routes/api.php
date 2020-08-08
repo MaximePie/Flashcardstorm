@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::middleware('auth:api')->post('/authenticated/changelog', 'ChangelogController@store');
 
 Route::name('api.')->group(static function () {
 
@@ -47,6 +46,7 @@ Route::name('api.')->group(static function () {
             Route::get('initialQuest', 'QuestEntityController@initialize');
 
             Route::post('category', 'CategoryController@store');
+            Route::post('changelog', 'ChangelogController@store');
             Route::post('question/toggle', 'QuestionController@toggleQuestionForUser');
             Route::post('question/submit_answer', 'QuestionController@submitAnswer');
             Route::post('questionUser/save', 'QuestionUserController@updateFromAnswer');
