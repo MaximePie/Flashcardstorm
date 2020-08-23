@@ -10,10 +10,9 @@ use App\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Psy\Util\Json;
 use RuntimeException;
+use Storage;
 
 class QuestionController extends Controller
 {
@@ -99,7 +98,7 @@ class QuestionController extends Controller
             $message = User::questionMessage($questions->isEmpty(), $mode, $user);
 
             if ($questions) {
-                $questions->each(static function (QUESTION $question) use ($user){
+                $questions->each(static function (QUESTION $question) use ($user) {
                     $question->preparedForView($user);
                 });
             }
@@ -135,8 +134,7 @@ class QuestionController extends Controller
                 'questions' => $questions->shuffle() ?? [],
                 'answers' => $answers->shuffle() ?? [],
             ]);
-        }
-        else {
+        } else {
             return response()->json(['error' => 'Vous ne pouvez pas continuer car vous n\'êtes pas connecté.']);
         }
     }
@@ -176,7 +174,7 @@ class QuestionController extends Controller
                 ->limit(30)
                 ->get();
             if ($questions) {
-                $questions->each(static function (QUESTION &$question) use ($user){
+                $questions->each(static function (QUESTION &$question) use ($user) {
                     $question->preparedForView($user);
                 });
             }
@@ -184,8 +182,7 @@ class QuestionController extends Controller
             return response()->json([
                 'questions' => $questions->shuffle() ?? [],
             ]);
-        }
-        else {
+        } else {
             return response()->json(['error' => 'Vous ne pouvez pas continuer car vous n\'êtes pas connecté.']);
         }
     }
@@ -211,7 +208,7 @@ class QuestionController extends Controller
         $answer->save();
 
         $question = Question::create([
-            'wording' => $request->question,
+            'wording' => $request->question ?? null,
             'answer_id' => $answer->id,
             'category_id' => $request->category ?: null,
             'is_mcq' => $answer->additional_answers !== null,
@@ -235,6 +232,27 @@ class QuestionController extends Controller
         }
 
         return response()->json(['Question' => $question]);
+    }
+
+    /**
+     * Attach an image to the given question
+     *
+     * @param Request $request
+     * @return JsonResponse
+     * @throws Exception
+     */
+    public function storeImage(Request $request): JsonResponse
+    {
+        $questionId = $request->get('question_id');
+        $path = $request->file('image')->store(
+            'questions', 'public'
+        );
+        $question = Question::find($questionId);
+        $question->image_path = $path;
+        $question->save();
+
+
+        return response()->json([$question]);
     }
 
     /**
@@ -350,8 +368,7 @@ class QuestionController extends Controller
                 'earned_points' => $earned_points,
                 'userProgress' => $user ? $user->dailyProgress() : null,
             ]);
-        }
-        else if ($user && $question->isSetForUser($user)) {
+        } else if ($user && $question->isSetForUser($user)) {
             /** @var Question_user $question_user */
             $question_user = Question_user::findFromTuple($question->id, $user->id)->first();
             $question_user->isInitiated = false;

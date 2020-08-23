@@ -4,6 +4,7 @@ namespace App;
 
 use Eloquent;
 use Exception;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -11,13 +12,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use RuntimeException;
+use Storage;
 
 /**
  * App\Question.
  *
  * @property int $id
  * @property int $answer_id
- * @property string $wording
+ * @property string|null $wording
  * @property string $details
  * @property string $created_at
  * @property string $updated_at
@@ -35,6 +37,7 @@ use RuntimeException;
  * @property-read Collection|User[] $users
  * @property-read int|null $users_count
  * @property bool is_reverse
+ * @property string image_path
  * @method static Builder|Question newModelQuery()
  * @method static Builder|Question newQuery()
  * @method static Builder|Question query()
@@ -76,6 +79,7 @@ class Question extends Model
         'last_answered_at',
         'next_question_at',
         'reverse_question_id',
+        'image_path'
     ];
 
     /**

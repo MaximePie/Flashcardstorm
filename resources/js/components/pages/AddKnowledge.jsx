@@ -13,7 +13,6 @@ import Button from '../atom/Button';
 import { isMobile } from '../../helper';
 
 export default function AddKnowledge() {
-
   const [form, setForm] = React.useState({
     question: '',
     answer: '',
@@ -23,6 +22,7 @@ export default function AddKnowledge() {
 
   const [fieldsAmount, setFieldsAmount] = React.useState(0);
   const [categories, updateCategories] = React.useState(undefined);
+  const [image, setImage] = React.useState(undefined);
   const [selectedCategory, setSelectedCategory] = React.useState(0);
 
   React.useEffect(() => {
@@ -49,7 +49,7 @@ export default function AddKnowledge() {
   const onDrop = useCallback((acceptedFiles) => {
     const reader = new FileReader();
     reader.onload = () => {
-      console.log(reader.result)
+      console.log(reader.result);
       csv.parse(reader.result, (err, data) => {
         if (err) {
           console.log(err);
@@ -80,19 +80,32 @@ export default function AddKnowledge() {
       </div>
       <div className="row justify-content-center Addknowledge__body">
         <form onSubmit={submitValues} className="Addknowledge__form card">
-          <Button onClick={addField} text="+" />
+          <Button onClick={addField} text="+"/>
           {!isMobile() && (
             <div {...getRootProps()} className="Addknowledge__import-drop-zone">
               <p>Déposez votre CSV ici, ou parcourez les fichiers</p>
             </div>
           )}
-          <div className="Addknowledge__questions-group">
-            <TextField
-              value={form.question}
-              name="question"
-              onChange={updateForm}
-              label="Question"
-            />
+          <div className="Addknowledge__fields">
+            <div className="Addknowledge__fields-top">
+              {!image && (
+                <TextField
+                  value={form.question}
+                  name="question"
+                  onChange={updateForm}
+                  label="Question"
+                />
+              )}
+              <div className="Addknowledge__file-input-group">
+                <input
+                  type="file"
+                  className="Addknowledge__file-input"
+                  onChange={handleImageUpload}
+                />
+                <i className="fas fa-image Addknowledge__fields-top-image Addknowledge__file-input-button"/>
+                {image && 'L\'image est prête'}
+              </div>
+            </div>
             <TextField
               value={form.answer}
               name="answer"
@@ -108,29 +121,31 @@ export default function AddKnowledge() {
             value={selectedCategory}
             onChange={handleSelection}
           >
-            <FormControlLabel value={0} control={<Radio />} label="Sans catégorie" />
+            <FormControlLabel value={0} control={<Radio/>} label="Sans catégorie"/>
             {categories && categories.map((category) => (
               <FormControlLabel
                 key={`category-${category.id}`}
                 value={category.id}
-                control={<Radio />}
+                control={<Radio/>}
                 label={category.name}
               />
             ))}
           </RadioGroup>
-          <div className="Addknowledge__reserveQuestionCheckbox">
-            <Checkbox
-              checked={form.shouldHaveReverseQuestion}
-              onChange={(event) => setForm({
-                ...form,
-                shouldHaveReverseQuestion: event.target.checked,
-              })}
-            />
-            <span>
-              Créer une question inverse
-            </span>
-          </div>
-          <Button text="Enregistrer la question" onClick={submitValues} />
+          {!image && (
+            <div className="Addknowledge__reverseQuestionCheckbox">
+              <Checkbox
+                checked={form.shouldHaveReverseQuestion}
+                onChange={(event) => setForm({
+                  ...form,
+                  shouldHaveReverseQuestion: event.target.checked,
+                })}
+              />
+              <span>
+                Créer une question inverse
+              </span>
+            </div>
+          )}
+          <Button text="Enregistrer la question" onClick={submitValues}/>
         </form>
       </div>
     </div>
@@ -149,6 +164,24 @@ export default function AddKnowledge() {
    */
   function addField() {
     setFieldsAmount(fieldsAmount + 1);
+  }
+
+  /**
+   * Set the appropriate image data on upload
+   */
+  function handleImageUpload(event) {
+    const { files } = event.target;
+    if (!files.length) return;
+    console.log(event);
+    console.log(files);
+    console.log(files[0]);
+    setImage(files[0]);
+    //
+    // const reader = new FileReader();
+    // reader.onload = (progressEvent) => {
+    //   setImage(progressEvent);
+    // };
+    // reader.readAsDataURL(files[0]);
   }
 
   function updateForm(e, index) {
@@ -176,14 +209,25 @@ export default function AddKnowledge() {
       additionnalAnswers += `${explodedAdditionnalAnswers[i]},`;
     }
 
-    server.post('question', {
-      question: form.question,
-      answer: form.answer,
-      category: selectedCategory,
-      shouldHaveReverseQuestion: form.shouldHaveReverseQuestion,
-      additionalAnswers: additionnalAnswers,
-    })
-      .then(() => {
+    server.post('question',
+      {
+        question: image ? form.question : '',
+        answer: form.answer,
+        category: selectedCategory,
+        shouldHaveReverseQuestion: form.shouldHaveReverseQuestion,
+        additionalAnswers: additionnalAnswers,
+      })
+      .then((response) => {
+        if (image) {
+          const imageFormData = new FormData();
+          imageFormData.append('image', image);
+          imageFormData.append('question_id', response.data.Question.id);
+          server.post('addImageToQuestion', imageFormData)
+            .then(() => {
+              setImage(undefined);
+            });
+        }
+
         setForm({
           ...form,
           question: '',

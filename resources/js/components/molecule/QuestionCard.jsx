@@ -46,6 +46,13 @@ export default function QuestionCard(props) {
       <div className="QuestionCard__content">
         <h3 className={`QuestionCard__question ${!question && 'QuestionCard__question--is-empty'}`}>
           {question.is_reverse ? question.answer : question.wording || props.message}
+          {question.image_path && (
+            <img
+              src={question.image_path}
+              alt={question.image_path}
+              className="QuestionCard__image"
+            />
+          )}
         </h3>
         {!question.additionalAnswers && (
           <TextField

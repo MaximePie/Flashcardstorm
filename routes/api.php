@@ -48,6 +48,7 @@ Route::name('api.')->group(static function () {
             Route::get('categories/{mode}', 'CategoryController@index');
 
 
+            Route::post('addImageToQuestion', 'QuestionController@storeImage');
             Route::post('category', 'CategoryController@store');
             Route::post('changelog', 'ChangelogController@store');
             Route::post('question/toggle', 'QuestionController@toggleQuestionForUser');
