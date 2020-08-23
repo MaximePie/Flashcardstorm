@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/AddKnowledge.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/AddKnowledge.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +50,7 @@
         <item name="heroku_d9e51ae94c19231@eu-cdbr-west-02.cleardb.net" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="heroku_d9e51ae94c19231: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="question_users: table" type="285a2a93:MysqlImplModel$Table" />
+        <item name="questions: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -379,7 +381,8 @@
       <workItem from="1596895975873" duration="3808000" />
       <workItem from="1597722947479" duration="26225000" />
       <workItem from="1598192488440" duration="649000" />
-      <workItem from="1598194698490" duration="2874000" />
+      <workItem from="1598194698490" duration="3732000" />
+      <workItem from="1598200467006" duration="280000" />
     </task>
     <servers />
   </component>
@@ -448,10 +451,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="11" y="45" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595520055097" />
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1597723029832">
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1598200503145">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597723029832" />
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598200503145" />
     <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1598173286242">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -464,9 +467,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596104000265" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1598196989613">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1598200681584">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598196989613" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598200681584" />
   </component>
 </project>

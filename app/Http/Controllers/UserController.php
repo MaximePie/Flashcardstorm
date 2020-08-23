@@ -140,6 +140,7 @@ class UserController extends Controller
                 $numberOfMemorizedQuestionsInThisCategory = $user
                     ->memorizedQuestions()
                     ->where('questions.category_id', $category->id)
+                    ->whereNull('questions.reverse_question_id')
                     ->count();
                 $numberOfQuestionsInThisCategory = Question::where('category_id', $category->id)
                     ->count();
