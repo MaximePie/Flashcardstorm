@@ -201,10 +201,13 @@ export default function AddKnowledge() {
       additionnalAnswers += `${explodedAdditionnalAnswers[i]},`;
     }
 
+    console.log(image);
+    console.log(form.question);
+
     // Sending main question data
     server.post('question',
       {
-        question: image ? form.question : '',
+        question: !image ? form.question : '',
         answer: form.answer,
         category: selectedCategory,
         shouldHaveReverseQuestion: form.shouldHaveReverseQuestion,

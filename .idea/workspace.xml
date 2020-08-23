@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/box_meta" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/box_meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/AddKnowledge.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/AddKnowledge.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +43,13 @@
         <item name="heroku_d9e51ae94c19231@eu-cdbr-west-02.cleardb.net" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="heroku_d9e51ae94c19231: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="heroku_d9e51ae94c19231@eu-cdbr-west-02.cleardb.net" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="heroku_d9e51ae94c19231: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="question_users: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -220,7 +228,7 @@
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="PHP&#10;TEXT" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="database.data.extractors.current.id" value="HTML Table" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/sass" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../rsp" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -259,26 +267,7 @@
       <list>
         <serviceView>
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:heroku_d9e51ae94c19231@eu-cdbr-west-02.cleardb.net" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:heroku_d9e51ae94c19231@eu-cdbr-west-02.cleardb.net" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@71254353" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:Homestead" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:Homestead" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@4d7db2ff" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -389,7 +378,9 @@
       <workItem from="1596034179646" duration="10293000" />
       <workItem from="1596202479704" duration="1353000" />
       <workItem from="1596895975873" duration="3808000" />
-      <workItem from="1597722947479" duration="23633000" />
+      <workItem from="1597722947479" duration="26225000" />
+      <workItem from="1598192488440" duration="649000" />
+      <workItem from="1598194698490" duration="1021000" />
     </task>
     <servers />
   </component>
@@ -418,29 +409,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="585" y="117" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1595492832881" />
-    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1593707806252">
+    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1598192147371">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1593707806252" />
+    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1598192147371" />
     <state width="1293" height="470" key="GridCell.Tab.0.bottom" timestamp="1594015564554">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="957" height="445" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1589396316636" />
     <state width="1293" height="470" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594015564554" />
     <state width="1293" height="470" key="GridCell.Tab.0.center" timestamp="1594015564554">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="957" height="445" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1589396316636" />
     <state width="1293" height="470" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594015564554" />
     <state width="1293" height="470" key="GridCell.Tab.0.left" timestamp="1594015564554">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="957" height="445" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1589396316636" />
     <state width="1293" height="470" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594015564554" />
     <state width="1293" height="470" key="GridCell.Tab.0.right" timestamp="1594015564554">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="957" height="445" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1589396316636" />
     <state width="1293" height="470" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594015564554" />
     <state x="21" y="0" width="1800" height="979" key="SettingsEditor" timestamp="1595950968254">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -458,10 +445,6 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="540" y="176" key="com.intellij.database.dbimport.ImportDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596889431619" />
-    <state x="690" y="326" key="com.intellij.database.dbimport.ImportUtil.MyDialog" timestamp="1589539070684">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="690" y="326" key="com.intellij.database.dbimport.ImportUtil.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589539070684" />
     <state x="11" y="45" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1595520055097">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -469,13 +452,11 @@
     <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1597723029832">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="465" y="286" key="com.intellij.ide.util.TipDialog/0.0.1440.860@0.0.1440.860" timestamp="1589396212185" />
     <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597723029832" />
-    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1597743053576">
+    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1598173286242">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="456" y="206" width="643" height="536" key="find.popup/0.0.1440.860@0.0.1440.860" timestamp="1589226212741" />
-    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1597743053576" />
+    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598173286242" />
     <state x="601" y="246" width="700" height="530" key="recent.locations.popup" timestamp="1596103847543">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -484,10 +465,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596104000265" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1598171055094">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1598194844368">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="468" y="132" width="672" height="564" key="search.everywhere.popup/0.0.1440.860@0.0.1440.860" timestamp="1589361041730" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598171055094" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598194844368" />
   </component>
 </project>
