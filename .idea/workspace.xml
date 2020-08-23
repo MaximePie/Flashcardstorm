@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/pages/AddKnowledge.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/AddKnowledge.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -378,7 +379,7 @@
       <workItem from="1596895975873" duration="3808000" />
       <workItem from="1597722947479" duration="26225000" />
       <workItem from="1598192488440" duration="649000" />
-      <workItem from="1598194698490" duration="1838000" />
+      <workItem from="1598194698490" duration="2874000" />
     </task>
     <servers />
   </component>
@@ -463,9 +464,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596104000265" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1598194844368">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1598196989613">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598194844368" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598196989613" />
   </component>
 </project>

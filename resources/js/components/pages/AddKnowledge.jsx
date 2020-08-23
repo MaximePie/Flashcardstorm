@@ -81,11 +81,6 @@ export default function AddKnowledge() {
       <div className="row justify-content-center Addknowledge__body">
         <form onSubmit={submitValues} className="Addknowledge__form card">
           <Button onClick={addField} text="+" />
-          {!isMobile() && (
-            <div {...getRootProps()} className="Addknowledge__import-drop-zone">
-              <p>Déposez votre CSV ici, ou parcourez les fichiers</p>
-            </div>
-          )}
           <div className="Addknowledge__fields">
             <div className="Addknowledge__fields-top">
               {!image && (
@@ -203,7 +198,6 @@ export default function AddKnowledge() {
 
     console.log(image);
     console.log(form.question);
-    alert("Question posée");
 
     // Sending main question data
     server.post('question',
