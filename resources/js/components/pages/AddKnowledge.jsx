@@ -76,7 +76,7 @@ export default function AddKnowledge() {
   return (
     <div className="Addknowledge">
       <div className="Addknowledge__title">
-        <h1>Ajouter une question</h1>
+        <h1>Ajouter des questions</h1>
       </div>
       <div className="row justify-content-center Addknowledge__body">
         <form onSubmit={submitValues} className="Addknowledge__form card">
@@ -203,6 +203,7 @@ export default function AddKnowledge() {
 
     console.log(image);
     console.log(form.question);
+    alert("Question posée");
 
     // Sending main question data
     server.post('question',
