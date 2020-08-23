@@ -80,7 +80,7 @@ export default function AddKnowledge() {
       </div>
       <div className="row justify-content-center Addknowledge__body">
         <form onSubmit={submitValues} className="Addknowledge__form card">
-          <Button onClick={addField} text="+"/>
+          <Button onClick={addField} text="+" />
           {!isMobile() && (
             <div {...getRootProps()} className="Addknowledge__import-drop-zone">
               <p>Déposez votre CSV ici, ou parcourez les fichiers</p>
@@ -102,8 +102,9 @@ export default function AddKnowledge() {
                   className="Addknowledge__file-input"
                   onChange={handleImageUpload}
                 />
-                <i className="fas fa-image Addknowledge__fields-top-image Addknowledge__file-input-button"/>
-                {image && 'L\'image est prête'}
+                <i className="fas fa-image Addknowledge__fields-top-image Addknowledge__file-input-button" />
+                {image && image.size < 1000000 && 'L\'image est prête'}
+                {image && image.size > 1000000 && 'L\'image est trop lourde, 1Mo max'}
               </div>
             </div>
             <TextField
@@ -121,12 +122,12 @@ export default function AddKnowledge() {
             value={selectedCategory}
             onChange={handleSelection}
           >
-            <FormControlLabel value={0} control={<Radio/>} label="Sans catégorie"/>
+            <FormControlLabel value={0} control={<Radio />} label="Sans catégorie" />
             {categories && categories.map((category) => (
               <FormControlLabel
                 key={`category-${category.id}`}
                 value={category.id}
-                control={<Radio/>}
+                control={<Radio />}
                 label={category.name}
               />
             ))}
@@ -145,7 +146,7 @@ export default function AddKnowledge() {
               </span>
             </div>
           )}
-          <Button text="Enregistrer la question" onClick={submitValues}/>
+          <Button text="Enregistrer la question" onClick={submitValues} isDisabled={image && image.size > 1000000} />
         </form>
       </div>
     </div>
@@ -172,16 +173,7 @@ export default function AddKnowledge() {
   function handleImageUpload(event) {
     const { files } = event.target;
     if (!files.length) return;
-    console.log(event);
-    console.log(files);
-    console.log(files[0]);
     setImage(files[0]);
-    //
-    // const reader = new FileReader();
-    // reader.onload = (progressEvent) => {
-    //   setImage(progressEvent);
-    // };
-    // reader.readAsDataURL(files[0]);
   }
 
   function updateForm(e, index) {
@@ -209,6 +201,7 @@ export default function AddKnowledge() {
       additionnalAnswers += `${explodedAdditionnalAnswers[i]},`;
     }
 
+    // Sending main question data
     server.post('question',
       {
         question: image ? form.question : '',
@@ -217,7 +210,7 @@ export default function AddKnowledge() {
         shouldHaveReverseQuestion: form.shouldHaveReverseQuestion,
         additionalAnswers: additionnalAnswers,
       })
-      .then((response) => {
+      .then((response) => { // Sending image
         if (image) {
           const imageFormData = new FormData();
           imageFormData.append('image', image);
