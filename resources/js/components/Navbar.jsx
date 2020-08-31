@@ -272,7 +272,7 @@ export default function Navbar(props) {
     axios.get('/logout')
       .then((response) => {
         Cookies.remove('Bearer');
-        document.location = '/home';
+        document.location = '/';
       });
   }
 }

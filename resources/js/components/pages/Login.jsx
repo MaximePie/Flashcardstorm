@@ -64,7 +64,7 @@ export default function Login() {
         });
       } else {
         Cookies.set('Bearer', bearer);
-        document.location = '/soft_training';
+        document.location = '/profile';
       }
     });
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { isMobile } from '../../helper';
 import Icon from '../Icon';
+import { Link } from 'react-router-dom';
 
 export default function Welcome() {
   return (
@@ -15,8 +16,7 @@ FlashcardStorm
       <div className="Welcome__presentation-section">
         <h1 className="Welcome__presentation-title">Réconcilliez-vous avec votre mémoire</h1>
         <div className="Welcome__actions">
-          <a href="/register" className="Button btn btn-primary Button--small">S'inscrire</a>
-          <a href="/home" className="Button btn btn-primary Button--small">Découvrir</a>
+          <Link to="/register" className="Button btn btn-primary Button--small">C'est parti !</Link>
         </div>
       </div>
       <div className="Welcome__easy-learning-section">

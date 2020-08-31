@@ -143,7 +143,10 @@ export default function App() {
   function updateUser() {
     server.get('me/score')
       .then((response) => {
-        const { number_of_questions: numberOfQuestions, number_of_new_changelogs: numberOfNewChangelogs } = response.data;
+        const {
+          number_of_questions: numberOfQuestions,
+          number_of_new_changelogs: numberOfNewChangelogs,
+        } = response.data;
         const newUser = {};
         if (!user) {
           newUser.initial_score = response.data.score;

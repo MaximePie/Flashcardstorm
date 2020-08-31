@@ -137,7 +137,7 @@ class Question_user extends Model
             $this->last_answered_at = Carbon::now();
             $this->next_question_at = Carbon::now()->addDays($this->current_delay - 1);
 
-            if ($this->full_score >= 100) {
+            if ($this->current_delay >= 10) {
                 $this->isMemorized = true;
             }
 
