@@ -22,7 +22,7 @@ export function isMobile() {
  * @param {Array} a items An array containing the items.
  */
 export function shuffle(a) {
-  for (let i = a.length - 1; i > 0; i--) {
+  for (let i = a.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
     [a[i], a[j]] = [a[j], a[i]];
   }
@@ -42,7 +42,7 @@ export function areSimilar(firstString, secondString) {
     a: ['ä', 'â', 'à', 'á'],
     e: ['ë', 'ê', 'è', 'é'],
     u: ['ù', 'û', 'ü'],
-    o: ['ô', 'ö', 'ó'],
+    o: ['ô', 'ö', 'ó', 'ō'],
     i: ['î', 'ï'],
     '': ['la ', 'les ', 'le ', 'un ', 'une ', 'des ', 'a ', 'an ', 'to ', 'the ', ' '],
     remove: ["l'", '-'],
