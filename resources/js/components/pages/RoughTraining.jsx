@@ -6,6 +6,7 @@ import { areSimilar } from '../../helper';
 
 export default function RoughTraining() {
   const [questions, updateQuestions] = React.useState([]);
+  const [timeStamp, setTimeStamp] = React.useState(undefined);
   const [failed, setFailed] = React.useState(0);
   const [success, setSuccess] = React.useState(0);
 
@@ -26,11 +27,12 @@ export default function RoughTraining() {
             <QuestionRow
               question={question}
               onSubmit={(answer) => submitAnswer(answer, question)}
-              key={`QuestionRow-${questions[0].id}`}
+              key={`QuestionRow-${question.id}-${timeStamp}`}
+              timestamp={timeStamp}
             />
           ))}
           {questions.length > 0 && (
-            <Button text="Charger d'autres questions" onClick={updateQuestionsBag} />
+            <Button className="RoughTraining__action" text="Charger d'autres questions" onClick={updateQuestionsBag} />
           )}
         </div>
       </div>
@@ -38,7 +40,7 @@ export default function RoughTraining() {
   );
 
   function submitAnswer(answer, question) {
-    const questionCard = document.getElementById(`question-${question.id}`);
+    const questionCard = document.getElementById(`question-${question.id}-${timeStamp}`);
     if (areSimilar(answer, question.answer)) {
       questionCard.classList.add('QuestionRow--success');
       setSuccess(success + 1);
@@ -73,6 +75,7 @@ export default function RoughTraining() {
   function updateQuestionsBag() {
     server.get('dailyQuestions')
       .then((response) => {
+        setTimeStamp(response.data.timestamp);
         updateQuestions(response.data.questions);
       });
   }

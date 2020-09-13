@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { PropTypes } from 'prop-types';
-import Button from '../atom/Button';
 
 QuestionRow.propTypes = {
   question: PropTypes.shape({
@@ -12,24 +11,30 @@ QuestionRow.propTypes = {
   }).isRequired,
   onSubmit: PropTypes.func.isRequired,
   message: PropTypes.string,
+  timestamp: PropTypes.string,
 };
 
 QuestionRow.defaultProps = {
   message: '',
+  timestamp: '',
 };
 
-export default function QuestionRow(props) {
-  const { question, message } = props;
+export default function QuestionRow({
+  question,
+  message,
+  timestamp,
+  onSubmit,
+}) {
   const [answer, setAnswer] = React.useState('');
   return (
     <form
       onSubmit={handleSubmit}
       className="QuestionRow card"
-      id={`question-${question.id}`}
+      id={`question-${question.id}-${timestamp}`}
     >
-      <h3 className={`QuestionRow__question ${!question && 'QuestionRow__question--is-empty'}`}>
+      <h4 className={`QuestionRow__question ${!question && 'QuestionRow__question--is-empty'}`}>
         {question.is_reverse ? question.answer : question.wording || message}
-      </h3>
+      </h4>
       <TextField
         label="Réponse"
         onChange={(e) => setAnswer(e.target.value)}
@@ -40,6 +45,6 @@ export default function QuestionRow(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    props.onSubmit(answer);
+    onSubmit(answer);
   }
 }

@@ -1,6 +1,10 @@
 .QuestionRow {
   padding: 4px;
 
+  &__question {
+    font-size: 1.25em;
+  }
+
   &--success {
     background-color: lightgreen;
     pointer-events: none;

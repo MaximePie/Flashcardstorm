@@ -12,7 +12,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RuntimeException;
-use Storage;
 
 class QuestionController extends Controller
 {
@@ -181,6 +180,7 @@ class QuestionController extends Controller
 
             return response()->json([
                 'questions' => $questions->shuffle() ?? [],
+                'timestamp' => time(),
             ]);
         } else {
             return response()->json(['error' => 'Vous ne pouvez pas continuer car vous n\'êtes pas connecté.']);
@@ -277,7 +277,7 @@ class QuestionController extends Controller
                 'answer_id' => $answer->id,
             ]);
 
-            $reverseQuestion = $question->createReverseQuestion();
+            $question->createReverseQuestion();
 
             if ($user) {
                 Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
