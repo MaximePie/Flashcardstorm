@@ -1,5 +1,4 @@
 import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
 import { PropTypes } from 'prop-types';
 import { toLocale } from '../../helper';
 import Icon from '../Icon';
@@ -27,7 +26,6 @@ QuestionsListItem.propTypes = {
 
 export default function QuestionsListItem(props) {
   const isConnected = React.useContext(AuthenticationContext);
-  const [expanded, setExpanded] = React.useState(false);
 
   const {
     question,
@@ -37,7 +35,11 @@ export default function QuestionsListItem(props) {
   } = props;
 
   return (
-    <div key={`question${question.id}`} className="QuestionsList__question list-group-item card">
+    <div
+      key={`question${question.id}`}
+      className="QuestionsList__question list-group-item card"
+      id={`question${question.id}`}
+    >
       <span>{question.wording}</span>
       <span>{question.answer}</span>
       <span>{isConnected && question.score && `+${question.score}`}</span>
@@ -45,7 +47,7 @@ export default function QuestionsListItem(props) {
         {isConnected && question.next_question_at && `${toLocale(question.next_question_at)}`}
       </span>
       <span>{questionIcon(question)}</span>
-      <span>{isConnected && question.has_reverse && 'Cette question a une version inversée'}</span>
+      <span>{isConnected && question.has_reverse && <i className="fas fa-sync"/>}</span>
       <span>{questionActions()}</span>
     </div>
   );
@@ -78,6 +80,12 @@ export default function QuestionsListItem(props) {
       <div className="QuestionsListItem__actions">
         {isConnected && (
           <>
+            <span
+              className="QuestionsListItem__delete-button"
+              onClick={() => deleteQuestion(question.id)}
+            >
+              <i className="far fa-trash-alt QuestionsListItem__delete-icon" />
+            </span>
             <input
               type="checkbox"
               value={question.id}
@@ -85,12 +93,6 @@ export default function QuestionsListItem(props) {
               onChange={(event) => toggleQuestionForUser(event, question.id, questionKey)}
               className="QuestionsListItem__toggle-button"
             />
-            <span
-              className="QuestionsListItem__delete-button"
-              onClick={() => deleteQuestion(question.id)}
-            >
-              <i className="far fa-trash-alt QuestionsListItem__delete-icon" />
-            </span>
           </>
         )}
       </div>

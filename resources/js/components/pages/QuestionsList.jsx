@@ -8,13 +8,14 @@ import Button from '../atom/Button';
 import { useSnackbar } from 'notistack';
 import Checkbox from '@material-ui/core/Checkbox';
 import QuestionsListItem from '../molecule/QuestionsListItem';
-import { isMobile } from '../../helper';
 import { AuthenticationContext } from '../../Contexts/authentication';
+import { viewportContext } from '../../Contexts/viewport';
 
 export default function QuestionsList() {
   const isConnected = React.useContext(AuthenticationContext);
+  const isMobile = React.useContext(viewportContext);
 
-  const [questions, updateQuestions] = React.useState();
+  const [questions, setQuestions] = React.useState();
   const { enqueueSnackbar } = useSnackbar();
 
   const [switchStatus, setSwitchStatus] = React.useState(false);
@@ -25,7 +26,7 @@ export default function QuestionsList() {
   }, []);
 
   React.useEffect(() => {
-    updateQuestionsBag();
+    fetchQuestions();
   }, [switchStatus]);
 
   React.useEffect(() => {
@@ -34,10 +35,7 @@ export default function QuestionsList() {
   return (
     <div className="QuestionsList">
       <div className="QuestionsList__title">
-        {!isMobile() && (<h1>Liste des questions</h1>)}
-        {isMobile() && (
-          <h2 className="QuestionsList__title">Liste des questions</h2>
-        )}
+        {header()}
         {isConnected && (
           <>
             <FormControlLabel
@@ -50,7 +48,6 @@ export default function QuestionsList() {
       <form className="QuestionsList__form">
         <div className="QuestionsList__list">
           <div className="QuestionsList__questions-container">
-
             <div
               key={`question-Header`}
               className="QuestionsList__question list-group-item card QuestionsList__question--header"
@@ -92,10 +89,10 @@ export default function QuestionsList() {
         <>
           <div className="QuestionsList__actions">
             {isConnected &&
-            <Button text={isMobile() ? 'Enregistrer' : 'Enregistrer la sélection'} onClick={saveSelection}/>
+            <Button text={isMobile ? 'Enregistrer' : 'Enregistrer la sélection'} onClick={saveSelection}/>
             }
             {questions.last_page !== 1 && (
-              <Pagination changePage={updateQuestionsBag} data={questions}/>
+              <Pagination changePage={fetchQuestions} data={questions}/>
             )}
           </div>
         </>
@@ -103,14 +100,24 @@ export default function QuestionsList() {
     </div>
   );
 
+  /**
+   * Delete a question
+   * @param id The id of the question we need to delete
+   */
   function deleteQuestion(id) {
+    const deletedQuestion = document.getElementById(`question${id}`);
+    if (deletedQuestion) {
+      deletedQuestion.classList.add('QuestionsList__question--disappearing')
+    }
     server.get('question/delete/' + id)
       .then(response => {
-        updateQuestionsBag();
+        fetchQuestions();
       });
   }
 
-
+  /**
+   * Update the list of questions assigned to the user
+   */
   function saveSelection() {
     server.post('question/toggle', { questions: questions.data })
       .then(response => {
@@ -124,17 +131,25 @@ export default function QuestionsList() {
       });
   }
 
+  /**
+   * Activate or deactivate the question for the user
+   * @param event The event to know if it is checked or not
+   * @param id The ID, useless. :(
+   * @param key The key in the questionsData bag
+   */
   function toggleQuestionForUser(event, id, key) {
-    console.log(id, key);
     let questionsData = Object.assign({}, questions.data);
     questionsData[key].isSetForUser = event.target.checked;
-    console.log(questionsData);
-    updateQuestions({
+    setQuestions({
       ...questions,
       questionsData
     });
   }
 
+  /**
+   * Tick all the questions at once
+   * @param event
+   */
   function toggleAllQuestions(event) {
     let questionsData = Object.assign({}, questions.data);
     Object.values(questionsData)
@@ -142,13 +157,17 @@ export default function QuestionsList() {
         selectedQuestion.isSetForUser = event.target.checked;
       });
 
-    updateQuestions({
+    setQuestions({
       ...questions,
       questionsData
     });
   }
 
-  function updateQuestionsBag(data = null) {
+  /**
+   * Update the list of questions and set it
+   * @param data
+   */
+  function fetchQuestions(data = null) {
     const url = switchStatus === true ? 'questions_list/for_user' : 'questions_list/all';
     let page = undefined;
     if (data?.page) {
@@ -156,7 +175,18 @@ export default function QuestionsList() {
     }
     server.get(url, page)
       .then(response => {
-        updateQuestions(response.data.questions || undefined);
+        setQuestions(response.data.questions || undefined);
       });
+  }
+
+  /**
+   * Returns the header of the page
+   */
+  function header() {
+    if (!isMobile) {
+      return <h1>Liste des questions</h1>;
+    } else {
+      return <h2 className="QuestionsList__title">Liste des questions</h2>;
+    }
   }
 }

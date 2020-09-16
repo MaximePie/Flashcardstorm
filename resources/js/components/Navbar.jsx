@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -12,7 +11,6 @@ import CountTo from 'react-count-to';
 import Drawer from '@material-ui/core/Drawer';
 import Badge from '@material-ui/core/Badge';
 import Icon from './Icon';
-import { isMobile } from '../helper';
 import { AuthenticationContext } from '../Contexts/authentication';
 import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';

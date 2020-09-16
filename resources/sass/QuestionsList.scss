@@ -20,6 +20,7 @@
   &__form {
     width: 100%;
     overflow-y: auto;
+    padding: 8px;
   }
 
   &__title {
@@ -33,7 +34,6 @@
 
   &__questions-container {
     background-color: white;
-    padding: 0 8px;
     overflow-y: scroll;
     position: relative;
     max-height: 70vh;
@@ -46,6 +46,22 @@
     align-items: center;
     justify-content: center;
     padding: 4px;
+    height: 40px;
+    opacity: 1;
+
+    @include for-phone-only {
+      grid-template-columns: repeat(7, 1fr);
+      font-size: 1em;
+      margin: 12px 0;
+      padding: 8px 0;
+      min-height: 0;
+    }
+
+    &--disappearing {
+      transition: height 1s ease, opacity 1s ease;
+      height: 0;
+      opacity: 0;
+    }
 
     &--header {
       border-bottom: solid;
@@ -102,7 +118,6 @@
     }
 
     &__list {
-      padding: 8px;
       margin-bottom: 0;
     }
 

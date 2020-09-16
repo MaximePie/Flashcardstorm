@@ -331,14 +331,12 @@ class QuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $questionId
+     * @param Question $question The question we want to delete
      * @return JsonResponse
      */
-    public function destroy(Int $questionId)
+    public function destroy(Question $question)
     {
-        Question::destroy($questionId);
-
-        return response()->json('Success');
+        return response()->json($question->forceDelete());
     }
 
     /**

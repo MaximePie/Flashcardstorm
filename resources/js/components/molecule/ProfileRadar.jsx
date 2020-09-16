@@ -17,7 +17,7 @@ export default function ProfileRadar() {
 
   return (
     <div className="ProfileRadar">
-      {radarDistribution.length > 0 && captions && (
+      {radarDistribution.length > 0 && captions.length && (
         <RadarChart
           captions={captions}
           data={radarDistribution}

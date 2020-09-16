@@ -271,7 +271,7 @@ class User extends Authenticable
         $firstBadge = [
             'wording' => 'Saisir les questions',
             'state' => $this->questions()->count() > 0 ? 'achieved' : 'current',
-            'link' => '/add_question',
+            'link' => '/add',
             'buttonWording' => 'Ajouter des questions',
         ];
 
