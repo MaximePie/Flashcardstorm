@@ -108,7 +108,7 @@ export default function App() {
                 <Route path="/users">
                   <Users />
                 </Route>
-                <Route path="/questions/">
+                <Route path="/questions">
                   <QuestionsList />
                 </Route>
                 <Route path="/about">

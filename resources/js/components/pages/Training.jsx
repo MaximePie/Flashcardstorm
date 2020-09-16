@@ -81,7 +81,7 @@ export default function Training(props) {
               <QuestionCard
                 question={questionsList[0] || undefined}
                 onSubmit={submitAnswer}
-                onSkip={displayNextQuestion}
+                onSkip={handleSkip}
                 key={`QuestionCard-${questionsList[0].id}`}
               />
             </div>
@@ -185,9 +185,34 @@ export default function Training(props) {
 
     server.get(`dailyQuestions${categoryIds ? `/${categoryIds}` : ''}`)
       .then((response) => {
-        updateStateQuestionsList(response.data.questions);
+        const { questions } = response.data;
+        if (questions.length) {
+          updateStateQuestionsList([...response.data.questions]);
+        } else {
+          enqueueSnackbar(
+            <div className="Home__snackbar">
+              Vous n&apos;avez plus de question à laquelle répondre ! Ajoutez-en de nouvelles ou reposez-vous !
+            </div>,
+            {
+              anchorOrigin: {
+                vertical: 'top',
+                horizontal: 'center',
+              },
+              variant: 'success',
+            },
+          );
+        }
         setLoadingState(false);
       });
+  }
+
+  /**
+   * Handle the skip event
+   * Remove the question from the "unwanted" questions for netx loading
+   * and display next question
+   */
+  function handleSkip() {
+    displayNextQuestion();
   }
 
 
