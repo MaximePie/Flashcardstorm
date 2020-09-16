@@ -34,9 +34,11 @@
 
   &__questions-container {
     background-color: white;
-    overflow-y: scroll;
     position: relative;
-    max-height: 70vh;
+
+    @include for-phone-only {
+      max-height: initial;
+    }
   }
 
   &__question {
@@ -50,11 +52,17 @@
     opacity: 1;
 
     @include for-phone-only {
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns: 120px 120px 1fr;
+      grid-column-gap: 4px;
       font-size: 1em;
-      margin: 12px 0;
       padding: 8px 0;
       min-height: 0;
+      height: 100px;
+      border-radius: 0;
+    }
+
+    &-particle {
+      border-right: 1px grey solid;
     }
 
     &--disappearing {
@@ -67,7 +75,7 @@
       border-bottom: solid;
       font-weight: 600;
       position: sticky;
-      top: 0;
+      top: -10px;
       z-index: 10;
     }
   }
@@ -102,7 +110,6 @@
   }
 
   @media screen and (max-width: 767px) {
-    height: calc(100% - 30px);
 
     .MuiFormControlLabel-root {
       margin: 0;
@@ -123,14 +130,6 @@
 
     &__questions-container {
       grid-template-columns: 1fr;
-    }
-
-    &__question {
-      grid-template-columns: none;
-      grid-template-rows: 2fr 1fr;
-      margin: 12px 0;
-      padding: 8px 0;
-      min-height: 200px;
     }
 
     .QuestionsListItem {

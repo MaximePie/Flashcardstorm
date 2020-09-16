@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 import { toLocale } from '../../helper';
 import Icon from '../Icon';
 import { AuthenticationContext } from '../../Contexts/authentication';
+import { viewportContext } from '../../Contexts/viewport';
 
 QuestionsListItem.propTypes = {
   question: PropTypes.shape({
@@ -24,15 +25,14 @@ QuestionsListItem.propTypes = {
   questionKey: PropTypes.number.isRequired,
 };
 
-export default function QuestionsListItem(props) {
+export default function QuestionsListItem({
+  question,
+  questionKey,
+  toggleQuestionForUser,
+  deleteQuestion,
+}) {
   const isConnected = React.useContext(AuthenticationContext);
-
-  const {
-    question,
-    questionKey,
-    toggleQuestionForUser,
-    deleteQuestion,
-  } = props;
+  const isMobile = React.useContext(viewportContext);
 
   return (
     <div
@@ -42,13 +42,17 @@ export default function QuestionsListItem(props) {
     >
       <span>{question.wording}</span>
       <span>{question.answer}</span>
-      <span>{isConnected && question.score && `+${question.score}`}</span>
-      <span>
-        {isConnected && question.next_question_at && `${toLocale(question.next_question_at)}`}
-      </span>
       <span>{questionIcon(question)}</span>
-      <span>{isConnected && question.has_reverse && <i className="fas fa-sync"/>}</span>
-      <span>{questionActions()}</span>
+      {!isMobile && (
+        <>
+          <span>{isConnected && question.score && `+${question.score}`}</span>
+          <span>
+            {isConnected && question.next_question_at && `${toLocale(question.next_question_at)}`}
+          </span>
+          <span>{isConnected && question.has_reverse && <i className="fas fa-sync" />}</span>
+          <span>{questionActions()}</span>
+        </>
+      )}
     </div>
   );
 

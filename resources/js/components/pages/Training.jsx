@@ -133,6 +133,8 @@ export default function Training(props) {
         {isCorrect && (
           <span className="Home__snackbar-score">
               +
+
+            {' '}
             {score}
           </span>
         )}
@@ -215,7 +217,6 @@ export default function Training(props) {
     displayNextQuestion();
   }
 
-
   /**
    * Shift the questions list to display the next one.
    * If the questions list is empty, fills by calling fetchQuestions
@@ -234,6 +235,8 @@ export default function Training(props) {
           {userProgress.daily_progress}
           {' '}
           /
+
+          {' '}
           {userProgress.daily_objective}
         </p>
         <LinearProgress

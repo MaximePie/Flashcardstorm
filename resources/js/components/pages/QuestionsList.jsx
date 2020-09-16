@@ -48,29 +48,7 @@ export default function QuestionsList() {
       <form className="QuestionsList__form">
         <div className="QuestionsList__list">
           <div className="QuestionsList__questions-container">
-            <div
-              key={`question-Header`}
-              className="QuestionsList__question list-group-item card QuestionsList__question--header"
-            >
-              <span>Question</span>
-              <span>Réponse</span>
-              <span>Prochain gain</span>
-              <span>Prochaine question</span>
-              <span>Catégorie</span>
-              <span>Question inversée</span>
-              <span>
-                Actions
-                <Checkbox
-                  onChange={toggleAllQuestions}
-                  value="toggleAll"
-                  color="primary"
-                  inputProps={{
-                    'aria-label': 'secondary checkbox',
-                  }}
-                />
-              </span>
-            </div>
-
+            {questionHeader()}
             {questions?.data?.map(function (question, key) {
               return (
                 <QuestionsListItem
@@ -107,7 +85,7 @@ export default function QuestionsList() {
   function deleteQuestion(id) {
     const deletedQuestion = document.getElementById(`question${id}`);
     if (deletedQuestion) {
-      deletedQuestion.classList.add('QuestionsList__question--disappearing')
+      deletedQuestion.classList.add('QuestionsList__question--disappearing');
     }
     server.get('question/delete/' + id)
       .then(response => {
@@ -188,5 +166,40 @@ export default function QuestionsList() {
     } else {
       return <h2 className="QuestionsList__title">Liste des questions</h2>;
     }
+  }
+
+  /**
+   * Returns the question Header element
+   */
+  function questionHeader() {
+    console.log(isMobile);
+    return (
+      <div
+        key={`question-Header`}
+        className="QuestionsList__question list-group-item card QuestionsList__question--header"
+      >
+        <span className="QuestionList__question-particle">{!isMobile ? 'Question' : <i className="fas fa-question"/>}</span>
+        <span className="QuestionList__question-particle">{!isMobile ? 'Réponse' : <i className="fas fa-lightbulb"/>}</span>
+        <span className="QuestionList__question-particle">{!isMobile ? 'Catégorie' : <i className="fas fa-box-open"/>}</span>
+        {!isMobile && (
+          <>
+            <span className="QuestionList__question-particle">Prochain gain</span>
+            <span className="QuestionList__question-particle"> Prochaine question</span>
+            <span className="QuestionList__question-particle">Question inversée</span>
+            <span className="QuestionList__question-particle">
+              Actions
+              <Checkbox
+                onChange={toggleAllQuestions}
+                value="toggleAll"
+                color="primary"
+                inputProps={{
+                  'aria-label': 'secondary checkbox',
+                }}
+              />
+            </span>
+          </>
+        )}
+      </div>
+    );
   }
 }

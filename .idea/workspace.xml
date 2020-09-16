@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="fix(front): Fix Roughtraining page">
+      <change beforePath="$PROJECT_DIR$/.idea/Flashcardstorm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Flashcardstorm.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/questions/3zAkjYzS6qOlPH5U9cI9d4PJvPC6VOptmje0yqGZ.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/questionsImages/3zAkjYzS6qOlPH5U9cI9d4PJvPC6VOptmje0yqGZ.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/QuestionsListItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/QuestionsListItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Training.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Training.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/Home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Home.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/QuestionsList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/QuestionsList.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -379,7 +381,7 @@
       <workItem from="1599978987849" duration="6659000" />
       <workItem from="1600014304508" duration="240000" />
       <workItem from="1600161847018" duration="624000" />
-      <workItem from="1600247628108" duration="5406000" />
+      <workItem from="1600247628108" duration="8381000" />
     </task>
     <task id="LOCAL-00001" summary="feat(front): Add new tolerated character">
       <created>1599641867669</created>
@@ -395,7 +397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599982716932</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix(front): Fix redirection problem after refresh on questions list page">
+      <created>1600253250508</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1600253250508</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -407,7 +416,8 @@
     </ignored-roots>
     <MESSAGE value="feat(front): Add new tolerated character" />
     <MESSAGE value="fix(front): Fix Roughtraining page" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(front): Fix Roughtraining page" />
+    <MESSAGE value="fix(front): Fix redirection problem after refresh on questions list page" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(front): Fix redirection problem after refresh on questions list page" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="108" key="#ESLint" timestamp="1593341264765">
@@ -426,10 +436,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593329339953" />
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600248673644">
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600253246942">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600248673644" />
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600253246942" />
     <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1599642535747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -474,21 +484,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600014306880" />
-    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1600252553910">
+    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1600260975364">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600252553910" />
+    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600260975364" />
     <state x="601" y="246" width="700" height="530" key="recent.locations.popup" timestamp="1596103847543">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="601" y="246" width="700" height="530" key="recent.locations.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596103847543" />
-    <state x="624" y="235" width="896" height="819" key="run.anything.popup" timestamp="1596104000265">
+    <state x="624" y="235" width="896" height="819" key="run.anything.popup" timestamp="1600259332193">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1596104000265" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1600252821146">
+    <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600259332193" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1600261003596">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600252821146" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600261003596" />
   </component>
 </project>
