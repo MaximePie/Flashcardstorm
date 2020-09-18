@@ -38,6 +38,7 @@ use Storage;
  * @property-read int|null $users_count
  * @property bool is_reverse
  * @property string image_path
+ * @property int|null reverse_question_id
  * @method static Builder|Question newModelQuery()
  * @method static Builder|Question newQuery()
  * @method static Builder|Question query()

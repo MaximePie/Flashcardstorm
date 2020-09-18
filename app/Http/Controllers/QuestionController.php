@@ -44,7 +44,7 @@ class QuestionController extends Controller
                 }
             }
 
-            if ($question->revertedQuestion()->count()) {
+            if ($question->revertedQuestion()->exists()) {
                 $question['has_reverse'] = true;
             }
         });
@@ -326,6 +326,7 @@ class QuestionController extends Controller
      */
     public function update(Request $request)
     {
+        /** @var Question $question */
         $question = Question::findOrFail($request->get('questionId'));
         $answer = Answer::findOrFail($question->answer_id);
         $answer->update(['wording' => $request->answer]);
@@ -337,8 +338,13 @@ class QuestionController extends Controller
             'is_mcq' => $answer->additional_answers !== null,
         ]);
 
-        if ($request->shouldHaveReverseQuestion) {
+        if ($request->shouldHaveReverseQuestion && !$question->revertedQuestion()->exists()) {
             $question->createReverseQuestion();
+        }
+
+        if (!$request->shouldHaveReverseQuestion && $question->revertedQuestion()->exists()) {
+            $reverseQuestion = Question::query()->where('reverse_question_id', $question->id);
+            $reverseQuestion->forceDelete();
         }
 
         $user = Auth::user();
