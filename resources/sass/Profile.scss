@@ -26,6 +26,9 @@
 
     @include for-phone-only {
       padding: 8px;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
     }
   }
 
@@ -40,6 +43,10 @@
       display: grid;
       grid-template-columns: 200px 250px;
       margin-left: 16px;
+
+      @include for-phone-only {
+        grid-template-columns: 100px 150px;
+      }
     }
 
     &-input-container {
@@ -59,7 +66,7 @@
       padding: 16px;
 
       @include for-phone-only {
-        margin: 8px;
+        margin: 8px 0 0;
         padding: 8px;
       }
 
@@ -73,7 +80,7 @@
           font-weight: 600;
 
           @include for-phone-only {
-            grid-template-columns: 1fr 50px;
+            grid-template-columns: 1fr 100px;
           }
 
           &--header {
@@ -88,7 +95,7 @@
 
         &-details {
           justify-self: center;
-          width: 80px;
+          //width: 80px;
 
           &--memorized {
             color: green;

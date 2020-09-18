@@ -5,10 +5,11 @@ import {
 } from 'recharts';
 import moment from 'moment';
 import LoadingSpinner from '../atom/LoadingSpinner';
-import { isMobile } from '../../helper';
 import server from '../../server';
+import { viewportContext } from '../../Contexts/viewport';
 
 export default function ProfileDataContainer() {
+  const isMobile = React.useContext(viewportContext);
   const [isLoading, setLoadingState] = React.useState(false);
   const [statistics, setStatistics] = React.useState(undefined);
 
@@ -82,8 +83,8 @@ export default function ProfileDataContainer() {
    * @returns {number}
    */
   function lineChartSize(dimension) {
-    if (isMobile()) {
-      return 280;
+    if (isMobile) {
+      return dimension === 'width' ? 340 : 280;
     }
 
     return dimension === 'width' ? 800 : 400;

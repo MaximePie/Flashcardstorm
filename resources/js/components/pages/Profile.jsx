@@ -8,10 +8,11 @@ import ProfileDataContainer from '../molecule/ProfileDataContainer';
 import ProfileDailyObjective from '../molecule/ProfileDailyObjective';
 import ProfileAchievements from '../molecule/ProfileAchievements';
 import ProfileRadar from '../molecule/ProfileRadar';
-import { isMobile } from '../../helper';
+import { viewportContext } from '../../Contexts/viewport';
 
 
 export default function Profile() {
+  const isMobile = React.useContext(viewportContext);
   const [user, setUser] = React.useState(undefined);
   const [loading, setLoadingState] = React.useState(false);
   const [questions, setMemorizedQuestions] = React.useState([]);
@@ -45,7 +46,8 @@ export default function Profile() {
           </h3>
           <div className="Profile__questions-input-container">
             <label className="Profile__questions-input-label">
-              Afficher les questions inverses
+              {!isMobile && 'Afficher les questions inverses'}
+              {isMobile && 'Questions inverses'}
             </label>
             <input
               type="checkbox"
@@ -75,13 +77,13 @@ export default function Profile() {
                         }`
                       }
                     >
-                      {!isMobile() && (
+                      {!isMobile && (
                         <div>
                           {question.isMemorized ? 'Mémorisée' : 'En cours'}
                           <LinearProgress value={question.current_delay * 10} variant="determinate" />
                         </div>
                       )}
-                      {isMobile() && (
+                      {isMobile && (
                         question.isMemorized ? <i className="fas fa-check" /> : <i className="fas fa-clock" />
                       )}
                     </span>

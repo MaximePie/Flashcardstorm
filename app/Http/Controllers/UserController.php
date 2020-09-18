@@ -130,7 +130,8 @@ class UserController extends Controller
         $user = Auth::user();
         if ($user) {
             $categories = Category::All()->whereIn('id', $user->questions()->pluck('category_id'));
-            $categoriesData = [];
+            $accomplishedQuestionsData = [];
+            $previewedQuestionsData = [];
             $captions = [];
 
             foreach ($categories as $category) {
@@ -146,17 +147,25 @@ class UserController extends Controller
                 $numberOfQuestionsInThisCategory = Question::where('category_id', $category->id)
                     ->count();
                 if ($numberOfUserQuestionsInThisCategory) {
-                    $category['index'] = $numberOfMemorizedQuestionsInThisCategory / $numberOfUserQuestionsInThisCategory;
-                    $categoriesData[$category->name] = $category['index'];
-                    $captions[$category->name] = $category->name . '( '. $numberOfMemorizedQuestionsInThisCategory .' )';
+                    $category['index'] = $numberOfMemorizedQuestionsInThisCategory / 100;
+                    $accomplishedQuestionsData[$category->name] = $category['index'];
+                    $category['index'] = $numberOfUserQuestionsInThisCategory / 100;
+                    $previewedQuestionsData[$category->name] = $category['index'];
+                    $captions[$category->name] = $category->name . '( ' . $numberOfMemorizedQuestionsInThisCategory . ' )';
                 }
             }
-            $data = [
-            "data" => $categoriesData,
-            "meta" => [ "color" => 'blue' ],
-          ];
+            $formatedAchievedData = [
+                "data" => $accomplishedQuestionsData,
+                "meta" => ["color" => 'blue'],
+            ];
+
+            $formatedPreviewedData = [
+                "data" => $previewedQuestionsData,
+                "meta" => ["color" => 'orange'],
+            ];
+
             return response()->json([
-                "radarData" => $data,
+                "radarData" => [$formatedAchievedData, $formatedPreviewedData],
                 "captionsData" => $captions,
             ]);
         }

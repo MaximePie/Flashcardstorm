@@ -3,8 +3,10 @@ import RadarChart from 'react-svg-radar-chart';
 import 'react-svg-radar-chart/build/css/index.css';
 
 import server from '../../server';
+import { viewportContext } from '../../Contexts/viewport';
 
 export default function ProfileRadar() {
+  const isMobile = React.useContext(viewportContext);
   const [radarDistribution, setRadarDistribution] = React.useState([]);
   const [captions, setCaptions] = React.useState(undefined);
 
@@ -12,16 +14,14 @@ export default function ProfileRadar() {
     fetchRadarDistribution();
   }, []);
 
-  console.log(radarDistribution);
-  console.log(captions);
-
   return (
     <div className="ProfileRadar">
-      {radarDistribution.length > 0 && captions.length && (
+      <h2>Répartition de la progression</h2>
+      {radarDistribution.length && captions && (
         <RadarChart
           captions={captions}
           data={radarDistribution}
-          size={450}
+          size={isMobile ? 350 : 450}
         />
       )}
     </div>
@@ -36,7 +36,7 @@ export default function ProfileRadar() {
         const { radarData, captionsData } = response.data;
         if (radarData && captionsData) {
           setCaptions(captionsData);
-          setRadarDistribution([radarData]);
+          setRadarDistribution(radarData);
         }
       });
   }
