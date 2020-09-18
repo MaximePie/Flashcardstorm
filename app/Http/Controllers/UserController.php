@@ -114,6 +114,7 @@ class UserController extends Controller
                 'score' => $user->score,
                 'number_of_new_changelogs' => $user->unreadNotifications()->count(),
                 'number_of_questions' => $user->dailyQuestions()->count(),
+                'userId' => $user->id,
             ]);
         }
     }

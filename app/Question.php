@@ -79,7 +79,8 @@ class Question extends Model
         'last_answered_at',
         'next_question_at',
         'reverse_question_id',
-        'image_path'
+        'image_path',
+        'user_id',
     ];
 
     /**

@@ -206,6 +206,7 @@ class QuestionController extends Controller
             $answer->additional_answers = $additionalAnswers;
         }
         $answer->save();
+        $user = Auth::user();
 
         $question = Question::create([
             'wording' => $request->question ?? null,
@@ -226,8 +227,8 @@ class QuestionController extends Controller
             $question->createReverseQuestion();
         }
 
-        $user = Auth::user();
         if ($user) {
+            $question->update(['user_id' => $user->id]);
             Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
         }
 

@@ -24,13 +24,14 @@ QuestionDetailsDialog.propTypes = {
       name: PropTypes.string,
     }),
   }).isRequired,
+  canUpdate: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 
 export default function QuestionDetailsDialog({
-  onClose, question, onUpdate, onDelete, categories
+  onClose, question, onUpdate, onDelete, categories, canUpdate
 }) {
   const { enqueueSnackbar } = useSnackbar();
 
@@ -42,25 +43,9 @@ export default function QuestionDetailsDialog({
 
   return (
     <Dialog open onClose={onClose} className="QuestionDetailsDialog">
-      <DialogTitle className="QuestionDetailsDialog__header">
-        <input
-          className="QuestionDetailsDialog__text-input"
-          type="text"
-          onChange={(event) => setQuestionWording(event.target.value)}
-          value={questionWording}
-        />
-        <i className="QuestionDetailsDialog__delete-button fas fa-trash" onClick={deleteQuestion}/>
-        <CloseIcon className="QuestionDetailsDialog__close-button" onClick={onClose}/>
-      </DialogTitle>
+      {header()}
       <DialogContent className="QuestionDetailsDialog__content">
-        <span className="QuestionDetailsDialog__answer">
-          <input
-            className="QuestionDetailsDialog__text-input QuestionDetailsDialog__text-input--secondary"
-            type="text"
-            onChange={(event) => setQuestionAnswer(event.target.value)}
-            value={questionAnswer}
-          />
-        </span>
+        {answer()}
         <div className="QuestionDetailsDialog__actions">
           <div className="QuestionDetailsDialog__field">
             <FormControlLabel
@@ -73,36 +58,8 @@ export default function QuestionDetailsDialog({
               label="Apprendre cette question"
             />
           </div>
-          <div className="QuestionDetailsDialog__field">
-            <RadioGroup
-              className="Addknowledge__radiogroup"
-              aria-label="Catégorie"
-              name="category"
-              value={selectedCategory}
-              onChange={(event) => setSelectedCategory(parseInt(event.target.value, 10))}
-            >
-              <FormControlLabel value={0} control={<Radio/>} label="Sans catégorie"/>
-              {categories && categories.map((category) => (
-                <FormControlLabel
-                  key={`category-${category.id}`}
-                  value={category.id}
-                  control={<Radio/>}
-                  label={category.name}
-                />
-              ))}
-            </RadioGroup>
-          </div>
-          <div className="QuestionDetailsDialog__field">
-            <FormControlLabel
-              control={(
-                <Switch
-                  checked={hasReverseQuestion}
-                  onChange={() => setHasReverseQuestion(!hasReverseQuestion)}
-                />
-              )}
-              label="Question inverse"
-            />
-          </div>
+          {categoriesField()}
+          {invertedQuestionField()}
         </div>
       </DialogContent>
       <DialogActions>
@@ -111,6 +68,101 @@ export default function QuestionDetailsDialog({
       </DialogActions>
     </Dialog>
   );
+
+  /**
+   * Display the header
+   * returns JSX Component
+   */
+  function header() {
+    return (
+      <DialogTitle className="QuestionDetailsDialog__header">
+        <input
+          className="QuestionDetailsDialog__text-input"
+          type="text"
+          onChange={(event) => setQuestionWording(event.target.value)}
+          value={questionWording}
+          disabled={!canUpdate}
+        />
+        {canUpdate &&
+          <i className="QuestionDetailsDialog__delete-button fas fa-trash" onClick={deleteQuestion}/>
+        }
+        <CloseIcon className="QuestionDetailsDialog__close-button" onClick={onClose}/>
+      </DialogTitle>
+    );
+  }
+
+  /**
+   * Displays the Answer of the question
+   * returns JSX Component
+   */
+  function answer() {
+    return (
+      <span className="QuestionDetailsDialog__answer">
+        {canUpdate ? (
+          <input
+            className="QuestionDetailsDialog__text-input QuestionDetailsDialog__text-input--secondary"
+            type="text"
+            onChange={(event) => setQuestionAnswer(event.target.value)}
+            value={questionAnswer}
+          />
+        ) : (
+          <div>
+            {questionAnswer}
+          </div>
+        )}
+      </span>
+    );
+  }
+
+  /**
+   * Display the categories field component
+   */
+  function categoriesField() {
+    if (canUpdate) {
+      return (
+        <div className="QuestionDetailsDialog__field">
+          <RadioGroup
+            className="Addknowledge__radiogroup"
+            aria-label="Catégorie"
+            name="category"
+            value={selectedCategory}
+            onChange={(event) => setSelectedCategory(parseInt(event.target.value, 10))}
+          >
+            <FormControlLabel value={0} control={<Radio/>} label="Sans catégorie"/>
+            {categories && categories.map((category) => (
+              <FormControlLabel
+                key={`category-${category.id}`}
+                value={category.id}
+                control={<Radio/>}
+                label={category.name}
+              />
+            ))}
+          </RadioGroup>
+        </div>
+      )
+    }
+  }
+
+  /**
+   * Returns the invertedQuestionField
+   */
+  function invertedQuestionField() {
+    if (canUpdate) {
+      return (
+        <div className="QuestionDetailsDialog__field">
+          <FormControlLabel
+            control={(
+              <Switch
+                checked={hasReverseQuestion}
+                onChange={() => setHasReverseQuestion(!hasReverseQuestion)}
+              />
+            )}
+            label="Question inverse"
+          />
+        </div>
+      )
+    }
+  }
 
   /**
    * Call the delete route for the given question
@@ -131,17 +183,18 @@ export default function QuestionDetailsDialog({
       category: selectedCategory,
       question: questionWording,
       answer: questionAnswer,
-    }).then(() => {
-      enqueueSnackbar(
-        'Votre sélection a bien été enregistrée !', {
-          variant: 'success',
-          anchorOrigin: {
-            vertical: 'top',
-            horizontal: 'center',
-          }
-        }
-      );
-      onUpdate();
     })
+      .then(() => {
+        enqueueSnackbar(
+          'Votre sélection a bien été enregistrée !', {
+            variant: 'success',
+            anchorOrigin: {
+              vertical: 'top',
+              horizontal: 'center',
+            }
+          }
+        );
+        onUpdate();
+      });
   }
 }

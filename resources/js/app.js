@@ -71,7 +71,7 @@ export default function App() {
   };
 
   return (
-    <AuthenticationContext.Provider value={isConnected}>
+    <AuthenticationContext.Provider value={{ isConnected, userId: user?.id }}>
       <viewportContext.Provider value={isMobile}>
         <SnackbarProvider
           {...snackbarConfig}
@@ -156,6 +156,7 @@ export default function App() {
         const {
           number_of_questions: numberOfQuestions,
           number_of_new_changelogs: numberOfNewChangelogs,
+          userId,
         } = response.data;
         const newUser = {};
         if (!user) {
@@ -172,6 +173,8 @@ export default function App() {
         if (window.location.pathname !== '/about') {
           newUser.numberOfNewChangelogs = numberOfNewChangelogs;
         }
+
+        newUser.id = userId;
 
         setUser(newUser);
       });

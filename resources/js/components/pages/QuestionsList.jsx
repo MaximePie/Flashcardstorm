@@ -13,24 +13,18 @@ import { viewportContext } from '../../Contexts/viewport';
 import QuestionDetailsDialog from '../molecule/QuestionDetailsDialog';
 
 export default function QuestionsList() {
-  const isConnected = React.useContext(AuthenticationContext);
+  const { isConnected, userId } = React.useContext(AuthenticationContext);
   const isMobile = React.useContext(viewportContext);
   const { enqueueSnackbar } = useSnackbar();
 
   const [questions, setQuestions] = React.useState();
   const [categories, setCategories] = React.useState([]);
 
-
   const [switchStatus, setSwitchStatus] = React.useState(false);
   const [questionDetailsModalState, setQuestionDetailsModalState] = React.useState({
     question: undefined,
     isOpen: false,
   });
-
-  React.useEffect(() => {
-    document.getElementById('App').style.background = 'content-box no-repeat url("../images/registerbackground.jpeg")';
-    document.getElementById('App').style.backgroundSize = 'cover';
-  }, []);
 
   React.useEffect(() => {
     fetchQuestions();
@@ -42,7 +36,6 @@ export default function QuestionsList() {
   useEffect(() => {
     fetchCategories();
   }, []);
-
 
   return (
     <div className="QuestionsList">
@@ -66,6 +59,7 @@ export default function QuestionsList() {
               onUpdate={handleQuestionUpdate}
               onDelete={deleteQuestion}
               categories={categories}
+              canUpdate={userId === questionDetailsModalState.question.user_id}
             />
           )}
           <div className="QuestionsList__questions-container">
