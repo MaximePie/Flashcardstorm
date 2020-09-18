@@ -6,7 +6,7 @@ import server from '../../server';
 import LoadingSpinner from '../atom/LoadingSpinner';
 import ProfileDataContainer from '../molecule/ProfileDataContainer';
 import ProfileDailyObjective from '../molecule/ProfileDailyObjective';
-import ProfileAchievements from '../molecule/ProfileAchievements';
+import ProfileAchievementsCard from '../molecule/ProfileAchievementsCard';
 import ProfileRadar from '../molecule/ProfileRadar';
 import { viewportContext } from '../../Contexts/viewport';
 
@@ -36,7 +36,7 @@ export default function Profile() {
           <ProfileDataContainer />
         </div>
         <div className="Profile__achievements-row">
-          <ProfileAchievements />
+          <ProfileAchievementsCard />
           <ProfileRadar />
         </div>
         <div className="Profile__questions-header-row">

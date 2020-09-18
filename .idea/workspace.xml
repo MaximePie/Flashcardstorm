@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/atom/ProfileAchievement.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sass/atoms/ProfileAchievement.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/ProfileDataContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/ProfileDataContainer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/ProfileRadar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/ProfileRadar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/ProfileAchievements.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/ProfileAchievementsCard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/Profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Profile.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/molecules/ProfileRadar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/molecules/ProfileRadar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/imports.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/imports.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -395,7 +394,7 @@
       <workItem from="1600161847018" duration="624000" />
       <workItem from="1600247628108" duration="17807000" />
       <workItem from="1600320430616" duration="15002000" />
-      <workItem from="1600415102692" duration="15580000" />
+      <workItem from="1600415102692" duration="16223000" />
     </task>
     <task id="LOCAL-00001" summary="feat(front): Add new tolerated character">
       <created>1599641867669</created>
@@ -453,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600434037276</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat(front): Add responsive design on profile page">
+      <created>1600439977457</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1600439977457</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,7 +476,8 @@
     <MESSAGE value="feat(front): Add questionUser edition form" />
     <MESSAGE value="feat(back): Increase roughtraining questions limit" />
     <MESSAGE value="feat(back): Add the feature to remove reverse questions" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(back): Add the feature to remove reverse questions" />
+    <MESSAGE value="feat(front): Add responsive design on profile page" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(front): Add responsive design on profile page" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="108" key="#ESLint" timestamp="1593341264765">
@@ -489,10 +496,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593329339953" />
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600434035599">
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600439974932">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600434035599" />
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600439974932" />
     <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1599642535747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -521,10 +528,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="588" y="207" width="720" height="634" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1596880730526" />
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1600434039205">
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1600439979357">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600434039205" />
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600439979357" />
     <state x="540" y="176" key="com.intellij.database.dbimport.ImportDialog" timestamp="1596889431619">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

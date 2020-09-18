@@ -1,0 +1,38 @@
+.ProfileAchievement {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  margin: 64px 16px;
+  height: 32px;
+  align-items: center;
+
+  @include for-phone-only {
+    grid-template-columns: none;
+    grid-template-rows: 50px 50px 50px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 128px;
+  }
+
+  &--current {
+    .ProfileAchievement__circle {
+      border: solid orange;
+    }
+  }
+
+  &--achieved {
+    .ProfileAchievement__circle {
+      border: solid limegreen;
+    }
+  }
+
+  &__circle {
+    border: solid grey;
+    border-radius: 100px;
+    width: 60px;
+    height: 60px;
+
+    @include for-phone-only {
+      justify-self: center;
+    }
+  }
+}
