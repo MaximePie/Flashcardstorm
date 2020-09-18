@@ -1,16 +1,28 @@
 .ProfileAchievement {
   display: grid;
-  grid-template-columns: auto 1fr 1fr;
-  margin: 64px 16px;
-  height: 32px;
+  grid-template-columns: auto 50px 1fr 1fr;
+  padding: 16px 16px;
+  height: 100px;
   align-items: center;
+
+  cursor: pointer;
+  transition: background-color 250ms;
 
   @include for-phone-only {
     grid-template-columns: none;
-    grid-template-rows: 50px 50px 50px;
+    grid-template-rows: 50px 50px 50px 50px;
     align-items: center;
     justify-content: center;
     margin-bottom: 128px;
+  }
+
+  &:hover {
+    transition: background-color 250ms;
+    background-color: #d2d2d2;
+  }
+
+  &__details-trigger {
+    font-size: 1.25em;
   }
 
   &--current {

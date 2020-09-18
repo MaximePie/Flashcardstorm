@@ -15,7 +15,7 @@ export default function CloseIcon(props) {
 
   return (
     <i
-      className={`fas fa-times ${className}`}
+      className={`CloseIcon fas fa-times ${className}`}
       onClick={onClick}
     />
   );

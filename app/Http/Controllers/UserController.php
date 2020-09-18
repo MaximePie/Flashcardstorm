@@ -147,9 +147,9 @@ class UserController extends Controller
                 $numberOfQuestionsInThisCategory = Question::where('category_id', $category->id)
                     ->count();
                 if ($numberOfUserQuestionsInThisCategory) {
-                    $category['index'] = $numberOfMemorizedQuestionsInThisCategory / 100;
+                    $category['index'] = $numberOfMemorizedQuestionsInThisCategory / 1000;
                     $accomplishedQuestionsData[$category->name] = $category['index'];
-                    $category['index'] = $numberOfUserQuestionsInThisCategory / 100;
+                    $category['index'] = $numberOfUserQuestionsInThisCategory / 1000;
                     $previewedQuestionsData[$category->name] = $category['index'];
                     $captions[$category->name] = $category->name . '( ' . $numberOfMemorizedQuestionsInThisCategory . ' )';
                 }

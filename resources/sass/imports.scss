@@ -25,6 +25,7 @@ Import scss basics
 @import 'Snackbar';
 @import 'atoms/LoadingSpinner';
 @import 'atoms/ProfileAchievement';
+@import 'atoms/ProfileAchievement';
 @import 'QuestionDetailsDialog';
 
 /**
@@ -34,3 +35,4 @@ Importing molecules
 @import 'molecules/ProfileAchievements';
 @import 'molecules/ProfileDailyObjective';
 @import 'molecules/ProfileRadar';
+@import 'molecules/AchievementDialog';
