@@ -170,7 +170,7 @@ class QuestionController extends Controller
             $questions = $questions
                 ->orderBy('reverse_question_id')
                 ->inRandomOrder()
-                ->limit(30)
+                ->limit(80)
                 ->get();
             if ($questions) {
                 $questions->each(static function (QUESTION &$question) use ($user) {
