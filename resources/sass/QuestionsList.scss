@@ -50,6 +50,7 @@
     padding: 4px;
     height: 40px;
     opacity: 1;
+    cursor: pointer;
 
     @include for-phone-only {
       grid-template-columns: 120px 120px 1fr;

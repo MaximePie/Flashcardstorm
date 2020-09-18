@@ -51,6 +51,7 @@ Route::name('api.')->group(static function () {
             Route::post('mnemonics', 'MnemonicController@store');
             Route::post('question_import', 'QuestionController@import');
             Route::post('quest_attack', 'QuestEntityController@attack');
+            Route::post('question/update', 'QuestionController@update');
 
             Route::get('showQuestion/{question}', 'QuestionController@show');
             Route::get('question/{mode}', 'QuestionController@randomQuestion');

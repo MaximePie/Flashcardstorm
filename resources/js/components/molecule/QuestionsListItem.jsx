@@ -22,6 +22,7 @@ QuestionsListItem.propTypes = {
   }).isRequired,
   deleteQuestion: PropTypes.func.isRequired,
   toggleQuestionForUser: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
   questionKey: PropTypes.number.isRequired,
 };
 
@@ -30,6 +31,7 @@ export default function QuestionsListItem({
   questionKey,
   toggleQuestionForUser,
   deleteQuestion,
+  handleClick,
 }) {
   const isConnected = React.useContext(AuthenticationContext);
   const isMobile = React.useContext(viewportContext);
@@ -39,6 +41,7 @@ export default function QuestionsListItem({
       key={`question${question.id}`}
       className="QuestionsList__question list-group-item card"
       id={`question${question.id}`}
+      onClick={handleClick}
     >
       <span>{question.wording}</span>
       <span>{question.answer}</span>

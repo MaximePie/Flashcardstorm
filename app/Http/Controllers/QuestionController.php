@@ -320,12 +320,45 @@ class QuestionController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param Question $question
-     * @return void
+     * @return JsonResponse
+     * @throws Exception
      */
-    public function update(Request $request, Question $question)
+    public function update(Request $request)
     {
-        //
+        $question = Question::findOrFail($request->get('questionId'));
+        $answer = Answer::findOrFail($question->answer_id);
+        $answer->update(['wording' => $request->answer]);
+
+        $question->update([
+            'wording' => $request->question ?? null,
+            'answer_id' => $answer->id,
+            'category_id' => $request->category ?: null,
+            'is_mcq' => $answer->additional_answers !== null,
+        ]);
+
+        if ($request->shouldHaveReverseQuestion) {
+            $question->createReverseQuestion();
+        }
+
+        $user = Auth::user();
+        if ($user) {
+            /** @var Question_user $existingQuestionUser */
+            $existingQuestionUser = Question_user::findFromTuple($question->id, $user->id)->first();
+            if ($existingQuestionUser) {
+                if (!$request->get('isSetForUser')) {
+                    $existingQuestionUser->forceDelete();
+                }
+            } else {
+                if ($request->get('isSetForUser')) {
+                    $questionUser = Question_user::create(['user_id' => $user->id, 'question_id' => $question->id]);
+                }
+            }
+        }
+
+        return response()->json([
+            'Question' => Question::find($question->id),
+            'QuestionUser' => $questionUser ?? 'Pas de question User',
+        ]);
     }
 
     /**

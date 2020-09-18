@@ -10,7 +10,6 @@ import csv from 'csv';
 import { Checkbox } from '@material-ui/core';
 import server from '../../server';
 import Button from '../atom/Button';
-import { isMobile } from '../../helper';
 
 export default function AddKnowledge() {
   const [form, setForm] = React.useState({
@@ -21,12 +20,12 @@ export default function AddKnowledge() {
   });
 
   const [fieldsAmount, setFieldsAmount] = React.useState(0);
-  const [categories, updateCategories] = React.useState(undefined);
+  const [categories, setCategories] = React.useState(undefined);
   const [image, setImage] = React.useState(undefined);
   const [selectedCategory, setSelectedCategory] = React.useState(0);
 
   React.useEffect(() => {
-    updateCategoriesList();
+    fetchCategories();
   }, []);
 
   const { enqueueSnackbar } = useSnackbar();
@@ -196,9 +195,6 @@ export default function AddKnowledge() {
       additionnalAnswers += `${explodedAdditionnalAnswers[i]},`;
     }
 
-    console.log(image);
-    console.log(form.question);
-
     // Sending main question data
     server.post('question',
       {
@@ -236,10 +232,13 @@ export default function AddKnowledge() {
       });
   }
 
-  function updateCategoriesList() {
+  /**
+   * Fetch the categories and set it
+   */
+  function fetchCategories() {
     server.get('categories')
       .then((response) => {
-        updateCategories(response.data.categories);
+        setCategories(response.data.categories);
       });
   }
 

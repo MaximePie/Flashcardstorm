@@ -25,6 +25,7 @@ export default function Button({
     'Button btn btn-primary': true,
     'Button--big': variant === 'big',
     'Button--small': variant === 'small',
+    'Button--secondary': variant === 'secondary',
     'Button--disabled': isDisabled,
     'Button--inactive': variant === 'inactive',
   }, className);

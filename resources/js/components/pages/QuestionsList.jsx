@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import server from '../../server';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
@@ -10,15 +10,22 @@ import Checkbox from '@material-ui/core/Checkbox';
 import QuestionsListItem from '../molecule/QuestionsListItem';
 import { AuthenticationContext } from '../../Contexts/authentication';
 import { viewportContext } from '../../Contexts/viewport';
+import QuestionDetailsDialog from '../molecule/QuestionDetailsDialog';
 
 export default function QuestionsList() {
   const isConnected = React.useContext(AuthenticationContext);
   const isMobile = React.useContext(viewportContext);
-
-  const [questions, setQuestions] = React.useState();
   const { enqueueSnackbar } = useSnackbar();
 
+  const [questions, setQuestions] = React.useState();
+  const [categories, setCategories] = React.useState([]);
+
+
   const [switchStatus, setSwitchStatus] = React.useState(false);
+  const [questionDetailsModalState, setQuestionDetailsModalState] = React.useState({
+    question: undefined,
+    isOpen: false,
+  });
 
   React.useEffect(() => {
     document.getElementById('App').style.background = 'content-box no-repeat url("../images/registerbackground.jpeg")';
@@ -31,6 +38,11 @@ export default function QuestionsList() {
 
   React.useEffect(() => {
   }, [questions?.data]);
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
 
   return (
     <div className="QuestionsList">
@@ -47,6 +59,15 @@ export default function QuestionsList() {
       </div>
       <form className="QuestionsList__form">
         <div className="QuestionsList__list">
+          {questionDetailsModalState.isOpen && (
+            <QuestionDetailsDialog
+              question={questionDetailsModalState.question}
+              onClose={closeModal}
+              onUpdate={handleQuestionUpdate}
+              onDelete={deleteQuestion}
+              categories={categories}
+            />
+          )}
           <div className="QuestionsList__questions-container">
             {questionHeader()}
             {questions?.data?.map(function (question, key) {
@@ -57,6 +78,7 @@ export default function QuestionsList() {
                   deleteQuestion={deleteQuestion}
                   toggleQuestionForUser={toggleQuestionForUser}
                   key={'question-' + key}
+                  handleClick={() => setQuestionDetailsModalState({question, isOpen: true})}
                 />
               );
             })}
@@ -88,9 +110,7 @@ export default function QuestionsList() {
       deletedQuestion.classList.add('QuestionsList__question--disappearing');
     }
     server.get('question/delete/' + id)
-      .then(response => {
-        fetchQuestions();
-      });
+      .then(fetchQuestions);
   }
 
   /**
@@ -98,7 +118,7 @@ export default function QuestionsList() {
    */
   function saveSelection() {
     server.post('question/toggle', { questions: questions.data })
-      .then(response => {
+      .then(() => {
         enqueueSnackbar('Votre sélection a bien été enregistrée !', {
           variant: 'success',
           anchorOrigin: {
@@ -158,6 +178,42 @@ export default function QuestionsList() {
   }
 
   /**
+   * Close the modal of the question details
+   */
+  function closeModal() {
+    setQuestionDetailsModalState({
+      ...questionDetailsModalState,
+      isOpen: false,
+    })
+  }
+
+  /**
+   * Update the questions list and close the modal
+   */
+  function handleQuestionUpdate() {
+    closeModal();
+    fetchQuestions();
+  }
+
+
+  /**
+   * Fetch the categories and set it
+   */
+  function fetchCategories() {
+    server.get('categories')
+      .then((response) => {
+        const { categories: categoriesList } = response.data;
+        if (categoriesList) {
+          setCategories(categoriesList);
+        }
+      });
+  }
+
+  /**
+   * COMPONENTS GENERATORS PART
+   */
+
+  /**
    * Returns the header of the page
    */
   function header() {
@@ -172,7 +228,6 @@ export default function QuestionsList() {
    * Returns the question Header element
    */
   function questionHeader() {
-    console.log(isMobile);
     return (
       <div
         key={`question-Header`}

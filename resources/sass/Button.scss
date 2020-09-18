@@ -5,10 +5,16 @@
     width: 250px;
 
     &--secondary {
-        color: grey !important;
+        color: grey;
         outline: none;
         border: none;
         -webkit-appearance: inherit;
+        background: white;
+
+        &:hover {
+            background: white;
+            color: #9c9c9c;
+        }
     }
 
     &--big {

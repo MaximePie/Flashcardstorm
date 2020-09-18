@@ -1,0 +1,38 @@
+.QuestionDetailsDialog {
+
+  &__header {
+    text-align: center;
+  }
+
+  &__delete-button, &__close-button {
+    margin: 0 8px;
+    cursor: pointer;
+  }
+
+  &__text-input {
+    border: none;
+    outline: none;
+    border-bottom: solid 1px grey;
+    padding: 4px 8px;
+    margin: 0 8px;
+
+    &--secondary {
+      width: 80%;
+    }
+  }
+
+  &__answer {
+    display: flex;
+    align-items: center;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 8px;
+  }
+
+  &__actions {
+
+  }
+}

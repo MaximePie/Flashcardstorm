@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="fix(front): Fix Roughtraining page">
-      <change beforePath="$PROJECT_DIR$/.idea/Flashcardstorm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Flashcardstorm.iml" afterDir="false" />
+    <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="feat(front): Add questionUser edition form">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/molecule/QuestionDetailsDialog.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sass/QuestionDetailsDialog.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_11_25_202742_create_question_user_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_11_25_202742_create_question_user_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/atom/Button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/atom/Button.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/QuestionsListItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/QuestionsListItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/AddKnowledge.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/AddKnowledge.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Training.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Training.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/Home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Home.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/Button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Button.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/QuestionsList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/QuestionsList.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/imports.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/imports.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +45,11 @@
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="heroku_d9e51ae94c19231@eu-cdbr-west-02.cleardb.net" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="heroku_d9e51ae94c19231@eu-cdbr-west-02.cleardb.net" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -208,7 +221,7 @@
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="PHP&#10;TEXT" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="database.data.extractors.current.id" value="HTML Table" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/Contexts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/molecule" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -224,6 +237,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programmation\Flashcardstorm\resources\js\components\molecule" />
       <recent name="D:\Programmation\Flashcardstorm\resources\js\Contexts" />
       <recent name="D:\Programmation\Flashcardstorm\resources\sass" />
       <recent name="D:\Programmation\Flashcardstorm" />
@@ -248,7 +262,17 @@
       <list>
         <serviceView>
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:Homestead" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:Homestead" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@1d032f3" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
@@ -381,7 +405,9 @@
       <workItem from="1599978987849" duration="6659000" />
       <workItem from="1600014304508" duration="240000" />
       <workItem from="1600161847018" duration="624000" />
-      <workItem from="1600247628108" duration="8381000" />
+      <workItem from="1600247628108" duration="17807000" />
+      <workItem from="1600320430616" duration="15002000" />
+      <workItem from="1600415102692" duration="3552000" />
     </task>
     <task id="LOCAL-00001" summary="feat(front): Add new tolerated character">
       <created>1599641867669</created>
@@ -404,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600253250508</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat(front): Improve style on questions List on mobile">
+      <created>1600261551407</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1600261551407</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -417,7 +450,9 @@
     <MESSAGE value="feat(front): Add new tolerated character" />
     <MESSAGE value="fix(front): Fix Roughtraining page" />
     <MESSAGE value="fix(front): Fix redirection problem after refresh on questions list page" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(front): Fix redirection problem after refresh on questions list page" />
+    <MESSAGE value="feat(front): Improve style on questions List on mobile" />
+    <MESSAGE value="feat(front): Add questionUser edition form" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(front): Add questionUser edition form" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="108" key="#ESLint" timestamp="1593341264765">
@@ -436,10 +471,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593329339953" />
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600253246942">
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600418566005">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600253246942" />
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600418566005" />
     <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1599642535747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -468,10 +503,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="588" y="207" width="720" height="634" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1596880730526" />
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1599641869594">
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1600261550841">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1599641869594" />
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600261550841" />
     <state x="540" y="176" key="com.intellij.database.dbimport.ImportDialog" timestamp="1596889431619">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -480,14 +515,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="11" y="45" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595520055097" />
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1600014306880">
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1600415141199">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600014306880" />
-    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1600260975364">
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600415141199" />
+    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1600417829051">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600260975364" />
+    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600417829051" />
     <state x="601" y="246" width="700" height="530" key="recent.locations.popup" timestamp="1596103847543">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -496,9 +531,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600259332193" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1600261003596">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1600354058259">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600261003596" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600354058259" />
   </component>
 </project>
