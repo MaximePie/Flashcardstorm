@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/molecule/AchievementDialog.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/molecules/AchievementDialog.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/atom/CloseIcon.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/atom/CloseIcon.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/atom/ProfileAchievement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/atom/ProfileAchievement.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/Button.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Button.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/atoms/ProfileAchievement.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/atoms/ProfileAchievement.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/imports.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/imports.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/molecules/ProfileAchievements.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/molecules/ProfileAchievements.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/helper.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,19 +228,19 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Programmation\Flashcardstorm\resources\sass" />
+      <recent name="D:\Programmation\Flashcardstorm\resources\sass\pages" />
+      <recent name="D:\Programmation\Flashcardstorm\resources\js\components\molecule" />
+      <recent name="D:\Programmation\Flashcardstorm\resources\js\components\atom" />
+      <recent name="D:\Programmation\Flashcardstorm\resources\sass\atoms" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Programmation\Flashcardstorm\resources\js\components\molecule" />
       <recent name="D:\Programmation\Flashcardstorm\resources\js\Contexts" />
       <recent name="D:\Programmation\Flashcardstorm\resources\sass" />
       <recent name="D:\Programmation\Flashcardstorm" />
       <recent name="$PROJECT_DIR$/app/Helpers" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Programmation\Flashcardstorm\resources\js\components\molecule" />
-      <recent name="D:\Programmation\Flashcardstorm\resources\js\components\atom" />
-      <recent name="D:\Programmation\Flashcardstorm\resources\sass\atoms" />
-      <recent name="D:\Programmation\Flashcardstorm\resources\js\components\pages" />
-      <recent name="D:\Programmation\Flashcardstorm\resources\images" />
     </key>
   </component>
   <component name="RunManager">
@@ -264,7 +254,17 @@
       <list>
         <serviceView>
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:heroku_d9e51ae94c19231@eu-cdbr-west-02.cleardb.net" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:heroku_d9e51ae94c19231@eu-cdbr-west-02.cleardb.net" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@3ba3f8c0" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
@@ -399,7 +399,7 @@
       <workItem from="1600161847018" duration="624000" />
       <workItem from="1600247628108" duration="17807000" />
       <workItem from="1600320430616" duration="15002000" />
-      <workItem from="1600415102692" duration="19335000" />
+      <workItem from="1600415102692" duration="21520000" />
     </task>
     <task id="LOCAL-00001" summary="feat(front): Add new tolerated character">
       <created>1599641867669</created>
@@ -471,13 +471,28 @@
       <option name="project" value="LOCAL" />
       <updated>1600440477545</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="feat(front): Add details modal on profile achievements">
+      <created>1600443608807</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1600443608807</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat(front): Improve character absorption">
+      <created>1600508320570</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1600508320570</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
@@ -490,7 +505,9 @@
     <MESSAGE value="feat(back): Add the feature to remove reverse questions" />
     <MESSAGE value="feat(front): Add responsive design on profile page" />
     <MESSAGE value="refactor(front): Create Profile Achievement component" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(front): Create Profile Achievement component" />
+    <MESSAGE value="feat(front): Add details modal on profile achievements" />
+    <MESSAGE value="feat(front): Improve character absorption" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(front): Improve character absorption" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="108" key="#ESLint" timestamp="1593341264765">
@@ -509,10 +526,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593329339953" />
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600440475080">
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600508318535">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600440475080" />
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600508318535" />
     <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1599642535747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -541,10 +558,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="588" y="207" width="720" height="634" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1596880730526" />
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1600441083511">
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1600508324040">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600441083511" />
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600508324040" />
     <state x="540" y="176" key="com.intellij.database.dbimport.ImportDialog" timestamp="1596889431619">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -569,9 +586,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600259332193" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1600442042756">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1600508267218">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600442042756" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600508267218" />
   </component>
 </project>

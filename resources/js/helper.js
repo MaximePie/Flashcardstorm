@@ -42,8 +42,8 @@ export function areSimilar(firstString, secondString) {
     a: ['ä', 'â', 'à', 'á'],
     e: ['ë', 'ê', 'è', 'é'],
     u: ['ù', 'û', 'ü'],
-    o: ['ô', 'ö', 'ó', 'ō'],
-    i: ['î', 'ï'],
+    o: ['ô', 'ö', 'ó', 'ō', 'ό'],
+    i: ['î', 'ï', 'ί'],
     '': ['la ', 'les ', 'le ', 'un ', 'une ', 'des ', 'a ', 'an ', 'to ', 'the ', ' '],
     remove: ["l'", '-'],
   };

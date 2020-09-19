@@ -5,7 +5,6 @@ Import scss basics
 @import 'mixins';
 
 @import 'Welcome';
-@import 'AddCategory';
 @import 'Addknowledge';
 @import 'Changelogs';
 @import 'Error';
@@ -20,13 +19,27 @@ Import scss basics
 @import 'QuestionCard';
 @import 'QuestionsList';
 @import 'QuestionRow';
-@import 'Register';
 @import 'RoughTraining';
 @import 'Snackbar';
+@import 'QuestionDetailsDialog';
+
+/**
+Importing pages
+ */
+
+@import 'AddCategory';
+@import 'Register';
+
+
+
+/**
+Importing atoms
+ */
+
+@import "atoms/CloseIcon";
 @import 'atoms/LoadingSpinner';
 @import 'atoms/ProfileAchievement';
 @import 'atoms/ProfileAchievement';
-@import 'QuestionDetailsDialog';
 
 /**
 Importing molecules
@@ -36,3 +49,5 @@ Importing molecules
 @import 'molecules/ProfileDailyObjective';
 @import 'molecules/ProfileRadar';
 @import 'molecules/AchievementDialog';
+
+
