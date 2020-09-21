@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="feat(front): Add illustration on achievements">
+    <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/AddCategory.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/AddCategory.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/QuestionsList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/QuestionsList.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -394,7 +396,7 @@
       <workItem from="1600247628108" duration="17807000" />
       <workItem from="1600320430616" duration="15002000" />
       <workItem from="1600415102692" duration="24673000" />
-      <workItem from="1600666375729" duration="3081000" />
+      <workItem from="1600666375729" duration="6452000" />
     </task>
     <task id="LOCAL-00001" summary="feat(front): Add new tolerated character">
       <created>1599641867669</created>
@@ -487,7 +489,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600670685144</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix(front): Fix isConnected hook on Navigation display">
+      <created>1600670983942</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1600670983948</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -511,7 +520,8 @@
     <MESSAGE value="feat(front): Add details modal on profile achievements" />
     <MESSAGE value="feat(front): Improve character absorption" />
     <MESSAGE value="feat(front): Add illustration on achievements" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(front): Add illustration on achievements" />
+    <MESSAGE value="fix(front): Fix isConnected hook on Navigation display" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(front): Fix isConnected hook on Navigation display" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="108" key="#ESLint" timestamp="1593341264765">
@@ -530,10 +540,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593329339953" />
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600670701395">
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600670981146">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600670701395" />
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600670981146" />
     <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1599642535747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -578,10 +588,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600666389023" />
-    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1600666757113">
+    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1600696462909">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600666757113" />
+    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600696462909" />
     <state x="601" y="246" width="700" height="530" key="recent.locations.popup" timestamp="1596103847543">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -590,9 +600,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600668965615" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1600670797564">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1600671472611">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600670797564" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600671472611" />
   </component>
 </project>

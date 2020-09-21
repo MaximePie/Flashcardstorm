@@ -17,7 +17,7 @@ export default function Users() {
         <p>à venir : Affichage d'avatars </p>
       </div>
       <div className="container Users">
-        {users && users.length && users.map(function(user){
+        {users && users.length > 0 && users.map(function(user){
           return (
             <li key={`user${user.id}`} className="Users__user list-group-item">
               <span>

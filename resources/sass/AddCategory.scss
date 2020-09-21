@@ -35,7 +35,9 @@
 
     &__field {
       min-height: initial;
-      margin: initial !important;
+      display: flex;
+      justify-content: center;
+      margin: 4px 0 !important;
     }
   }
 }

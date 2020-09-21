@@ -64,6 +64,10 @@
 
     &-particle {
       border-right: 1px grey solid;
+
+      &--header {
+        align-items: center;
+      }
     }
 
     &--disappearing {

@@ -22,7 +22,7 @@ export default function Changelogs() {
   function changelogsList(displayedChangelogs) {
     return (
       <>
-        {!potentialChangelogs.length && (
+        {!potentialChangelogs.length > 0 && (
           <p>Pas de changements pour l&aposinstant, nous allons revenir avec des bonnes nouvelles très bientôt !</p>
         )}
         {displayedChangelogs.map((changelog) => {

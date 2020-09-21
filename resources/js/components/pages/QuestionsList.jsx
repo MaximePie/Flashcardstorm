@@ -79,7 +79,7 @@ export default function QuestionsList() {
           </div>
         </div>
       </form>
-      {questions?.data?.length && (
+      {questions?.data?.length > 0 && (
         <>
           <div className="QuestionsList__actions">
             {isConnected &&
@@ -227,9 +227,15 @@ export default function QuestionsList() {
         key={`question-Header`}
         className="QuestionsList__question list-group-item card QuestionsList__question--header"
       >
-        <span className="QuestionList__question-particle">{!isMobile ? 'Question' : <i className="fas fa-question"/>}</span>
-        <span className="QuestionList__question-particle">{!isMobile ? 'Réponse' : <i className="fas fa-lightbulb"/>}</span>
-        <span className="QuestionList__question-particle">{!isMobile ? 'Catégorie' : <i className="fas fa-box-open"/>}</span>
+        <span className="QuestionList__question-particle QuestionList__question-particle--header">
+          {!isMobile ? 'Question' : <i className="fas fa-question"/>}
+        </span>
+        <span className="QuestionList__question-particle QuestionList__question-particle--header">
+          {!isMobile ? 'Réponse' : <i className="fas fa-lightbulb"/>}
+        </span>
+        <span className="QuestionList__question-particle QuestionList__question-particle--header">
+          {!isMobile ? 'Catégorie' : <i className="fas fa-box-open"/>}
+        </span>
         {!isMobile && (
           <>
             <span className="QuestionList__question-particle">Prochain gain</span>
