@@ -17,7 +17,7 @@ import Divider from '@material-ui/core/Divider';
 
 export default function Navbar(props) {
 
-  const isConnected = React.useContext(AuthenticationContext);
+  const { isConnected } = React.useContext(AuthenticationContext);
 
   const number_of_new_questions = props.user?.numberOfQuestions;
   const numberOfNewChangelogs = props.user?.numberOfNewChangelogs;
