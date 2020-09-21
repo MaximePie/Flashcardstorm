@@ -28,12 +28,20 @@
   &--current {
     .ProfileAchievement__circle {
       border: solid orange;
+      &-icon {
+        color : orange;
+      }
     }
+
   }
 
   &--achieved {
     .ProfileAchievement__circle {
       border: solid limegreen;
+
+      &-icon {
+        color : limegreen;
+      }
     }
   }
 
@@ -42,6 +50,11 @@
     border-radius: 100px;
     width: 60px;
     height: 60px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
 
     @include for-phone-only {
       justify-self: center;

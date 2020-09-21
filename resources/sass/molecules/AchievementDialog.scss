@@ -3,4 +3,22 @@
   &__close {
     margin-left: 8px;
   }
+
+  &__content {
+    min-height: 350px;
+    position: relative;
+  }
+
+  &__illustration {
+    position: absolute;
+    bottom: 0;
+    width: 70%;
+    height: 270px;
+    opacity: 0.5;
+    z-index: 1;
+  }
+
+  &__actions {
+    z-index: 2;
+  }
 }

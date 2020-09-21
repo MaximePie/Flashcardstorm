@@ -33,10 +33,10 @@ export default function Profile() {
         </div>
         <div className="Profile__heading-row">
           <ProfileDailyObjective />
-          <ProfileDataContainer />
+          <ProfileAchievementsCard />
         </div>
         <div className="Profile__achievements-row">
-          <ProfileAchievementsCard />
+          <ProfileDataContainer />
           <ProfileRadar />
         </div>
         <div className="Profile__questions-header-row">

@@ -84,7 +84,7 @@ export default function ProfileDataContainer() {
    */
   function lineChartSize(dimension) {
     if (isMobile) {
-      return dimension === 'width' ? 340 : 280;
+      return dimension === 'width' ? 320 : 280;
     }
 
     return dimension === 'width' ? 800 : 400;

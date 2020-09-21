@@ -15,6 +15,7 @@ AchievementDialog.propTypes = {
     buttonWording: PropTypes.string,
     wording: PropTypes.string,
     description: PropTypes.string,
+    image_path: PropTypes.string,
   }).isRequired,
   onClose: PropTypes.func.isRequired,
 };
@@ -54,6 +55,7 @@ export default function AchievementDialog({ onClose, objective }) {
         <CloseIcon className="AchievementDialog__close" onClick={onClose}/>
       </DialogTitle>
       <DialogContent className="AchievementDialog__content">
+        <img src={objective.image_path} alt="" className="AchievementDialog__illustration"/>
         {objective.description}
       </DialogContent>
       {dialogActions()}

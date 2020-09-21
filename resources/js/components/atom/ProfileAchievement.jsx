@@ -19,6 +19,23 @@ ProfileAchievement.propTypes = {
 export default function ProfileAchievement({ objective }) {
   const [objectiveModalIsOpen, setObjectiveModalIsOpen] = React.useState(false);
 
+  let icon;
+
+  switch (objective.state) {
+    case 'achieved':
+      icon = 'check-circle';
+      break;
+    case 'current':
+      icon = 'hourglass-half';
+      break;
+    case 'incoming':
+      icon = 'calendar-alt';
+      break;
+    default:
+      icon = 'check-circle';
+      break;
+  }
+
   return (
     <>
       {objectiveModalIsOpen && (
@@ -34,7 +51,9 @@ export default function ProfileAchievement({ objective }) {
           setObjectiveModalIsOpen(true);
         }}
       >
-        <div className="ProfileAchievement__circle" />
+        <div className="ProfileAchievement__circle">
+          <i className={`ProfileAchievement__circle-icon fas fa-${icon}`} />
+        </div>
         <Tooltip title="En savoir plus">
           <i
             className="ProfileAchievement__details-trigger fas fa-search"

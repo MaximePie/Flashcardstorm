@@ -277,6 +277,7 @@ class User extends Authenticable
                 "Saisissez d'abord une catégorie en cliquant sur \"Ajouter une catégorie\", puis allez ensuite sur " .
                 "la page \"Ajouter des questions\" pour ajouter vos questions.",
             'buttonWording' => 'Ajouter des questions',
+            'image_path' => '/images/achievements/firstQuestion.svg',
         ];
 
         $secondBadgeState = $this->memorizedQuestions()->count() > 0 ? 'achieved' : 'current';
@@ -291,7 +292,8 @@ class User extends Authenticable
             'buttonWording' => "C'est parti !",
             'description' => "Vous avez ajouté vos questions. Vous n'avez plus qu'à commencer à réviser ! " .
                 " Plus vous répondez correctement à une question, plus l'espacement sera grand. " .
-                " Au bout de 10 réponses justes, la question sera comptée comme mémorisée, et ne vous sera plus posée."
+                " Au bout de 10 réponses justes, la question sera comptée comme mémorisée, et ne vous sera plus posée.",
+            'image_path' => '/images/achievements/firstMemorizedQuestion.svg',
         ];
 
         $thirdBadgeState = $this->memorizedQuestions()->count() > 99 ? 'achieved' : 'current';
@@ -304,7 +306,8 @@ class User extends Authenticable
             'state' => $thirdBadgeState,
             'link' => '/soft_training',
             'buttonWording' => 'S\'entraîner',
-            'description' => "Rien ne vous arrête, félicitations, vous êtes sur le point de devenir un.e grand.e chef.fe !"
+            'description' => "Rien ne vous arrête, félicitations, vous êtes sur le point de devenir un.e grand.e chef.fe !",
+            'image_path' => '/images/achievements/hundredMemorizedQuestions.svg',
         ];
 
         array_push($objectives, $firstBadge);
