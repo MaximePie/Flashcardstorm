@@ -16,13 +16,15 @@ export default function ProfileRadar() {
 
   return (
     <div className="ProfileRadar">
-      <h2>Répartition de la progression</h2>
-      {radarDistribution.length > 0 && captions && (
-        <RadarChart
-          captions={captions}
-          data={radarDistribution}
-          size={isMobile ? 350 : 450}
-        />
+      {radarDistribution.length > 0 && captions.length > 0 && (
+        <>
+          <h2>Répartition de la progression</h2>
+          <RadarChart
+            captions={captions}
+            data={radarDistribution}
+            size={isMobile ? 350 : 450}
+          />
+        </>
       )}
     </div>
   );
