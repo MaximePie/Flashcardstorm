@@ -93,13 +93,6 @@ export default function QuestionsListItem({
             >
               <i className="far fa-trash-alt QuestionsListItem__delete-icon" />
             </span>
-            <input
-              type="checkbox"
-              value={question.id}
-              checked={question.isSetForUser}
-              onChange={(event) => toggleQuestionForUser(event, question.id, questionKey)}
-              className="QuestionsListItem__toggle-button"
-            />
           </>
         )}
       </div>

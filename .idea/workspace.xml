@@ -4,9 +4,12 @@
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/QuestionsListItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/QuestionsListItem.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/AddCategory.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/AddCategory.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/RoughTraining.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/RoughTraining.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Welcome.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Welcome.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/QuestionsList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/QuestionsList.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/Welcome.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Welcome.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -396,7 +399,7 @@
       <workItem from="1600247628108" duration="17807000" />
       <workItem from="1600320430616" duration="15002000" />
       <workItem from="1600415102692" duration="24673000" />
-      <workItem from="1600666375729" duration="6452000" />
+      <workItem from="1600666375729" duration="16731000" />
     </task>
     <task id="LOCAL-00001" summary="feat(front): Add new tolerated character">
       <created>1599641867669</created>
@@ -496,7 +499,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600670983948</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fix(front): Remove '0' display of loading states">
+      <created>1600696484607</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1600696484607</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -521,7 +531,8 @@
     <MESSAGE value="feat(front): Improve character absorption" />
     <MESSAGE value="feat(front): Add illustration on achievements" />
     <MESSAGE value="fix(front): Fix isConnected hook on Navigation display" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(front): Fix isConnected hook on Navigation display" />
+    <MESSAGE value="fix(front): Remove '0' display of loading states" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(front): Remove '0' display of loading states" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="108" key="#ESLint" timestamp="1593341264765">
@@ -540,10 +551,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593329339953" />
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600670981146">
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600696481496">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600670981146" />
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600696481496" />
     <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1599642535747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -588,6 +599,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600666389023" />
+    <state x="606" y="136" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1600702171866">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="606" y="136" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1600702171866" />
     <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1600696462909">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -600,9 +615,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600668965615" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1600671472611">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1600703362191">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600671472611" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600703362191" />
   </component>
 </project>

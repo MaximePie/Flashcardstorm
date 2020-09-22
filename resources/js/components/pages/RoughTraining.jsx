@@ -23,7 +23,7 @@ export default function RoughTraining() {
           <span className="RoughTraining__failed">{failed}</span>
         </h2>
         <div className="RoughTraining__questions">
-          {questions.length  && questions.map((question) => (
+          {questions.length > 0 && questions.map((question) => (
             <QuestionRow
               question={question}
               onSubmit={(answer) => submitAnswer(answer, question)}
