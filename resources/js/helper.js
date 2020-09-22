@@ -39,9 +39,9 @@ export function areSimilar(firstString, secondString) {
   let flatAnswer = secondString.toLowerCase();
 
   const matchingPattern = {
-    a: ['ä', 'â', 'à', 'á'],
+    a: ['ä', 'â', 'à', 'á', 'ά'],
     e: ['ë', 'ê', 'è', 'é'],
-    u: ['ù', 'û', 'ü'],
+    u: ['ù', 'û', 'ü', 'ύ'],
     o: ['ô', 'ö', 'ó', 'ō', 'ό'],
     i: ['î', 'ï', 'ί'],
     '': ['la ', 'les ', 'le ', 'un ', 'une ', 'des ', 'a ', 'an ', 'to ', 'the ', ' '],

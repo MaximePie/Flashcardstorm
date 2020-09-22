@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/QuestionsListItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/QuestionsListItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/QuestionsList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/RoughTraining.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/RoughTraining.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/Welcome.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/Welcome.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/QuestionsList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/QuestionsList.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/Welcome.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/Welcome.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/helper.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -399,7 +393,7 @@
       <workItem from="1600247628108" duration="17807000" />
       <workItem from="1600320430616" duration="15002000" />
       <workItem from="1600415102692" duration="24673000" />
-      <workItem from="1600666375729" duration="16731000" />
+      <workItem from="1600666375729" duration="18139000" />
     </task>
     <task id="LOCAL-00001" summary="feat(front): Add new tolerated character">
       <created>1599641867669</created>
@@ -506,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600696484607</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feat(front): Create a better design for homepage">
+      <created>1600775355981</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1600775355991</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -532,7 +533,8 @@
     <MESSAGE value="feat(front): Add illustration on achievements" />
     <MESSAGE value="fix(front): Fix isConnected hook on Navigation display" />
     <MESSAGE value="fix(front): Remove '0' display of loading states" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(front): Remove '0' display of loading states" />
+    <MESSAGE value="feat(front): Create a better design for homepage" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(front): Create a better design for homepage" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="108" key="#ESLint" timestamp="1593341264765">
@@ -551,10 +553,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593329339953" />
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600696481496">
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600775352342">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600696481496" />
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600775352342" />
     <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1599642535747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -583,10 +585,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="588" y="207" width="720" height="634" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1596880730526" />
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1600670781637">
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1600775398440">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600670781637" />
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600775398440" />
     <state x="540" y="176" key="com.intellij.database.dbimport.ImportDialog" timestamp="1596889431619">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -615,9 +617,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600668965615" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1600703362191">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1600795953590">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600703362191" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600795953590" />
   </component>
 </project>
