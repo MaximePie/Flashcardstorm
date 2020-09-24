@@ -24,7 +24,7 @@ export default function RoughTraining() {
         </h2>
         <div className="RoughTraining__questions">
           {questions.length > 0 && questions.map((question) => (
-            <QuestionRow
+            <QuestioPnRow
               question={question}
               onSubmit={(answer) => submitAnswer(answer, question)}
               key={`QuestionRow-${question.id}-${timeStamp}`}

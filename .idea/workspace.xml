@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
+    <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="feat(front): Improve character tolerance">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/questionsImages/fVO3agFPoGkIxYo1dCIXSovmH19ygV0CNy4T5jrp.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/QuestionRow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/QuestionRow.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/QuestionRow.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/QuestionRow.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/ProfileDataContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/ProfileDataContainer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/ProfileRadar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/ProfileRadar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/RoughTraining.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/RoughTraining.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -407,7 +406,7 @@
       <workItem from="1600415102692" duration="24673000" />
       <workItem from="1600666375729" duration="22958000" />
       <workItem from="1600817371452" duration="2677000" />
-      <workItem from="1600989274533" duration="1339000" />
+      <workItem from="1600989274533" duration="1758000" />
     </task>
     <task id="LOCAL-00001" summary="feat(front): Add new tolerated character">
       <created>1599641867669</created>
@@ -542,7 +541,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600811909096</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="feat(front): Display categories in fast mode">
+      <created>1600990699630</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1600990699630</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,7 +576,8 @@
     <MESSAGE value="fix(front): Remove '0' display of loading states" />
     <MESSAGE value="feat(front): Create a better design for homepage" />
     <MESSAGE value="feat(front): Improve character tolerance" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(front): Improve character tolerance" />
+    <MESSAGE value="feat(front): Display categories in fast mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(front): Display categories in fast mode" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="108" key="#ESLint" timestamp="1593341264765">
@@ -593,10 +600,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593329339953" />
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600990625032">
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1600990694864">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600990625032" />
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600990694864" />
     <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1599642535747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -625,10 +632,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="588" y="207" width="720" height="634" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1596880730526" />
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1600811919703">
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1600990704192">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600811919703" />
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600990704192" />
     <state x="540" y="176" key="com.intellij.database.dbimport.ImportDialog" timestamp="1596889431619">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -657,9 +664,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600668965615" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1600818619348">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1600990751113">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600818619348" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600990751113" />
   </component>
 </project>

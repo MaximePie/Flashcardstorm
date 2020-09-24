@@ -16,7 +16,7 @@ export default function ProfileRadar() {
 
   return (
     <div className="ProfileRadar">
-      {radarDistribution.length > 0 && captions.length > 0 && (
+      {radarDistribution.length > 0 && Object.values(captions).length > 0 && (
         <>
           <h2>Répartition de la progression</h2>
           <RadarChart

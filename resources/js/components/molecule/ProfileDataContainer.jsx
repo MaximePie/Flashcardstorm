@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  CartesianGrid, Line, LineChart, XAxis, YAxis,
-} from 'recharts';
+import { CartesianGrid, Line, LineChart, XAxis, YAxis, } from 'recharts';
 import moment from 'moment';
 import LoadingSpinner from '../atom/LoadingSpinner';
 import server from '../../server';
@@ -19,9 +17,9 @@ export default function ProfileDataContainer() {
 
   return (
     <div className="ProfileDataContainer">
-      <div className="ProfileDataContainer__zone">
-        <h3 className="ProfileDataContainer__zone-title">Progression des questions mémorisées</h3>
-        {!isLoading && (
+      {!isLoading && (
+        <div className="ProfileDataContainer__zone">
+          <h3 className="ProfileDataContainer__zone-title">Progression des questions mémorisées</h3>
           <>
             {!statistics && (
               <>
@@ -41,18 +39,18 @@ export default function ProfileDataContainer() {
             )}
             {statistics && (
               <LineChart width={lineChartSize('width')} height={lineChartSize('height')} data={statistics}>
-                <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <CartesianGrid stroke="#ccc" />
+                <Line type="monotone" dataKey="uv" stroke="#8884d8"/>
+                <XAxis dataKey="name"/>
+                <YAxis/>
+                <CartesianGrid stroke="#ccc"/>
               </LineChart>
             )}
           </>
-        )}
-        {isLoading && (
-          <LoadingSpinner />
-        )}
-      </div>
+        </div>
+      )}
+      {isLoading && (
+        <LoadingSpinner/>
+      )}
     </div>
   );
 
