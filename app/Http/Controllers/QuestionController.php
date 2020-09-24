@@ -246,7 +246,7 @@ class QuestionController extends Controller
     {
         $questionId = $request->get('question_id');
         $path = $request->file('image')->store(
-            'questionsImages',  ['disk' => 'public']
+            'questionsImages',  ['disk' => 'pubRlic']
         );
         $question = Question::find($questionId);
         $question->image_path = $path;
