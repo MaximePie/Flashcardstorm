@@ -134,7 +134,7 @@ class Question_user extends Model
      * @param bool|null $is_golden_card Whether the question has a bonus or not
      * @return int the new score of the question
      */
-    public function saveSuccess(string $mode, bool $is_golden_card = false): int
+    public function saveSuccess(User $user, string $mode, bool $is_golden_card = false): int
     {
         $user = User::findOrFail($this->user_id);
         if ($mode === 'soft') {
@@ -156,12 +156,13 @@ class Question_user extends Model
         }
 
         if ($mode === 'mental') {
+            $this->next_mental_question_at = Carbon::now()->addDays($this->current_mental_delay);
             $this->current_mental_delay ++;
-            $this->next_mental_question_at = Carbon::now()->addDays($this->current_mental_delay - 1);
 
             if ($this->current_mental_delay >= 10) {
                 $this->is_mentally_memorized = true;
             }
+            $this->save();
         }
 
         $is_golden_card && $earned_points *= $earned_points;

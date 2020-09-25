@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import QuestionCard from '../molecule/QuestionCard';
 import server from '../../server';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 export default function MentalTraining({}) {
   const [questionsList, setQuestionsList] = React.useState([]);
   const currentQuestion = questionsList[0];
+  const [userProgress, setUserProgress] = React.useState(undefined);
 
   React.useEffect(() => {
     if (!questionsList.length) {
@@ -12,9 +14,37 @@ export default function MentalTraining({}) {
     }
   }, [questionsList]);
 
+  React.useEffect(() => {
+    server.get('update_progress')
+      .then((response) => {
+        const { userMentalProgress: userProgressData } = response.data;
+        setUserProgress(userProgressData);
+      });
+  }, []);
+
+
+  const userProgressComponent = userProgress && (
+    <div className="daily_progress">
+      <p className="daily-progress__counter">
+        <span>Progression journalière: </span>
+        {userProgress.daily_progress}
+        {' '}
+        /
+
+        {' '}
+        {userProgress.daily_objective}
+      </p>
+      <LinearProgress
+        variant="determinate"
+        value={(userProgress.daily_progress / userProgress.daily_objective) * 100}
+      />
+    </div>
+  )
+
 
   return (
     <div className="MentalTraining">
+      {userProgressComponent && userProgressComponent}
       <div className="MentalTraining__question-card">
         {currentQuestion && (
           <QuestionCard

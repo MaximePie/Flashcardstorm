@@ -189,6 +189,7 @@ class UserController extends Controller
 
             return response()->json([
                 'userProgress' => $user->dailyProgress(),
+                'userMentalProgress' => $user->dailyMentalQuestions()->count(),
                 'statistics' => $user->statistics,
             ]);
         }
