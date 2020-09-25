@@ -23,7 +23,7 @@ import Login from './components/pages/Login';
 import ErrorPage from './components/pages/Error';
 import Profile from './components/pages/Profile';
 import server from './server';
-import Training from './components/pages/Training';
+import ByHeartTraining from './components/pages/ByHeartTraining';
 import RoughTraining from './components/pages/RoughTraining';
 import Initiate from './components/pages/Initiate';
 import Users from './components/Users';
@@ -103,7 +103,7 @@ export default function App() {
                   <Initiate />
                 </Route>
                 <Route path="/logout">
-                  <Training updateUserScore={updateUser} />
+                  <ByHeartTraining updateUserScore={updateUser} />
                 </Route>
                 <Route path="/users">
                   <Users />
@@ -123,7 +123,7 @@ export default function App() {
                   {!isConnected && <ErrorPage code={403} />}
                 </Route>
                 <Route path="/soft_training">
-                  {isConnected && <Training mode="soft" updateUserScore={updateUser} />}
+                  {isConnected && <ByHeartTraining mode="soft" updateUserScore={updateUser} />}
                   {!isConnected && <ErrorPage code={403} />}
                 </Route>
                 <Route path="/profile">

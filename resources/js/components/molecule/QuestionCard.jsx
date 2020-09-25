@@ -44,54 +44,19 @@ export default function QuestionCard(props) {
     >
       {icons()}
       <div className="QuestionCard__content">
-        <h3 className={`QuestionCard__question ${!question && 'QuestionCard__question--is-empty'}`}>
-          {question.is_reverse ? question.answer : question.wording || props.message}
-          {question.image_path && (
-            <img
-              src={question.image_path}
-              alt={question.image_path}
-              className="QuestionCard__image"
-            />
-          )}
-        </h3>
-        {!question.additionalAnswers && (
-          <TextField
-            inputRef={inputRef}
-            label="Réponse"
-            onChange={(e) => setAnswer(e.target.value)}
-            value={answer}
-          />
-        )}
-        {question.additionalAnswers && (
-          <RadioGroup
-            className="QuestionCard__multi-answer-group"
-            aria-label="Réponse"
-            name="answer"
-            value={selectedAnswerKey}
-            onChange={handleSelection}
-          >
-            {additionalAnswers.map((answerChoice, key) => (
-              <FormControlLabel
-                key={`answer-${answerChoice}`}
-                value={key}
-                control={<Radio/>}
-                label={answerChoice}
-              />
-            ))}
-          </RadioGroup>
-        )}
-        {!isDemo && (
-          <div className="QuestionCard__actions">
-            <a type="button" className="Button btn Button--secondary Button--small" onClick={handleSkip}>Passer</a>
-            <Button variant="small" onClick={() => props.onSubmit(answer)} text="Envoyer"/>
-          </div>
-        )}
+        {questionWording()}
+        {answerComponent()}
+        {actionsComponent()}
       </div>
     </form>
   );
 
-  function icons() {
 
+  /**
+   * Returns icons
+   * @returns {*}
+   */
+  function icons() {
     return (
       <div className="QuestionCard__icons">
         {question.is_golden_card && (
@@ -129,6 +94,77 @@ export default function QuestionCard(props) {
     );
   }
 
+  /**
+   * Return the question Wording component
+   */
+  function questionWording() {
+    return (
+      <h3 className={`QuestionCard__question ${!question && 'QuestionCard__question--is-empty'}`}>
+        {question.is_reverse ? question.answer : question.wording || props.message}
+        {question.image_path && (
+          <img
+            src={question.image_path}
+            alt={question.image_path}
+            className="QuestionCard__image"
+          />
+        )}
+      </h3>
+    );
+  }
+
+  /**
+   * Returns the answer component
+   */
+  function answerComponent() {
+    if (!question.additionalAnswers) {
+      return <TextField
+              inputRef={inputRef}
+              label="Réponse"
+              onChange={(e) => setAnswer(e.target.value)}
+              value={answer}
+            />;
+    }
+    else if (question.additionalAnswers) {
+      return (
+        <RadioGroup
+          className="QuestionCard__multi-answer-group"
+          aria-label="Réponse"
+          name="answer"
+          value={selectedAnswerKey}
+          onChange={handleSelection}
+        >
+          {additionalAnswers.map((answerChoice, key) => (
+            <FormControlLabel
+              key={`answer-${answerChoice}`}
+              value={key}
+              control={<Radio/>}
+              label={answerChoice}
+            />
+          ))}
+        </RadioGroup>
+      );
+    }
+  }
+
+  /**
+   * Returns the actions component
+   * @returns {*}
+   */
+  function actionsComponent() {
+    if (!isDemo) {
+      return (
+        <div className="QuestionCard__actions">
+          <a type="button" className="Button btn Button--secondary Button--small" onClick={handleSkip}>Passer</a>
+          <Button variant="small" onClick={() => props.onSubmit(answer)} text="Envoyer"/>
+        </div>
+      );
+    }
+  }
+
+  /**
+   * Handle the skip press button
+   * @param event
+   */
   function handleSkip(event) {
     event.preventDefault();
     event.stopPropagation();
