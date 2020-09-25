@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Mnemonic;
 use App\Question;
 use App\Question_user;
+use App\User;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,5 +60,41 @@ class QuestionUserController extends Controller
             'questionId' => $question->id,
             'hint' => isset($hint) && $hint ? $hint->wording : null,
         ]);
+    }
+
+    /**
+     * Returns the scheduled questions for mental training for corresponding User
+     * @return JsonResponse
+     * @throws Exception
+     */
+    public function questionsForMentalTraining() {
+
+        /** @var User $user */
+        $user = Auth::user();
+
+        $questions = $user->dailyMentalQuestions()->get();
+        $questions->each(function(Question $question) use ($user){
+            $question->preparedForView($user);
+        });
+        return response()->json(['questions' => $questions->shuffle() ?? []]);
+    }
+
+    /**
+     * Save the answer for mental mode
+     * @param Request $request The object containing the data
+     * @throws Exception
+     */
+    public function saveMentalAnswer(Request $request) {
+        $user = Auth::user();
+        /** @var Question_user $questionUser */
+        $questionUser = Question_user::findFromTuple($request->get('questionId'), $user->id)->first();
+
+        if (!$questionUser) {
+            throw new Exception('Cette question n\'est pas assignée à l\'utilisateur encore...');
+        }
+
+        if ($request->get('isSuccessfullyAnswered')) {
+            $questionUser->saveSuccess($user, 'mental');
+        }
     }
 }

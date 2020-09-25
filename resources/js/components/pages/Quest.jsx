@@ -63,7 +63,7 @@ export default function Quest() {
               question={questions[0] || undefined}
               onSubmit={(answer) => submitAnswer(answer, questions[0])}
               key={`QuestionCard-${questions[0].id}`}
-              isQuest
+              mode="quest"
             />
             <div className="Quest__entity">
               <img src={monsterSprite} alt="Le méchant" className="Quest__meany" />

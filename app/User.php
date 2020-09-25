@@ -130,6 +130,17 @@ class User extends Authenticable
     /**
      * @return BelongsToMany
      */
+    public function dailyMentalQuestions(): BelongsToMany
+    {
+        return $this->BelongsToMany(Question::class, 'question_users')
+            ->where('question_users.is_mentally_memorized', false)
+            ->whereDate('question_users.next_mental_question_at', '<=', now());
+    }
+
+
+    /**
+     * @return BelongsToMany
+     */
     public function notInitiatedQuestions(): BelongsToMany
     {
         return $this->dailyQuestions()

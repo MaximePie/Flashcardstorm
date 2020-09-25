@@ -52,6 +52,7 @@ Route::name('api.')->group(static function () {
             Route::post('question_import', 'QuestionController@import');
             Route::post('quest_attack', 'QuestEntityController@attack');
             Route::post('question/update', 'QuestionController@update');
+            Route::post('submitMentalQuestion', 'QuestionUserController@saveMentalAnswer');
 
             Route::get('showQuestion/{question}', 'QuestionController@show');
             Route::get('question/{mode}', 'QuestionController@randomQuestion');
@@ -61,6 +62,7 @@ Route::name('api.')->group(static function () {
             Route::get('question/delete/{question}', 'QuestionController@destroy');
             Route::get('question/{mode}/{already_in_bag_questions}', 'QuestionController@randomQuestion');
             Route::get('dailyQuestions/{filterCategories?}', 'QuestionController@dailyQuestions');
+            Route::get('mentalQuestions', 'QuestionUserController@questionsForMentalTraining');
         });
     });
 

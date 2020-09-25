@@ -32,6 +32,7 @@ import Changelogs from './components/pages/Changelogs';
 
 import AddChangelog from './components/pages/AddChangelog';
 import AddCategory from './components/pages/AddCategory';
+import MentalTraining from './components/pages/MentalTraining';
 
 const $ = require('jquery');
 require('popper.js');
@@ -123,7 +124,11 @@ export default function App() {
                   {!isConnected && <ErrorPage code={403} />}
                 </Route>
                 <Route path="/soft_training">
-                  {isConnected && <ByHeartTraining mode="soft" updateUserScore={updateUser} />}
+                  {isConnected && <ByHeartTraining updateUserScore={updateUser} />}
+                  {!isConnected && <ErrorPage code={403} />}
+                </Route>
+                <Route path="/mental_training">
+                  {isConnected && <MentalTraining updateUserScore={updateUser} />}
                   {!isConnected && <ErrorPage code={403} />}
                 </Route>
                 <Route path="/profile">

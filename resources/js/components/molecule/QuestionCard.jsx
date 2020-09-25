@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -8,17 +8,41 @@ import Button from '../atom/Button';
 import { shuffle } from '../../helper';
 import classNames from 'classnames';
 
-export default function QuestionCard(props) {
-  const { question, isDemo, isQuest } = props;
-  const [answer, setAnswer] = React.useState('');
-  const [selectedAnswerKey, setSelectedAnswerKey] = React.useState(0);
-  const [additionalAnswers, setAdditionalAnswers] = React.useState([]);
+import { PropTypes } from 'prop-types';
+
+QuestionCard.propTypes = {
+  question: PropTypes.shape({
+    score: PropTypes.number,
+    next_question_at: PropTypes.string,
+    id: PropTypes.number,
+    is_reverse: PropTypes.bool,
+    wording: PropTypes.string,
+    answer: PropTypes.string,
+    category: PropTypes.shape({
+      icon: PropTypes.string,
+    }),
+  }).isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  mode: PropTypes.string.isRequired, // mental, byHeart, demo, quest
+};
+
+QuestionCard.defaultProps = {
+  message: '',
+};
+
+export default function QuestionCard({ question, mode, onSubmit, onSkip, message }) {
+  const [answer, setAnswer] = useState('');
+  const [selectedAnswerKey, setSelectedAnswerKey] = useState(0);
+  const [additionalAnswers, setAdditionalAnswers] = useState([]);
+
+  // Activate this on mental mode when the user has tried to mentally answer the question
+  const [isCorrectAnswerDisplayed, setIsCorrectAnswerDisplayed] = useState(false);
 
   const classnames = classNames({
     QuestionCard: true,
     card: true,
     'QuestionCard--golden': question.is_golden_card,
-    'QuestionCard--quest': isQuest,
+    'QuestionCard--quest': mode === 'quest',
   });
 
   const inputRef = useRef();
@@ -31,7 +55,7 @@ export default function QuestionCard(props) {
       setSelectedAnswerKey(0);
       setAnswer(additionnalAnswers[0]);
     }
-    if (!isDemo) {
+    if (mode === 'mental') {
       inputRef?.current?.focus();
     }
   }, [question]);
@@ -39,7 +63,7 @@ export default function QuestionCard(props) {
   return (
     <form
       key={`QuestionCard-${question.id}`}
-      onSubmit={() => props.onSubmit(answer)}
+      onSubmit={() => onSubmit(answer)}
       className={classnames}
     >
       {icons()}
@@ -100,7 +124,7 @@ export default function QuestionCard(props) {
   function questionWording() {
     return (
       <h3 className={`QuestionCard__question ${!question && 'QuestionCard__question--is-empty'}`}>
-        {question.is_reverse ? question.answer : question.wording || props.message}
+        {question.is_reverse ? question.answer : question.wording || message}
         {question.image_path && (
           <img
             src={question.image_path}
@@ -116,33 +140,43 @@ export default function QuestionCard(props) {
    * Returns the answer component
    */
   function answerComponent() {
-    if (!question.additionalAnswers) {
-      return <TextField
-              inputRef={inputRef}
-              label="Réponse"
-              onChange={(e) => setAnswer(e.target.value)}
-              value={answer}
-            />;
+    if (mode === 'byHeart') {
+      if (!question.additionalAnswers) {
+        return <TextField
+          inputRef={inputRef}
+          label="Réponse"
+          onChange={(e) => setAnswer(e.target.value)}
+          value={answer}
+        />;
+      } else if (question.additionalAnswers) {
+        return (
+          <RadioGroup
+            className="QuestionCard__multi-answer-group"
+            aria-label="Réponse"
+            name="answer"
+            value={selectedAnswerKey}
+            onChange={handleSelection}
+          >
+            {additionalAnswers.map((answerChoice, key) => (
+              <FormControlLabel
+                key={`answer-${answerChoice}`}
+                value={key}
+                control={<Radio/>}
+                label={answerChoice}
+              />
+            ))}
+          </RadioGroup>
+        );
+      }
     }
-    else if (question.additionalAnswers) {
-      return (
-        <RadioGroup
-          className="QuestionCard__multi-answer-group"
-          aria-label="Réponse"
-          name="answer"
-          value={selectedAnswerKey}
-          onChange={handleSelection}
-        >
-          {additionalAnswers.map((answerChoice, key) => (
-            <FormControlLabel
-              key={`answer-${answerChoice}`}
-              value={key}
-              control={<Radio/>}
-              label={answerChoice}
-            />
-          ))}
-        </RadioGroup>
-      );
+    else if (mode === 'mental') {
+      if (isCorrectAnswerDisplayed) {
+        return (
+          <h3>
+            {question.is_reverse ? question.wording : question.answer || message}
+          </h3>
+        )
+      }
     }
   }
 
@@ -151,13 +185,29 @@ export default function QuestionCard(props) {
    * @returns {*}
    */
   function actionsComponent() {
-    if (!isDemo) {
+    if (mode === 'byHeart') {
       return (
         <div className="QuestionCard__actions">
           <a type="button" className="Button btn Button--secondary Button--small" onClick={handleSkip}>Passer</a>
-          <Button variant="small" onClick={() => props.onSubmit(answer)} text="Envoyer"/>
+          <Button variant="small" onClick={() => onSubmit(answer)} text="Envoyer"/>
         </div>
       );
+    } else if (mode === 'mental') {
+      if (isCorrectAnswerDisplayed) {
+        return (
+          <div className="QuestionCard__actions">
+            <Button variant="small" onClick={() => onSubmit(false)} text="Oups!"/>
+            <Button variant="small" onClick={() => onSubmit(true)} text="C'est dans la poche!"/>
+          </div>
+        )
+      }
+      else if (!isCorrectAnswerDisplayed) {
+        return (
+          <div className="QuestionCard__actions">
+            <Button variant="small" onClick={() => setIsCorrectAnswerDisplayed(true)} text="Afficher la réponse"/>
+          </div>
+        );
+      }
     }
   }
 
@@ -168,7 +218,7 @@ export default function QuestionCard(props) {
   function handleSkip(event) {
     event.preventDefault();
     event.stopPropagation();
-    props.onSkip();
+    onSkip();
   }
 
   /**

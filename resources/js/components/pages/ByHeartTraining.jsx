@@ -83,6 +83,7 @@ export default function ByHeartTraining(props) {
                 onSubmit={submitAnswer}
                 onSkip={handleSkip}
                 key={`QuestionCard-${questionsList[0].id}`}
+                mode="byHeart"
               />
             </div>
           )}
@@ -210,7 +211,7 @@ export default function ByHeartTraining(props) {
 
   /**
    * Handle the skip event
-   * Remove the question from the "unwanted" questions for netx loading
+   * Remove the question from the "unwanted" questions for next loading
    * and display next question
    */
   function handleSkip() {

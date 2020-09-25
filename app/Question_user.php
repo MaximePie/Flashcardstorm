@@ -19,14 +19,17 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property int|null $user_id
  * @property int|null $question_id
  * @property int $current_delay
+ * @property int $current_mental_delay
  * @property int $score
  * @property int|null $full_score
  * @property int $number_of_successful_answer
  * @property int $number_of_unsuccessful_answer
  * @property string|null $last_answered_at
  * @property string|null $next_question_at
+ * @property string|null $next_mental_question_at
  * @property bool $isMemorized
- * @property bool isInitiated
+ * @property bool $is_mentally_memorized
+ * @property bool $isInitiated
  * @method static Builder|Question_user newModelQuery()
  * @method static Builder|Question_user newQuery()
  * @method static Builder|Question_user query()
@@ -62,8 +65,11 @@ class Question_user extends Model
         $this->full_score = 10;
         $this->score = 10;
         $this->current_delay = 1;
+        $this->current_mental_delay = 1;
         $this->next_question_at = now();
+        $this->next_mental_question_at = now();
         $this->isMemorized = false;
+        $this->is_mentally_memorized = false;
     }
 
 
@@ -124,13 +130,13 @@ class Question_user extends Model
 
     /**
      * Update the questionUser row on success
-     * @param User $user The user that successfully answered the question
      * @param string $mode Soft : Increase the score and delay. Storm : Do nothing
      * @param bool|null $is_golden_card Whether the question has a bonus or not
      * @return int the new score of the question
      */
-    public function saveSuccess(User $user, string $mode, bool $is_golden_card = false): int
+    public function saveSuccess(string $mode, bool $is_golden_card = false): int
     {
+        $user = User::findOrFail($this->user_id);
         if ($mode === 'soft') {
             $earned_points = $this->full_score;
             $this->current_delay++;
@@ -148,6 +154,16 @@ class Question_user extends Model
         } else {
             $earned_points = $this->score;
         }
+
+        if ($mode === 'mental') {
+            $this->current_mental_delay ++;
+            $this->next_mental_question_at = Carbon::now()->addDays($this->current_mental_delay - 1);
+
+            if ($this->current_mental_delay >= 10) {
+                $this->is_mentally_memorized = true;
+            }
+        }
+
         $is_golden_card && $earned_points *= $earned_points;
 
         $user->score += $earned_points;

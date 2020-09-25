@@ -1,0 +1,12 @@
+.MentalTraining {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  overflow: auto;
+  background: content-box no-repeat url("../images/soft.jpg");
+
+  &__question-card {
+    margin: auto;
+  }
+}

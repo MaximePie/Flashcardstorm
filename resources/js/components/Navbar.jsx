@@ -63,6 +63,24 @@ export default function Navbar(props) {
                 </ListItemText>
               </ListItem>
             </Link>
+            <Link className="Navbar__link" to="/mental_training">
+              <ListItem button component="a" className="Navbar__item">
+                <ListItemIcon>
+                  {number_of_new_questions && number_of_new_questions > 0 ? (
+                    <Badge color="secondary" badgeContent={number_of_new_questions}>
+                      <i className="fas fa-headset"/>
+                    </Badge>
+                  ) : (
+                    <>
+                      <i className="fas fa-headset"/>
+                    </>
+                  )}
+                </ListItemIcon>
+                <ListItemText>
+                  Mode de tête
+                </ListItemText>
+              </ListItem>
+            </Link>
             <Link className="Navbar__link" to="/soft_training">
               <ListItem button component="a" className="Navbar__item">
                 <ListItemIcon>
@@ -77,7 +95,7 @@ export default function Navbar(props) {
                   )}
                 </ListItemIcon>
                 <ListItemText>
-                  Mode révisions
+                  Mode par coeur
                 </ListItemText>
               </ListItem>
             </Link>

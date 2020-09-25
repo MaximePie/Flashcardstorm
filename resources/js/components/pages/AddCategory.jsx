@@ -45,7 +45,7 @@ export default function AddChangelog() {
       <div className="AddCategory__preview card">
         {isFormValid && (
           <QuestionCard
-            isDemo
+            mode="demo"
             question={{
               wording: 'Question d\'exemple',
               category: {
