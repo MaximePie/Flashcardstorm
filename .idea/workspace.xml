@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Question_user.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Question_user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_25_120209_add_mental_columns_to_question_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_120209_add_mental_columns_to_question_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/pages/MentalTraining.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/MentalTraining.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -422,7 +418,7 @@
       <workItem from="1600817371452" duration="2677000" />
       <workItem from="1600989274533" duration="2522000" />
       <workItem from="1601018044936" duration="20209000" />
-      <workItem from="1601103777033" duration="3263000" />
+      <workItem from="1601103777033" duration="4879000" />
     </task>
     <task id="LOCAL-00001" summary="feat(front): Add new tolerated character">
       <created>1599641867669</created>
@@ -592,7 +588,21 @@
       <option name="project" value="LOCAL" />
       <updated>1601052357310</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="fix(back): Add fillable properties to new properties of question user">
+      <created>1601109163107</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1601109163107</updated>
+    </task>
+    <task id="LOCAL-00026" summary="fix(back): Fix accidentally broken migratio, duh">
+      <created>1601109179643</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1601109179643</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -625,7 +635,9 @@
     <MESSAGE value="refactor(front): Refactor QuestionCard to make code easier to read" />
     <MESSAGE value="feat: Add mental training feature" />
     <MESSAGE value="fix(back): Fix mental question saving" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(back): Fix mental question saving" />
+    <MESSAGE value="fix(back): Add fillable properties to new properties of question user" />
+    <MESSAGE value="fix(back): Fix accidentally broken migratio, duh" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(back): Fix accidentally broken migratio, duh" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="108" key="#ESLint" timestamp="1593341264765">
@@ -648,10 +660,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593329339953" />
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1601109150800">
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1601112404804">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601109150800" />
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601112404804" />
     <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1599642535747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -680,10 +692,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="588" y="207" width="720" height="634" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1596880730526" />
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1601052363411">
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1601109182874">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1601052363411" />
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1601109182874" />
     <state x="540" y="176" key="com.intellij.database.dbimport.ImportDialog" timestamp="1596889431619">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

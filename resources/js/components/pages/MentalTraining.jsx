@@ -74,7 +74,9 @@ export default function MentalTraining({}) {
   function submit(isSuccessfullyAnswered) {
     const submitedQuestion = questionsList[0];
     displayNextQuestion();
-    setCurrentAnsweredQuestionsCount(currentAnsweredQuestionsCount + 1);
+    if (isSuccessfullyAnswered) {
+      setCurrentAnsweredQuestionsCount(currentAnsweredQuestionsCount + 1);
+    }
     server.post('submitMentalQuestion', {
       questionId: submitedQuestion.id,
       isSuccessfullyAnswered,
