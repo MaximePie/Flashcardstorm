@@ -57,7 +57,20 @@ class Question_user extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'question_id', 'current_delay', 'score', 'full_score', 'number_of_successful_answer', 'number_of_unsuccessful_answer', 'last_answered_at', 'next_question_at'];
+    protected $fillable = [
+        'user_id',
+        'question_id',
+        'current_delay',
+        'score',
+        'full_score',
+        'number_of_successful_answer',
+        'number_of_unsuccessful_answer',
+        'last_answered_at',
+        'next_question_at',
+        'next_mental_question_at',
+        'is_mentally_memorized',
+        'current_mental_delay',
+    ];
 
     public function __construct(array $attributes = [])
     {

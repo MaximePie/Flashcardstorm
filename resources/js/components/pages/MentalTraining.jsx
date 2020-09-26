@@ -6,7 +6,8 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 export default function MentalTraining({}) {
   const [questionsList, setQuestionsList] = React.useState([]);
   const currentQuestion = questionsList[0];
-  const [userProgress, setUserProgress] = React.useState(undefined);
+  const [remainingCount, setRemainingCount] = React.useState(undefined);
+  const [currentAnsweredQuestionsCount, setCurrentAnsweredQuestionsCount] = React.useState(0);
 
   React.useEffect(() => {
     if (!questionsList.length) {
@@ -18,25 +19,20 @@ export default function MentalTraining({}) {
     server.get('update_progress')
       .then((response) => {
         const { userMentalProgress: userProgressData } = response.data;
-        setUserProgress(userProgressData);
+        setRemainingCount(userProgressData);
       });
   }, []);
 
 
-  const userProgressComponent = userProgress && (
+  const userProgressComponent = remainingCount && (
     <div className="daily_progress">
       <p className="daily-progress__counter">
         <span>Progression journalière: </span>
-        {userProgress.daily_progress}
-        {' '}
-        /
-
-        {' '}
-        {userProgress.daily_objective}
+        {currentAnsweredQuestionsCount} {' '} / {' '} {remainingCount}
       </p>
       <LinearProgress
         variant="determinate"
-        value={(userProgress.daily_progress / userProgress.daily_objective) * 100}
+        value={(currentAnsweredQuestionsCount/ remainingCount) * 100}
       />
     </div>
   )
@@ -78,6 +74,7 @@ export default function MentalTraining({}) {
   function submit(isSuccessfullyAnswered) {
     const submitedQuestion = questionsList[0];
     displayNextQuestion();
+    setCurrentAnsweredQuestionsCount(currentAnsweredQuestionsCount + 1);
     server.post('submitMentalQuestion', {
       questionId: submitedQuestion.id,
       isSuccessfullyAnswered,
