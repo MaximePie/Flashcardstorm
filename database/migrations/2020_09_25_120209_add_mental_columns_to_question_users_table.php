@@ -15,7 +15,7 @@ class AddMentalColumnsToQuestionUsersTable extends Migration
     {
         Schema::table('question_users', function (Blueprint $table) {
             $table->date('next_mental_question_at')->nullable()->default(now());
-            $table->integer('Q')->default(1);
+            $table->integer('current_mental_delay')->default(1);
             $table->boolean('is_mentally_memorized')->default(false);
         });
     }
