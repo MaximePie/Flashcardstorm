@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/MentalTraining.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/MentalTraining.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/RoughTraining.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/RoughTraining.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -418,7 +418,8 @@
       <workItem from="1600817371452" duration="2677000" />
       <workItem from="1600989274533" duration="2522000" />
       <workItem from="1601018044936" duration="20209000" />
-      <workItem from="1601103777033" duration="4879000" />
+      <workItem from="1601103777033" duration="5639000" />
+      <workItem from="1601192710922" duration="151000" />
     </task>
     <task id="LOCAL-00001" summary="feat(front): Add new tolerated character">
       <created>1599641867669</created>
@@ -602,7 +603,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601109179643</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="fix(front): Add 1 to progress counter only if the question has been answered successfuly">
+      <created>1601112552725</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1601112552725</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -637,7 +645,8 @@
     <MESSAGE value="fix(back): Fix mental question saving" />
     <MESSAGE value="fix(back): Add fillable properties to new properties of question user" />
     <MESSAGE value="fix(back): Fix accidentally broken migratio, duh" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(back): Fix accidentally broken migratio, duh" />
+    <MESSAGE value="fix(front): Add 1 to progress counter only if the question has been answered successfuly" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(front): Add 1 to progress counter only if the question has been answered successfuly" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="108" key="#ESLint" timestamp="1593341264765">
@@ -660,10 +669,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593329339953" />
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1601112404804">
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1601112550457">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601112404804" />
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601112550457" />
     <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1599642535747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -704,10 +713,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="11" y="45" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595520055097" />
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1601103782472">
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1601192714895">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601103782472" />
+    <state x="620" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601192714895" />
     <state x="606" y="136" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1600702171866">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -724,9 +733,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600668965615" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1601108364964">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1601192854754">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601108364964" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601192854754" />
   </component>
 </project>
