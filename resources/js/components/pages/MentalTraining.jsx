@@ -35,7 +35,7 @@ export default function MentalTraining({}) {
         value={(currentAnsweredQuestionsCount/ remainingCount) * 100}
       />
     </div>
-  )
+  );
 
 
   return (
