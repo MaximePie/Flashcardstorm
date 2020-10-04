@@ -8,5 +8,10 @@
 
   &__question-card {
     margin: auto;
+
+    @include for-phone-only {
+      margin: auto 0%;
+      width: 98%;
+    }
   }
 }

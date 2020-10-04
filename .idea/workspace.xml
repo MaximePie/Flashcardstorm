@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuestionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/MentalTraining.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/MentalTraining.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/MentalTraining.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/MentalTraining.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -423,7 +421,7 @@
       <workItem from="1601103777033" duration="5639000" />
       <workItem from="1601192710922" duration="20874000" />
       <workItem from="1601456063127" duration="810000" />
-      <workItem from="1601752762458" duration="2817000" />
+      <workItem from="1601752762458" duration="3599000" />
     </task>
     <task id="LOCAL-00001" summary="feat(front): Add new tolerated character">
       <created>1599641867669</created>
@@ -621,7 +619,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601192979310</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="fix(back): Fix image storing">
+      <created>1601790450952</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1601790450952</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -633,7 +638,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="feat(front): Add new tolerated character" />
     <MESSAGE value="fix(front): Fix Roughtraining page" />
     <MESSAGE value="fix(front): Fix redirection problem after refresh on questions list page" />
     <MESSAGE value="feat(front): Improve style on questions List on mobile" />
@@ -658,7 +662,8 @@
     <MESSAGE value="fix(back): Fix accidentally broken migratio, duh" />
     <MESSAGE value="fix(front): Add 1 to progress counter only if the question has been answered successfuly" />
     <MESSAGE value="fix(front): Fix RoughTraining.jsx" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(front): Fix RoughTraining.jsx" />
+    <MESSAGE value="fix(back): Fix image storing" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(back): Fix image storing" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="108" key="#ESLint" timestamp="1593341264765">
@@ -713,10 +718,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="588" y="207" width="720" height="634" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1596880730526" />
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1601192984926">
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1601791757984">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1601192984926" />
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1601791757984" />
     <state x="540" y="176" key="com.intellij.database.dbimport.ImportDialog" timestamp="1596889431619">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
