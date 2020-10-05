@@ -10,19 +10,34 @@ import Cookies from 'js-cookie';
 import CountTo from 'react-count-to';
 import Drawer from '@material-ui/core/Drawer';
 import Badge from '@material-ui/core/Badge';
-import Icon from './Icon';
-import { AuthenticationContext } from '../Contexts/authentication';
 import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
+import { PropTypes } from 'prop-types';
+import Icon from './Icon';
+import { AuthenticationContext } from '../Contexts/authentication';
 
-export default function Navbar(props) {
 
+Navbar.propTypes = {
+  user: PropTypes.shape({
+    numberOfMentalQuestions: PropTypes.number,
+    numberOfQuestions: PropTypes.number,
+    numberOfNewChangelogs: PropTypes.number,
+    initial_score: PropTypes.number,
+    current_score: PropTypes.number,
+  }),
+  onCountComplete: PropTypes.func.isRequired,
+  countClassName: PropTypes.string,
+};
+
+Navbar.defaultProps = {
+  countClassName: '',
+  user: undefined,
+};
+
+export default function Navbar({ user, onCountComplete, countClassName }) {
   const { isConnected } = React.useContext(AuthenticationContext);
-
-  const number_of_new_questions = props.user?.numberOfQuestions;
-  const numberOfNewChangelogs = props.user?.numberOfNewChangelogs;
-
   const [isOpen, setOpen] = React.useState(false);
+
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -33,7 +48,7 @@ export default function Navbar(props) {
   };
 
 
-  const sideList = (side) => (
+  const sideList = () => (
     <div
       className="Navbar__drawer"
       role="presentation"
@@ -66,15 +81,7 @@ export default function Navbar(props) {
             <Link className="Navbar__link" to="/mental_training">
               <ListItem button component="a" className="Navbar__item">
                 <ListItemIcon>
-                  {number_of_new_questions && number_of_new_questions > 0 ? (
-                    <Badge color="secondary" badgeContent={number_of_new_questions}>
-                      <i className="fas fa-headset"/>
-                    </Badge>
-                  ) : (
-                    <>
-                      <i className="fas fa-headset"/>
-                    </>
-                  )}
+                  {icon('mental')}
                 </ListItemIcon>
                 <ListItemText>
                   Mode de tête
@@ -84,15 +91,7 @@ export default function Navbar(props) {
             <Link className="Navbar__link" to="/soft_training">
               <ListItem button component="a" className="Navbar__item">
                 <ListItemIcon>
-                  {number_of_new_questions && number_of_new_questions > 0 ? (
-                    <Badge color="secondary" badgeContent={number_of_new_questions}>
-                      <i className="fas fa-calendar-alt"/>
-                    </Badge>
-                  ) : (
-                    <>
-                      <i className="fas fa-calendar-alt"/>
-                    </>
-                  )}
+                  {icon('byHeart')}
                 </ListItemIcon>
                 <ListItemText>
                   Mode par coeur
@@ -109,7 +108,7 @@ export default function Navbar(props) {
                 </ListItemText>
               </ListItem>
             </Link>
-            <Divider />
+            <Divider/>
             <Link className="Navbar__link" to="/add">
               <ListItem button component="a" className="Navbar__item">
                 <ListItemIcon>
@@ -142,7 +141,7 @@ export default function Navbar(props) {
             </ListItemText>
           </ListItem>
         </Link>
-        <Divider />
+        <Divider/>
         {!isConnected && (
           <>
             <Link className="Navbar__link" to="/register">
@@ -199,12 +198,12 @@ export default function Navbar(props) {
             </ListItem>
           </>
         )}
-        <Divider />
+        <Divider/>
         <Link className="Navbar__link" to="/about">
           <ListItem button component="a" className="Navbar__item">
             <ListItemIcon>
-              {numberOfNewChangelogs && numberOfNewChangelogs > 0 ? (
-                <Badge color="secondary" badgeContent={numberOfNewChangelogs}>
+              {user?.numberOfNewChangelogs && user.numberOfNewChangelogs > 0 ? (
+                <Badge color="secondary" badgeContent={user.numberOfNewChangelogs}>
                   <i className="fas fa-question-circle"/>
                 </Badge>
               ) : (
@@ -246,8 +245,8 @@ export default function Navbar(props) {
           onClick={() => setOpen(true)}
         >
           {
-            (numberOfNewChangelogs && numberOfNewChangelogs > 0)
-            || (number_of_new_questions && number_of_new_questions > 0)
+            (user?.numberOfNewChangelogs && user.numberOfNewChangelogs > 0)
+            || (user?.numberOfQuestions && user?.numberOfQuestions > 0)
               ? (
                 <Badge color="secondary" variant="dot">
                   <Icon name="bars" className="Navbar__drawer-icon"/>
@@ -266,14 +265,14 @@ export default function Navbar(props) {
               <a href="/profile" className="Navbar__item-profile-icon-link">
                 <i className="Navbar__item-profile-icon fas fa-user-circle"/>
               </a>
-              {props.user && (
+              {user && (
                 <span className="Navbar__item-profile-score">
                   <CountTo
-                    from={props.user.initial_score}
-                    to={props.user.current_score}
+                    from={user.initial_score}
+                    to={user.current_score}
                     speed={1000}
-                    className={`Navbar__item-profile-score-counter ${props.countClassName}`}
-                    onComplete={props.onCountComplete}
+                    className={`Navbar__item-profile-score-counter ${countClassName}`}
+                    onComplete={onCountComplete}
                   />
                 </span>
               )}
@@ -286,9 +285,52 @@ export default function Navbar(props) {
 
   function logout() {
     axios.get('/logout')
-      .then((response) => {
+      .then(() => {
         Cookies.remove('Bearer');
         document.location = '/';
       });
+  }
+
+  /**
+   * Generates the icon component on the menu based on the feature
+   * @param feature
+   */
+  function icon(feature) {
+    let isBadgeDisplayed = false;
+    switch (feature) {
+      case 'mental':
+        isBadgeDisplayed = user?.numberOfMentalQuestions && user.numberOfMentalQuestions > 0
+          && document.location.pathname !== '/mental_training';
+
+        return (
+          <>
+            {isBadgeDisplayed ? (
+                <Badge color="secondary" badgeContent={user.numberOfMentalQuestions}>
+                  <i className="fas fa-headset"/>
+                </Badge>
+              )
+              : <i className="fas fa-headset"/>
+            }
+          </>
+        );
+      case 'byHeart':
+        isBadgeDisplayed = user?.numberOfQuestions && user.numberOfQuestions > 0
+          && document.location.pathname !== '/soft_training';
+        return (
+          <>
+            {isBadgeDisplayed ? (
+              <Badge color="secondary" badgeContent={user.numberOfQuestions}>
+                <i className="fas fa-calendar-alt"/>
+              </Badge>
+            ) : (
+              <>
+                <i className="fas fa-calendar-alt"/>
+              </>
+            )}
+          </>
+        );
+      default:
+        return (<></>)
+    }
   }
 }

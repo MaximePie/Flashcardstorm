@@ -12,6 +12,7 @@ import '../sass/imports.scss';
 import moment from 'moment';
 import { SnackbarProvider } from 'notistack';
 import { AuthenticationContext } from './Contexts/authentication';
+import { UserContext } from './Contexts/user';
 import { viewportContext } from './Contexts/viewport';
 
 import AddKnowledge from './components/pages/AddKnowledge';
@@ -44,6 +45,7 @@ export default function App() {
   const isConnected = Cookies.get('Bearer') !== null && Cookies.get('Bearer') !== undefined;
   const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
   const [isMobile, setMobileStatus] = React.useState(viewportWidth < 1000);
+  const [byHeartQuestionsCount, setByHeartQuestionsCount] = React.useState(0);
 
   window.onresize = () => {
     const newViewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
@@ -71,9 +73,31 @@ export default function App() {
     notistackRef.current.closeSnackbar(key);
   };
 
+  /**
+   * Decrements the Mental Questions Count
+   */
+  function decrementMentalQuestionsCount() {
+    if (user) {
+      let updatedMentalQuestionsCount = user.numberOfMentalQuestions - 1;
+      if (user.numberOfMentalQuestions === 0) {
+        updatedMentalQuestionsCount = 0;
+      }
+      setUser({
+        ...user,
+        mentalQuestionsCount: updatedMentalQuestionsCount,
+      })
+    }
+  }
+
   return (
-    <AuthenticationContext.Provider value={{ isConnected, userId: user?.id }}>
-      <viewportContext.Provider value={isMobile}>
+    <AuthenticationContext.Provider value={{ isConnected, userId: user?.id}}>
+      <UserContext.Provider value={{
+        mentalQuestionsCount: user?.numberOfMentalQuestions,
+        byHeartQuestionsCount: byHeartQuestionsCount,
+        decrementHeartQuestionsCount: decrementMentalQuestionsCount,
+        decrementMentalQuestionsCount: () => {setMentalQuestionsCount(mentalQuestionsCount - 1)}
+      }}>
+        <viewportContext.Provider value={isMobile}>
         <SnackbarProvider
           {...snackbarConfig}
           ref={notistackRef}
@@ -152,6 +176,7 @@ export default function App() {
           </BrowserRouter>
         </SnackbarProvider>
       </viewportContext.Provider>
+      </UserContext.Provider>
     </AuthenticationContext.Provider>
   );
 
@@ -160,6 +185,7 @@ export default function App() {
       .then((response) => {
         const {
           number_of_questions: numberOfQuestions,
+          numberOfMentalQuestions,
           number_of_new_changelogs: numberOfNewChangelogs,
           userId,
         } = response.data;
@@ -172,13 +198,12 @@ export default function App() {
           newUser.initial_score = user.current_score;
           newUser.current_score = response.data.score;
         }
-        if (window.location.pathname !== '/soft_training') {
-          newUser.numberOfQuestions = numberOfQuestions;
-        }
         if (window.location.pathname !== '/about') {
           newUser.numberOfNewChangelogs = numberOfNewChangelogs;
         }
 
+        newUser.numberOfQuestions = numberOfQuestions;
+        newUser.numberOfMentalQuestions = numberOfMentalQuestions;
         newUser.id = userId;
 
         setUser(newUser);

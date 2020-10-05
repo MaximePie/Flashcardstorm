@@ -28,12 +28,10 @@ QuestionsListItem.propTypes = {
 
 export default function QuestionsListItem({
   question,
-  questionKey,
-  toggleQuestionForUser,
   deleteQuestion,
   handleClick,
 }) {
-  const isConnected = React.useContext(AuthenticationContext);
+  const { isConnected } = React.useContext(AuthenticationContext);
   const isMobile = React.useContext(viewportContext);
 
   return (

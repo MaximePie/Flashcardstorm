@@ -1,38 +1,33 @@
 import React, { useEffect } from 'react';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import QuestionCard from '../molecule/QuestionCard';
 import server from '../../server';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import { UserContext } from '../../Contexts/user';
 
 export default function MentalTraining({}) {
+  const { mentalQuestionsCount, decrementMentalQuestionsCount } = React.useContext(UserContext);
   const [questionsList, setQuestionsList] = React.useState([]);
   const currentQuestion = questionsList[0];
-  const [remainingCount, setRemainingCount] = React.useState(undefined);
   const [currentAnsweredQuestionsCount, setCurrentAnsweredQuestionsCount] = React.useState(0);
 
-  React.useEffect(() => {
+
+  useEffect(() => {
     if (!questionsList.length) {
       fetchQuestionsList();
     }
   }, [questionsList]);
 
-  React.useEffect(() => {
-    server.get('update_progress')
-      .then((response) => {
-        const { userMentalProgress: userProgressData } = response.data;
-        setRemainingCount(userProgressData);
-      });
-  }, []);
-
-
-  const userProgressComponent = remainingCount && (
+  const userProgressComponent = mentalQuestionsCount && (
     <div className="daily_progress">
       <p className="daily-progress__counter">
         <span>Progression journalière: </span>
-        {currentAnsweredQuestionsCount} {' '} / {' '} {remainingCount}
+        {currentAnsweredQuestionsCount}
+        /
+        {mentalQuestionsCount}
       </p>
       <LinearProgress
         variant="determinate"
-        value={(currentAnsweredQuestionsCount/ remainingCount) * 100}
+        value={(currentAnsweredQuestionsCount / mentalQuestionsCount) * 100}
       />
     </div>
   );
@@ -74,13 +69,14 @@ export default function MentalTraining({}) {
   function submit(isSuccessfullyAnswered) {
     const submitedQuestion = questionsList[0];
     displayNextQuestion();
-    if (isSuccessfullyAnswered) {
-      setCurrentAnsweredQuestionsCount(currentAnsweredQuestionsCount + 1);
-    }
     server.post('submitMentalQuestion', {
       questionId: submitedQuestion.id,
       isSuccessfullyAnswered,
     });
+    if (isSuccessfullyAnswered) {
+      setCurrentAnsweredQuestionsCount(currentAnsweredQuestionsCount + 1);
+      decrementMentalQuestionsCount();
+    }
   }
 
   /**
