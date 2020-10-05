@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="557765d7-e841-4c5d-b33f-ddc73c7c98ba" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/Contexts/user.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/flashcardstorm/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Question.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Contexts/authentication.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Contexts/authentication.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/QuestionsListItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/QuestionsListItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/pages/MentalTraining.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/pages/MentalTraining.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/molecule/QuestionCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/molecule/QuestionCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/QuestionCard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/QuestionCard.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -431,7 +426,7 @@
       <workItem from="1601456063127" duration="810000" />
       <workItem from="1601752762458" duration="7851000" />
       <workItem from="1601797977138" duration="6196000" />
-      <workItem from="1601884222699" duration="3956000" />
+      <workItem from="1601884222699" duration="7873000" />
     </task>
     <task id="LOCAL-00001" summary="feat(front): Add new tolerated character">
       <created>1599641867669</created>
@@ -643,7 +638,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601791772471</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="feat(front): Display mental questions count on navbar">
+      <created>1601889692712</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1601889692712</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -655,7 +657,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="fix(front): Fix redirection problem after refresh on questions list page" />
     <MESSAGE value="feat(front): Improve style on questions List on mobile" />
     <MESSAGE value="feat(front): Add questionUser edition form" />
     <MESSAGE value="feat(back): Increase roughtraining questions limit" />
@@ -680,7 +681,8 @@
     <MESSAGE value="fix(front): Fix RoughTraining.jsx" />
     <MESSAGE value="fix(back): Fix image storing" />
     <MESSAGE value="fix(front): Fix responsive design on mental training" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(front): Fix responsive design on mental training" />
+    <MESSAGE value="feat(front): Display mental questions count on navbar" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(front): Display mental questions count on navbar" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="108" key="#ESLint" timestamp="1593341264765">
@@ -703,10 +705,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="276" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593329339953" />
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1601791770849">
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2" timestamp="1601889682860">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601791770849" />
+    <state x="585" y="117" width="1104" height="809" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601889682860" />
     <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1601797954015">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -735,10 +737,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="588" y="207" width="720" height="634" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1596880730526" />
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1601791774903">
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1601890329086">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1601791774903" />
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1601890329086" />
     <state x="540" y="176" key="com.intellij.database.dbimport.ImportDialog" timestamp="1596889431619">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -755,10 +757,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="606" y="136" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1600702171866" />
-    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1601887938438">
+    <state x="519" y="108" width="858" height="804" key="find.popup" timestamp="1601892742044">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601887938438" />
+    <state x="519" y="108" width="858" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601892742044" />
     <state x="601" y="246" width="700" height="530" key="recent.locations.popup" timestamp="1596103847543">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -767,9 +769,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="235" width="896" height="819" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601888134920" />
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1601885048881">
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup" timestamp="1601890361250">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601885048881" />
+    <state x="624" y="160" width="896" height="683" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601890361250" />
   </component>
 </project>

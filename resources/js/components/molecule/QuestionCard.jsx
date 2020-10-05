@@ -9,6 +9,7 @@ import { shuffle } from '../../helper';
 import classNames from 'classnames';
 
 import { PropTypes } from 'prop-types';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 QuestionCard.propTypes = {
   question: PropTypes.shape({
@@ -68,6 +69,14 @@ export default function QuestionCard({ question, mode, onSubmit, onSkip, message
     >
       {icons()}
       <div className="QuestionCard__content">
+        {mode === 'mental' && (
+          <div className="QuestionCard__progress">
+            <LinearProgress
+              variant="determinate"
+              value={question.mentalProgression * 100}
+            />
+          </div>
+        )}
         {questionWording()}
         {answerComponent()}
         {actionsComponent()}

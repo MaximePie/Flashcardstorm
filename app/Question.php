@@ -311,6 +311,7 @@ class Question extends Model
 
         if ($questionUser) {
             $earnedPoints = $questionUser->full_score;
+            $this['mentalProgression'] = $questionUser->current_mental_delay / 10;
         }
         else {
             $earnedPoints = 10;
