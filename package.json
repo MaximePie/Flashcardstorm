@@ -34,7 +34,7 @@
     "eslint-plugin-react-hooks": "^2.3.0",
     "laravel-mix": "^5.0.1",
     "laravel-mix-imagemin": "^1.0.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "react-router": "^5.1.2",
     "resolve-url-loader": "^3.1.1",
     "sass": "^1.25.0",
